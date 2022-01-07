@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_productupdater_index>
+    <!--<productupdater_catalog_product_index>-->
+    <!--default-->
+        <reference name="head">
+            <action method="addJs">
+                <script>Iksanika/productupdater/jquery-1.9.1.min.js</script>
+            </action>
+            <action method="addJs">
+                <script>Iksanika/productupdater/jquery.resizableColumns.js</script>
+            </action>
+            <action method="addJs">
+                <script>Iksanika/productupdater/productupdater.js</script>
+            </action>
+            <action method="addJs">
+                <script>Iksanika/productupdater/productgrid.js</script>
+            </action> 
+            <action method="addJs">
+                <script>Iksanika/productupdater/dragtable.js</script>
+            </action> 
+            
+            <action method="addJs">
+                <script>Iksanika/productupdater/egsupplemental.js</script>
+            </action>
+            <!--
+            <action method="removeItem">
+                <type>js_css</type>
+                <name>Iksanika/productupdater/resources/css/productupdater.css</name>
+            </action>
+            -->
+            <action method="addItem">
+                <type>js_css</type>
+                <name>Iksanika/productupdater/resources/css/productupdater.css</name>
+            </action>
+            <!--
+            <action method="removeItem">
+                <type>skin_css</type>
+                <name>Iksanika/productupdater/resources/css/productupdater.css</name>
+            </action>
+            -->
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>Iksanika/productupdater/resources/css/productupdater.css</name>
+            </action>
+            <!--
+            <action method="removeItem">
+                <type>skin_css</type>
+                <name>css/theme.css</name>
+            </action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/theme.css</name>
+            </action>
+            -->
+            
+            
+            <action method="addItem">
+                <type>js_css</type>
+                <name>Iksanika/productupdater/resources/css/jquery.resizableColumns.css</name>
+            </action>
+        </reference> 
+    </adminhtml_productupdater_index>
+    <!--</productupdater_catalog_product_index>-->
+    <!--/default-->
+</layout>   

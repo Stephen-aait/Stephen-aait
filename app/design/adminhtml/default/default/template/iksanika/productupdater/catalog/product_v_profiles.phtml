@@ -1,0 +1,501 @@
+<?php
+
+/**
+ * Iksanika llc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.iksanika.com/products/IKS-LICENSE.txt
+ *
+ * @category   Iksanika
+ * @package    Iksanika_Productupdater
+ * @copyright  Copyright (c) 2013 Iksanika llc. (http://www.iksanika.com)
+ * @license    http://www.iksanika.com/products/IKS-LICENSE.txt
+ */
+
+?>
+
+    <div role="app-body" class="iks-app-body">
+        
+        
+        
+        
+        
+        
+        <div class="content-header">
+            <table cellspacing="0">
+                <tr>
+                    <td style="width:50%;"><h3 class="icon-head head-products"><?php echo $this->_headerText ?></h3></td>
+                    <td class="a-right">
+                        <?php // echo $this->getButtonsHtml() ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <?php echo $this->getStoreSwitcherHtml(); ?>
+        
+        
+        
+        
+        <aside role="aside" class="iks-app-secondary-pane">
+            <div class="iks-pane-collapser" style="display: block;">
+                <button type="button" role="collapser" data-title="Hide&nbsp;menu" data-title-collapsed="Show&nbsp;menu" class="iks-extension-board-tooltip iks-h-collapser"></button>
+            </div>
+            <div class="iks-btn-add-bg">
+                <div role="action-quick-add" class="iks-btn iks-btn-big iks-quick-add-collapse iks-success iks-add iks-quick-add iks-extension-board-tooltip" data-title="Quick add work and people" onclick="setLocation('<?php echo $this->getUrl('adminhtml/catalog_product/new'); ?>')"><span>Add</span></div>
+            </div>
+            <div class="i-role-side-menu-container"> 
+                <div role="board-menu" style="display: block;">
+                    <div class="i-role-views-navigator-container">
+                        <div class="t3-views-navigator i-role-board-menu" data-reactid=".0">
+                            <div class="t3-views-catalog" data-reactid=".0.1"><noscript data-reactid=".0.1.$favorites"></noscript>
+                                <div class="t3-views-section t3-other-views-section i-role-other-views-section" data-reactid="">
+                                    <div class="t3-name" data-reactid=".0.1.$other.0">Other</div>
+                                    <div class="t3-view-list-group t3-view-list-other-group" data-sortable-key="___FICTIVE_UNGROUPED_GROUP__KEY___" data-reactid="">
+                                        <div class="t3-group t3-private t3-other-group t3-expanded" data-reactid="">
+
+                                            <?php 
+                                            $currentProfileId = Mage::getStoreConfig('productupdater/currentProfile');
+                                            $profileCollection = Mage::helper('productupdater/profile')->getCollection();
+                                            $idx = -1;
+                                            foreach($profileCollection as $profile):
+                                                $idx++;
+                                                if($profile) :
+                                                    echo $this->getLayout()
+                                                                ->createBlock('core/template')
+                                                                ->setTemplate('iksanika/productupdater/catalog/profile_menu_item.phtml')
+                                                                ->setData('profile', $profile)
+                                                                ->setData('idx', $idx)
+                                                                ->toHtml();
+                                                endif;
+                                            endforeach;
+                                            ?>
+                                            
+                                            <?php // t3-active i-role-board-menu-item-active ?>
+                                            <?php /*
+                                            <div class="t3-view i-role-board-menu-item t3-grid" data-call="bubble158"  draggable="true" data-sortable-key="" data-reactid="">
+                                                <a class="t3-view-link" href="#page=table/idx" data-reactid="">
+                                                    <div class="t3-header i-role-view-menu-header" data-reactid="">
+                                                        <span class="iks-icon-general" data-reactid=""></span>
+                                                        <div class="t3-name i-role-item-name" data-reactid="">Task Board</div>
+                                                        <div class="t3-actions-trigger" data-reactid=""></div>
+                                                    </div>
+                                                </a>
+                                                <div class="t3-views__drop-placeholder" data-reactid=""></div>
+                                            </div>
+                                            
+                                            
+                                            <div class="t3-view i-role-board-menu-item t3-grid" draggable="true" data-call="bubble159" data-sortable-key="" data-reactid="">
+                                                <a class="t3-view-link" href="#page=table/idx" data-reactid="">
+                                                    <div class="t3-header i-role-view-menu-header" data-reactid="">
+                                                        <span class="iks-icon-general" data-reactid=""></span>
+                                                        <div class="t3-name i-role-item-name" data-reactid="">People</div>
+                                                        <div class="t3-actions-trigger" data-reactid=""></div>
+                                                    </div>
+                                                </a>
+                                                <div class="t3-views__drop-placeholder" data-reactid=""></div>
+                                            </div>
+                                            
+                                            
+                                            
+                                            <div class="t3-view i-role-board-menu-item t3-grid" draggable="true" data-call="bubble160" data-sortable-key="" data-reactid="">
+                                                <a class="t3-view-link" href="#page=table/idx" data-reactid="">
+                                                    <div class="t3-header i-role-view-menu-header" data-reactid="">
+                                                        <span class="iks-icon-general" data-reactid=""></span>
+                                                        <div class="t3-name i-role-item-name" data-reactid="">People by Project</div>
+                                                        <div class="t3-actions-trigger" data-reactid=""></div>
+                                                    </div>
+                                                </a>
+                                                <div class="t3-views__drop-placeholder" data-reactid=""></div>
+                                            </div>
+                                            */ ?>
+                                            
+                                        </div>
+                                        <div class="t3-views__drop-placeholder" data-reactid=""></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                            <div class="t3-controls" data-reactid=".0.2">
+                                <div class="t3-add-view-options-list" data-reactid=".0.2.0">
+                                    <div class="t3-group i-role-create-group-menu-item" data-reactid=".0.2.0.0">
+                                        <div class="t3-header" data-reactid=".0.2.0.0.0">
+                                            <span class="iks-icon-general" data-reactid=".0.2.0.0.0.0"></span>
+                                            <div class="t3-name" data-reactid=".0.2.0.0.0.1">Group</div>
+                                        </div>
+                                    </div>
+                                    <div class="t3-view t3-grid i-role-create-view-menu-item" data-reactid=".0.2.0.3">
+                                        <div class="t3-header" data-reactid=".0.2.0.3.0">
+                                            <span class="iks-icon-general" data-reactid=".0.2.0.3.0.0"></span>
+                                            <div class="t3-name" data-reactid=".0.2.0.3.0.1">View</div>
+                                        </div>
+                                    </div>
+                                    <div class="t3-view t3-grid vg-externaltrigger" data-reactid=".0.2.0.4:0">
+                                        <div class="t3-header" data-reactid=".0.2.0.4:0.0"><i class="vg-icon vg-icon-gallery" data-reactid=".0.2.0.4:0.0.0"></i>
+                                            <div class="t3-name vg-externaltrigger__name" data-reactid=".0.2.0.4:0.0.1">Browse Solutions Gallery</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="t3-add-view-trigger i-role-add-board-button" title="Create new Groups and Views" data-reactid=".0.2.1"><span data-reactid=".0.2.1.0">Create</span></div>
+                            </div>
+                            
+                            
+                            
+                            <div class="iks-bubble t3-views-navigator-bubble i-role-bubble i-state_visible i-orientation_top" id="bubble306" data-orientation="top" style="z-index: 999; display: none; top: 50px; left: 220px;">
+                                <div class="iks-bubble__inner" role="content">
+                                    <div class="ui-drop-down t3-views-navigator-context-menu"> 
+                                        <div role="list" class="drop-down-list"> 
+                                            <div class="drop-down-list__inner i-inner"> 
+                                                <?php /*
+                                                <div role="option" class="i-role-menu-action-setup drop-down-option" title=""> Setup </div>
+                                                <div role="option" class="drop-down-separator drop-down-option" title="">  </div>
+                                                 */ ?>
+                                                <div role="option" class="i-role-open-view-in-new-tab drop-down-option" title=""> Open in new tab </div>
+                                                <?php /*
+                                                <div role="option" class="i-role-menu-action-rename drop-down-option" title=""> Rename </div>
+                                                <div role="option" class="i-role-menu-action-access drop-down-option" title="Make this View visible to all or selected teams"> Access<span class="drop-down-option__access-type">Public</span> </div>
+                                                <div role="option" class="i-role-menu-action-favorites drop-down-option" title=""> Add to Favorites </div>
+                                                <div role="option" class="i-role-menu-action-hide drop-down-option" title="Hide this View from your menu"> Hide </div>
+                                                 */ ?>
+                                                <div role="option" class="drop-down-separator drop-down-option" title="">  </div>
+                                                <div role="option" class="i-role-menu-action-remove drop-down-option-danger drop-down-option" title="Remove this View"> Remove </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                    </div>
+                </div> 
+                <div role="process-setup" style="display: none;">
+                    <div class="i-role-placeholder">
+
+                    </div>
+
+                </div> 
+                <div id="tmp-edit-profile-name" style="display: none;">
+                    <input>
+                </div> 
+            </div>
+        </aside>
+            
+
+        <?php 
+        $currentProfileId = Mage::getStoreConfig('productupdater/currentProfile');
+        $profileCollection = Mage::helper('productupdater/profile')->getCollection();
+        $idx = -1;
+        foreach($profileCollection as $profile):
+            $idx++;
+            if($profile) :
+                ?>
+        
+        <div class="iks-bubble-board i-role-bubble i-orientation_left       i-state_visible iks-bubble-tooltip t3-view-menu-tooltip" id="item<?php echo $profile->profileId; ?>" data-orientation="left" style="z-index: 105; display: none; top: 97px; left: 40px;">
+            <div class="iks-bubble-board__inner iks-container" role="content">
+                <span><?php echo $profile->profileName; ?></span>
+            </div>
+        </div>
+        
+                <?php
+            endif;
+        endforeach;
+        ?>
+        
+        
+        <div class="iks-bubble-board i-role-bubble i-orientation_left       i-state_visible iks-bubble-tooltip t3-view-menu-tooltip" id="bubble157" data-orientation="left" style="z-index: 105; display: none; top: 97px; left: 40px;">
+            <div class="iks-bubble-board__inner iks-container" role="content">
+                <span>My Work</span>
+            </div>
+        </div>
+        
+        <div class="iks-bubble-board i-role-bubble i-orientation_left       i-state_visible iks-bubble-tooltip t3-view-menu-tooltip" id="bubble158" data-orientation="left" style="z-index: 105; display: none; top: 233px; left: 40px;">
+            <div class="iks-bubble-board__inner iks-container" role="content">
+                <span>Task Board</span>
+            </div>
+        </div>
+        
+        <div class="iks-bubble-board i-role-bubble i-orientation_left       i-state_visible iks-bubble-tooltip t3-view-menu-tooltip" id="bubble159" data-orientation="left" style="z-index: 105; display: none; top: 158px; left: 40px;">
+            <div class="iks-bubble-board__inner iks-container" role="content">
+                <span>People</span>
+            </div>
+        </div>
+        
+        <div class="iks-bubble-board i-role-bubble i-orientation_left       i-state_visible iks-bubble-tooltip t3-view-menu-tooltip" id="bubble160" data-orientation="left" style="z-index: 105; display: none; top: 189px; left: 40px;">
+            <div class="iks-bubble-board__inner iks-container" role="content">
+                <span>People by Project</span>
+            </div>
+        </div>
+        
+        
+        
+        
+        
+
+
+        <div role="main" class="iks-app-main-pane iks-layout iks-layout-board iks-layout-board_south-visible_true iks-layout-board_south-expanded_true">
+<!--        <div role="main" class="">-->
+            <?php echo $this->getGridHtml() ?>
+        </div>
+        
+        
+        <script type="text/javascript">
+        //<![CDATA[
+            function adjustAsideMenu()
+            {
+/*                $j('aside').css({top: $j('#productGrid').offset().top+31, height: $j('.footer').offset().top-$j('#productGrid').offset().top+48});*/
+//                $j('aside').css({top: $j('#productGrid').offset().top-18+5, height: $j('.footer').offset().top-$j('#productGrid').offset().top+48+18+31-5});
+            }
+            $j(window).ready(function(event) {
+                adjustAsideMenu();
+            });
+            
+            $j(window).resize(function() {
+                adjustAsideMenu();
+            });
+            
+        
+//            $j('#productGrid').resize(function() {
+//            });
+            
+            $j('#productGrid').bind('resize', function(){
+                adjustAsideMenu();
+            });
+            
+            $j(document).ready(function() {
+                adjustAsideMenu();
+            });
+                            //
+
+            
+            $j('.i-role-board-menu-item').hover(
+                function () {
+                    if($j('.iks-sp-collapsed').length)
+                    {
+                        $j('#'+$j(this).attr('data-call')).css({top: $j('.t3-views-catalog').offset().top+($j(this).index()*30)});
+                        $j('#'+$j(this).attr('data-call')).show();
+                    }
+                },
+                function () {
+                    if($j('.iks-sp-collapsed').length)
+                    {
+                        $j('#'+$j(this).attr('data-call')).css({top: $j('.t3-views-catalog').offset().top+($j(this).index()*30)});
+                        $j('#'+$j(this).attr('data-call')).hide();
+                    }
+                }
+            );
+            
+//            $j('.i-role-board-menu-item').click(function() {
+            $j('body').on('click', 'div.i-role-board-menu-item', function() {
+                if($j(event.target).is('div.t3-actions-trigger'))
+                {
+                    event.stopPropagation();  
+                    return false;
+                }
+                var postData  = 'form_key=' + FORM_KEY + '&profile=' + $j(this).attr('data-profile-id');
+                
+                // save columns order
+                new Ajax.Request('<?php echo $this->getUrl('*/*/setProfile', array('_current' => true))?>', {
+                    method: 'post',
+                    postBody : postData,
+                    onSuccess: function(transport) {
+//console.debug($j(this).attr('id'));
+                        $j('.i-role-board-menu-item').removeClass('t3-active');
+                        $j('.i-role-board-menu-item').removeClass('i-role-board-menu-item-active');
+
+                        $j(this).addClass('t3-active');
+                        $j(this).addClass('i-role-board-menu-item-active');
+                        
+                        adjustAsideMenu();
+                        <?php
+                            $productGrid = $this->getChild('grid');
+                        ?>
+                        <?php echo $productGrid->getJsObjectName()?>.resetFilter();
+                    }.bind(this),
+                    onFailure: function()
+                    {
+                        alert('Request failed. Please retry.');
+                    }
+                });
+            });
+            
+            // if popup for profiles is called (setup/rename/remove ..)
+//            $j('.t3-actions-trigger').click(function() {
+            $j('body').on('click', 'div.t3-actions-trigger', function() {
+                $j(".t3-views-navigator-bubble").css({top: ($j(this).parent().parent().parent().index()*30)}); //$j('.t3-views-catalog').offset().top+
+//                if($j('.t3-views-navigator-bubble').is(":visible")) {
+//                    $j('.t3-views-navigator-bubble').hide();
+//                }else
+//                {
+                    $j('.t3-views-navigator-bubble').show();
+                    $j('.t3-views-navigator-bubble').attr('id', $j(this).parent().parent().parent().attr('data-call'));
+                    
+                    if($j(this).attr('is-core-item'))
+                    {
+                        $j(".t3-views-navigator-bubble .i-role-menu-action-remove").hide();
+                    }else
+                    {
+                        $j(".t3-views-navigator-bubble .i-role-menu-action-remove").show();
+                    }
+                        
+//                }
+                event.stopPropagation();
+//                $j('#'+$j(this).attr('data-call')).css({top: $j('.t3-views-catalog').offset().top+($j(this).index()*30)});
+            });
+            
+            
+            
+            $j('.iks-h-collapser').click(function() {
+                if($j('.iks-app-body').hasClass('iks-sp-collapsed'))
+                {
+                    $j('.iks-app-body').removeClass('iks-sp-collapsed');
+                    $j('.iks-h-collapser').removeClass('iks-collapsed');
+                }else
+                {
+                    $j('.iks-app-body').addClass('iks-sp-collapsed');
+                    $j('.iks-h-collapser').addClass('iks-collapsed');
+                }
+                
+///////////
+///////////
+///////////
+/////////// TEMPORARY - JUST FOR TEST ADDED AT 1:02 NIGHT TO RESOLVE COLLAPSE EFFECT - START
+///////////
+///////////
+///////////
+
+                dragtable.init('productGrid_table','<?php echo $this->getUrl('*/*/saveColumnPositions', array('_current' => true))?>');
+
+                window.columnWidths = [];
+                <?php
+                $currentProfile = Mage::helper('productupdater/profile')->getCurrentProfile();
+                $columnWidth = (string) $currentProfile->columns_width;
+                if($columnWidth != '' && $columnWidth != null)
+                {
+                   ?>
+//                        window.columnWidths = JSON.parse('<?php echo $columnWidth;?>');
+                   <?php
+                }
+                ?>
+                $j("#productGrid_table").resizableColumns({resizedWidthUrl: '<?php echo $this->getUrl('*/*/saveColumnWidth', array('_current' => true))?>', formKey:  FORM_KEY});
+                
+///////////
+///////////
+///////////
+/////////// TEMPORARY - JUST FOR TEST ADDED AT 1:02 NIGHT TO RESOLVE COLLAPSE EFFECT - END
+///////////
+///////////
+///////////
+                
+                
+                
+                
+                
+                
+                adjustAsideMenu();
+            });
+            
+            $j('.i-role-menu-action-remove').click(function() {
+                var postData  = 'form_key=' + FORM_KEY + '&profile=' + +$j('.i-role-board-menu-item[data-call='+$j('.t3-views-navigator-bubble').attr('id')+']').attr('data-profile-id');
+
+                new Ajax.Request('<?php echo $this->getUrl('*/*/removeProfile', array('_current' => true))?>', {
+                    method: 'post',
+                    postBody : postData,
+                    onSuccess: function(transport) {
+                        var response = transport.responseText.evalJSON();
+                        $j('.t3-views-navigator-bubble').hide();
+
+                        if($j('.i-role-board-menu-item[data-call=item'+response.profile.profileId+']').hasClass('i-role-board-menu-item-active'))
+                        {
+                            $j('.i-role-board-menu-item[data-call=item'+response.profile.profileId+']').remove();
+                            $j('.i-role-board-menu-item')[0].click();
+                        }
+                        $j('.i-role-board-menu-item[data-call=item'+response.profile.profileId+']').remove();
+                        adjustAsideMenu();
+                    }.bind(this),
+                    onFailure: function()
+                    {
+                        alert('Request failed. Please retry.');
+                    }
+                });
+                
+            });
+            
+            $j('.i-role-add-board-button').click(function() {
+                var postData  = 'form_key=' + FORM_KEY;
+
+                new Ajax.Request('<?php echo $this->getUrl('*/*/generateProfile', array('_current' => true))?>', {
+                    method: 'post',
+                    postBody : postData,
+                    onSuccess: function(transport) {
+                        var response = transport.responseText.evalJSON();
+
+                        $j('.t3-group').append(response.menuItemTemplate);
+                        
+                        $j('.i-role-board-menu-item').removeClass('t3-active');
+                        $j('.i-role-board-menu-item').removeClass('i-role-board-menu-item-active');
+                        
+                        $j('.i-role-board-menu-item[data-call=item'+response.profile.profileId+']').addClass('t3-active');
+                        $j('.i-role-board-menu-item[data-call=item'+response.profile.profileId+']').addClass('i-role-board-menu-item-active');
+                        
+                        
+                        $j('.i-role-board-menu-item')[$j('.i-role-board-menu-item').index($j('.i-role-board-menu-item[data-call=item'+response.profile.profileId+']'))].click();
+                        adjustAsideMenu();
+                        
+                    }.bind(this),
+                    onFailure: function()
+                    {
+                        alert('Request failed. Please retry.');
+                    }
+                });
+                
+            });
+            
+            $j('.i-role-menu-action-rename').click(function() {
+                var profileTitle = $j('.i-role-board-menu-item[data-call=\''+$j('.t3-views-navigator-bubble').attr('id')+'\']').html();
+                var profileTitleEdit = $j('#tmp-edit-profile-name').html();
+                
+                $j('.i-role-board-menu-item[data-call=\''+$j('.t3-views-navigator-bubble').attr('id')+'\']').empty();
+                $j('#tmp-edit-profile-name').empty();
+                
+                $j('#tmp-edit-profile-name').append(profileTitle);
+                $j('.i-role-board-menu-item[data-call=\''+$j('.t3-views-navigator-bubble').attr('id')+'\']').append(profileTitleEdit);
+                //t3-view-link
+            });
+            
+            $j('.i-role-open-view-in-new-tab').click(function() {
+                $j('.t3-views-navigator-bubble').hide();
+                window.open('<?php echo $this->getUrl('*/*/*', array('_current' => true))?>profile_id/'+$j('.i-role-board-menu-item[data-call='+$j('.t3-views-navigator-bubble').attr('id')+']').attr('data-profile-id'));
+                return false;
+            });
+            
+            $j('.i-role-menu-action-setup').click(function() {
+                alert('Click Setup tab');
+            });
+            
+            
+            
+            
+            $j(document).click(function(event) {
+               if(!$j(event.target).closest('.t3-views-navigator-bubble').length) {
+                    if($j('.t3-views-navigator-bubble').is(":visible")) {
+                        $j('.t3-views-navigator-bubble').hide();
+                    }
+                }        
+            });
+            
+            
+        //]]>
+        </script>
+        
+    </div>
+

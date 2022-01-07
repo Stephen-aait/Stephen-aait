@@ -1,0 +1,42 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml(); ?>
+<?php $t = Mage::getStoreConfig('masonotes/customer/text_above_all');?>
+<?php if ($t != ''):?>
+	<style>
+.masoitems-text {
+		padding: 10px;
+		background: #fff;
+		border-left: 2px solid #ff9933;
+		margin-bottom: 10px;
+}
+</style>
+	<div class="masoitems-text"><?php echo $t?></div>
+<?php endif;?>
+<?php $items = $this->getCollection();?>
+<?php if ($items->getSize() > 0) :?>
+	<?php echo $this->getPagerHtml(); ?>
+	<table class="data-table" id="my-orders-table">
+	    <thead>
+	        <tr>
+	            <th><?php echo $this->__('Order #') ?></th>
+	            <th><?php echo $this->__('Who') ?></th>	            
+	            <th width="60%"><?php echo $this->__('Note') ?></th>
+	        </tr>
+	    </thead>
+        <?php $_index = 0; ?>
+        <?php $_count = $items->count(); ?>
+        <tbody>
+        <?php foreach ($items as $_item): ?>
+            <?php
+            $repl = false; 
+            ?>
+            <tr>
+                <td><a href="<?php echo $this->getUrl('sales/order/view/', array('order_id' => $_item->getOrderId()))?>"><?php echo $_item->getIncrementId();?></a><br /></td>
+                <td class="a-right"><i><?php if ($_item->getCustomerId()):?><?php $repl = true;?><?php echo $this->__('You');?><?php else:?><?php echo $_item->getFirstname()?><?php endif;?></i><br /><span style="font-size:0.8em;"><?php echo $_item->getCreatedAt()?></span></td>
+                <td <?php if (!$repl):?>class="a-right"<?php endif;?>><?php echo $_item->getNote()?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+	</table>
+	<script type="text/javascript">decorateTable('my-orders-table', {'tbody tr' : ['odd', 'even', 'first', 'last']})</script>
+	<?php echo $this->getPagerHtml(); ?>
+<?php endif;?> 

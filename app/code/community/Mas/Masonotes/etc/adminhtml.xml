@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mas_Masonotes extension by Makarovsoft.com
+ * 
+ * @category   	Mas
+ * @package		Mas_Masonotes
+ * @copyright  	Copyright (c) 2014
+ * @license		http://makarovsoft.com/license.txt
+ * @author		makarovsoft.com
+ */
+-->
+<config>
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<config>
+								<children>
+									<masonotes translate="title" module="masonotes">
+										<title>Notes On Orders</title>
+									</masonotes>
+								</children>
+							</config>
+						</children>
+					</system>
+					<sales>
+                        <children>
+                            <masonotes translate="title" module="masonotes">
+                                <title>Notes on Orders</title>
+                            </masonotes>
+                        </children>
+                    </sales>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+	<menu>
+        <sales>
+            <children>
+                <masonotes translate="title" module="masonotes">
+                    <title>Notes on Orders</title>
+                    <sort_order>700</sort_order>
+                    <action>adminhtml/masonotes_note</action>
+                </masonotes>
+            </children>
+        </sales>
+	</menu>
+</config>

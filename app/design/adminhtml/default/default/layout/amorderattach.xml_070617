@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_Orderattach
+ */
+-->
+<layout>
+    <adminhtml_sales_order_view>
+        <reference name="head">
+            <action method="addCss"><name>amasty/amorderattach/upload.css</name></action>
+            <action method="addItem"><type>js</type><name>amasty/amorderattach/handle.js</name><params/></action>
+        </reference>
+    </adminhtml_sales_order_view>
+    <adminhtml_sales_order_index>
+        <reference name="head">
+            <action method="addCss"><name>amasty/amorderattach/upload.css</name></action>
+
+            <action method="addItem"><type>js</type><name>amasty/amorderattach/grid.js</name><params/></action>
+            <action method="addItem"><type>js</type><name>amasty/amorderattach/file_upload.js</name><params/></action>
+        </reference>
+        <reference name="content">
+            <block type="amorderattach/adminhtml_grid_jsinit" name="amorderattach_jsinit"></block>
+        </reference>
+    </adminhtml_sales_order_index>
+    <adminhtml_amorderattach_orderattach_edit>
+        <reference name="head">
+            <action method="addItem"><type>js</type><name>amasty/amorderattach/file_drag_and_drop.js</name><params/></action>
+            <action method="addCss"><name>amasty/amorderattach/upload.css</name></action>
+        </reference>
+        <reference name="left">
+            <block type="amorderattach/adminhtml_sales_order_edit_action_attachment_tabs" name="attachment_tabs">
+                <block type="amorderattach/adminhtml_sales_order_edit_action_attachment_tab_notes" name="tab_notes"/>
+                <action method="addTab"><name>notes</name><block>tab_notes</block></action>
+                <block type="amorderattach/adminhtml_sales_order_edit_action_attachment_tab_files" name="tab_files"/>
+                <action method="addTab"><name>files</name><block>tab_files</block></action>
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="amorderattach/adminhtml_sales_order_edit_action_attachment" name="attachment"
+                   template="amorderattach/order/edit/action/attachment.phtml"/>
+        </reference>
+    </adminhtml_amorderattach_orderattach_edit>
+</layout>

@@ -1,0 +1,37 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_Orderattach
+ */
+?>
+<div id="viewblock_<?php echo $this->getItemCode(); ?>">
+    <?php if ($this->getItemValue()): ?>
+        <strong>
+            <?php echo Mage::helper('amorderattach')->getRenderedDate($this->getItemValue()); ?>
+        </strong>
+    <?php endif; ?>
+</div>
+
+<div id="editblock_<?php echo $this->getItemCode(); ?>" style="display: none;">
+    <?php 
+    $form = new Varien_Data_Form();
+    $date = new Varien_Data_Form_Element_Date(array(
+        'image'         => $this->getSkinUrl('images/grid-cal.gif'),
+        'html_id'       => 'value_' . $this->getItemCode(),
+        'name'          => 'value_' . $this->getItemCode(),
+        'format'        => Varien_Date::DATE_INTERNAL_FORMAT,
+        'input_format'  => Varien_Date::DATE_INTERNAL_FORMAT));
+    $date->setForm($form);
+    $date->setValue($this->getItemValue());
+    echo $date->toHtml();
+    ?>
+    <div style="margin-top: 2px;">
+        <button class="scalable" type="button" onclick="javascript: attachSave('<?php echo $this->getItemCode(); ?>', 'date');">
+            <span><?php echo $this->__('Save'); ?></span>
+        </button>
+        <button class="scalable" type="button" onclick="javascript: attachCancel('<?php echo $this->getItemCode(); ?>');">
+            <span><?php echo $this->__('Cancel'); ?></span>
+        </button>
+    </div>
+</div>

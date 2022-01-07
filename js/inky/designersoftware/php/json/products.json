@@ -1,0 +1,30 @@
+{
+	"products":
+	[
+		{
+			"designId":"1",
+			"thumb":"media/jstoolstaticproducts/small-img-1.png"
+		},
+		{
+			"designId":"2",
+			"thumb":"media/jstoolstaticproducts/small-img-2.png"
+		},
+		{
+			"designId":3,
+			"thumb":"media/jstoolstaticproducts/small-img-3.png"
+		},
+		{
+			"designId":4,
+			"thumb":"media/jstoolstaticproducts/small-img-4.png"
+		},
+		{
+			"designId":5,
+			"thumb":"media/jstoolstaticproducts/small-img-5.png"
+		},
+		{
+			"designId":6,
+			"thumb":"media/jstoolstaticproducts/small-img-6.png"
+		}
+		
+	]
+}

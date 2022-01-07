@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Expert_Orderdelete>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Expert_Orderdelete>
+    </modules>
+</config> 

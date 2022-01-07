@@ -1,0 +1,27 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_Orderattach
+ */
+?>
+
+<script type="text/javascript">
+Event.observe(window, 'load', function(){
+    oeditGrid  = new amOgrid(
+        <?php echo $this->getColumnsProperties(); ?>,
+        '<?php echo $this->getSaveUrl(); ?>',
+        <?php echo $this->getStoreId(); ?>,
+        '<?php echo Mage::app()->getLocale()->getDateStrFormat(Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM) ?>',
+        '<?php echo Mage::getDesign()->getSkinUrl('images/grid-cal.gif'); ?>'
+    );
+});
+
+attachDeleteUrl = '<?php echo $this->getUrl('adminhtml/amorderattach_order/delete'); ?>';
+attachReloadUrl = '<?php echo $this->getUrl('adminhtml/amorderattach_order/reload'); ?>';
+attachHTML5 = '<?php echo Mage::getStoreConfig('amorderattach/general/html5'); ?>';
+
+</script>
+<div id="amorderattach_edit_note" style="position: absolute; top: 0px; left: 0px; border: 1px solid gray; background-color: white; padding: 2px; font-size: 10px; display: none;">
+    <?php echo $this->__('Click to edit this cell right on the grid.'); ?>
+</div>

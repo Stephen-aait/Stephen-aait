@@ -1,0 +1,48 @@
+<!--@subject Order Attachments For Order #{{var var order_id}}@-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"htmlescape var=$customer.name":"Customer Name",
+"var store.getFrontendName()":"Store Name",
+"store url=\"customer/account/\"":"Customer Account Url",
+"var customer.email":"Customer Email",
+"htmlescape var=$customer.password":"Customer Password"}
+@-->
+
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<table cellspacing="0" cellpadding="0" border="0" height="100%" width="100%">
+		
+        <tr>
+            <td align="center" valign="top" style="padding:20px 0 20px 0">
+                <!-- [ header starts here] -->
+				<table cellpadding="0" cellspacing="0" border="0" width="650px">
+					<tr>
+						<td align="left" valign="top">
+							<a href="{{store url=""}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}" style="margin-bottom:10px;" border="0"/></a>
+						</td>
+					</tr>
+				</table>
+                <table bgcolor="FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+                   
+                <!-- [ middle starts here] -->
+                    <tr>
+						<td valign="top">
+							<p><b>Order #</b> {{var order_id}}</p>
+							<p><b>Order Attachments have been added/updated by {{var update}}.</b></p>
+							<div>{{var html}}</div>
+						</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+		<tr>
+			<td><center><h5 style="font-family:Verdana,Arial;font-weight:normal;text-align:center;font-size:22px;line-height:32px;margin-bottom:75px;margin-top:30px">Thank you again, {{var store.getFrontendName()}}</h5></center></td>
+		</tr>
+    </table>
+</div>
+</body>
+						

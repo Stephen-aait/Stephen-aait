@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<config>
+								<children>
+									<mgbase_installed_extensions>
+										<title>Modulesgarden Base - Installed Extensions</title>
+									</mgbase_installed_extensions>
+									<mgbase_store>
+										<title>Modulesgarden Base - Store</title>
+									</mgbase_store>
+								</children>
+							</config>
+						</children>
+					</system>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mks_Ajaxcoupon>
+            <version>0.1.0</version>
+        </Mks_Ajaxcoupon>
+    </modules>
+    <frontend>
+        <routers>
+            <ajaxcoupon>
+                <use>standard</use>
+                <args>
+                    <module>Mks_Ajaxcoupon</module>
+                    <frontName>ajaxcoupon</frontName>
+                </args>
+            </ajaxcoupon>
+        </routers>
+        <layout>
+            <updates>
+                <ajaxcoupon>
+                    <file>ajaxcoupon.xml</file>
+                </ajaxcoupon>
+            </updates>
+        </layout>
+    </frontend>
+    
+     
+    <global>
+    	<rewrite>
+	        <ajax_coupon> 
+	            <from><![CDATA[#^/checkout/cart/#]]></from>  <!-- the URL which u want to override-->
+	            <to>/ajaxcoupon/index/</to>  <!-- destination url -->
+	        </ajax_coupon>
+	    </rewrite>
+        <models>
+            <ajaxcoupon>
+                <class>Mks_Ajaxcoupon_Model</class>
+                <resourceModel>ajaxcoupon_mysql4</resourceModel>
+            </ajaxcoupon>
+            <ajaxcoupon_mysql4>
+                <class>Mks_Ajaxcoupon_Model_Mysql4</class>
+                <entities>
+                    
+                </entities>
+            </ajaxcoupon_mysql4>
+        </models>
+        <resources>
+            <ajaxcoupon_setup>
+                <setup>
+                    <module>Mks_Ajaxcoupon</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ajaxcoupon_setup>
+            <ajaxcoupon_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </ajaxcoupon_write>
+            <ajaxcoupon_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </ajaxcoupon_read>
+        </resources>
+        
+        <helpers>
+            <ajaxcoupon>
+                <class>Mks_Ajaxcoupon_Helper</class>
+            </ajaxcoupon>
+        </helpers>
+    </global>
+</config>

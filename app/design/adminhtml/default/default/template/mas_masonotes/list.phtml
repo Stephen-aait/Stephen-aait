@@ -1,0 +1,37 @@
+<?php 
+if(!isset($notes)) {
+    $notes = $this->getCollection();
+    $hlp = Mage::helper('masonotes');
+}
+
+$customerName = $this->getCustomer()->getName();
+?>
+<?php foreach ($notes as $note):?>
+        <li class="clearfix">								
+            <div class="notes-body clearfix <?php if (!$note->getUserId()):?>note-by-customer<?php endif;?>">
+                <div class="post-header">
+                    <strong class="primary-font"><?php if ($note->getCustomerId()):?><?php echo $customerName;?><?php else:?><?php echo $note->getFirstname()?><?php endif;?></strong>
+                    <small class="text-muted"><?php echo $hlp->__('Added: %s', $note->getCreatedAt())?></small>
+                    <?php if ($note->getUpdatedAt() != ''):?>
+                        &nbsp;
+                        <small class="text-muted"><?php echo $hlp->__('Updated: %s',$note->getUpdatedAt())?></small>
+                    <?php endif;?>
+                    &nbsp;
+                    <?php if (!$this->getIsOrder()):?>
+                        <a href="#" onclick="document.getElementById('mascnotes_note_<?php echo $note->getId();?>').style.display = 'block';return false;"><?php echo $hlp->__('Edit')?></a>
+                    <?php endif;?>
+                </div>
+                <p>
+                    <?php echo $note->getNote();?>
+                    <textarea name="mascnotes_note[<?php echo $note->getId()?>][note]" id="mascnotes_note_<?php echo $note->getId();?>" style="display: none;"><?php echo $note->getNote()?></textarea>
+                </p>
+                <?php if (!$this->getIsOrder()):?>
+                <div class="post-footer">
+                    <input type="hidden" name="mascnotes_note[<?php echo $note->getId();?>][status]" value="0" />
+                    <label for="mastnotes_status_<?php echo $note->getId();?>"><input id="mastnotes_status_<?php echo $note->getId();?>" <?php if ($note->getStatus() == 1):?>checked<?php endif;?> type="checkbox" name="mascnotes_note[<?php echo $note->getId();?>][status]" value="1" />&nbsp;<?php echo $hlp->__('Show To Customer');?></label>&nbsp;
+                    <label for="mastnotes_delete_<?php echo $note->getId();?>"><input id="mastnotes_delete_<?php echo $note->getId();?>" type="checkbox" name="mascnotes_note[<?php echo $note->getId();?>][delete]">&nbsp;<?php echo $hlp->__('Delete');?></label>										
+                </div>
+                <?php endif;?>
+            </div>
+        </li>
+<?php endforeach;?>

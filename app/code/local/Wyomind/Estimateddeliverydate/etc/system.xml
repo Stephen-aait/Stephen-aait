@@ -1,0 +1,512 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <WYOMIND translate="label">
+            <label>WYOMIND</label>
+            <sort_order>1000000</sort_order>
+        </WYOMIND>
+    </tabs>
+    <sections>
+        <estimateddeliverydate translate="label">
+            <label>Estimated Delivery Date</label>
+            <tab>WYOMIND</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1001</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <license translate="label">
+                    <label>License</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <version translate="label comment">
+                            <label>Extension version</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>Wyomind_Estimateddeliverydate_Block_Adminhtml_System_Config_Form_Field_Link</frontend_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </version>
+                        <activation_key translate="label comment">
+                            <label>Activation key</label>
+                            <comment>
+                <![CDATA[<span class="notice">1- Paste your activation key and click on `save config`.</span>]]>
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </activation_key>
+                      
+                        <activation_code translate="label comment">
+                            <label>License code</label>
+                            <comment>
+                <![CDATA[<span class="notice">2 - Click on `Activate now` and paste your license code.</span>]]>
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </activation_code>
+			
+                    </fields>
+                </license> 
+                
+                <leadtimes_settings>
+                    <label>Leadtimes settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>150</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <default_orders_leadtime translate="label comment">
+                            <label>Default leadtime in days</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <comment>
+                <![CDATA[<span class="notice">Default value applied to all products<br>For leadtime range use the hyphen, ie : 3-5 (from 3 days to 5 days ) </span>]]>
+                            </comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </default_orders_leadtime>
+                       
+                        <order_shipping_days translate="label comment">
+                            <label>Shipping days for orders</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>10</sort_order>
+                            <comment>
+               
+                            </comment>
+                            <source_model>estimateddeliverydate/system_config_source_days</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_shipping_days>
+                        <order_last_shipping_time translate="label comment">
+                            <label>Last shipping time of the day for orders </label>
+                            <frontend_type>time</frontend_type>
+                            <sort_order>20</sort_order>
+                            <comment>
+               
+                            </comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_last_shipping_time>
+                         
+                        <holidays translate="label comment">
+                            <label>Days off for shipping</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>30</sort_order>
+                            <comment>
+                <![CDATA[<span class="notice"> Each date formated as follows : yyyy-mm-dd and each date on distinct line</span>]]>
+                            </comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            
+                        </holidays>
+                        
+                        <use_base_attribute translate="label comment">
+                            <label>Use attributes to define additional lead times</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <comment>
+                <![CDATA[<span class="notice"Manage the lead times depending of one specific attribute (e.g.: manufacturer, brand... )</span>]]>
+                            </comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_base_attribute>
+                        <base_attribute translate="label comment">
+                            <label>Attributes for additional lead times</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>estimateddeliverydate/system_config_source_attributes</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_base_attribute>1</use_base_attribute>
+                            </depends>
+                            <comment>
+                <![CDATA[<span class="notice"Go to Catalog > Attributes > Manage leadtimes to define the default leadtimes for this attribute</span>]]>
+                            </comment>
+                        </base_attribute>
+                        <base_attribute_scope translate="label comment">
+                            <label>Scope of the additional lead times</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>estimateddeliverydate/system_config_source_scope</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_base_attribute>1</use_base_attribute>
+                            </depends>
+                
+                        </base_attribute_scope>
+                    </fields>
+                </leadtimes_settings>
+                <leadtimes_settings_bo>
+                    <label>Leadtimes settings for backorders</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <default_backorders_leadtime translate="label comment">
+                            <label>Default leadtime in days for backorders</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <comment>
+                <![CDATA[<span class="notice">Default value applied for backorders<br>For leadtime range use the hyphen, ie : 3-5 (from 3 days to 5 days ) </span>]]>
+                            </comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </default_backorders_leadtime>
+                        <backorder_shipping_days translate="label comment">
+                            <label>Shipping days for backorders</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>50</sort_order>
+                            <comment>
+               
+                            </comment>
+                            <source_model>estimateddeliverydate/system_config_source_days</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </backorder_shipping_days>
+                        <backorder_last_shipping_time translate="label comment">
+                            <label>Last shipping time of the day for backorders </label>
+                            <frontend_type>time</frontend_type>
+                            <sort_order>60</sort_order>
+                            <comment>
+               
+                            </comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </backorder_last_shipping_time>
+                    </fields>
+                </leadtimes_settings_bo>
+                <custom_options>
+                    <label>Custom options settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>300</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <calculation>
+                            <label>Leadtime calculation based on the sum of all selected custom options</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>
+                <![CDATA[<span class="notice">If set on NO, the higher leadtime is used</span>]]>
+                            </comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </calculation>
+                    </fields>
+                </custom_options>
+                <display_settings translate="label">
+                    <label>Display settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>400</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <message_in_cart  translate="label comment">
+                            <label>Message to display in cart</label>
+                            <comment>
+                <![CDATA[<span class="notice">Use {{leadtime_from}}, {{leadtime_to}}, {{date_from}}}, {{date_to}}, {{week_from}} and/or {{week_to}} in your custom message in order to display the leadtime and the availability date.</span>]]>
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </message_in_cart>
+                        <use_message_for_cart_item>
+                            <label>Use message to display for each item in cart</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>51</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_message_for_cart_item>
+                        <message_for_cart_item  translate="label comment">
+                            <depends>
+                                <use_message_for_cart_item>1</use_message_for_cart_item>
+                            </depends>
+                            <label>Message to display for each item in cart</label>
+                            <comment>
+                <![CDATA[<span class="notice">Use {{leadtime_from}}, {{leadtime_to}}, {{date_from}}, {{date_to}}, {{week_from}} and/or {{week_to}} in your custom message in order to display the leadtime and the availability date.</span>]]>
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>52</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </message_for_cart_item>
+                        <message_for_cart_item_bo  translate="label comment">
+                            <depends>
+                                <use_message_for_cart_item>1</use_message_for_cart_item>
+                            </depends>
+                            <label>Message to display for each item in cart for backorders</label>
+                            <comment>
+                <![CDATA[<span class="notice">Use {{leadtime_from}}, {{leadtime_to}}, {{date_from}}, {{date_to}}, {{week_from}} and/or {{week_to}} in your custom message in order to display the leadtime and the availability date.</span>]]>
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>53</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </message_for_cart_item_bo>
+                        <message_in_product_page  translate="label comment">
+                            <label>Message to display in product page</label>
+                            <comment>
+               <![CDATA[<span class="notice">Use {{leadtime_from}},{{leadtime_to}}, {{date_from}}, {{date_to}}, {{week_from}},{{week_to}} and/or {{countdown}} in your custom message in order to display the leadtime, the availability date and the remaining time.</span>]]>
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </message_in_product_page>
+                        <message_in_product_page_bo  translate="label comment">
+                            <label>Message to display in product page for backorders</label>
+                            <comment>
+               <![CDATA[<span class="notice">Use {{leadtime_from}},{{leadtime_to}}, {{date_from}}, {{date_to}}, {{week_from}},{{week_to}} and/or {{countdown}} in your custom message in order to display the leadtime, the availability date and the remaining time.</span>]]>
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>61</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </message_in_product_page_bo>
+                        <countdown_format  translate="label comment">
+                            <label>Countdown format</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>estimateddeliverydate/system_config_source_countdownformat</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </countdown_format>
+                        <dynamic_countdown  translate="label comment">
+                            <label>Realtime countdown</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </dynamic_countdown>
+                        <date_format  translate="label comment">
+                            <label>Date format to display</label>
+                            <comment>
+               <![CDATA[<span class="notice">Example : d/m/Y for 01/01/2014.
+    <br>
+        <br>
+            <style>
+                .date-format TD{
+                border:1px solid grey
+                }
+                .date-format .section{
+                background: none repeat scroll 0 0 #FC862E;
+                color: white;
+                font-weight: bold;
+                }
+               #estimateddeliverydate_settings .input-text, #estimateddeliverydate_settings .note{
+                width:90%;
+                }
+            </style>
+               
+            <table style="width:750px;border:1px solid grey" class='date-format' >
+                <caption>
+                    <strong>The following characters are recognized in the date format
+                </caption>
+        
+                <thead>
+                    <tr>
+                        <th>Character</th>
+                        <th>Description</th>
+                        <th>Returned values</th>
+                    </tr>
+
+                </thead>
+
+                <tbody class="tbody">
+                    <tr class='section'>
+                        <td style="text-align: center;" colspan="3">Day</td>
+          
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <em>d</em>
+                        </td>
+                        <td>Day of the month, 2 digits with leading zeros</td>
+                        <td>
+                            <em>01</em> to <em>31</em>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <em>D</em>
+                        </td>
+                        <td>A textual representation of a day, three letters</td>
+                        <td>
+                            <em>Mon</em> through <em>Sun</em>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <em>j</em>
+                        </td>
+                        <td>Day of the month without leading zeros</td>
+                        <td>
+                            <em>1</em> to <em>31</em>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <em>l</em> (lowercase 'L')</td>
+                        <td>A full textual representation of the day of the week</td>
+                        <td>
+                            <em>Sunday</em> through <em>Saturday</em>
+                        </td>
+                    </tr>
+
+         
+
+                    <tr>
+                        <td>
+                            <em>S</em>
+                        </td>
+                        <td>English ordinal suffix for the day of the month, 2 characters</td>
+                        <td>
+                            <em>st</em>, <em>nd</em>, <em>rd</em> or
+                            <em>th</em>.  Works well with <em>j</em>
+                        </td>
+                    </tr>
+
+          
+
+        
+
+                    <tr class='section'>
+                        <td style="text-align: center;" colspan="3">Month</td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <em>F</em>
+                        </td>
+                        <td>A full textual representation of a month, such as January or March</td>
+                        <td>
+                            <em>January</em> through <em>December</em>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <em>m</em>
+                        </td>
+                        <td>Numeric representation of a month, with leading zeros</td>
+                        <td>
+                            <em>01</em> through <em>12</em>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <em>M</em>
+                        </td>
+                        <td>A short textual representation of a month, three letters</td>
+                        <td>
+                            <em>Jan</em> through <em>Dec</em>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <em>n</em>
+                        </td>
+                        <td>Numeric representation of a month, without leading zeros</td>
+                        <td>
+                            <em>1</em> through <em>12</em>
+                        </td>
+                    </tr>
+
+         
+
+                    <tr class='section'>
+                        <td style="text-align: center;" colspan="3">Year</td>
+                    </tr>
+
+         
+
+                    <tr>
+                        <td>
+                            <em>Y</em>
+                        </td>
+                        <td>A full numeric representation of a year, 4 digits</td>
+                        <td>Examples: <em>1999</em> or <em>2003</em></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <em>y</em>
+                        </td>
+                        <td>A two digit representation of a year</td>
+                        <td>Examples: <em>99</em> or <em>03</em></td>
+                    </tr>
+
+         
+
+                </tbody>
+        
+            </table>
+</span>]]>
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </date_format>
+                    </fields>
+                     
+                </display_settings>
+            </groups>
+        </estimateddeliverydate>
+        
+    </sections>
+</config>
+
+

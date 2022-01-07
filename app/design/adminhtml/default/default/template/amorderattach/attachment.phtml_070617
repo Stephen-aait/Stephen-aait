@@ -1,0 +1,69 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_Orderattach
+ */
+?>
+<?php
+$order                   = Mage::registry('current_order');
+$itemId                  = $this->getItemId();
+$attachmentFields        = $this->getAttachmentFields();
+$attachmentProductFields = $this->getAttProductFields();
+?>
+
+<?php if (!$attachmentProductFields) { ?>
+    <script type="text/javascript">
+        attachSaveUrl = '<?php echo $this->getUrl('adminhtml/amorderattach_order/save'); ?>';
+        attachReloadUrl = '<?php echo $this->getUrl('adminhtml/amorderattach_order/reload'); ?>';
+        attachDeleteUrl = '<?php echo $this->getUrl('adminhtml/amorderattach_order/delete'); ?>';
+        attachDeleteAllUrl = '<?php echo $this->getUrl('adminhtml/amorderattach_order/deleteall'); ?>';
+    </script>
+    <div class="entry-edit" style="margin-bottom: 10px;">
+    <div class="entry-edit-head collapseable">
+        <a onclick="Fieldset.toggleCollapse('order_attachments'); return false;" href="#" id="order_attachments-head"
+           class=""><?php echo $this->__('Order Attachments'); ?></a>
+    </div>
+    <fieldset id="order_attachments" <?php if (Mage::getStoreConfig('amorderattach/general/collapsed')) { ?>style="display: none;"<?php } ?>>
+<?php } ?>
+<?php if ($attachmentFields->getSize() > 0) { ?>
+    <table cellspacing="0" class="form-list">
+        <tbody style="background:none!important;">
+        <?php
+        foreach ($attachmentFields as $field) {
+            $itemValue = $attachmentProductFields ? $attachmentProductFields->getData($field->getCode()) : $field->getRenderer()->getValue();
+            $itemCode  = $attachmentProductFields ? $field->getItemCode($itemId) : $field->getCode();
+            $itemDisplay = $attachmentProductFields ? $field->getApplyToEachProduct() : true;
+            if (Mage::helper('amorderattach')->isInSetStatus($order->getStatus(), $field->getStatusBackend()) && $itemDisplay) {
+                ?>
+                <tr style="background:none!important;">
+                    <td class="label">
+                        <label style="white-space: nowrap;"><?php echo $this->__($field->getLabel()); ?>
+                            <?php if (Mage::helper('amorderattach')->isAllowedEdit()) { ?>
+                                <span style="padding-left: 4px; position: relative; top: 2px;"
+                                      id="edit_<?php echo $itemCode ?>">
+                                            <a href="#" onclick="attachEdit('<?php echo $itemCode ?>'); return false;"><img
+                                                    src="<?php echo $this->getSkinUrl('images/amorderattach/edit.png') ?>" border="0" alt="Edit"
+                                                    title="Edit"/></a>
+                                        </span>
+                            <?php } ?>
+                        </label>
+                    </td>
+                    <td class="value" id="field_<?php echo $itemCode ?>">
+                        <?php echo $field->setType($field->getType())
+                                         ->getRenderer()
+                                         ->setItemCode($itemCode)
+                                         ->setItemValue($itemValue)
+                                         ->render(); ?>
+                    </td>
+                </tr>
+            <?php } ?>
+        <?php } ?>
+        </tbody>
+    </table>
+<?php } ?>
+<?php if (!$attachmentProductFields) { ?>
+    </fieldset>
+    </div>
+    <div class="clear"></div>
+<?php } ?>

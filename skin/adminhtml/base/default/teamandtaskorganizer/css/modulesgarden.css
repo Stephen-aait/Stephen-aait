@@ -1,0 +1,170 @@
+/* TABS */
+
+.modulesgarden_tabs li a:link, .modulesgarden_tabs li a:visited {
+	color: #1c4b8c;
+	background: #f6f9fd;
+	line-height:32px;
+}
+.modulesgarden_tabs a.active:link, .modulesgarden_tabs a.active:visited {
+	background: #1c4b8c !important;
+	color: #fff;
+}
+.modulesgarden_tabs a.active span {
+	background: inherit !important;
+}
+.modulesgarden_tabs li a:hover {
+	background: #2562b7;
+	color: #fff;
+}
+
+.modulesgarden_tabs h3 {
+	color: #2056a1;
+	font-weight: lighter;
+	font-size: 18px;
+}
+
+.modulesgarden_tabs ul.tabs a span.changed, .modulesgarden_tabs ul.tabs a:hover span.changed, .modulesgarden_tabs ul.tabs a span.error, .modulesgarden_tabs ul.tabs a:hover span.error {
+	margin-top: 7px;
+}
+
+.modulesgarden_tabs .error, .modulesgarden_tabs a.error span, .modulesgarden_tabs .required, .modulesgarden_tabs .validation-advice {
+	color: #1c4b8c;
+	/*font-size: 16px;*/
+}
+.modulesgarden_tabs a.active.error span {
+	color: white !important;
+}
+
+
+/* LOGO */
+
+div.modulesgarden_logo {
+	margin-top: 50px;
+}
+div.modulesgarden_logo img {
+	width: 100%;
+}
+
+/* GRIDS */
+
+.modulesgarden_grid_container tr.headings {
+	background: #2562b7;
+	color:white;
+}
+.modulesgarden_grid_container tr.headings a span {
+	padding: 0;
+	line-height: 22px;
+}
+.modulesgarden_grid_container tr.headings a, .modulesgarden_grid_container tr.headings span {
+	color:white;
+}
+.modulesgarden_grid_container tr.headings span.nobr {
+	padding:5px;
+	display:inline-block;
+	height:24px;
+	line-height: 24px;
+}
+
+.modulesgarden_grid_container tr.headings .sort-arrow-desc, .modulesgarden_grid_container tr.headings .sort-arrow-asc {
+	background: #457DCC !important;
+	border:0 !important;
+}
+.modulesgarden_grid_container tr.headings .sort-arrow-desc span, .modulesgarden_grid_container tr.headings .sort-arrow-asc span {
+	padding:0 12px 2px 8px !important;
+	line-height: 17px !important;
+}
+.modulesgarden_grid_container tr.headings th .sort-arrow-desc span.sort-title {
+	background-image: url('../img/arrows_down.png') !important;
+}
+.modulesgarden_grid_container tr.headings th .sort-arrow-asc span.sort-title {
+	background-image: url('../img/arrows_up.png') !important;
+}
+.modulesgarden_grid_container tr.headings th a {
+	padding: 5px 4px 1px 0;
+}
+
+.modulesgarden_grid_container h3 {
+	color: #2056a1;
+	font-weight: lighter;
+	font-size: 18px;
+}
+
+.modulesgarden_grid_container table.actions {
+	background: #ddd;
+	padding: 10px;
+	margin: 0;
+	color: #2f2f2f;
+}
+.modulesgarden_grid_container table.actions td {
+	vertical-align: middle;
+}
+.modulesgarden_grid_container .grid tr.filter {
+	background:white;
+}
+
+.modulesgarden_grid_container div.grid td {
+	padding: 4px;
+}
+.modulesgarden_grid_container div.grid tr.even td {
+	background: #eee;
+}
+
+.modulesgarden_grid_container a:link, .modulesgarden_grid_container a:visited {
+	color: #1c4b8c;
+}
+
+
+/* EDIT FORM */
+
+.modulesgarden_form_container h3 {
+	color: #2056a1;
+	font-weight: lighter;
+	font-size: 18px;
+}
+
+.modulesgarden_form_container div.entry-edit-head {
+	background: #2562b7;
+	padding: 6px;
+}
+
+/* BUTTONS */
+
+.modulesgarden_grid_container button, .modulesgarden_grid_container .form-button, .modulesgarden_form_container button, .modulesgarden_form_container .form-button {
+	/*xx*/
+	padding:0 5px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 3px;
+	/*primary*/
+	color: #fff;
+	background-color: #428bca;
+	border-color: #357ebd;
+	/*btn*/
+	display: inline-block;
+	margin-bottom: 0;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	white-space: nowrap;
+}
+
+.modulesgarden_form_container button.delete, .modulesgarden_form_container .form-button.delete, .modulesgarden_form_container button.delete:hover, .modulesgarden_form_container .form-button.delete:hover {
+	color: #fff;
+	background: #d9534f;
+	border-color: #d43f3a;
+}
+
+.modulesgarden_grid_container button.back, .modulesgarden_grid_container .form-button.back, .modulesgarden_form_container button.back, .modulesgarden_form_container .form-button.back {
+	color: #333;
+	background: #fff;
+	border-color: #ccc;
+}
+
+.modulesgarden_grid_container button.save, .modulesgarden_grid_container .form-button.save, .modulesgarden_form_container button.save, .modulesgarden_form_container .form-button.save {
+	color: #fff;
+	background: #5cb85c;
+	border-color: #4cae4c;
+}

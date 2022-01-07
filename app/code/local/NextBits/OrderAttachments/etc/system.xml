@@ -1,0 +1,252 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<NextBits_Extensions translate="label" module="orderattachments">
+			<label>NextBits - Extensions</label>
+			<sort_order>100</sort_order>
+		</NextBits_Extensions>
+	</tabs>
+	<sections>
+		<orderattachments translate="label" module="orderattachments">
+			<class>separator-top</class>
+			<label>Order Attachments</label>
+			<tab>NextBits_Extensions</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>200</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<general translate="label">
+					<label>General Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>0</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enabled translate="label">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Activate Order Attachments Module</comment>
+						</enabled>
+						<attachment_dir translate="label">
+							<label>Attachment Directory</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enabled separator="|">
+									<value>1</value>
+								</enabled>
+							</depends>
+							<comment>Directory where the attachments are saved,if empty,attachments are save in media/nborderattachments directory; eg: orderattachments/; This folder must exits and must have writting permissions</comment>
+						</attachment_dir>
+						<allowed_extensions translate="label">
+							<label>Allowed Extension</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enabled separator="|">
+									<value>1</value>
+								</enabled>
+							</depends>
+							<comment>If empty, jpg,jpeg,gif,bmp,png are allowed; Separated by comma, eg: jpg,png</comment>
+						</allowed_extensions>
+						<num_allowed_attachment translate="label">
+							<label>Num. of attachment per order</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enabled separator="|">
+									<value>1</value>
+								</enabled>
+							</depends>
+							<comment>If empty, the number is unlimited</comment>
+						</num_allowed_attachment>
+						<max_file_size_attachment translate="label">
+							<label>Max file size of attachment</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enabled separator="|">
+									<value>1</value>
+								</enabled>
+							</depends>
+							<comment>In MB: eg: 1, 2; If empty, max file size is 50mb;
+							</comment>
+						</max_file_size_attachment>
+						<custom_text translate="label">
+							<label>Custom text to be displayed in attachment section</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enabled separator="|">
+									<value>1</value>
+								</enabled>
+							</depends>
+						</custom_text>
+						<customer_group_upload_attachment translate="label">
+							<label>Allow only this customer to upload attachment</label>
+							<frontend_type>multiselect</frontend_type>
+							<source_model>orderattachments/system_config_source_customer_group</source_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enabled separator="|">
+									<value>1</value>
+								</enabled>
+							</depends>
+							<comment>If empty, all customer types are allowed</comment>
+						</customer_group_upload_attachment>
+						<can_delete_attachments translate="label">
+							<label>Can Delete Attachments</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enabled separator="|">
+									<value>1</value>
+								</enabled>
+							</depends>
+						</can_delete_attachments>
+						<can_edit_attachments>
+							<label>Can Edit Attachments</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enabled separator="|">
+									<value>1</value>
+								</enabled>
+							</depends>
+						</can_edit_attachments>
+						<can_add_new_attachments>
+							<label>Can Add New Attachments</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enabled separator="|">
+									<value>1</value>
+								</enabled>
+							</depends>
+						</can_add_new_attachments>
+						<enabled_email translate="label">
+							<label>Enable Email</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>90</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Enable Email</comment>
+						</enabled_email>
+						<order_attachments_email translate="label">
+							<label>Email Address</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enabled_email separator="|">
+									<value>1</value>
+								</enabled_email>
+							</depends>
+							<comment>Email address where you want to receive notification. If empty,no email is sent</comment>
+						</order_attachments_email>
+						<order_attachments_name translate="label">
+							<label>Orderattachment Admin Name</label>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry</validate>
+							<sort_order>110</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enabled_email separator="|">
+									<value>1</value>
+								</enabled_email>
+							</depends>
+						</order_attachments_name>
+						<custom_email_template translate="label">
+							<label>Email Template</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template</source_model>
+							<sort_order>120</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enabled_email separator="|">
+									<value>1</value>
+								</enabled_email>
+							</depends>
+						</custom_email_template>
+						<receive_email_notification>
+							<label>Receive Email Notification</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>130</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enabled_email separator="|">
+									<value>1</value>
+								</enabled_email>
+							</depends>
+							<comment>Receive notification when customer add/edit attachment</comment>
+						</receive_email_notification>
+						<notify_customer>
+							<label>Notify customer when attachment is added</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>140</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enabled_email separator="|">
+									<value>1</value>
+								</enabled_email>
+							</depends>
+							<comment>Send notification to customer when attachment added/edited</comment>
+						</notify_customer>
+					</fields>
+				</general>
+			</groups>
+		</orderattachments>
+	</sections>
+</config>

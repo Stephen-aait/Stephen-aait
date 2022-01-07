@@ -1,0 +1,47 @@
+<?php $collection = $this->getCollection(); ?>
+
+<div id="customer_info_tabs_storelocator"><div class="entry-edit">
+    <div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->getTabTitle();?></h4>
+    <div class="form-buttons"></div>
+</div>
+    <div class="fieldset " id="_storelocatorbase_fieldset">
+    <div class="hor-scroll">
+                        <table cellspacing="0" class="form-list">
+            <tbody>
+<tr>
+	<td class="label"><label for="sl_status"><?php echo $this->__('Status'); ?><span class="required"> *</span></label></td>
+	<td class="value">
+		<div class="store-scope">
+			<select id="sl_status" name="storelocator[status]" class=" required-entry required-entry select">				
+				<option value="1"><?php echo $this->__('Enable');?></option>
+				<option value="2"><?php echo $this->__('Disable');?></option>
+			</select>			
+		</div>
+	</td>
+</tr>
+<tr>
+	<td class="label"><label for="sl_radius"><?php echo $this->__('Radius'); ?><span class="required"> *</span></label></td>
+	<td class="value">
+		<input id="sl_radius" name="storelocator[radius]" value="<?php echo $collection->getSlRadius(); ?>" class=" input-text" type="text">
+		<p class="note" id="note_radius"><span>Radius is in miles. If kept blank then default configured radius will be used (System &gt; Configuration &gt; Store Locator)</span></p>
+	</td>
+</tr>
+<tr>
+	<td class="label"><label for="sl_latitude"><?php echo $this->__('Latitude'); ?><span class="required"> *</span></label></td>
+	<td class="value">
+		<input id="sl_latitude" name="storelocator[latitude]" value="<?php echo $collection->getSlLatitude(); ?>" class=" input-text" type="text">
+	</td>
+</tr>
+<tr>
+	<td class="label"><label for="sl_longitude"><?php echo $this->__('Longitude'); ?><span class="required"> *</span></label></td>
+	<td class="value">
+		<input id="sl_longitude" name="storelocator[longitude]" value="<?php echo $collection->getSlLongitude(); ?>" class=" input-text" type="text">
+	</td>
+</tr>
+            </tbody>
+        </table>
+            </div>
+        </div>
+</div>
+</div>

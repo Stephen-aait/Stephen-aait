@@ -1,0 +1,73 @@
+<?php
+/* * ********************************************************************
+ * Customization Services by ModulesGarden.com
+ * Copyright (c) ModulesGarden, INBS Group Brand, All Rights Reserved 
+ * (2014-10-31, 12:08:09)
+ * 
+ *
+ *  CREATED BY MODULESGARDEN       ->        http://modulesgarden.com
+ *  CONTACT                        ->       contact@modulesgarden.com
+ *
+ *
+ *
+ *
+ * This software is furnished under a license and may be used and copied
+ * only  in  accordance  with  the  terms  of such  license and with the
+ * inclusion of the above copyright notice.  This software  or any other
+ * copies thereof may not be provided or otherwise made available to any
+ * other person.  No title to and  ownership of the  software is  hereby
+ * transferred.
+ *
+ *
+ * ******************************************************************** */
+
+/**
+ * @author Grzegorz Draganik <grzegorz@modulesgarden.com>
+ */
+?>
+
+<div class="modulesgarden_form_container">
+	<div class="content-header skip-header">
+		<h3 class="modulesgardenbase_config_header"><?php echo $this->__('Customization Ratio'); ?></h3>
+	</div>
+
+	<div class="entry-edit">
+		<div class="entry-edit-head">
+			<h4 class="icon-head head-edit-form fieldset-legend">&nbsp;</h4>
+		</div>
+		<div class="fieldset ">
+			<div style="line-height:25px;">
+				<?php echo $this->__('Your Ratio Is:'); ?>
+                                <strong><?php echo $this->getRatio(); ?></strong> (<strong><?php echo $this->getRatioLabel(); ?></strong>)
+				<div class="field-tooltip"><div><?php echo $this->__('These ratio is used by ModulesGarden for quotation of a Custom Projects. It tells us how much your system is non-standard.'); ?></div></div>
+				<br/>
+
+				<?php echo $this->__('Debug Details:'); ?>
+				<button onclick="return showMgDebugInfo();" id="mg_show_debug_info"><?php echo $this->__('Show'); ?></button>
+                                <button onclick="return hideMgDebugInfo();" id="mg_hide_debug_info" style="display:none"><?php echo $this->__('Hide'); ?></button>
+				<div class="field-tooltip"><div><?php echo $this->__('This details are used by ModulesGarden for quotation of a Custom Projects. Please, provide it to us in case of a quotation request. It tells us more deeply, how much your system is non-standard.'); ?></div></div>
+			</div>
+			
+			<div id="mg_debug_info" style="display:none;background-color: #eee;padding: 5px;margin-top:10px;">
+				<pre><?php echo $this->getDebugString(); ?></pre>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+function showMgDebugInfo(){
+	document.getElementById("mg_show_debug_info").style.display = 'none';
+        document.getElementById("mg_hide_debug_info").style.display = 'inline-block';
+	document.getElementById("mg_debug_info").style.display = 'block';
+        
+        return false;
+}
+function hideMgDebugInfo(){
+	document.getElementById("mg_hide_debug_info").style.display = 'none';
+        document.getElementById("mg_show_debug_info").style.display = 'inline-block';
+	document.getElementById("mg_debug_info").style.display = 'none';
+        
+        return false;
+}
+</script>

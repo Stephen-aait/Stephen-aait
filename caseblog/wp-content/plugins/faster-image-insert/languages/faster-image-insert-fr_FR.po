@@ -1,0 +1,221 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Faster Image Insert v1.3.2\n"
+"PO-Revision-Date: 2009-03-02 05:49-0500\n"
+"Last-Translator: lian <lian00@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;__ngettext_noop:1,2;_c\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: ."
+
+#: faster-image-insert.php:120
+msgid "(Quick Links)"
+msgstr "(Liens rapides)"
+
+#: faster-image-insert.php:121
+msgid "Enter a word to look up:"
+msgstr "Tapez un mot à rechercher:"
+
+#: faster-image-insert.php:122
+msgid "Dictionary lookup"
+msgstr "Recherche dans le dictionnaire"
+
+#: faster-image-insert.php:123
+msgid "lookup"
+msgstr "chercher"
+
+#: faster-image-insert.php:124
+msgid "Close all open tags"
+msgstr "Fermer tous les tags ouverts"
+
+#: faster-image-insert.php:125
+msgid "close tags"
+msgstr "fermer les tags"
+
+#: faster-image-insert.php:126
+msgid "Enter the URL"
+msgstr "Entrer l'URL"
+
+#: faster-image-insert.php:127
+msgid "Enter the URL of the image"
+msgstr "Entrer l'URL de l'image"
+
+#: faster-image-insert.php:128
+msgid "Enter a description of the image"
+msgstr "Entrer une description pour l'image"
+
+#: faster-image-insert.php:143
+msgid "Insert selected images"
+msgstr "Insérer les images sélectionnées"
+
+#: faster-image-insert.php:139
+msgid "Select items you want to insert"
+msgstr "Sélectionner les objets que vous voulez insérez"
+
+#: faster-image-insert.php:190
+msgid "Mass Image Edit"
+msgstr "Édition d'images par lot"
+
+#: faster-image-insert.php:192
+msgid "Apply changes"
+msgstr "Appliquer les changements"
+
+#: faster-image-insert.php:192
+msgid "Press \"Save all changes\" to save. Only Title/Captions can be permanently saved."
+msgstr "Cliquer \"Sauvegarder toutes les modifications\" pour sauvegarder. Seuls les Titres/Légendes peuvent être sauvegardées de manière permanente."
+
+#: faster-image-insert.php:194
+msgid "Image Titles"
+msgstr "Titres des images"
+
+#: faster-image-insert.php:195
+msgid "Image Captions / Alt-Texts"
+msgstr "Légendes des images/Textes alternatifs"
+
+#: faster-image-insert.php:196
+msgid "Image Alignment"
+msgstr "Alignement de l'image"
+
+#: faster-image-insert.php:197
+msgid "Image Sizes"
+msgstr "Tailles des images"
+
+#: faster-image-insert.php:201
+msgid "None"
+msgstr "Aucun"
+
+#: faster-image-insert.php:201
+msgid "Left"
+msgstr "Gauche"
+
+#: faster-image-insert.php:201
+msgid "Center"
+msgstr "Centré"
+
+#: faster-image-insert.php:201
+msgid "Right"
+msgstr "Droit"
+
+#: faster-image-insert.php:202
+msgid "Thumbnail"
+msgstr "Vignette"
+
+#: faster-image-insert.php:202
+msgid "Medium"
+msgstr "Medium"
+
+#: faster-image-insert.php:202
+msgid "Large"
+msgstr "Grande taille"
+
+#: faster-image-insert.php:202
+msgid "Full size"
+msgstr "Taille originale"
+
+#: faster-image-insert.php:331
+#: faster-image-insert.php:411
+msgid "Faster Image Insert - User Options"
+msgstr "Faster Image Insert - Options d'utilisateur"
+
+#: faster-image-insert.php:382
+msgid "Settings saved."
+msgstr "Réglages sauvegardés."
+
+#: faster-image-insert.php:406
+msgid "Settings deleted."
+msgstr "Réglages supprimés."
+
+#: faster-image-insert.php:412
+msgid "Updates your settings here"
+msgstr "Modifiez à jour vos réglages ici"
+
+#: faster-image-insert.php:419
+msgid "Load media manager WITHOUT jQuery ?"
+msgstr "Charger le gestionnaire de média SANS jQuery ?"
+
+#: faster-image-insert.php:425
+msgid "Load HTML upload form instead of FLASH upload form ?"
+msgstr "Charger le formulaire d'upload HTML à la place du formulaire d'upload FLASH ?"
+
+#: faster-image-insert.php:428
+msgid "Enable this if you're having trouble with flash uploader."
+msgstr "Sélectionner cette option si vous rencontrer des problèmes avec l'uploader flash."
+
+#: faster-image-insert.php:431
+msgid "Insert multiple images in ONE line ?"
+msgstr "Insertion d'images multiples en UNE étape ?"
+
+#: faster-image-insert.php:434
+msgid "Enable this if you just want to insert a serial of thumbnails without newlines."
+msgstr "Sélectionnez cette option si vous désirez insérer une série de vignettes en une seule action."
+
+#: faster-image-insert.php:449
+msgid "Enable mass-editing ?"
+msgstr "Autoriser l'édition par lot ?"
+
+#: faster-image-insert.php:467
+msgid "Save Changes"
+msgstr "Sauvegarder les modifications"
+
+#: faster-image-insert.php:468
+msgid "Uninstall"
+msgstr "Désinstaller"
+
+#: faster-image-insert.php:144
+msgid "Invert selection"
+msgstr "Inverser la sélection"
+
+#: faster-image-insert.php:147
+msgid "Reversed ordering"
+msgstr "Inverser l'ordre"
+
+#: faster-image-insert.php:150
+msgid "Toggle items"
+msgstr "Échanger la place des items"
+
+#: faster-image-insert.php:437
+msgid "Number of separators between each image"
+msgstr "Nombre d'éléments séparateurs entre chaque image"
+
+#: faster-image-insert.php:440
+msgid "Depends on previous option, it either means blank line or blank space. Default is 4."
+msgstr "Suivant l'option précédente choisie, cela signifie aussi bien une ligne vide qu'un espace vide. Par défaut la valeur est 4."
+
+#: faster-image-insert.php:443
+msgid "Disable Captions ?"
+msgstr "Désactiver les légendes ?"
+
+#: faster-image-insert.php:422
+msgid "Enable this if you're having trouble getting media manager to load in editing interface (ie. blank metabox). Needed for WordPress 2.6"
+msgstr "Activer ceci si vous rencontrez des problèmes lors du lancement du gestionnaire de média dans l'interface d'édition (c'à d une metabox vide). Nécessaire pour Wordpress 2.6"
+
+#: faster-image-insert.php:446
+msgid "WordPress use caption as alternative text, but it also appends [caption] if set manually, Enable this if you want to set alternative text without appending caption. works in WordPress 2.6.1 or above."
+msgstr "Wordpress utilise les légendes comme texte alternatif mais il rajoute aussi [caption] dans le cas d'une modification manuelle. Activer ceci si vous désirez créer un texte alternatif sans ajouter de légende. Fonctionne pour Wordpress 2.6.1 et au dessus."
+
+#: faster-image-insert.php:452
+msgid "Enable this if you want to use the mass-edit function, works well with WordPress 2.7+"
+msgstr "Activer ceci si vous désirez utiliser la fonction d'édition de masse. Fonctionne correctement avec Wordpress 2.7+"
+
+#: faster-image-insert.php:455
+msgid "Disable backward-compatible mode ?"
+msgstr "Désactiver le mode compatibilité rétrograde ?"
+
+#: faster-image-insert.php:458
+msgid "WordPress 2.8 has added feature to sort gallery, and fix a bug we reported, if you're using 2.8+, you may enable this to save a few bytes."
+msgstr "Wordpress 2.8 ajoute la possibilité d'afficher des galleries et corrige un bug que nous avons reporté. Si vous utilisez Wordpress 2.8+, vous pouvez activer ceci pour gagner quelques bytes."
+
+#: faster-image-insert.php:461
+msgid "Enable debug mode ?"
+msgstr "Activer le mode debug ?"
+
+#: faster-image-insert.php:464
+msgid "Enable this option to remove registered javascript for this plugin, FOR DEBUGGING."
+msgstr "Activer cette option pour enlever le javascript déployé pour ce plugin. POUR DEBUGGAGE."
+

@@ -1,0 +1,52 @@
+<?php
+/**
+ * @company   CueBlocks - http://www.cueblocks.com/
+ * @author    Ravinder <ravinder.singh@cueblocks.com>
+ */
+$quote = Mage::getSingleton('adminhtml/session_quote')->getQuote();
+$quote->save();
+//var_dump($quote->getData());
+$discount = '';
+$flat = CueBlocks_ManualDiscount_Model_Observer::DISCOUNT_TYPE_FLAT;
+$percent = CueBlocks_ManualDiscount_Model_Observer::DISCOUNT_TYPE_PERCENT;
+$manualDiscount= $quote->getManualDiscount();
+$manualDiscountType = $quote->getManualDiscountType();
+$type='flat';
+$couponCode = $quote->getCouponCode();
+if(!is_null($manualDiscount) && empty($couponCode)) {
+    //remove comma from amount
+    $manualDiscount = str_replace(',','',$manualDiscount);
+    $discount = number_format($manualDiscount, 2,'.','');
+}
+if(!is_null($manualDiscountType)) {
+    $type = $manualDiscountType;
+}
+?>
+<div class="entry-edit box-right" id="manual_discount">
+    <div class="entry-edit-head">
+        <h4 class="icon-head"><?php echo $this->__('Manual Discount'); ?></h4>
+    </div>
+    <fieldset class="np">
+        <div class="content">
+            <p>
+                <input id="customdiscount_add_input" min="0" step="1" type="number" value="<?php echo $discount;?>" class="input-text" style="width:200px" />
+                &nbsp;
+                <button onclick="applyCustomDiscount()" type="button" value="" class="scalable">
+                    <span><?php echo $this->__('Apply Discount'); ?></span>
+                </button>
+            </p>
+            <p><input type="radio" <?php if($type==$flat):?>checked id="flat"<?php endif?>  name="customdiscount_type" value="<?php echo $flat?>"/>Flat</p>
+            <p><input type="radio" <?php if($type==$percent):?>checked id="flat"<?php endif?> id="percent"  name="customdiscount_type" value="<?php echo $percent?>"/>Percent</p>
+        </div>
+    </fieldset>
+</div>
+<script>
+    var number = document.getElementById('customdiscount_add_input');
+
+    // Listen for input event on numInput and prevent negative number.
+    number.onkeydown = function(e) {
+        if(e.keyCode == 189 || e.keyCode == 187) {
+            return false;
+        }
+    }
+</script>

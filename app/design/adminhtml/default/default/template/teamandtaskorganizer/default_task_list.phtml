@@ -1,0 +1,78 @@
+<?php
+/**
+ * @author Rafał Samojedny <rafal@modulesgarden.com>
+ */
+$user = Mage::getSingleton('teamandtaskorganizer/user');
+$position = $user->getSetting('WIDGET_PLACEMENT') ? $user->getSetting('WIDGET_PLACEMENT') : Modulesgarden_Teamandtaskorganizer_Model_Widget::PLACEMENT_BOTTOM;
+$widgetCss = Modulesgarden_Teamandtaskorganizer_Model_Widget::getPositionCss($position);
+?>
+
+<div class="task-list <?php echo $widgetCss ?>" id="tto-container" data-placement="<?php echo $widgetCss ?>">
+    <button class="toggle-button" id="slide-down-button">
+        <span><span><span><?php echo $this->__('Task List ') ?></span></span></span>
+    </button>
+    <?php if ($user->isAllowed('ADD_TASK')): ?>
+        <button class="toggle-button tto_new_task">
+            <span><span><span><?php echo $this->__('New') ?></span></span></span>
+        </button>
+    <?php endif ?>
+    <div id="task-list-live" class="grid modulesgarden_grid_container" data-id="test"></div>
+</div>
+
+<script type="text/javascript">
+    var tto = {
+        listUrl: '<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/teamandtaskorganizer_tasks/taskList') ?>',
+        updateStatusUrl: '<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/teamandtaskorganizer_tasks/updateStatus') ?>',
+        commentsListUrl: '<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/teamandtaskorganizer_tasks/getComments') ?>',
+        addCommentUrl: '<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/teamandtaskorganizer_tasks/saveComment') ?>',
+        listClassUrl: '<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/teamandtaskorganizer_settings/getListClass') ?>',
+        editTaskUrl: '<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/teamandtaskorganizer_tasks/edittask', array('id' => 'TASKID')) ?>',
+        viewTaskUrl: '<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/teamandtaskorganizer_tasks/viewtask', array('id' => 'TASKID')) ?>',
+        saveTaskUrl: '<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/teamandtaskorganizer_tasks/save') ?>',
+        newTaskUrl: '<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/teamandtaskorganizer_tasks/new') ?>',
+        options: {
+            refreshFrequency: <?php echo ($user->getSetting('REFRESH_FREQUENCY') ? $user->getSetting('REFRESH_FREQUENCY') : 10) * 1000 ?>
+        },
+        lang: {
+            id: '<?php echo $this->__('ID') ?>',
+            title: '<?php echo $this->__('Title') ?>',
+            status: '<?php echo $this->__('Status') ?>',
+            priority: '<?php echo $this->__('Priority') ?>',
+            action: '<?php echo $this->__('Action') ?>',
+            noTasks: '<?php echo $this->__('No Tasks Assigned') ?>',
+            comments: '<?php echo $this->__('Comments') ?>',
+            commentsForTask: '<?php echo $this->__('Comments For Task') ?>',
+            commentsForTaskEmpty: '<?php echo $this->__('There is no comments for this task') ?>',
+            stop: '<?php echo $this->__('Stop') ?>'
+        },
+        status: {
+            pending: <?php echo Modulesgarden_Teamandtaskorganizer_Model_Task::STATUS_PENDING ?>,
+            progress: <?php echo Modulesgarden_Teamandtaskorganizer_Model_Task::STATUS_PROGRESS ?>,
+            done: <?php echo Modulesgarden_Teamandtaskorganizer_Model_Task::STATUS_DONE ?>
+        },
+        priorityMap: {
+<?php echo Modulesgarden_Teamandtaskorganizer_Model_Task::PRIORITY_LOW ?>: '<?php echo $this->__('Low') ?>',
+<?php echo Modulesgarden_Teamandtaskorganizer_Model_Task::PRIORITY_MEDIUM ?>: '<?php echo $this->__('Medium') ?>',
+<?php echo Modulesgarden_Teamandtaskorganizer_Model_Task::PRIORITY_HIGH ?>: '<?php echo $this->__('High') ?>',
+<?php echo Modulesgarden_Teamandtaskorganizer_Model_Task::PRIORITY_URGENT ?>: '<?php echo $this->__('Urgent') ?>'
+        },
+        statusMap: {
+<?php echo Modulesgarden_Teamandtaskorganizer_Model_Task::STATUS_PENDING ?>: '<?php echo $this->__('Pending') ?>',
+<?php echo Modulesgarden_Teamandtaskorganizer_Model_Task::STATUS_PROGRESS ?>: '<?php echo $this->__('In-Progress') ?>',
+<?php echo Modulesgarden_Teamandtaskorganizer_Model_Task::STATUS_DONE ?>: '<?php echo $this->__('Done') ?>'
+        }
+
+    };
+</script>
+
+<?php include_once 'js_templates.phtml' ?>
+
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('teamandtaskorganizer/js/handlebars-v3.0.3.min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('teamandtaskorganizer/js/jquery.cookie.min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('teamandtaskorganizer/js/components/templates.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('teamandtaskorganizer/js/components/grid.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('teamandtaskorganizer/js/components/services.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('teamandtaskorganizer/js/components/popup.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('teamandtaskorganizer/js/components/notification.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('teamandtaskorganizer/js/components/task.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('teamandtaskorganizer/js/tto.js') ?>"></script>

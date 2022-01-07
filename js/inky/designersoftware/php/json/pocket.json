@@ -1,0 +1,95 @@
+{
+	"pockets":
+	[
+		{
+			"baseImage":"media/TestImages/renderimage1/bag_1",
+			"images":
+			[
+				{
+					"layerName":"layer1",
+					"src":"media/TestImages/renderimage3/pocket1.png"
+				}
+				
+			]
+		},
+		{
+			"baseImage":"media/TestImages/renderimage1/bag_8",
+			"images":
+			[
+				{
+					"layerName":"layer1",
+					"src":"media/TestImages/renderimage3/pocket8.png"
+				}
+				
+			]
+		},
+		{
+			"baseImage":"media/TestImages/renderimage1/bag_7",
+			"images":
+			[
+				{
+					"layerName":"layer1",
+					"src":"media/TestImages/renderimage3/pocket7.png"
+				}
+				
+			]
+		},
+		{
+			"baseImage":"media/TestImages/renderimage1/bag_6",
+			"images":
+			[
+				{
+					"layerName":"layer1",
+					"src":"media/TestImages/renderimage3/pocket6.png"
+				}
+				
+			]
+		},
+		{
+			"baseImage":"media/TestImages/renderimage1/bag_5",
+			"images":
+			[
+				{
+					"layerName":"layer1",
+					"src":"media/TestImages/renderimage3/pocket5.png"
+				}
+				
+			]
+		},
+		{
+			"baseImage":"media/TestImages/renderimage1/bag_4",
+			"images":
+			[
+				{
+					"layerName":"layer1",
+					"src":"media/TestImages/renderimage3/pocket4.png"
+				}
+				
+			]
+		},
+		{
+			"baseImage":"media/TestImages/renderimage1/bag_3",
+			"images":
+			[
+				{
+					"layerName":"layer1",
+					"src":"media/TestImages/renderimage3/pocket3.png"
+				}
+				
+			]
+		},
+		{
+			"baseImage":"media/TestImages/renderimage1/bag_2",
+			"images":
+			[
+				{
+					"layerName":"layer1",
+					"src":"media/TestImages/renderimage3/pocket2.png"
+				}
+				
+			]
+		}
+	]
+		
+	
+}

@@ -1,0 +1,58 @@
+﻿<div class="wrap" id="gallery<?php echo $id; ?>"> 
+	<form method="post" action="" >
+		<fieldset>
+			<legend><strong>Webpsilon Images Gallery <?php echo $id; ?>. Write in your Posts: [images_gallery <?php echo $id; ?> /]</strong></legend>
+			<p><br/>
+			  <label for="folder<?php echo $id; ?>" accesskey="f">Images Folder(Sample: images/): 
+			    <input type='text' id='folder<?php echo $id; ?>' name='folder<?php echo $id; ?>'  value='<?php echo $folder; ?>'/>
+		      </label>
+			  <br/>
+			  <label for="timeback<?php echo $id; ?>" accesskey="s">Transition time in seconds: 
+			    <input type='text' id='timeback<?php echo $id; ?>'  name='timeback<?php echo $id; ?>'  value='<?php echo $timeback; ?>'/>
+		      </label>
+			  <br/>
+
+			  <label>Scale images?:
+			    <select name="onover<?php echo $id; ?>" id="onover<?php echo $id; ?>">
+			      <option value="0" <?php if($onover==0) echo ' selected="selected"'; ?>>None</option>
+			      <option value="1" <?php if($onover==1) echo ' selected="selected"'; ?>>Scale</option>
+		        </select>
+		      </label>
+			  <br/>
+
+			  <label>
+
+              <br/>
+			  <label for="width<?php echo $id; ?>" accesskey="w">Flash Width(px or %, default: 100%): 
+			    <input type='text' id='width<?php echo $id; ?>'  name='width<?php echo $id; ?>'  value='<?php echo $width; ?>'/>
+		      </label>
+			  <br/>
+			  <label for="height<?php echo $id; ?>" accesskey="h">Flash Height (px, default 250px): 
+			    <input type='text' id='height<?php echo $id; ?>'  name='height<?php echo $id; ?>'  value='<?php echo $height; ?>'/>
+		      </label>
+		  </p>
+          
+          <p><br/>
+			  <label for="links<?php echo $id; ?>" accesskey="l">Image Links(separated by INTRO): <br/>
+			    <textarea name="links<?php echo $id; ?>" rows="5" id="links<?php echo $id; ?>"><?php echo $links; ?></textarea>
+		      </label>
+		  </p>
+          
+          
+<p><br/>
+			  <label for="title<?php echo $id; ?>" accesskey="t">Gallery Title: 
+                 <input type='text' id="title<?php echo $id; ?>"  name="title<?php echo $id; ?>"  value="<?php echo $title; ?>"/>
+		      </label>
+                 <input name="id" type="hidden" id="id" value="<?php echo $id; ?>" />
+		  </p>
+			<p><br/>
+			  <input type='submit' name='' value='SAVE GALLERY <?php echo $id; ?>' />
+		  </p>
+        </fieldset>
+	</form>
+  <form method="post" action="">
+	  <input name="borrar" type="hidden" id="borrar" value="<?php echo $id; ?>">
+     <input type='submit' name='' value='Delete gallery <?php echo $id; ?>' />
+    </form>
+  <hr />
+</div>

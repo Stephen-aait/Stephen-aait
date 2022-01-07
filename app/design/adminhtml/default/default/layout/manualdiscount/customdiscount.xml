@@ -1,0 +1,32 @@
+<layout>
+    <adminhtml_sales_order_create_load_block_items>
+        <reference name="items_grid">
+            <block type="manualdiscount/adminhtml_sales_order_create_customdiscount"
+                   template="manualdiscount/sales/order/create/customdiscount.phtml"
+                   name="customdiscount"
+                   after="giftcardaccount"/>
+        </reference>
+    </adminhtml_sales_order_create_load_block_items>
+
+    <adminhtml_sales_order_create_load_block_data>
+        <reference name="items_grid">
+            <block type="manualdiscount/adminhtml_sales_order_create_customdiscount"
+                   template="manualdiscount/sales/order/create/customdiscount.phtml"
+                   name="customdiscount"
+                   after="giftcardaccount"/>
+        </reference>
+    </adminhtml_sales_order_create_load_block_data>
+
+    <adminhtml_sales_order_create_index>
+        <reference name="js">
+            <block type="adminhtml/template" template="manualdiscount/sales/order/create/js.phtml"
+                   name="customdiscount_js"/>
+        </reference>
+        <reference name="items_grid">
+            <block type="manualdiscount/adminhtml_sales_order_create_customdiscount"
+                   template="manualdiscount/sales/order/create/customdiscount.phtml"
+                   name="customdiscount"
+                   after="giftcardaccount"/>
+        </reference>
+    </adminhtml_sales_order_create_index>
+</layout>

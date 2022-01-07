@@ -1,0 +1,213 @@
+
+<?php
+$dataId = Mage::app()->getRequest()->getParam('id');
+$storeId = Mage::app()->getRequest()->getParam('store');
+
+$fields = Mage::helper("estimateddeliverydate")->getConfig();
+?>
+
+
+<div class="entry-edit">
+
+
+
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend">Back to stock date</h4>
+
+        </div>
+        <div class="fieldset fieldset-wide" >
+            <div class="hor-scroll">
+                <table class="form-list" cellspacing="0">
+                    <tbody>
+                        <?php
+                        $_item = $this->getProduct()->getId();
+                        $_resource = $this->getProduct()->getResource();
+                        $optionValue = $_resource->getAttributeRawValue($_item, 'back_to_stock', Mage::app()->getStore());
+                        if ($optionValue != "")
+                            $value = Mage::getModel("core/date")->gmtDate("Y/m/d", strtotime($optionValue));
+                        else
+                            $value = null;
+                        ?>
+                        <tr>
+                            <td class="label"><label for="back_to_stock">Stock expected for</label></td>
+                            <td class="value">
+                                <input name="product[back_to_stock]" id="back_to_stock_clone" value="<?php echo $value; ?>" class=" input-text" style="width:110px !important;" type="text"> <img src="/skin/adminhtml/default/default/images/grid-cal.gif" alt="" class="v-middle" id="back_to_stock_clone_trig" title="Select Date" style=""><img src="/skin/adminhtml/default/default/images/cancel_icon.gif" alt="" class="v-middle" onclick="$('back_to_stock_clone').value=''" title="Delete date" style="cursor:pointer;margin-left:10px">
+                                <script type="text/javascript">
+                                    //<![CDATA[
+                                    Calendar.setup({
+                                        inputField: "back_to_stock_clone",
+                                        // ifFormat: "%m/%e/%Y",
+                                        showsTime: false,
+                                        button: "back_to_stock_clone_trig",
+                                        align: "Bl",
+                                        singleClick: true
+                                    });
+                                    //]]>
+                                </script>       
+                                <p class="note">The estimated delivery date will be calculated from that date for backorder. Leave empty to use the default backorder calculation. </p>
+                            </td>
+                            <td class="scope-label"><span class="nobr">[GLOBAL]</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+<?php foreach ($fields as $type => $group): ?>
+        <div class="entry-edit-head">
+
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('estimateddeliverydate')->__('Estimated delivery date for ') ?> <?php echo $type; ?></h4>
+
+        </div>
+        <fieldset>
+            <?php foreach ($group['fields'] as $name => $field): ?>
+
+
+        <?php $data[$type][$name] = Mage::helper('estimateddeliverydate')->getData($dataId, $type, $name, $field['config'], $storeId); ?>
+
+                <table cellspacing="0" class="form-list" style="<?php if (!$field['visible']) echo "display:none;" ?>" id="table_catalog_<?php echo $type; ?>_<?php echo $name; ?>">
+
+                    <tr>
+                        <td class="label">
+                            <label for="<?php echo $type; ?>_<?php echo $name; ?>">
+        <?php echo Mage::helper('estimateddeliverydate')->__($field['label']) ?>
+                            </label>
+                        </td>
+                        <td class="value">
+                            <?php if ($field['type'] == "text"): ?>
+                                <input id="<?php echo $type; ?>_<?php echo $name; ?>" name="<?php echo $type; ?>_<?php echo $name; ?>" class="updateOnChange input-text input <?php echo ($data[$type][$name]['use_config_' . $name] || @$data[$type][$name]['use_base_' . $name]) ? "disabled" : null; ?>" <?php echo ($data[$type][$name]['use_config_' . $name] || @$data[$type][$name]['use_base_' . $name]) ? "disabled" : null; ?> type="text" value="<?php echo $data[$type][$name][$name]; ?>" />
+                                <?php elseif ($field['type'] == "select"): ?>
+                                    <?php $values = explode(',', $data[$type][$name][$name]); ?>
+                                <select multiple id="<?php echo $type; ?>_<?php echo $name; ?>"  class="updateOnChange input <?php echo ($data[$type][$name]['use_config_' . $name] || @$data[$type][$name]['use_base_' . $name]) ? "disabled" : null; ?>" <?php echo ($data[$type][$name]['use_config_' . $name] || @$data[$type][$name]['use_base_' . $name]) ? "disabled" : null; ?> >
+                                    <?php foreach ($field['values']->toOptionArray() as $option): ?>
+                                        <option value="<?php echo $option['value'] ?>" <?php if (in_array($option['value'], $values)) echo "selected" ?>><?php echo $option['label'] ?></option>
+                                <?php endforeach; ?>
+                                </select>
+        <?php elseif ($field['type'] == "time"): ?>
+                                    <?php $values = explode(',', $data[$type][$name][$name]); ?>
+
+                                <select style="width:40px" id="<?php echo $type; ?>_<?php echo $name; ?>"  class="input updateOnChange  <?php echo ($data[$type][$name]['use_config_' . $name] || @$data[$type][$name]['use_base_' . $name]) ? "disabled" : null; ?>" <?php echo ($data[$type][$name]['use_config_' . $name] || @$data[$type][$name]['use_base_' . $name]) ? "disabled" : null; ?> >
+                                    <?php for ($i = 0; $i <= 24; $i++): ?>
+                                        <option value="<?php echo str_pad($i, 2, 0, STR_PAD_LEFT) ?>" <?php if ($values[0] == str_pad($i, 2, 0, STR_PAD_LEFT)) echo "selected" ?>><?php echo str_pad($i, 2, 0, STR_PAD_LEFT) ?></option>
+                                    <?php endfor; ?>
+                                </select> :
+                                <select style="width:40px"  id="<?php echo $type; ?>_<?php echo $name; ?>"  class="input updateOnChange  <?php echo ($data[$type][$name]['use_config_' . $name] || @$data[$type][$name]['use_base_' . $name]) ? "disabled" : null; ?>" <?php echo ($data[$type][$name]['use_config_' . $name] || @$data[$type][$name]['use_base_' . $name]) ? "disabled" : null; ?> >
+                                    <?php for ($i = 0; $i <= 60; $i++): ?>
+                                        <option value="<?php echo str_pad($i, 2, 0, STR_PAD_LEFT) ?>" <?php if ($values[1] == str_pad($i, 2, 0, STR_PAD_LEFT)) echo "selected" ?>><?php echo str_pad($i, 2, 0, STR_PAD_LEFT) ?></option>
+                                    <?php endfor; ?>
+                                </select> :
+                                <select style="width:40px"  id="<?php echo $type; ?>_<?php echo $name; ?>"  class="input updateOnChange  <?php echo ($data[$type][$name]['use_config_' . $name] || @$data[$type][$name]['use_base_' . $name]) ? "disabled" : null; ?>" <?php echo ($data[$type][$name]['use_config_' . $name] || @$data[$type][$name]['use_base_' . $name]) ? "disabled" : null; ?> >
+                                    <?php for ($i = 0; $i <= 60; $i++): ?>
+                                        <option value="<?php echo str_pad($i, 2, 0, STR_PAD_LEFT) ?>" <?php if ($values[2] == str_pad($i, 2, 0, STR_PAD_LEFT)) echo "selected" ?>><?php echo str_pad($i, 2, 0, STR_PAD_LEFT) ?></option>
+                                <?php endfor; ?>
+                                </select>
+
+        <?php endif; ?>
+                            <br>
+                            <input class="updateOnChange checkbox" name="use_config_<?php echo $type; ?>_<?php echo $name; ?>" type="checkbox" id="use_config_<?php echo $type; ?>_<?php echo $name; ?>" value="1" onclick="leadtime.useConfig(this, '<?php echo $type; ?>', '<?php echo $name; ?>');" <?php echo (@$data[$type][$name]['use_base_' . $name]) ? "disabled" : null; ?> <?php echo ($data[$type][$name]['use_config_' . $name]) ? "checked" : null; ?>/>
+                            <label for="use_config_<?php echo $type; ?>_<?php echo $name; ?>" class="normal"><?php echo Mage::helper('catalog')->__('Use Config Settings') ?></label>
+
+                        </td>
+                        <td class="value scope-label"><?php echo Mage::helper('adminhtml')->__('[STORE VIEW]') ?></td>
+        <?php if ($storeId != Mage_Core_Model_App::ADMIN_STORE_ID): ?>
+                            <td class="value use-default">
+                                <input class="updateOnChange" type="checkbox" value="1" onclick="leadtime.useBase(this, '<?php echo $type; ?>', '<?php echo $name; ?>');"  id="use_base_<?php echo $type; ?>_<?php echo $name; ?>" name="use_base_<?php echo $type; ?>_<?php echo $name; ?>" <?php echo (@$data[$type][$name]['use_base_' . $name]) ? "checked" : null; ?>>
+                                <label class="normal" for="use_base_<?php echo $type; ?>_<?php echo $name; ?>"><?php echo Mage::helper('catalog')->__('Use Default Value'); ?></label>
+                            </td>
+                <?php endif; ?>
+                    </tr>
+                </table>
+        <?php endforeach; ?>
+        </fieldset>
+<?php endforeach; ?>
+
+
+
+</div>
+
+<script language="javascript">
+
+    var leadtime = {
+        data:<?php echo json_encode($data); ?>,
+        useConfig: function (elt, type, name) {
+            eval("data=this.data." + type + "." + name);
+
+            elt.ancestors()[0].select('.input').each(function (field) {
+                if (elt.checked) {
+                    field.disabled = true;
+                    field.value = eval("data.config." + name);
+                    field.addClassName("disabled");
+                } else {
+
+                    field.removeClassName("disabled");
+                    field.disabled = false;
+                }
+            });
+
+
+
+        },
+        useBase: function (elt, type, name) {
+            eval("data=this.data." + type + "." + name);
+
+            fields_1 = elt.ancestors()[1].select('.input');
+            field_2 = elt.ancestors()[1].select('.checkbox')[0];
+
+            if (elt.checked) {
+
+                field_2.disabled = true;
+                field_2.addClassName("disabled");
+                field_2.checked = eval("data.use_config_" + name);
+                fields_1.each(function (field) {
+                    field.disabled = true;
+                    field.addClassName("disabled");
+                    field.value = eval("data." + name);
+                })
+            } else {
+
+                field_2.disabled = false;
+                field_2.removeClassName("disabled");
+                if (!field_2.checked) {
+                    fields_1.each(function (field) {
+                        field.disabled = false;
+                        field.removeClassName("disabled");
+                    })
+                }
+
+            }
+
+        }
+    }
+
+    $$(".updateOnChange").each(function (input) {
+        input.observe("change", function () {
+
+            if (input.type === "checkbox")
+                $(input.id).value = (input.checked) ? 1 : 0;
+            else if (input.type === "select-multiple") {
+                value = new Array;
+                input.select('option[selected]').each(function (o) {
+                    value.push(o.value);
+                })
+
+                $(input.id).value = value.join(',')
+            } else if (input.type === "select-one") {
+                value = new Array;
+                input.ancestors()[0].select("select").each(function (s) {
+                    value.push(s.value);
+                })
+                $(input.id).value = value.join(',')
+
+            } else
+                $(input.id).value = input.value;
+        })
+    })
+
+
+</script>
+
+

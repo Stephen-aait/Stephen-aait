@@ -1,0 +1,17 @@
+{
+	"parts":
+	[
+		{
+			"partName":"body",
+			"partCode":"BSE",
+			"partId":1,
+			"partIdenti":"body",
+		},
+		{
+			"partName":"body",
+			"partCode":"BSE",
+			"partId":2,
+			"partIdenti":"body"
+		},
+	]
+}

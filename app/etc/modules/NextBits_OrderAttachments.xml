@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<NextBits_OrderAttachments>
+			<active>true</active>
+			<codePool>local</codePool>
+		</NextBits_OrderAttachments>
+	</modules>
+</config>

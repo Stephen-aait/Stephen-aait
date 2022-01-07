@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    
+    <checkout_cart_index>
+        <reference name="content">
+            <block type="estimateddeliverydate/notification" name="estimateddeliverydate.notification" as="estimateddeliverydate_notification"  before="-"/>
+           
+        </reference>
+        <reference name="checkout.cart">
+            <action method="addItemRender">
+                <type>simple</type>
+                <block>checkout/cart_item_renderer</block>
+                <template>leadtimes/checkout/cart/item/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>configurable</type>
+                <block>checkout/cart_item_renderer</block>
+                <template>leadtimes/checkout/cart/item/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>bundle</type>
+                <block>bundle/checkout_cart_item_renderer</block>
+                <template>leadtimes/checkout/cart/item/default.phtml</template>
+            </action>
+        </reference>
+    </checkout_cart_index>
+    <PRODUCT_TYPE_simple>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <file>estimateddeliverydate/styles.css</file>
+            </action>
+        </reference>
+        <reference name="product.info.simple">
+            <action method="setTemplate">
+                <template>leadtimes/catalog/product/view/type/default.phtml</template>
+            </action>
+        </reference>
+        <reference name="product.info.options">
+            <action method="setTemplate">
+                <template>leadtimes/catalog/product/view/type/options.phtml</template>
+                <!-- Uncomment the below line for MAGEWORX Advanced Custom options and comment the above line-->
+                <!--<template>leadtimes/customoptions/catalog-product-view-options.phtml</template>-->
+            </action>
+        </reference>
+    </PRODUCT_TYPE_simple>
+    <PRODUCT_TYPE_configurable>
+        <reference name="product.info.configurable">
+            <action method="setTemplate">
+                <template>leadtimes/catalog/product/view/type/default.phtml</template>
+            </action>
+        </reference>
+    </PRODUCT_TYPE_configurable>
+   
+        
+</layout>

@@ -1,0 +1,159 @@
+{
+	"cliparts":[
+	{
+		"id": "9",
+		"label": "bear",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img1.png",
+		"colorable": "0",
+		"color":"FF0000",
+		"price": "15.00"
+	}, {
+		"id": "3",
+		"label": "best",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img2.png",
+		"colorable": "1",
+		"color":"FF0000",
+		"price": "20.00"
+	}, {
+		"id": "9",
+		"label": "bear",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img3.png",
+		"colorable": "0",
+		"color":"FF0000",
+		"price": "15.00"
+	}, {
+		"id": "3",
+		"label": "best",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img4.png",
+		"colorable": "0",
+		"color":"FF0000",
+		"price": "20.00"
+	},
+	{
+		"id": "9",
+		"label": "bear",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img5.png",
+		"colorable": "0",
+		"color":"FF0000",
+		"price": "15.00"
+	}, {
+		"id": "3",
+		"label": "best",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img6.png",
+		"colorable": "0",
+		"color":"FF0000",
+		"price": "20.00"
+	},
+	{
+		"id": "9",
+		"label": "bear",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img7.png",
+		"colorable": "1",
+		"color":"FF0000",
+		"price": "15.00"
+	}, {
+		"id": "3",
+		"label": "best",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img8.png",
+		"colorable": "1",
+		"color":"FF0000",
+		"price": "20.00"
+	},
+	{
+		"id": "9",
+		"label": "bear",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img8.png",
+		"colorable": "1",
+		"color":"FF0000",
+		"price": "15.00"
+	}, {
+		"id": "3",
+		"label": "best",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img8.png",
+		"colorable": "1",
+		"color":"FF0000",
+		"price": "20.00"
+	}
+	,
+	{
+		"id": "9",
+		"label": "bear",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img8.png",
+		"colorable": "1",
+		"color":"FF0000",
+		"price": "15.00"
+	}, {
+		"id": "3",
+		"label": "best",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img8.png",
+		"colorable": "1",
+		"color":"FF0000",
+		"price": "20.00"
+	},
+	{
+		"id": "9",
+		"label": "bear",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img8.png",
+		"colorable": "1",
+		"color":"FF0000",
+		"price": "15.00"
+	}, {
+		"id": "3",
+		"label": "best",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img8.png",
+		"colorable": "1",
+		"color":"FF0000",
+		"price": "20.00"
+	}
+	,
+	{
+		"id": "9",
+		"label": "bear",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img8.png",
+		"colorable": "1",
+		"color":"FF0000",
+		"price": "15.00"
+	}, {
+		"id": "3",
+		"label": "best",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img8.png",
+		"colorable": "1",
+		"color":"FF0000",
+		"price": "20.00"
+	},
+	{
+		"id": "9",
+		"label": "bear",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img8.png",
+		"colorable": "1",
+		"color":"FF0000",
+		"price": "15.00"
+	}, {
+		"id": "3",
+		"label": "best",
+		"type": "clipart",
+		"thumb": "media/staticclipart/clipart/thumb/img8.png",
+		"colorable": "1",
+		"color":"FF0000",
+		"price": "20.00"
+	}
+]
+		
+}

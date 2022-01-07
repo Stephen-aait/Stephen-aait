@@ -1,0 +1,117 @@
+<?php
+/* * ********************************************************************
+ * Customization Services by ModulesGarden.com
+ * Copyright (c) ModulesGarden, INBS Group Brand, All Rights Reserved 
+ * (2014-05-13, 15:16:59)
+ * 
+ *
+ *  CREATED BY MODULESGARDEN       ->        http://modulesgarden.com
+ *  CONTACT                        ->       contact@modulesgarden.com
+ *
+ *
+ *
+ *
+ * This software is furnished under a license and may be used and copied
+ * only  in  accordance  with  the  terms  of such  license and with the
+ * inclusion of the above copyright notice.  This software  or any other
+ * copies thereof may not be provided or otherwise made available to any
+ * other person.  No title to and  ownership of the  software is  hereby
+ * transferred.
+ *
+ *
+ * ******************************************************************** */
+
+/**
+ * @author Grzegorz Draganik <grzegorz@modulesgarden.com>
+ */
+
+$user = $this->getUser();
+$stats = $this->getStatsArray();
+$admins = $this->getOtherAdmins();
+?>
+
+<div class="main-col-inner">
+	<div class="modulesgarden_form_container">
+		<div class="content-header skip-header">
+			<h3 class="icon-head head-adminhtml-tasks"><?php echo $this->__('Statistics For'); ?> "<?php echo $user->getParentObject()->getLastname() . ' ' . $user->getParentObject()->getFirstname(); ?>"</h3>
+		</div>
+		
+		<?php if ($admins){ ?>
+			<div class="entry-edit">
+				<div class="entry-edit-head">
+					<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Switch User'); ?></h4>
+				</div>
+				<div class="fieldset " id="teamandtaskorganizer_form">
+					<div class="hor-scroll">
+						<?php echo $this->__("User"); ?>:
+						
+						<form id="tto_switch_user" method="get" action="<?php echo Mage::helper('adminhtml')->getUrl("adminhtml/teamandtaskorganizer_tasks/index", array('tab'=>'teamandtaskorganizer_tabs_statistics')); ?>">
+							<select name="user_id" id="tto_user_id" style="min-width:150px !important">
+								<?php foreach ($admins as $id => $admin){ ?>
+									<option value="<?php echo $id; ?>" <?php echo $id == $user->getUserId() ? 'selected' : ''; ?>><?php echo $admin; ?></option>
+								<?php } ?>
+							</select>
+						</form>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+			jQuery(document).ready(function(){
+				jQuery('#tto_user_id').change(function(){
+					jQuery(this).closest('form').submit();
+				});
+			});
+			</script>
+		<?php } ?>
+		
+		<div class="entry-edit">
+			<div class="entry-edit-head">
+				<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Details'); ?></h4>
+			</div>
+			<div class="fieldset " id="teamandtaskorganizer_form">
+				<div class="hor-scroll">
+					<table cellspacing="10">
+						<tr>
+							<td><?php echo $this->__("Total Tasks"); ?></td>
+							<td><?php echo isset($stats['total']) ? $stats['total'] : 0; ?></td>
+						</tr>
+						<tr>
+							<td colspan="2"><strong><?php echo $this->__("Tasks Statuses"); ?></strong></td>
+						</tr>
+						<tr>
+							<td><?php echo $this->__("Done"); ?></td>
+							<td><?php echo isset($stats['statuses'][Modulesgarden_Teamandtaskorganizer_Model_Task::STATUS_DONE]) ? $stats['statuses'][Modulesgarden_Teamandtaskorganizer_Model_Task::STATUS_DONE] : 0; ?></td>
+						</tr>
+						<tr>
+							<td><?php echo $this->__("In Progress"); ?></td>
+							<td><?php echo isset($stats['statuses'][Modulesgarden_Teamandtaskorganizer_Model_Task::STATUS_PROGRESS]) ? $stats['statuses'][Modulesgarden_Teamandtaskorganizer_Model_Task::STATUS_PROGRESS] : 0; ?></td>
+						</tr>
+						<tr>
+							<td><?php echo $this->__("Pending"); ?></td>
+							<td><?php echo isset($stats['statuses'][Modulesgarden_Teamandtaskorganizer_Model_Task::STATUS_PENDING]) ? $stats['statuses'][Modulesgarden_Teamandtaskorganizer_Model_Task::STATUS_PENDING] : 0; ?></td>
+						</tr>
+						<tr>
+							<td colspan="2"><strong><?php echo $this->__("Tasks Priorities"); ?></strong></td>
+						</tr>
+						<tr>
+							<td><?php echo $this->__("Low"); ?></td>
+							<td><?php echo isset($stats['priorities'][Modulesgarden_Teamandtaskorganizer_Model_Task::PRIORITY_LOW]) ? $stats['priorities'][Modulesgarden_Teamandtaskorganizer_Model_Task::PRIORITY_LOW] : 0; ?></td>
+						</tr>
+						<tr>
+							<td><?php echo $this->__("Medium"); ?></td>
+							<td><?php echo isset($stats['priorities'][Modulesgarden_Teamandtaskorganizer_Model_Task::PRIORITY_MEDIUM]) ? $stats['priorities'][Modulesgarden_Teamandtaskorganizer_Model_Task::PRIORITY_MEDIUM] : 0; ?></td>
+						</tr>
+						<tr>
+							<td><?php echo $this->__("High"); ?></td>
+							<td><?php echo isset($stats['priorities'][Modulesgarden_Teamandtaskorganizer_Model_Task::PRIORITY_HIGH]) ? $stats['priorities'][Modulesgarden_Teamandtaskorganizer_Model_Task::PRIORITY_HIGH] : 0; ?></td>
+						</tr>
+						<tr>
+							<td><?php echo $this->__("Urgent"); ?></td>
+							<td><?php echo isset($stats['priorities'][Modulesgarden_Teamandtaskorganizer_Model_Task::PRIORITY_URGENT]) ? $stats['priorities'][Modulesgarden_Teamandtaskorganizer_Model_Task::PRIORITY_URGENT] : 0; ?></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

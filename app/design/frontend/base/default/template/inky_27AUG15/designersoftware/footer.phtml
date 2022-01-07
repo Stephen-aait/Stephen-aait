@@ -1,0 +1,32 @@
+<?php
+	// Path inside /js
+	$baseWebUrl					= $this->getWebPath();
+	$jsPath				  		= $baseWebUrl .'js'. DS . 'inky' . DS;
+	$designerSoftwarePath 		= $jsPath .'designersoftware'. DS;
+?>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="<?php echo $designerSoftwarePath; ?>assets/js/bootstrap.min.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
+<!-- FlexSlider -->
+<script src="<?php echo $designerSoftwarePath; ?>assets/js/jquery.flexslider.js"></script>
+<script type="text/javascript" src="<?php echo $designerSoftwarePath; ?>assets/js/jquery.selectbox-0.2.js"></script>
+<script src="<?php echo $designerSoftwarePath; ?>assets/js/custom.js"></script>
+<script src="<?php echo $designerSoftwarePath; ?>libraryjs/angular.js"></script>
+<script src="<?php echo $designerSoftwarePath; ?>libraryjs/jquery.form.js"></script>
+
+ <script src="<?php echo $designerSoftwarePath; ?>libraryjs/file.js"></script>
+<script src="<?php echo $designerSoftwarePath; ?>controllers/appcontroller.js"></script>
+<script src="<?php echo $designerSoftwarePath; ?>models/model.js"></script>
+<script src="<?php echo $designerSoftwarePath; ?>libraryjs/webkitdragdrop.js"></script>
+<script src="<?php echo $designerSoftwarePath; ?>libraryjs/fabric.js"></script>
+<script src="<?php echo $designerSoftwarePath; ?>libraryjs/undoredo.js"></script>
+<script src="<?php echo $designerSoftwarePath; ?>libraryjs/jquery.ui.touch-punch.min.js"></script>
+<script src="<?php echo $designerSoftwarePath; ?>controllers/rootcontroller.js"></script>
+<script src="<?php echo $designerSoftwarePath; ?>services/customServices.js"></script>
+<script src="<?php echo $designerSoftwarePath; ?>services/directive.js"></script>
+<script src="<?php echo $designerSoftwarePath; ?>controllers/toolevent.js"></script>
+<script src="<?php echo $designerSoftwarePath; ?>controllers/clipartscontroller.js"></script>
+<!-- <script src="<?php echo $designerSoftwarePath; ?>controllers/partscontroller.js"></script> -->
+<script src="<?php echo $designerSoftwarePath; ?>controllers/textcontroller.js"></script>

@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <Genmato_PendingOrderGrid>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Sales/>
+                <Genmato_Core/>
+            </depends>
+        </Genmato_PendingOrderGrid>
+    </modules>
+</config>

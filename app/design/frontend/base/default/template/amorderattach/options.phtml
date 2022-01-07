@@ -1,0 +1,57 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_Orderattach
+ */
+?>
+<div id="fieldOptions" style="display: none; padding-top: 4px; padding-left: 25px; padding-bottom: 6px;">
+    <div id="optionsContainer">
+        <?php if ($this->getOptions()): ?>
+            <?php foreach ($this->getOptions() as $option): ?>
+                <input type="text" name="options[]" value="<?php echo $option; ?>" class="input-text" style="width: 200px; margin-bottom: 2px;" />
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+    <div style="padding-top: 6px;">
+        <button onclick="javascript: addOption();" class="scalable" type="button"><span><?php echo $this->__('Add Option'); ?></span></button>
+    </div>
+</div>
+
+<script type="text/javascript">
+function checkFieldType(select)
+{
+    if ('select' == select.value)
+    {
+        $('fieldOptions').style.display = "block";
+    } else
+    {
+        $('fieldOptions').style.display = "none";
+    }
+
+    var tr = $('default_value').parentNode.parentNode;
+    if ('file' == select.value || 'file_multiple' == select.value || 'date' == select.value)
+    {
+        $('default_value').value = '';
+        tr.style.display = 'none';
+    } else 
+    {
+        tr.style.display = '';
+    }
+}
+
+function addOption()
+{
+    input = document.createElement('input');
+    input.type = 'text';
+    input.name = 'options[]';
+    input.style.width = '200px';
+    input.style.marginBottom = '2px';
+    input.addClassName('input-text');
+    $('optionsContainer').appendChild(input);
+}
+
+Event.observe(window, 'load', function(){
+    checkFieldType($('type'));
+});
+</script>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout>
+	<!-- Custom Color Grid Inside Tab-->        
+	<adminhtml_customer_edit>
+		<reference name="customer_edit_tabs">
+			<block type="customerdesign/adminhtml_customer_edit_tab_customerdesign" name="adminhtml_customer_edit_tab_customerdesign">
+				<block type="customerdesign/adminhtml_customer_edit_tab_customerdesign_accordion" name="design_accordian" before="-" />
+			</block>
+			<action method="addTab">
+				<name>customerdesign</name>
+				<block>adminhtml_customer_edit_tab_customerdesign</block>
+			</action>
+		</reference>
+    </adminhtml_customer_edit>   
+    
+</layout>

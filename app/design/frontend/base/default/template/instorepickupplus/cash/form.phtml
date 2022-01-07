@@ -1,0 +1,11 @@
+<?php if ($this->getMethod()->getConfigData('infotext_checkout')): ?>
+<fieldset class="form-list">
+    <ul id="payment_form_<?php echo $this->getMethodCode(); ?>" style="display:none">
+        <li>
+            <div class="input-box">
+                <?php echo $this->getMethod()->getConfigData('infotext_checkout') ?><br />
+            </div>
+        </li>
+    </ul>
+</fieldset>
+<?php endif; ?>

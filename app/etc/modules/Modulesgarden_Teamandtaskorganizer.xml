@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Modulesgarden_Teamandtaskorganizer>
+            <active>false</active>
+            <codePool>community</codePool>
+            <depends>
+                <Modulesgarden_Base/>
+            </depends>
+        </Modulesgarden_Teamandtaskorganizer>
+    </modules>
+</config>

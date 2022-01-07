@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Configuration file
+ *
+ * @category   Clarion
+ * @package    Clarion_Storelocator
+ * @author     Clarion Magento Team
+ */
+-->
+<config>
+    <modules>
+        <Clarion_Storelocator>
+            <version>0.1.2</version>
+        </Clarion_Storelocator>
+    </modules>
+    
+    <global>
+         <models>
+            <clarion_storelocator>
+                <class>Clarion_Storelocator_Model</class>
+                <resourceModel>storelocator_resource</resourceModel>
+            </clarion_storelocator>
+            <storelocator_resource>
+                <class>Clarion_Storelocator_Model_Resource</class>
+                <entities>
+                    <storelocator>
+                        <table>clarion_storelocator</table>
+                    </storelocator>
+                    <storelocator_store>
+                        <table>clarion_storelocator_store</table>
+                    </storelocator_store>
+                </entities>
+            </storelocator_resource>
+        </models>
+        
+        <helpers>
+            <clarion_storelocator>
+                <class>Clarion_Storelocator_Helper</class>
+            </clarion_storelocator>  
+        </helpers>
+        
+        <blocks>
+            <clarion_storelocator>
+                <class>Clarion_Storelocator_Block</class>
+            </clarion_storelocator>
+        </blocks>
+        
+        <resources>
+            <clarion_storelocator_setup>
+                <setup>
+                    <module>Clarion_Storelocator</module>
+                    <class>Clarion_Storelocator_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </clarion_storelocator_setup>
+            
+            <clarion_storelocator_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </clarion_storelocator_write>
+            
+            <clarion_storelocator_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </clarion_storelocator_read>
+        </resources>
+        
+    </global>
+    
+    <frontend>
+        <routers>
+            <clarion_storelocator>
+                <use>standard</use>
+                <args>
+                    <module>Clarion_Storelocator</module>
+                    <frontName>storelocator</frontName>
+                </args>
+            </clarion_storelocator>
+        </routers>
+        
+        <!-- set frontend layout file-->
+        <layout>
+            <updates>
+                <clarion_storelocator>
+                    <file>clarion_storelocator.xml</file>
+                </clarion_storelocator>
+            </updates>
+        </layout>
+    </frontend>
+    
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Clarion_Storelocator after="Mage_Adminhtml">Clarion_Storelocator_Adminhtml</Clarion_Storelocator>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    
+    
+    <adminhtml>
+        <!-- ACL for sections -->
+        <acl>
+           <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+               <admin>
+                   <children>
+                       <system>
+                           <children>
+                               <config>
+                                   <children>
+                                       <clarion_storelocator_general_setting translate="title" module="clarion_storelocator">
+                                           <title>Store Locator General Settings</title>
+                                       </clarion_storelocator_general_setting>
+                                   </children>
+                               </config>
+                           </children>
+                       </system>
+                   </children>
+               </admin>
+           </resources>
+        </acl>
+        
+        <!-- Admin layout configuration -->
+        <layout>
+            <updates>
+                <clarion_storelocator>
+                    <file>clarion_storelocator.xml</file>
+                </clarion_storelocator>
+            </updates>
+        </layout>
+        
+    </adminhtml>
+    
+    <!-- Set default values for system varablses -->
+    <default>
+        <clarion_storelocator_general_setting>
+            <clarion_storelocator_status>
+                <enable>1</enable>
+            </clarion_storelocator_status>
+            
+            <clarion_storelocator_display_setting>
+                <default_radius>100</default_radius>
+                <zoom_level>6</zoom_level>
+                <stores_per_page>8</stores_per_page>
+            </clarion_storelocator_display_setting>
+        </clarion_storelocator_general_setting>
+    </default> 
+</config>

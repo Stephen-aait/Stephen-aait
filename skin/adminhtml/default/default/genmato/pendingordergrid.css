@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+.prodlst {
+    font-size: 10px;
+}
+
+.prodbold {
+    font-size: 10px;
+    font-weight: bold;
+    background: url('../images/sort_row_bg.gif') 0 50% repeat-x !important;
+}
+
+table.prodordered, table.prodordered tr, table.prodordered td {
+    border: none;
+}
+
+.readytoship {
+    color: #009900;
+}
+
+.backorderqty {
+    color: #990000;
+}
+
+.hiddenrow {
+    display: none;
+}
+
+.ident {
+    padding-left: 10px;
+}

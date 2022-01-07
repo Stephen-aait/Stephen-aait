@@ -1,0 +1,17 @@
+{
+	"layersInfo":
+	{
+		"partStyleCode":"BSE",
+		
+		"partId":1,
+		"layers":
+		[
+			{
+				"layerName":"LAYER1",
+				"layerId":1,
+				"layerColorCode":"FF0000"
+				
+			}
+		]
+	}
+}

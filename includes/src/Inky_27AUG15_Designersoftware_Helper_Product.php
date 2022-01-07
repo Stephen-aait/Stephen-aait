@@ -1,0 +1,81 @@
+<?php
+
+class Inky_Designersoftware_Helper_Product extends Mage_Core_Helper_Abstract
+{
+	//Load product model collecttion filtered by attribute set id
+	public function getProductsByAttributeSetId($attrSetId){				
+		$products = Mage::getModel('catalog/product')
+			->getCollection()
+			->addAttributeToSelect('entity_id')
+			->addFieldToFilter('attribute_set_id', $attrSetId);
+		
+		return $products;
+	}	
+	
+	//process your products collection to get Product Id 
+	public function getProductId($products){				
+		
+		foreach($products as $p){
+			$productId = $p->getId();
+			break;
+		}		
+		return $productId;
+	}
+	
+	// Get base64encoded params and convert it to params Array
+	public function getParams($REQUEST){
+		
+		if(isset($REQUEST) && !empty($REQUEST)):
+			foreach($REQUEST as $params=>$val):
+				$params = $params;
+				break;	
+			endforeach;
+		
+			$params						= base64_decode($params);
+			$paramsStringArray			= explode('&',$params);
+			
+			foreach($paramsStringArray as $value):
+				$paramArray = explode('=',$value);
+				$paramsArray[trim($paramArray[0])] = trim($paramArray[1]);		
+			endforeach;
+			
+			return $paramsArray;
+		else:
+			return false;
+		endif;
+	}
+	
+	public function setParams($designersoftwareId){
+		
+		$params='';			
+		$params .='did='.$designersoftwareId;
+		$params .='&';
+		$params .='mode=edit'; 
+		//$params .='&';
+		//$params .='code='.$designCode;
+		
+		$params = base64_encode($params);
+		
+		return $params;
+	}
+	
+	public function addProductToWishlist($customerId, $productId, $options, $quantity){
+		$wishlist=Mage::helper('wishlist')->getWishlist();
+		//$wishlist=Mage::getModel('wishlist/wishlist');
+		$storeId = Mage::app()->getStore()->getId();
+		
+		$model = Mage::getModel('catalog/product');
+		$_product = $model->load($productId); 
+		$params = array('product' => $productId,
+						'qty' => $quantity,
+						'store_id' => $storeId,
+						'options' => array($options['id']=>$options['value'])
+						);
+						
+		 $request = new Varien_Object();
+		 $request->setData($params);
+		 $result = $wishlist->addNewItem($_product, $request);	
+	
+	}	
+	
+}

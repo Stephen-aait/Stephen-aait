@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Netzkollektiv_InStorePickupPlus>
+            <version>1.6</version>
+        </Netzkollektiv_InStorePickupPlus>
+    </modules>
+    <global>
+        <models>
+            <instorepickupplus>
+                  <class>Netzkollektiv_InStorePickupPlus_Model</class>
+            </instorepickupplus>
+         </models>
+        <blocks>
+            <checkout>
+                <rewrite>
+                    <onepage_payment_methods>Netzkollektiv_InStorePickupPlus_Block_Onepage_Payment_Methods</onepage_payment_methods>
+                </rewrite>
+            </checkout>
+            <instorepickupplus>
+                  <class>Netzkollektiv_InStorePickupPlus_Block</class>
+            </instorepickupplus>
+         </blocks>
+        <helpers>
+            <instorepickupplus>
+                <class>Netzkollektiv_InStorePickupPlus_Helper</class>
+            </instorepickupplus>
+        </helpers>
+    </global>
+    <frontend>
+        <translate>
+            <modules>
+                <Netzkollektiv_InStorePickupPlus>
+                    <files>
+                        <default>Netzkollektiv_InStorePickupPlus.csv</default>
+                    </files>
+                </Netzkollektiv_InStorePickupPlus>
+            </modules>
+        </translate>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Netzkollektiv_InStorePickupPlus>
+                    <files>
+                        <default>Netzkollektiv_InStorePickupPlus.csv</default>
+                    </files>
+                </Netzkollektiv_InStorePickupPlus>
+            </modules>
+        </translate>
+    </adminhtml>
+    <default>
+        <carriers>
+            <instorepickupplus>
+                <active>1</active>
+                <active_in_frontend>1</active_in_frontend>
+                <model>instorepickupplus/carrier</model>
+                <allowed_methods>pickup</allowed_methods>
+                <methods>pickup</methods>
+                  <sallowspecific>0</sallowspecific>
+                  <name>In-Store Pickup</name>
+                  <title>In-Store Pickup</title>
+                  <specificerrmsg>This shipping method is currently unavailable.
+    If you would like to ship using this shipping method, please contact us.
+                  </specificerrmsg>
+                  <handling_type>F</handling_type>
+                  <stores>Munich
+pickup and save in Madrid
+in our store in Paris
+130 Queen St., Westminster, London W1J
+San Francisco (25 Liberty St.)</stores>
+            </instorepickupplus>
+          </carriers>
+        <payment>
+            <instorepickupplus_cash>
+                <active>1</active>
+                <active_in_frontend>1</active_in_frontend>
+                <ignore_shipping_method>0</ignore_shipping_method>
+                <model>instorepickupplus/payment</model>
+                <order_status>pending</order_status>
+                <title>Cash</title>
+                <allowspecific>0</allowspecific>
+            </instorepickupplus_cash>
+        </payment>
+    </default>
+</config>

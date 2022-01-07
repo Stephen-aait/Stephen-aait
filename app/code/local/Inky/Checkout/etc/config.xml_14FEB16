@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Inky_Checkout>
+            <version>0.1.0</version>
+        </Inky_Checkout>
+    </modules>
+    <frontend>
+        <routers>
+            <checkout>
+                <args>
+                    <modules>
+                        <inky_checkout before="Mage_Checkout">Inky_Checkout</inky_checkout><!--Change Inky To Your Module NameSpace and Checkout to Your Module name-->
+                    </modules>
+                </args>
+            </checkout>
+        </routers>
+         <events>
+            <checkout_cart_product_add_after>
+                <observers>
+                    <inky_cart_product_add_after>
+						<type>model</type>
+                        <class>inky_checkout/observer</class>
+                        <method>changePrice</method>
+                    </inky_cart_product_add_after>
+                </observers>
+            </checkout_cart_product_add_after>            
+        </events>
+    </frontend>
+    <global>        
+        <models>
+            <inky_checkout>
+                <class>Inky_Checkout_Model</class>
+            </inky_checkout>
+        </models>       
+    </global>
+</config>

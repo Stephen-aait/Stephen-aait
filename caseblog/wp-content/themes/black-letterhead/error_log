@@ -1,0 +1,1 @@
+[02-Jul-2015 02:50:28] PHP Fatal error:  Call to undefined function  get_header() in /home4/jbideas/public_html/caseblog/wp-content/themes/black-letterhead/404.php on line 1

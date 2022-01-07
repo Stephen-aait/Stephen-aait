@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <menu>
+        <sales>
+            <children>
+                <genmato_pendingordergrid module="genmato_pendingordergrid">
+                    <title>Pending Orders</title>
+                    <sort_order>11</sort_order>
+                    <action>adminhtml/sales_order_pending/</action>
+                </genmato_pendingordergrid>
+            </children>
+        </sales>
+    </menu>
+    <menutemplate>
+        <genmato_pendingordergrid>
+            <_code_>
+                <title>_title_</title>
+                <sort_order>_sortorder_</sort_order>
+                <action>adminhtml/sales_order_additional/index/grid/_code_/</action>
+            </_code_>
+        </genmato_pendingordergrid>
+    </menutemplate>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <sales>
+                        <children>
+                            <genmato_pendingordergrid module="genmato_pendingordergrid">
+                                <title>Pending Orders</title>
+                                <sort_order>11</sort_order>
+                            </genmato_pendingordergrid>
+                        </children>
+                    </sales>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <genmato_pendingordergrid>
+                                        <title>Genmato - Pending Order Grid</title>
+                                    </genmato_pendingordergrid>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

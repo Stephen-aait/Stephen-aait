@@ -1,0 +1,146 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ * 
+ */
+ /* @var $this Mage_Designersoftware_Block_Customer_Design_Items */
+?>
+<table class="clean-table linearize-table" id="wishlist-table">
+    <thead>
+        <tr class="first last">
+			<th class="customer-wishlist-item-image"><?php echo $this->__('Design');?></th>
+			<th class="customer-wishlist-item-info"><?php echo $this->__('Design Details')?></th>
+			<th class="customer-wishlist-item-price"><?php echo $this->__('Price')?></th>			
+			<?php if( $this->isAddToCartEnable() ): ?>
+				<th class="customer-wishlist-item-cart"><?php echo $this->__('Add to Cart')?></th>
+			<?php endif;?>
+			<?php if( $this->isRemoveEnable() ): ?>
+				<th class="customer-wishlist-item-cart"></th>
+			<?php endif;?>
+		</tr>
+    </thead>
+    <tbody>
+        <?php if (count($this->getItems())): ?>
+            <?php foreach ($this->getItems() as $item): ?>
+            
+            <?php
+				$designSku 	= $item->getStyleDesignCode();
+				$pdfLink 	= Mage::getUrl() . 'designersoftware/pdf/generate/designCode/' . $designSku . '/storeId/1';           
+            ?>
+            
+				<?php $product = Mage::getModel('catalog/product')->load($item->getProductId());?>
+				<?php $params  = $this->getDesignerProductParams($item); ?>
+				
+                <tr id="item_<?php echo $item->getId();?>">
+					<td class="customer-wishlist-item-image">
+						<a class="product-image" href="<?php echo $this->getDesignerProductDetailsUrl($params); ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>">
+							<img src="<?php echo Mage::getBaseUrl('media').'inky/designs/'.$item->getStyleDesignCode().'/original/000.png'; ?>" width="113" height="113" alt="<?php echo $this->escapeHtml($product->getName()) ?>" />
+						</a>						
+					</td>                                                        
+					<td class="customer-wishlist-item-info">
+						<h3 class="product-name"><a href="<?php echo $this->getDesignerProductEditUrl($params); ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>"><?php echo $this->escapeHtml($product->getName()) ?></a></h3>
+						<div class="description std">
+							<div class="inner">
+								<?php echo $this->escapeHtml($this->stripTags($product->getSku()));?>
+							</div>
+							<textarea name="description[<?php echo $item->getId() ?>]" 
+								rows="3" cols="5" onfocus="focusComment(this)" onblur="focusComment(this)"
+								placeholder="<?php echo $this->helper('wishlist')->defaultCommentString(); ?>" 
+								title="<?php echo Mage::helper('core')->quoteEscape($this->__('Comment')) ?>">
+								<?php echo $this->escapeHtml($item->getComment()) ?>
+							</textarea>
+							<div class="item-manage">
+								<a  style="float:left;" title="View PDF" href="<?php echo $pdfLink; ?>" target="_blank"><span><span><?php echo $this->__('View PDF');?></span></span></a>								
+								<button type="submit" name="do" title="Update Content for Design like Quantity and Comment" class="button btn-update button-secondary"><span><span>Update</span></span></button>
+							</div>
+						</div>												
+					</td>
+					
+					<td class="customer-wishlist-item-price">
+						<div class="cart-cell">
+							<div class="price-box">
+								<span id="product-price-158" class="regular-price">
+									<span class="price">
+										<div class="price-box">
+											<span class="regular-price" id="product-price-158">
+												<span class="price"><?php echo Mage::helper('core')->currency($item->getTotalPrice(), true, false); ?></span>
+											</span>
+										</div>
+									</span>
+								</span>
+							</div>    
+						</div>						
+					</td>
+					
+					<?php if( $this->isAddToCartEnable() ): ?>
+					<td class="customer-wishlist-item-cart">
+						<div class="cart-cell">
+							<?php echo $this->getPriceHtml($product, empty($options));?>
+							<div class="add-to-cart-alt">						
+							<?php if ($product->isSaleable()): ?>							
+								<button type="button" title="<?php echo $this->__('Add to Cart') ?>" onclick="addDesignToCart('<?php echo $this->getAddtoCartUrl($item); ?>');" class="button btn-cart"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>						
+							<?php endif; ?>
+						</div>
+						<?php if ($product->isVisibleInSiteVisibility()): ?>
+							<p><a class="link-edit button button-secondary" href="<?php echo $this->getDesignerProductEditUrl($params,"cart"); ?>" title="Edit Design in Designer Tool"><?php echo $this->__('Edit Design') ?></a></p>    
+						<?php endif ?>						
+						<div class="truncated">
+						  <div class="truncated_full_value">
+							  <div class="item-options">
+								  <p><?php echo $this->__('Options Details');?></p>
+								  <dl>
+									 <dt><?php echo $this->__('Design Code');?></dt>
+									 <dd><?php echo $item->getStyleDesignCode(); ?></dd>
+								  </dl>
+							  </div>
+						  </div>
+						  <a class="details" onclick="return false;" href="#">View Details</a>
+						</div>
+						<?php if ($product->isVisibleInSiteVisibility()): ?>
+							<!-- <p><a class="link-edit" href="<?php echo $this->getDesignerProductEditUrl($params); ?>"><?php echo $this->__('Edit') ?></a></p> -->
+						<?php endif ?>
+						</div>
+					</td>
+					<?php endif;?>
+					<?php //if( $this->isRemoveEnable() ): ?>			
+					<td>
+						<!--<a href="<?php //echo $this->getRemoveUrl($item); ?>" onclick="return confirmRemoveDesign();" title="<?php echo $this->__('Remove Item') ?>" class="btn-remove btn-remove2"><?php echo $this->__('Remove item');?></a>-->
+					</td>
+					<?php //endif;?>
+                </tr>
+            <?php endforeach ?>
+        <?php else: ?>
+            <td colspan="<?php echo count($columns);?>" class="wishlist-empty"><?php echo $this->__('This section has no Designs');?></td>
+        <?php endif; ?>
+    </tbody>
+</table>
+<script type="text/javascript">
+	function addDesignToCart(url) {                
+                setLocation(url);
+            }
+            
+    function confirmRemoveDesign() {
+            return confirm('<?php echo $this->__('Are you sure you want to remove this product from your Design Section?'); ?>');        
+     }
+</script>

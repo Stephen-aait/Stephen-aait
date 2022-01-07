@@ -1,0 +1,9 @@
+<config>
+	<modules>
+		<Emipro_Customoptions>
+			<active>true</active>
+			<version>2.2.0</version>
+			<codePool>community</codePool>
+		</Emipro_Customoptions>
+	</modules>
+</config>

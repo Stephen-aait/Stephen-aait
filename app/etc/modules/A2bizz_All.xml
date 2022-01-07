@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Module configuration file
+ * @category    A2bizz
+ * @package     A2bizz_Storelocator
+ * @author      A2bizz Magento Team
+ */
+-->
+<config>
+    <modules>
+        <A2bizz_Customerdesign>
+            <active>true</active>
+            <codePool>local</codePool>
+        </A2bizz_Customerdesign>
+        <A2bizz_Custom>
+            <active>true</active>
+            <codePool>local</codePool>
+        </A2bizz_Custom>
+    </modules>
+</config>

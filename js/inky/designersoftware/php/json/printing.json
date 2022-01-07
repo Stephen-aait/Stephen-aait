@@ -1,0 +1,17 @@
+{
+	"printings": [
+		{
+			"printingType": "Embroidery",
+			"cost": 3,
+			"minPrice": 10
+		}, {
+			"printingType": "Laser Engraving",
+			"cost": 2,
+			"minPrice": 10
+		}, {
+			"printingType": "Hand Carved",
+			"cost": 5,
+			"minPrice": 20
+		}
+	]
+}

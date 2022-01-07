@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <adminhtml_manageleadtimes_index>
+        <reference name="content">
+            <block type="estimateddeliverydate/adminhtml_manageleadtimes" name="manageleadtimes" />
+        </reference>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>estimateddeliverydate/scripts.js</name>
+            </action>    
+        </reference>
+    </adminhtml_manageleadtimes_index>
+</layout>

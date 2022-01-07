@@ -1,0 +1,121 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <Genmato_PendingOrderGrid>
+            <version>15.242.1</version>
+        </Genmato_PendingOrderGrid>
+    </modules>
+    <global>
+        <models>
+            <genmato_pendingordergrid>
+                <class>Genmato_PendingOrderGrid_Model</class>
+                <resourceModel>genmato_pendingordergrid_resource</resourceModel>
+            </genmato_pendingordergrid>
+            <genmato_pendingordergrid_resource>
+                <class>Genmato_PendingOrderGrid_Model_Resource</class>
+                <entities>
+                    <order_pending>
+                        <table>genmato_pendingorder_grid</table>
+                    </order_pending>
+                </entities>
+            </genmato_pendingordergrid_resource>
+        </models>
+        <blocks>
+            <genmato_pendingordergrid>
+                <class>Genmato_PendingOrderGrid_Block</class>
+            </genmato_pendingordergrid>
+        </blocks>
+        <helpers>
+            <genmato_pendingordergrid>
+                <class>Genmato_PendingOrderGrid_Helper</class>
+            </genmato_pendingordergrid>
+        </helpers>
+
+        <resources>
+            <genmato_pendingordergrid_setup>
+                <setup>
+                    <module>Genmato_PendingOrderGrid</module>
+                </setup>
+            </genmato_pendingordergrid_setup>
+        </resources>
+
+        <events>
+            <sales_order_save_commit_after>
+                <observers>
+                    <genmato_pendingordergrid_order_save_commit_after>
+                        <type>singleton</type>
+                        <class>genmato_pendingordergrid/observer</class>
+                        <method>salesOrderSaveCommitAfter</method>
+                    </genmato_pendingordergrid_order_save_commit_after>
+                </observers>
+            </sales_order_save_commit_after>
+            <genmato_pendingordergrid_order_update>
+                <observers>
+                    <genmato_pendingordergrid_order_update_default>
+                        <type>singleton</type>
+                        <class>genmato_pendingordergrid/observer</class>
+                        <method>genmatoPendingordergridOrderUpdate</method>
+                    </genmato_pendingordergrid_order_update_default>
+                </observers>
+            </genmato_pendingordergrid_order_update>
+            <genmato_pendingordergrid_get_fields>
+                <observers>
+                    <genmato_pendingordergrid_get_fields_default>
+                        <type>singleton</type>
+                        <class>genmato_pendingordergrid/observer</class>
+                        <method>genmatoPendingordergridGetFields</method>
+                    </genmato_pendingordergrid_get_fields_default>
+                </observers>
+            </genmato_pendingordergrid_get_fields>
+            <adminhtml_block_html_before>
+                <observers>
+                    <genmato_pendingordergrid_adminhtml_menu>
+                        <type>singleton</type>
+                        <class>genmato_pendingordergrid/observer</class>
+                        <method>adminhtmlBlockHtmlBefore</method>
+                    </genmato_pendingordergrid_adminhtml_menu>
+                </observers>
+            </adminhtml_block_html_before>
+        </events>
+    </global>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <genmato_pendingordergrid>
+                    <file>genmato/pendingordergrid.xml</file>
+                </genmato_pendingordergrid>
+            </updates>
+        </layout>
+        <enterprise>
+            <admingws>
+                <collection_load_before>
+                    <genmato_pendingordergrid__order_pending_collection>addStoreAttributeToFilter</genmato_pendingordergrid__order_pending_collection>
+                </collection_load_before>
+            </admingws>
+        </enterprise>
+    </adminhtml>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <pendingordergrid after="Mage_Adminhtml">Genmato_PendingOrderGrid</pendingordergrid>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <default>
+        <genmato_pendingordergrid>
+            <configuration>
+                <exclude_status>complete,canceled,closed</exclude_status>
+                <fields><![CDATA[a:12:{s:18:"_1387567197133_133";a:3:{s:5:"field";s:12:"increment_id";s:5:"title";s:8:"Order ID";s:5:"width";s:2:"50";}s:18:"_1387567264366_366";a:3:{s:5:"field";s:10:"created_at";s:5:"title";s:10:"Created At";s:5:"width";s:2:"80";}s:18:"_1387567288947_947";a:3:{s:5:"field";s:6:"status";s:5:"title";s:6:"Status";s:5:"width";s:2:"80";}s:18:"_1387576720203_203";a:3:{s:5:"field";s:11:"grid_action";s:5:"title";s:6:"Action";s:5:"width";s:2:"50";}s:18:"_1387567641614_614";a:3:{s:5:"field";s:13:"ordered_items";s:5:"title";s:13:"Ordered Items";s:5:"width";s:0:"";}s:18:"_1387567671393_393";a:3:{s:5:"field";s:26:"shipping_address_formatted";s:5:"title";s:7:"Ship to";s:5:"width";s:3:"200";}s:18:"_1387568093855_855";a:3:{s:5:"field";s:11:"grand_total";s:5:"title";s:5:"Total";s:5:"width";s:2:"80";}s:18:"_1387568267749_749";a:3:{s:5:"field";s:9:"total_due";s:5:"title";s:9:"Total Due";s:5:"width";s:2:"80";}s:18:"_1387568110733_733";a:3:{s:5:"field";s:14:"payment_method";s:5:"title";s:14:"Payment Method";s:5:"width";s:3:"100";}s:18:"_1387568152366_366";a:3:{s:5:"field";s:20:"shipping_description";s:5:"title";s:15:"Shipping Method";s:5:"width";s:3:"100";}s:18:"_1387568171527_527";a:3:{s:5:"field";s:14:"customer_email";s:5:"title";s:6:"E-mail";s:5:"width";s:0:"";}s:18:"_1387568565414_414";a:3:{s:5:"field";s:17:"customer_group_id";s:5:"title";s:14:"Customer Group";s:5:"width";s:2:"80";}}]]></fields>
+                <actions><![CDATA[a:3:{s:18:"_1387576230107_107";a:2:{s:6:"action";s:16:"sales_order_ship";s:5:"title";s:4:"Ship";}s:17:"_1387576289036_36";a:2:{s:6:"action";s:19:"sales_order_invoice";s:5:"title";s:7:"Invoice";}s:18:"_1387578099959_959";a:2:{s:6:"action";s:16:"sales_order_view";s:5:"title";s:4:"View";}}]]></actions>
+                <massactions><![CDATA[a:8:{s:18:"_1387577765870_870";a:2:{s:6:"action";s:18:"sales_order_cancel";s:5:"title";s:6:"Cancel";}s:18:"_1387577778834_834";a:2:{s:6:"action";s:16:"sales_order_hold";s:5:"title";s:4:"Hold";}s:18:"_1387577791591_591";a:2:{s:6:"action";s:18:"sales_order_unhold";s:5:"title";s:6:"Unhold";}s:18:"_1387577808441_441";a:2:{s:6:"action";s:25:"sales_order_print_invoice";s:5:"title";s:14:"Print Invoices";}s:18:"_1387577823605_605";a:2:{s:6:"action";s:26:"sales_order_print_shipment";s:5:"title";s:14:"Print Shipment";}s:17:"_1387577842046_46";a:2:{s:6:"action";s:28:"sales_order_print_creditmemo";s:5:"title";s:16:"Print Creditmemo";}s:18:"_1387577860462_462";a:2:{s:6:"action";s:22:"sales_order_print_docs";s:5:"title";s:10:"Print Docs";}s:18:"_1387578051441_441";a:2:{s:6:"action";s:29:"sales_order_print_ship_labels";s:5:"title";s:21:"Print Shipping Labels";}}]]></massactions>
+            </configuration>
+        </genmato_pendingordergrid>
+    </default>
+</config>

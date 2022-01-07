@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+		<Inky_Catalog>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Inky_Catalog>
+		<Inky_Checkout>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Inky_Checkout>
+        <Inky_Customer>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Inky_Customer>
+        <Inky_Designersoftware>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Inky_Designersoftware>
+        <Inky_Savedesign>
+            <active>false</active>
+            <codePool>local</codePool>
+             <depends>
+                <Mage_Wishlist /><!-- so the config is loaded after the one from Mage_Wishlist -->
+            </depends>
+        </Inky_Savedesign>
+    </modules>
+</config> 

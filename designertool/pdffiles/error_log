@@ -1,0 +1,2 @@
+[14-Feb-2016 10:54:26 UTC] PHP Fatal error:  Call to a member function addFieldToFilter() on a non-object in /home/jbcases/public_html/designertool/pdffiles/genpdf.php on line 107
+[14-Feb-2016 10:59:21 UTC] PHP Fatal error:  Call to a member function addFieldToFilter() on a non-object in /home/jbcases/public_html/designertool/pdffiles/genpdf.php on line 107

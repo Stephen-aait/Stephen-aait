@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<config>           
+	<menu>
+		<designersoftware module="designersoftware">
+			<title>Designer Software</title>
+			<sort_order>71</sort_order>               
+			<children>
+				<angles module="designersoftware">
+					<title>Manage Angles</title>
+					<sort_order>1</sort_order>
+					<action>designersoftware/adminhtml_angles</action>
+				</angles>
+				<color module="designersoftware">	
+					<title>Manage Color</title>
+					<sort_order>10</sort_order>
+					<action>designersoftware/adminhtml_color</action>
+				</color>
+				<texture module="designersoftware">	
+					<title>Manage Texture</title>
+					<sort_order>20</sort_order>
+					<action>designersoftware/adminhtml_texture</action>
+				</texture>
+				<font module="designersoftware">	
+					<title>Manage Font</title>
+					<sort_order>30</sort_order>
+					<action>designersoftware/adminhtml_font</action>
+				</font>
+				<clipart module="designersoftware">	
+					<title>Clipart</title>
+					<sort_order>40</sort_order>
+					<children>
+						<clipart_category>
+							<title>Manage Category</title>
+							<sort_order>0</sort_order>
+							<action>designersoftware/adminhtml_clipart_category</action>
+						</clipart_category>
+						<clipart_clipart>
+							<title>Manage Clipart</title>
+							<sort_order>5</sort_order>
+							<action>designersoftware/adminhtml_clipart</action>
+						</clipart_clipart>	
+						<clipart_color>
+							<title>Manage Clipart Color</title>
+							<sort_order>10</sort_order>
+							<action>designersoftware/adminhtml_color</action>
+						</clipart_color>
+						<clipart_upload>
+							<title>Manage Clipart Upload</title>
+							<sort_order>15</sort_order>
+							<action>designersoftware/adminhtml_clipart_upload</action>
+						</clipart_upload>					
+					</children>					
+				</clipart>
+				<parts module="designersoftware">
+					<title>Parts</title>
+					<sort_order>50</sort_order>
+					<children>
+						<partstitle>
+							<title>Manage Parts</title>
+							<sort_order>0</sort_order>
+							<action>designersoftware/adminhtml_parts</action>
+						</partstitle>
+						<parts_style module="designersoftware">	
+							<title>Manage Parts Style</title>
+							<sort_order>5</sort_order>
+							<action>designersoftware/adminhtml_parts_style</action>
+						</parts_style>						
+						<parts_layers module="designersoftware">	
+							<title>Manage Parts Layers</title>
+							<sort_order>10</sort_order>
+							<action>designersoftware/adminhtml_parts_layers</action>
+						</parts_layers>
+						<!--<parts_layers_texture module="designersoftware">	
+							<title>Manage Parts Layers Texture</title>
+							<sort_order>15</sort_order>
+							<action>designersoftware/adminhtml_parts_layers_texture</action>
+						</parts_layers_texture>-->
+					</children>						
+				</parts>
+				<style>
+					<title>Manage Sizes</title>
+					<sort_order>60</sort_order>
+					<action>designersoftware/adminhtml_sizes</action>
+				</style>
+				<designs module="designersoftware">	
+					<title>Manage Designs</title>
+					<sort_order>70</sort_order>
+					<action>designersoftware/adminhtml_designersoftware</action>
+				</designs>				
+				<DSconfig module="designersoftware">
+					<title>Configuration</title>
+					<sort_order>100</sort_order>
+					<action>adminhtml/system_config/edit/section/designeradmin</action>					
+				</DSconfig>
+			</children>
+		</designersoftware>
+	</menu>
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<config>
+								<children>
+									<designerfront>
+										<title>Front Section</title>
+									</designerfront>
+								</children>
+							</config>
+						</children>
+						<children>
+							<config>
+								<children>
+									<designeradmin>
+										<title>Admin Section</title>
+									</designeradmin>
+								</children>
+							</config>
+						</children>						
+					</system>
+					<designersoftware>
+						<title>Designersoftware Module</title>
+						<sort_order>10</sort_order>
+					</designersoftware>
+				</children>
+			</admin>
+		</resources>
+	</acl>	
+	<translate>
+		<modules>
+			<Inky_Designersoftware>
+				<files>
+					<default>inky/inky_designersoftware.csv</default>
+				</files>
+			</Inky_Designersoftware>
+		</modules>
+	</translate>
+</config>

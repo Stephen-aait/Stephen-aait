@@ -1,0 +1,7 @@
+<?php
+echo "<span style='color:red;'>";
+$json = json_decode($this->getData('order')->getEstimatedDeliveryDate());
+if ($json) {
+    echo $json->msg;
+}
+echo "</span>";

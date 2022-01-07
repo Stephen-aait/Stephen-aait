@@ -1,0 +1,70 @@
+<?php
+
+/* * ********************************************************************
+ * Customization Services by ModulesGarden.com
+ * Copyright (c) ModulesGarden, INBS Group Brand, All Rights Reserved 
+ * (2013-06-14, 15:24:48)
+ * 
+ *
+ *  CREATED BY MODULESGARDEN       ->        http://modulesgarden.com
+ *  CONTACT                        ->       contact@modulesgarden.com
+ *
+ *
+ *
+ *
+ * This software is furnished under a license and may be used and copied
+ * only  in  accordance  with  the  terms  of such  license and with the
+ * inclusion of the above copyright notice.  This software  or any other
+ * copies thereof may not be provided or otherwise made available to any
+ * other person.  No title to and  ownership of the  software is  hereby
+ * transferred.
+ *
+ *
+ * ******************************************************************** */
+
+/**
+ * @author Grzegorz Draganik <grzegorz@modulesgarden.com>
+ */
+?>
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('Tasks List')?></h3></td>
+            <td class="a-right">
+                <button onclick="setLocation('<?php echo $this->getUrl('*/*/edittask')?>')" type="button"><span>New Task</span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="grid">
+	<div class="hor-scroll">
+		<table cellspacing="0" class="data" id="productGrid_table">
+			<thead>
+				<tr class="headings">
+					<th><span class="nobr">&nbsp;</span></th>
+					<th><span class="nobr"><a href="#" name="entity_id" title="asc" class="not-sort"><span class="sort-title">ID</span></a></span></th>
+					<th><span class="nobr"><a href="#" name="name" title="desc" class="sort-arrow-asc"><span class="sort-title">Title</span></a></span></th>
+					<th><span class="nobr"><a href="#" name="status" title="desc" class="not-sort"><span class="sort-title">Status</span></a></span></th>
+					<th><span class="nobr"><a href="#" name="priority" title="desc" class="not-sort"><span class="sort-title">Priority</span></a></span></th>
+					<th><span class="nobr"><a href="#" name="type" title="asc" class="not-sort"><span class="sort-title">Action</span></a></span></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($tasks as $task) : ?>
+					<tr title="<?php echo $this->getUrl('*/*/edittask', array('id' => $task->getId())); ?>" class="pointer on-mouse">
+						<td class="a-center "><input type="checkbox" name="task" value="<?php echo $task->getId(); ?>" class="massaction-checkbox"></td>
+						<td class="a-right "><?php echo $task->getId(); ?></td>
+						<td class=""><?php echo $task->getTitle(); ?></td>
+						<td class=""><?php $statusMap = $task->getStatusMap(); echo $statusMap[$task->getStatus()]; ?></td>
+						<td class=""><?php $priorityMap = $task->getPriorityMap(); echo $priorityMap[$task->getPriority()]; ?></td>
+						<td class="last">
+							<a href="<?php echo $this->getUrl('*/*/edittask', array('id' => $task->getId())); ?>">Edit</a>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+</div>

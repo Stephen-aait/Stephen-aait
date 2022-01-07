@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<layout>
+	<customer_account>
+		<reference name="customer_account_navigation">
+			<action method="addLink" ifconfig="orderattachments/general/enabled" module="orderattachments"><name>order_attachments</name><path>orderattachments/attachment/list/</path><label>My Order Attachments</label></action>
+		</reference>
+	</customer_account>
+	
+	<orderattachments_attachment_list>
+		<update handle="customer_account"/>
+		<reference name="content">
+			<block type="orderattachments/customer_attachmentlist" name="orderattachments.customer.list" >
+				<action method="setTemplate" ifconfig="orderattachments/general/enabled"><template>nborderattachments/customer/attachmentlist.phtml</template></action>
+			</block> 
+		</reference>	
+	</orderattachments_attachment_list>
+	
+	<sales_order_view>
+		<!-- <update handle="customer_account"/> -->
+    	<reference name="my.account.wrapper">
+			<block type="orderattachments/customer_attachmentlist" name="order_attachments">
+				<action method="setTemplate" ifconfig="orderattachments/general/enabled"><template>nborderattachments/sales/order/views.phtml</template></action>
+			</block> 
+        </reference>
+    </sales_order_view>
+	
+	<orderattachments_attachment_manageattachments>
+		<update handle="customer_account"/>
+		<reference name="head"> 
+			<action method="addItem" ifconfig="orderattachments/general/enabled">
+				<type>js_css</type>
+				<script>nborderattachments/orderattachments.css</script>
+			</action>
+			<action method="addItem" ifconfig="orderattachments/general/enabled">
+				<type>js</type>
+				<name>nborderattachments/plupload.full.min.js</name>
+			</action>
+        </reference> 
+		<reference name="my.account.wrapper">
+			<block type="orderattachments/customer_sales_order_view_fileattachments" name="order_attachments">
+				<action method="setTemplate" ifconfig="orderattachments/general/enabled"><template>nborderattachments/sales/order/view/manageattachments.phtml</template></action>
+			</block> 
+		</reference>
+	</orderattachments_attachment_manageattachments>
+</layout>

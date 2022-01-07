@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mas_masonotes extension by Makarovsoft.com
+ * 
+ * @category   	Mas
+ * @package		Mas_masonotes
+ * @copyright  	Copyright (c) 2014
+ * @license		http://makarovsoft.com/license.txt
+ * @author		makarovsoft.com
+ */
+-->
+<layout>
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action ifconfig="masonotes/customer/enabled" method="addLink" translate="label" module="masonotes"><name>ordersnotes</name><path>ordersnotes/index</path><label>Orders Notes</label></action>
+        </reference>
+    </customer_account>	
+    <masonotes_index_index>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="masonotes/items" name="masonotes.notes" template="mas_masonotes/items.phtml"/>
+        </reference>
+    </masonotes_index_index>
+    
+    <sales_order_view>
+        <reference name="my.account.wrapper">
+            <block type="masonotes/notes" name="masonotes.notes" template="mas_masonotes/notes.phtml"/>
+        </reference>
+    </sales_order_view>
+
+</layout>

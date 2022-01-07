@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_Orderattach
+ */
+-->
+<config>
+    <sections>
+        <amorderattach translate="label" module="amorderattach">
+            <label>Order Notes and Files</label>
+            <tab>amasty</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>151814</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <collapsed translate="label comment">
+                            <label>Collapsed by default</label>
+                            <comment>This sets how to show Order Notes and Files block on the order view page</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </collapsed>
+                        <update_updated_at translate="label comment">
+                            <label>Update `updated_at` order field</label>
+                            <comment>If set to `Yes`, the `updated_at` order field will be set to the current date/time when order note or file field value added or updated for particular order</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </update_updated_at>
+                        <html5 translate="label comment">
+                            <label>Use HTML5 for files upload</label>
+                            <comment>Allow to use drag'n'drop and multiple files upload</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </html5>
+                    </fields>
+                </general>
+            </groups>
+        </amorderattach>
+    </sections>
+</config>

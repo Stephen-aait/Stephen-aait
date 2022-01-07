@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <adminhtml_teamandtaskorganizer_tasks_index>
+        <reference name="head">
+            <action method="setTitle">
+                <title><![CDATA[Tasks list / Team & Task Organizer / Magento Admin]]></title>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="teamandtaskorganizer/adminhtml_teamandtaskorganizer_tabs" name="teamandtaskorganizer_tasks_tabs" />
+        </reference>
+    </adminhtml_teamandtaskorganizer_tasks_index>
+    
+    <adminhtml_teamandtaskorganizer_tasks_new>
+        <reference name="head">
+            <action method="setTitle">
+                <title><![CDATA[New Task / Team & Task Organizer / Magento Admin]]></title>
+            </action>
+            <action method="addCss">
+                <name>teamandtaskorganizer/css/jquery-ui.min.css</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <script>teamandtaskorganizer/js/jquery-ui.min.js</script>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <script>teamandtaskorganizer/js/form.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="teamandtaskorganizer/adminhtml_teamandtaskorganizer_tasks_edit" name="teamandtaskorganizer_tasks_edit" />
+        </reference>
+    </adminhtml_teamandtaskorganizer_tasks_new>
+    
+    <adminhtml_teamandtaskorganizer_tasks_edittask>
+        <reference name="head">
+            <action method="setTitle">
+                <title><![CDATA[Task edit / Team & Task Organizer / Magento Admin]]></title>
+            </action>
+            <action method="addCss">
+                <name>teamandtaskorganizer/css/jquery-ui.min.css</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <script>teamandtaskorganizer/js/jquery-ui.min.js</script>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <script>teamandtaskorganizer/js/form.js</script>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="teamandtaskorganizer/adminhtml_teamandtaskorganizer_tasks_tabs" name="tto_adminhtml_tasks_tabs" />
+        </reference>
+    </adminhtml_teamandtaskorganizer_tasks_edittask>
+    
+    <adminhtml_teamandtaskorganizer_tasks_editcomment>
+        <reference name="head">
+            <action method="setTitle">
+                <title><![CDATA[Comment edit / Team & Task Organizer / Magento Admin]]></title>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="teamandtaskorganizer/adminhtml_teamandtaskorganizer_tasks_comments_edit" name="teamandtaskorganizer_tasks_comments_edit" />
+        </reference>
+    </adminhtml_teamandtaskorganizer_tasks_editcomment>
+    <!-- @s -->
+    <adminhtml_teamandtaskorganizer_support_index>
+        <reference name="head">
+            <action method="setTitle">
+                <title><![CDATA[Support / Team & Task Organizer / Magento Admin]]></title>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="teamandtaskorganizer/adminhtml_teamandtaskorganizer_support_tabs" name="tto_adminhtml_support_tabs" />
+        </reference>
+    </adminhtml_teamandtaskorganizer_support_index>
+
+    <adminhtml_teamandtaskorganizer_managesuperadmin_index>
+        <reference name="head">
+            <action method="setTitle">
+                <title><![CDATA[Administration / Team & Task Organizer / Magento Admin]]></title>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="teamandtaskorganizer/adminhtml_teamandtaskorganizer_managesuperadmin_tabs" name="teamandtaskorganizer_managesuperadmin_tabs" />
+        </reference>
+    </adminhtml_teamandtaskorganizer_managesuperadmin_index>
+    
+    <adminhtml_teamandtaskorganizer_managesuperadmin_edituserprivilege>
+        <reference name="head">
+            <action method="setTitle">
+                <title><![CDATA[Users Privileges / Team & Task Organizer / Magento Admin]]></title>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <script>teamandtaskorganizer/js/privileges.js</script>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="teamandtaskorganizer/adminhtml_teamandtaskorganizer_managesuperadmin_users_tabs" name="teamandtaskorganizer_managesuperadmin_users_tabs" />
+        </reference>
+        <reference name="content">
+            <block type="teamandtaskorganizer/adminhtml_teamandtaskorganizer_managesuperadmin_users_edit" name="teamandtaskorganizer_managesuperadmin_users_edit" />
+        </reference>
+    </adminhtml_teamandtaskorganizer_managesuperadmin_edituserprivilege>
+
+    <adminhtml_teamandtaskorganizer_managesuperadmin_autotasks>
+        <reference name="head">
+            <action method="setTitle">
+                <title><![CDATA[Auto Tasks / Team & Task Organizer / Magento Admin]]></title>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="teamandtaskorganizer/adminhtml_teamandtaskorganizer_managesuperadmin_autotasks" name="teamandtaskorganizer_managesuperadmin_autotasks" />
+        </reference>
+    </adminhtml_teamandtaskorganizer_managesuperadmin_autotasks>
+    
+    <adminhtml_teamandtaskorganizer_managesuperadmin_editautotask>
+        <reference name="head">
+            <action method="setTitle">
+                <title><![CDATA[Auto Task / Team & Task Organizer / Magento Admin]]></title>
+            </action>
+            <action method="setCanLoadExtJs">
+                <flag>1</flag>
+            </action>
+            <action method="setCanLoadRulesJs">
+                <flag>1</flag>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <script>teamandtaskorganizer/js/editautotask.js</script>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="teamandtaskorganizer/adminhtml_teamandtaskorganizer_managesuperadmin_autotasks_tabs" name="teamandtaskorganizer_managesuperadmin_autotasks_tabs" />
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="editautotask_container" template="teamandtaskorganizer/editautotask_container.phtml" />
+        </reference>
+    </adminhtml_teamandtaskorganizer_managesuperadmin_editautotask>
+    
+    <default>
+        <reference name="head">
+            <action method="addCss">
+                <name>teamandtaskorganizer/css/style.css</name>
+                <params/>
+                <if/>
+            </action>
+            <action method="addCss">
+                <name>teamandtaskorganizer/css/modulesgarden.css</name>
+                <params/>
+                <if/>
+            </action>
+            <action method="addCss">
+                <name>teamandtaskorganizer/css/tto.css</name>
+                <params/>
+                <if/>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <script>teamandtaskorganizer/js/jquery-1.11.1.min.js</script>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <script>teamandtaskorganizer/js/jquery-noconflict.js</script>
+            </action>
+            <action method="addCss">
+                <name>teamandtaskorganizer/css/jquery-ui.min.css</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <script>teamandtaskorganizer/js/jquery-ui.min.js</script>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <script>teamandtaskorganizer/js/form.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="teamandtaskorganizer/adminhtml_teamandtaskorganizer_widget" name="default_task_list" template="teamandtaskorganizer/default_task_list.phtml" />
+        </reference>
+    </default>
+</layout>

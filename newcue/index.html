@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <title>Cue Bag Project with Three.JS</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/loadingModal.css">
+  </head>
+  <body>
+
+    <center> <h4 class="text-muted">Cue bag 3d Displayer Engine</h4> </center>
+
+
+
+    <div class="container" style="width:1000px; height:800px" id="CueBag3dCanvas">
+
+    </div>
+
+    <center>
+      <div class="container">
+        <button class="btn btn-primary" type="button" name="button" onclick="blueTexture()">Blue</button>
+        <button class="btn btn-dark" type="button" name="button" onclick="blackTexture()">Black</button>
+        <button class="btn btn-danger" type="button" name="button" onclick="redTexture()">Red</button>
+        <button class="btn btn-warning" type="button" name="button" onclick="yellowTexture()">Yellow</button>
+      </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <script src="js/loadingModal.js"></script>
+    <script src="js/three.js"></script>
+    <script src="js/OrbitControls.js"></script>
+    <script src="js/OBJLoader.js"></script>
+    <script src="js/ObjectLoader.js"></script>
+    <script src="js/TextureLoader.js"></script>
+    <script src="js/MTLLoader.js"></script>
+    <script src="js/threeEngine.js"></script>
+  </body>
+</html>

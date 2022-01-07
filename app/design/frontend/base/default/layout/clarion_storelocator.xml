@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Storelocator frontend layout file
+ *
+ * @category    design
+ * @package     base_default
+ * @author      Clarion Magento Team
+ */
+-->
+<layout version="0.1.0">
+    <default>
+        <reference name="top.links">
+            <action method="addLink" translate="label title" module="clarion_storelocator" 
+              ifconfig="clarion_storelocator_general_setting/clarion_storelocator_status/enable">
+                <label>Store Locator</label>
+                <url>storelocator</url>
+                <title>Store Locator</title>
+                <prepare>true</prepare>
+                <position>10</position>
+            </action>
+        </reference>
+    </default>
+    <clarion_storelocator_index_index translate="label">
+        <label>Store List Page</label>
+        <reference name="head">
+            <!-- css for store locator extension -->
+             <action method="addCss"><stylesheet>css/clarion_storelocator.css</stylesheet></action>
+              <!-- Include google map js file-->
+             <block type="core/text" name="gmap_external_js">
+                 <action method="setText">
+                     <text><![CDATA[<script language="javascript" type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMYvyPXZFckRllId1IZz61CFY_cyBpiU8"></script>]]></text>
+                 </action>
+             </block>
+             <!-- Add storelocator js file-->
+             <action method="addItem"><type>skin_js</type><name>js/clarion_storelocator/storelocator.js</name></action>
+            <action method="setTitle" translate="title" module="clarion_storelocator"><title>Find Store</title></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+            <action method="setHeaderTitle" translate="title" module="clarion_storelocator">
+                <title>Storelocator</title>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="clarion_storelocator/list" name="stores.list" template="clarion/storelocator/list.phtml">
+                <block type="page/html_pager" name="stores.list.pager" />
+            </block>
+        </reference>
+    </clarion_storelocator_index_index>
+    
+     <clarion_storelocator_index_view translate="label">
+        <label>Store View Page</label>
+        <reference name="head">
+            <!-- css for store locator extension -->
+             <action method="addCss"><stylesheet>css/clarion_storelocator.css</stylesheet></action>
+             <!-- Include google map js file-->
+             <block type="core/text" name="gmap_external_js">
+                 <action method="setText">
+                     <text><![CDATA[<script language="javascript" type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMYvyPXZFckRllId1IZz61CFY_cyBpiU8"></script>]]></text>
+                 </action>
+             </block>
+             <!-- Add storelocator js file-->
+             <action method="addItem"><type>skin_js</type><name>js/clarion_storelocator/storelocator.js</name></action>
+            <action method="setTitle" translate="title" module="clarion_storelocator"><title>View Store</title></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="clarion_storelocator/view" name="store.view" template="clarion/storelocator/view.phtml" />
+        </reference>
+    </clarion_storelocator_index_view>
+    <clarion_storelocator_index_search translate="label">
+      <update handle="clarion_storelocator_index_index"/>  
+    </clarion_storelocator_index_search>
+</layout>

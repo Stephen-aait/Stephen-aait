@@ -1,0 +1,141 @@
+ <style>
+	 .case-structure {
+		overflow: hidden;
+	}
+	/* .case-structure .style-grid {
+		display: table;
+		overflow: hidden;
+		width: 100%;
+	}
+	
+	.case-structure .style-grid .style-name {
+		background: #fff none repeat scroll 0 0;
+		bottom: 24px;
+		color: #303030;
+		display: block;
+		font-size: 16px;
+		font-weight: 400;
+		left: 1px;
+		margin: 0 auto;
+		position: absolute;
+		right: 1px;
+		text-transform: uppercase;
+		width: 90%;
+	}
+
+	.case-structure .style-grid li.item {
+		background: #fff none repeat scroll 0 0;
+		border: 1px solid #fff;
+		float: left;
+		margin-bottom: 20px;
+		margin-right: 2%;
+		overflow: hidden;
+		position: relative;
+		text-align: center;
+		width: 23.4%;
+	}
+	.case-structure .style-grid li.item {
+		text-align: center;
+	}
+	.case-structure .style-grid .structure-box {
+		display: table-cell;
+		height: 236px;
+		vertical-align: middle;
+		width: 234px;
+	}
+	.case-structure .style-grid li.item img {
+		height: auto;
+		margin: 0 auto 40px;
+	}
+	.case-structure .style-grid .structure-box img {
+		width: 100%;
+	}	
+	.case-structure .style-grid .style-name {
+		background: #fff none repeat scroll 0 0;
+		bottom: 24px;
+		color: #303030;
+		display: block;
+		font-size: 16px;
+		font-weight: 400;
+		left: 1px;
+		margin: 0 auto;
+		position: absolute;
+		right: 1px;
+		text-transform: uppercase;
+		width: 90%;
+	}
+	.case-structure .style-grid .item:nth-child(4n) {
+		margin-right: 0;
+	}
+	.case-structure .style-grid li.item {
+		background: #fff none repeat scroll 0 0;
+		border: 1px solid #fff;
+		float: left;
+		margin-bottom: 20px;
+		margin-right: 2%;
+		overflow: hidden;
+		position: relative;
+		text-align: center;
+		width: 23.4%;
+	}
+	.case-structure .style-grid li.item:hover {
+		border-color: #000000;
+	}*/
+.thumbnail {
+     display: block;
+    line-height: 1.42857;
+    margin-bottom: 20px;
+    padding: 4px;
+    transition: all 0.2s ease-in-out 0s;
+}
+.thumbnail > img, .thumbnail a > img {
+    display: block;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+	height:300px;
+	width: auto;
+}
+.style-name{width:100%;display:block;text-align:center; text-transform:uppercase}
+ </style>
+ <div class="content">
+	<div class="page-title">
+		<!--<h2><?php echo $this->__(Mage::getStoreConfig('designerfront/styles/title'));?>
+			<span><span></span></span>
+		</h2>-->
+		
+		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('designstyles')->toHtml() ?>
+	 </div>
+
+	<div class="case-structure">
+     
+		
+		<ul class="row">
+		<?php $designCollection = Mage::helper('designersoftware/style')->getStyles(); //echo '<pre>';print_r($stylesCollection->getData());exit;?>
+		<?php foreach($designCollection as $design): ?>
+			<?php $image = Mage::helper('designersoftware/style')->getStyleDesignImage($design->getId());?>					
+			<li class="col-sm-4 col-lg-3 col-md-3 ">						
+			<?php 
+				  $toolparams = Mage::helper('designersoftware/product')->getStyleParams($design->getId(),'style');	
+				  if(!empty($toolparams)):
+					$designerToolCategoryId = Mage::getModel('core/variable')->loadByCode('DESIGNER_TOOL_CATEGORY_ID')->getValue('plain');
+					$_categoryCollection = Mage::getModel('catalog/category')->load($designerToolCategoryId);
+					$toolUrl = $_categoryCollection->getUrl().'?'.$toolparams;						
+				  else:
+						$toolUrl = 'javascript:void(0);';
+				  endif;
+			?>	
+			
+			<a href="<?php echo $toolUrl; ?>" target="_blank">
+				<div class="thumbnail">
+					<img src="<?php echo $image;?>" alt="" title=""/>
+					<span class="style-name"><?php echo $this->__(strtolower($design->getTitle())); ?></span>
+				</div>
+			</a>
+			</li>				
+		<?php endforeach; ?>
+		</ul>
+	</div>
+
+</div>

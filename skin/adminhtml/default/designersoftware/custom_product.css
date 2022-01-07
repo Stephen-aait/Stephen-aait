@@ -1,0 +1,65 @@
+@charset "utf-8";
+/* CSS Document */
+
+.designer_product_wrapper { display:block; margin-top:10px;}
+.designer_product_wrapper p { margin:0px;}
+.designer_product_wrapper .selectCust_product { margin-bottom:10px;}
+.designer_product_wrapper .selectCust_product input { margin-right:5px;}
+
+.designerProduct_data { border:1px solid #d6d6d6; background:#E7EFEF; overflow:hidden; }
+.designerProduct_data .designerProduct_data_left { padding:10px 0 0 10px; float:left; width:40%;}
+ul.select_data li { padding:5px 0;}
+ul.select_data li label { display:inline-block; min-width:115px;}
+ul.select_data li select { min-width:134px;}
+
+ul.custom_product_images { margin-top:15px;}
+ul.custom_product_images li { padding:5px 0;}
+ul.custom_product_images li label { display:block; padding-bottom:5px; text-decoration: underline;}
+
+div.print_size { overflow:hidden;}
+div.print_size ul {overflow:hidden; margin-top: 13px;}
+div.print_size li { float:left; overflow:hidden; margin-right:1px; padding: 0px;}
+div.print_size li label { float:left; min-width:70px; padding: 0px;}
+div.print_size li input { float:left; width:70px;}
+
+.set_design_area { margin-top:50px;}
+.set_design_area p { color:#886b55;}
+.productSize ul.uploaded_size { display:block; overflow:hidden;}
+.productSize ul.uploaded_size li { background:#f4c8c7; padding:2px 10px; border:2px solid #dfc6c3; position:relative; width:150px; margin-bottom:2px;}
+.productSize ul.uploaded_size li label { min-width:40px;}
+.productSize ul.uploaded_size li .remove { display:block; text-indent:-99999px; position:absolute; right:5px; top:2px; width:16px; height:16px; background:url(images/cancel_btn_icon.gif);}
+
+.productColor ul.uploaded_Color { display:block; overflow:hidden;}
+.productColor ul.uploaded_Color li { background:#f4c8c7; padding:2px 10px; border:2px solid #dfc6c3; position:relative; width:150px; margin-bottom:2px;}
+.productColor ul.uploaded_Color li label { min-width:60px;}
+.productColor ul.uploaded_Color li .remove { display:block; text-indent:-99999px; position:absolute; right:5px; top:2px; width:16px; height:16px; background:url(images/cancel_btn_icon.gif);}
+
+.designerProduct_data .designerProduct_data_right { float:right; width:40%;} 
+.designerProduct_data .designerProduct_data_right li { padding:5px 0;}
+.designerProduct_data .designerProduct_data_right li label { min-width:115px; display:inline-block;}
+.designerProduct_data .designerProduct_data_right li input { margin-right:3px;}
+.designerProduct_data .designerProduct_data_right .productSize { background:#f5d7d6; padding:10px;}
+.designerProduct_data .designerProduct_data_right .productColor { background:#d7d7d7; padding:10px; margin-top:20px;}
+.designerProduct_data .designerProduct_data_right .prontingTechnologies { background:#d7d7d7; padding:10px; margin-top:20px;} 
+.designerProduct_data .designerProduct_data_right .prontingTechnologies ul li { padding:3px 0;}
+
+
+.designerProduct_block_printing{ overflow:hidden; background:#ccc; float:right; padding:20px 22px; width:353px;}
+.productSize{ overflow:hidden; margin-bottom:20px;}
+.productSize .last, .productSize.last{margin-bottom:0px;}
+.printingcharge_title{ overflow:hidden; margin-top:10px;}
+.printingcharge_title li{ float:left; width:25%;}
+.printingcharge_title{ overflow:hidden;}
+.printingcharge_content{ padding:20px 0px; overflow:hidden;}
+.printingcharge_content li{ float:left;  width:25% !important;}
+.printingcharge_content li .input_text{ width:90% !important;}
+
+
+
+
+
+.deletelabel{overflow:hidden;}
+.deletelabel label{float: left; margin-right:10px;}
+.viewAlign{overflow:hidden;}
+.viewAlignSpan{margin-left:31px;}
+

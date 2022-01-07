@@ -1,0 +1,100 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_Orderattach
+ */
+?>
+<div id="viewblock_<?php echo $this->getItemCode(); ?>">
+    <?php if ($this->getItemValue()) { ?>
+        <?php
+        if (!is_array($this->getItemValue())) {
+            $val = explode(';', $this->getItemValue());
+            $this->setItemValue($val);
+        }
+        ?>
+        <?php foreach ($this->getItemValue() as $value) { ?>
+            <?php if (trim($value)) { ?>				
+				<?php
+					$ext=pathinfo($value, PATHINFO_EXTENSION);
+					switch($ext){
+						case 'jpg':
+						case 'jpeg':
+						case 'png':
+						case 'JPG':
+							?>
+							<a href="<?php echo Mage::getBaseUrl('media') . 'attachments/' . $value;?>" target="_blank">
+								<img src="<?php echo Mage::getBaseUrl('media') . 'attachments/small/' . $value;?>" width="200" />
+							</a>	
+							<?php
+					}
+					?>
+				
+				<br/>
+                <strong>
+				<a href="<?php echo $this->getUrl('adminhtml/amorderattach_order/download', array('file' => $value)); ?>">										
+					<?php echo $value; ?>
+                </a></strong>&nbsp;&nbsp;&nbsp;
+                
+                <button class="scalable" type="button"
+                            onclick="javascript: attachDeleteFile('<?php echo $this->getItemCode(); ?>', '<?php echo $value; ?>', 'file_multiple');">
+                        <span><?php echo $this->__('Delete'); ?></span>
+                </button><br/><br/>
+            <?php } ?>
+        <?php } ?>
+    <?php } ?>
+</div>
+
+<div id="editblock_<?php echo $this->getItemCode(); ?>" class="edit">
+
+    <?php if ($this->getItemValue()): ?>
+        <?php foreach ($this->getItemValue() as $value): ?>
+            <?php if (trim($value)): ?>
+                <?php //echo $value; ?>
+                <!--
+                <div style="margin-top: 2px; margin-bottom: 10px;">
+                    <button class="scalable" type="button"
+                            onclick="javascript: attachDeleteFile('<?php echo $this->getItemCode(); ?>', '<?php echo $value; ?>', 'file_multiple');">
+                        <span><?php echo $this->__('Delete'); ?></span>
+                    </button>
+                </div>
+                -->
+            <?php endif; ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+    <form method="post" id="upload_form_<?php echo $this->getItemCode(); ?>" enctype="multipart/form-data"
+          action="<?php echo $this->getUrl('adminhtml/amorderattach_order/upload'); ?>">
+        <input type="hidden" name="form_key" value="<?php echo $this->getFormKey() ?>" />
+        <input type="hidden" name="field" value="<?php echo $this->getItemCode(); ?>"/>
+        <input type="hidden" name="order_id" value="<?php echo Mage::registry('current_order')->getId(); ?>" />
+        <input type="hidden" name="type" value="file_multiple" />
+        <?php if (Mage::getStoreConfig('amorderattach/general/html5')): ?>
+            <div data-multiple=0 class="drop" ondragenter="FileDragHover(event)" ondragover="FileDragHover(event)" ondragleave="FileDragHover(event)" ondrop="DropFile(event)">
+                Drag files here to upload
+            </div>
+            <div class="progress" style="display:none;"></div>
+        <?php endif ?>
+        <input type="file" name="to_upload" />
+
+        <iframe id="upload_target_<?php echo $this->getItemCode(); ?>"
+                name="upload_target_<?php echo $this->getItemCode(); ?>" src="" style="display: none; width: 700px; height: 500px;"></iframe>
+    
+        <div style="margin-top: 2px;">
+            <button class="scalable" type="button" onclick="javascript: attachUpload('<?php echo $this->getItemCode(); ?>');">
+                <span><?php echo $this->__('Upload'); ?></span>
+            </button>
+            
+            <!--
+            <button class="scalable" type="button" onclick="javascript: attachCancel('<?php echo $this->getItemCode(); ?>');">
+                <span><?php echo $this->__('Cancel'); ?></span>
+            </button>
+            -->
+            
+            <button class="scalable" type="button" onclick="javascript: attachDeleteAllFile('<?php echo $this->getItemCode(); ?>','','file_multiple');">
+                <span><?php echo $this->__('Delete All'); ?></span>
+            </button>
+            
+        </div>
+    </form>
+</div>

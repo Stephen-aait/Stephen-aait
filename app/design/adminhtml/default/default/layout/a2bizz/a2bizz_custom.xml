@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<layout>
+	<adminhtml_sales_order_view>
+        <reference name="order_items">			
+			<action method="addItemRender">
+				<type>default</type>
+				<block>adminhtml/sales_order_view_items_renderer_default</block>
+				<template>a2bizz/custom/sales/order/view/items/renderer/default.phtml</template></action>		
+		</reference>
+    </adminhtml_sales_order_view>    
+</layout>

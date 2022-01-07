@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * Iksanika llc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.iksanika.com/products/IKS-LICENSE.txt
+ *
+ * @category   Iksanika
+ * @package    Iksanika_Productupdater
+ * @copyright  Copyright (c) 2013 Iksanika llc. (http://www.iksanika.com)
+ * @license    http://www.iksanika.com/products/IKS-LICENSE.txt
+ */
+?>
+
+<?php 
+    $currentProfileId = Mage::getStoreConfig('productupdater/currentProfile');
+    $profile    =   $this->profile;
+    $idx        =   $this->idx;
+?>
+
+<div class="t3-view i-role-board-menu-item t3-grid <?php echo $currentProfileId == $profile->profileId ? 't3-active i-role-board-menu-item-active ' : '';?>" draggable="true" data-call="item<?php echo $profile->profileId; ?>" data-profile-id="<?php echo $profile->profileId; ?>" data-sortable-key="" data-reactid="">
+    <a class="t3-view-link" href="#page=profile/<?php echo $profile->profileId; ?>" data-reactid="">
+        <div class="t3-header i-role-view-menu-header" data-reactid="">
+            <span class="iks-icon-general" data-reactid=""></span>
+            <div class="t3-name i-role-item-name" data-reactid=""><?php echo $profile->profileName;?></div>
+            <div class="t3-actions-trigger" data-reactid="" <?php if(!$idx):?>is-core-item="true" <?php endif;?>></div>
+        </div>
+    </a>
+    <div class="t3-views__drop-placeholder" data-reactid=""></div>
+</div>

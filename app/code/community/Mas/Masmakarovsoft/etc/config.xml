@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mas_Masmakarovsoft extension by Makarovsoft.com
+ * 
+ * @category   	Mas
+ * @package		Mas_Masmakarovsoft
+ * @copyright  	Copyright (c) 2014
+ * @license		http://makarovsoft.com/license.txt
+ * @author		makarovsoft.com
+ */
+-->
+<config>
+	<modules>
+		<Mas_Masmakarovsoft>
+			<version>1.0.0</version>
+		</Mas_Masmakarovsoft>
+	</modules>
+	<global>
+		<resources>
+			<mas_masmakarovsoft_setup>
+				<setup>
+					<module>Mas_Masmakarovsoft</module>
+					<class>Mas_Masmakarovsoft_Model_Resource_Setup</class>
+				</setup>
+			</mas_masmakarovsoft_setup>
+		</resources>
+		<blocks>
+			<masmakarovsoft>
+				<class>Mas_Masmakarovsoft_Block</class>
+			</masmakarovsoft>
+		</blocks>
+		<helpers>
+			<masmakarovsoft>
+				<class>Mas_Masmakarovsoft_Helper</class>
+			</masmakarovsoft>
+		</helpers>
+		<models>
+			<masmakarovsoft>
+				<class>Mas_Masmakarovsoft_Model</class>
+				<resourceModel>masmakarovsoft_resource</resourceModel>
+			</masmakarovsoft>
+			<masmakarovsoft_resource>
+				<class>Mas_Masmakarovsoft_Model_Resource</class>			
+			</masmakarovsoft_resource>
+		</models>
+	</global>
+	<adminhtml>
+		<layout>
+			<updates>
+				<Mas_Masmakarovsoft>
+					<file>mas_masmakarovsoft.xml</file>
+				</Mas_Masmakarovsoft>
+			</updates>
+		</layout>
+	</adminhtml>	
+	<default>
+		<masmakarovsoft>
+        </masmakarovsoft>
+	</default>
+</config>

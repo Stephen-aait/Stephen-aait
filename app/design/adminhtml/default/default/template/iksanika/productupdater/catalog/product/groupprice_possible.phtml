@@ -1,0 +1,131 @@
+<?php
+
+/**
+ * Iksanika llc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.iksanika.com/products/IKS-LICENSE.txt
+ *
+ * @category   Iksanika
+ * @package    Iksanika_Productupdater
+ * @copyright  Copyright (c) 2014 Iksanika llc. (http://www.iksanika.com)
+ * @license    http://www.iksanika.com/products/IKS-LICENSE.txt
+ */
+
+$_readonly      =   false;
+$customerGroups =   $this->getCustomerGroups();
+$_htmlClass     =   'intput-text';
+$_htmlName      =   'group_price';
+
+
+$html .= '
+<script type="text/javascript">
+//<![CDATA[
+var groupPriceRowTemplate = \'<tr>\'
+    + \'<td'.((!$_showWebsite) ? ' style="display:none"' : '').'>\'
+    + \'<select class="'.$_htmlClass.' required-entry" name="'.$_htmlName.'[{{index}}][website_id]" id="group_price_row_{{index}}_website">\'';
+    foreach ($this->getWebsites() as $_websiteId => $_info)
+    {
+        $html .= '+ \'<option value="'.$_websiteId.'">'.$this->jsQuoteEscape($this->htmlEscape($_info['name'])).( (!empty($_info['currency'])) ? ('['.$this->htmlEscape($_info['currency']).']') : '').'</option>\'';
+    }
+    $html .='
+    + \'</select></td>\'
+    + \'<td><select class="'.$_htmlClass.' custgroup required-entry" name="'.$_htmlName.'[{{index}}][cust_group]" id="group_price_row_{{index}}_cust_group">\'';
+    $html .= '+\'<option value="32000">'.Mage::helper('catalog')->__('ALL GROUPS').'</option>\'';
+    foreach ($customerGroups as $_groupId=>$_groupName)
+    {
+        $html .= '+\'<option value="'.$_groupId.'">'.$this->jsQuoteEscape($this->htmlEscape($_groupName)).'</option>\'';
+    }
+    $html .= '+ \'</select></td>\'
+    + \'<td><input class="'.$_htmlClass.' required-entry '.$_priceValueValidation.'" type="text" name="'.$_htmlName.'[{{index}}][price]" value="{{price}}" id="group_price_row_{{index}}_price" /></td>\'
+    + \'<td class="last"><input type="hidden" name="'.$_htmlName.'[{{index}}][delete]" class="delete" value="" id="group_price_row_{{index}}_delete" />\'
+    + \'<button title="'.Mage::helper('catalog')->__("Delete Group").'" type="button" class="scalable delete icon-btn delete-product-option" id="group_price_row_{{index}}_delete_button" onclick="return groupPriceControl'.$_htmlId.'.deleteItem(event);">\'
+    + \'<span><span><span>'.Mage::helper('catalog')->__("Delete").'</span></span></span></button></td>\'
+    + \'</tr>\';
+
+var groupPriceControl = {
+    template: new Template(groupPriceRowTemplate, new RegExp(\'(^|.|\\\\r|\\\\n)({{\\\\s*(\\\\w+)\\\\s*}})\', "")),
+    itemsCount: [],
+    addItem : function (product_id) {
+        '.(($_readonly) ? '
+        if (arguments.length < 4) {
+            return;
+        } ' : '').'
+            
+        if(!this.itemsCount[product_id])
+        {
+            this.itemsCount[product_id] = 0;
+        }
+        
+        var data = {
+            website_id: \''.$this->getDefaultWebsite().'\',
+            group: \''.$this->getDefaultCustomerGroup().'\',
+            qty: \'\',
+            price: \'\',
+            readOnly: 0,
+            index: this.itemsCount[product_id]++
+        };
+
+        if(arguments.length >= 4) {
+            data.product_id = arguments[0];
+            data.website_id = arguments[1];
+            data.group      = arguments[2];
+            data.price      = arguments[3];
+        }
+        if (arguments.length == 5) {
+            data.readOnly = arguments[4];
+        }
+
+        Element.insert($(\'group_price_\'+product_id+\'_container\'), {
+            bottom : this.template.evaluate(data)
+        });
+        $j(\'#product\'+product_id+\' #group_price_row_\'+data.index+\'_cust_group\').val(data.group);
+        $j(\'#product\'+product_id+\' #group_price_row_\'+data.index+\'_website\').val(data.website_id);
+        //$(\'group_price_row_\' + data.index + \'_cust_group\').value = data.group;
+        //$(\'group_price_row_\' + data.index + \'_website\').value    = data.website_id;
+        '.(($this->isShowWebsiteColumn() && !$this->isAllowChangeWebsite()) ? '
+        var wss = $j(\'#product\'+product_id+\' #group_row_\'+data.index+\'_website\');
+        //var wss = $(\'group_price_row_\' + data.index + \'_website\');
+        var txt = wss.options[wss.selectedIndex].text;
+
+        wss.insert({after:\'<span class="website-name">\' + txt + \'</span>\'});
+        wss.hide();
+        ' : '').'
+
+        if (data.readOnly == \'1\') {
+            [\'website\', \'cust_group\', \'qty\', \'price\', \'delete\'].each(function(idx){
+                $(\'group_price_row_\'+data.index+\'_\'+idx).disabled = true;
+            });
+            $(\'group_price_row_\'+data.index+\'_delete_button\').hide();
+        }
+
+        '.(($_readonly) ? '
+        $(\'group_price_\'+product_id+\'_container\').select(\'input\', \'select\').each(this.disableElement);
+        $(\'group_price_\'+product_id+\'_container\').up(\'table\').select(\'button\').each(this.disableElement);
+        ':' 
+        $(\'group_price_\'+product_id+\'_container\').select(\'input\', \'select\').each(function(el){ Event.observe(el, \'change\', el.setHasChanges.bind(el)); });
+        '). '
+    },
+    disableElement: function(el) {
+        el.disabled = true;
+        el.addClassName(\'disabled\');
+    },
+    deleteItem: function(event) {
+        var tr = Event.findElement(event, \'tr\');
+        if (tr) {
+            Element.select(tr, \'.delete\').each(function(elem){elem.value=\'1\'});
+            Element.select(tr, [\'input\', \'select\']).each(function(elem){elem.hide()});
+            Element.hide(tr);
+            Element.addClassName(tr, \'no-display template\');
+        }
+        return false;
+    }
+};
+//]]>
+</script>';
+
+echo $html;

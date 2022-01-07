@@ -1,0 +1,83 @@
+<layout>
+		<emipro_customoptions_adminhtml_index_index>
+		<reference name="content">
+			<block type="emipro_customoptions/adminhtml_customoptions" name="optiongrid"></block>
+		</reference>
+	</emipro_customoptions_adminhtml_index_index>
+	
+	<emipro_customoptions_adminhtml_index_categories>
+		<reference name="content">
+			<block type="core/text_list" name="root" output="toHtml">
+				<block type="emipro_customoptions/adminhtml_categoryoptions_edit_tab_categories" name="customoption.edit.tab.categories"/>
+			</block>
+		</reference>
+	</emipro_customoptions_adminhtml_index_categories>
+	<emipro_customoptions_adminhtml_index_new>
+				<update handle="emipro_customoptions_adminhtml_index_edit"/>
+	</emipro_customoptions_adminhtml_index_new>
+	<emipro_customoptions_adminhtml_index_edit>
+		
+			<reference name="left">
+			<block type="emipro_customoptions/adminhtml_customoptions_edit_tabs" name="customoption.tab"></block>
+		</reference>
+		<reference name="content">
+			<block type="emipro_customoptions/adminhtml_customoptions_edit" name="customoption.content"/>
+		</reference>	
+		</emipro_customoptions_adminhtml_index_edit>
+	<emipro_customoptions_adminhtml_index_editcategory>
+		
+			<reference name="left">
+			<block type="emipro_customoptions/adminhtml_categoryoptions_edit_tabs" name="categoryoptions.tab"></block>
+		</reference>
+		<reference name="content">
+			<block type="emipro_customoptions/adminhtml_categoryoptions_edit" name="categoryoptions.content"/>
+		</reference>	
+	</emipro_customoptions_adminhtml_index_editcategory>
+	<emipro_customoptions_adminhtml_index_editsku>
+			<reference name="left">
+			<block type="emipro_customoptions/adminhtml_removecustomoptions_edit_tabs" name="removeoption.tab"></block>
+		</reference>
+		<reference name="content">
+			<block type="emipro_customoptions/adminhtml_removecustomoptions_edit" name="removeoption.content"/>
+		</reference>	
+	</emipro_customoptions_adminhtml_index_editsku>
+	
+		<emipro_customoptions_adminhtml_manage_index>
+	<reference name="content">
+			<block type="emipro_customoptions/adminhtml_manageoptions" name="manageoptions"></block>
+		</reference>
+	</emipro_customoptions_adminhtml_manage_index>
+	<emipro_customoptions_adminhtml_manage_edit>
+	<reference name="left">
+			<block type="emipro_customoptions/adminhtml_manageoptions_edit_tabs" name="manageoptions.tab"></block>
+		</reference>
+		<reference name="content">
+			<block type="emipro_customoptions/adminhtml_manageoptions_edit" name="manageoptions.content"/>
+		</reference>	
+	</emipro_customoptions_adminhtml_manage_edit>
+	
+	
+	<emipro_customoptions_adminhtml_index_products>
+			<block type="core/text_list" name="root" output="toHtml">
+					   <block type="emipro_customoptions/adminhtml_customoptions_edit_tab_grid" name="product.grid"/>
+					   <block type="adminhtml/widget_grid_serializer" name="grid_serializer">
+						   <reference name="grid_serializer">
+							   <action method="initSerializerBlock">
+								   <grid_block_name>product.grid</grid_block_name>
+								   <data_callback>getSelectedProducts</data_callback>
+								   <hidden_input_name>links[products]</hidden_input_name>
+								   <reload_param_name>products_id</reload_param_name>
+							   </action>
+							   <action method="addColumnInputName">
+								   <input_name>position</input_name>
+							   </action>                  
+						   </reference>
+					   </block>
+				   </block>
+		</emipro_customoptions_adminhtml_index_products>
+		<emipro_customoptions_adminhtml_index_productsgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="emipro_customoptions/adminhtml_customoptions_edit_tab_grid" name="product.grid"/>
+        </block>
+		</emipro_customoptions_adminhtml_index_productsgrid>
+</layout>

@@ -1,0 +1,94 @@
+# CALL TO MENU: Group001
+OnMouseOver="" OnClick="cFrame.execURL('http://www.jbcases.com/', '_self');" OnMouseOut="cFrame.tHideAll();"
+
+# CALL TO MENU: Group002
+OnMouseOver="cFrame.ShowMenu('Group002', 0, 0, false);" OnMouseOut="cFrame.tHideAll();"
+
+# CALL TO MENU: Group003
+OnMouseOver="cFrame.ShowMenu('Group003', 0, 0, false);" OnClick="cFrame.execURL('/gallery.html', '_self');" OnMouseOut="cFrame.tHideAll();"
+
+# CALL TO MENU: Group004
+OnMouseOver="" OnClick="cFrame.execURL('/forsale.html', '_self');" OnMouseOut="cFrame.tHideAll();"
+
+# CALL TO MENU: Group005
+OnMouseOver="" OnClick="cFrame.execURL('/contact.html', '_self');" OnMouseOut="cFrame.tHideAll();"
+
+# CALL TO MENU: Group006
+OnMouseOver="" OnClick="cFrame.execURL('/caseblog', '_self');" OnMouseOut="cFrame.tHideAll();"
+
+# CALL TO MENU: Group010
+OnMouseOver="cFrame.ShowMenu('Group010', 0, 0, false);" OnClick="cFrame.execURL('/testimonials.html', '_self');" OnMouseOut="cFrame.tHideAll();"
+
+# CALL TO MENU: Group007
+OnMouseOver="" OnClick="cFrame.execURL('/links.html', '_self');" OnMouseOut="cFrame.tHideAll();"
+
+# CALL TO MENU: SubGrp_Des008
+OnMouseOver="cFrame.ShowMenu('SubGrp_Des008', 0, 0, false);" OnMouseOut="cFrame.tHideAll();"
+
+# CALL TO MENU: SubGrp_SemCus009
+OnMouseOver="cFrame.ShowMenu('SubGrp_SemCus009', 0, 0, false);" OnMouseOut="cFrame.tHideAll();"
+
+# LOADER CODE. PLACE IT RIGHT AFTER THE <BODY> TAG
+# OF THE E:\A-JB Cases\menus\index.html FILE
+<!-- DHTML Menu Builder Loader Code START --><script language="javascript" type="text/javascript">
+var navVer = navigator.appVersion;
+if(navVer.substr(0,3) >= 4)
+if((navigator.appName=="Netscape") && (parseInt(navigator.appVersion)==4)) {
+document.write('<' + 'script language="javascript" type="text/javascript" src="/menus/nsjbcases.js"><\/script\>');
+} else {
+document.write('<' + 'script language="javascript" type="text/javascript" src="/menus/iejbcases.js"><\/script\>');
+}</script>
+<noscript><ul>
+<li><a href="http://www.jbcases.com/">HOME</a>
+</li>
+<li>ORDERING
+<ul>
+<li><a href="//ordering.html">How To Order</a></li>
+<li><a href="//ordering.html#Design">Design Guide</a></li>
+<li><a href="#">Design Options</a><ul>
+<li><a href="//coloroptions.html">Color Options</a></li>
+<li><a href="//snakeskins.html">Snake Skins</a></li>
+<li><a href="//contrastoptions.html">Contrast Options</a></li>
+<li><a href="//leatheroptions.html">Leather Options</a></li>
+<li><a href="//toolingoptions.html">Tooling Options</a></li>
+</ul>
+</li>
+<li><a href="//ordering.html#Pricing">Pricing</a></li>
+<li><a href="//faq.html">Frequent Questions</a></li>
+</ul>
+</li>
+<li><a href="//gallery.html">CASE GALLERY</a>
+<ul>
+<li><a href="//casesbyname.html">Cases By Name</a></li>
+<li><a href="//fullcustom.html">Full Custom</a></li>
+<li><a href="#">Semi-Custom</a><ul>
+<li><a href="//buffalostyle.html">Buffalo</a></li>
+<li><a href="//butterfly.html">Butterfly</a></li>
+<li><a href="//jflowers.html">J. Flowers</a></li>
+<li><a href="//rollsroycestyle.html">Rolls Royce</a></li>
+<li><a href="//scallopstyle.html">Scallop</a></li>
+<li><a href="//traditionalstyle.html">Traditional</a></li>
+<li><a href="//masonstyle.html">Mason</a></li>
+<li><a href="//chas.html">Chas</a></li>
+<li><a href="//hustlercase/.html">Hustler</a></li>
+<li><a href="//drivercase/.html">Driver</a></li>
+</ul>
+</li>
+<li><a href="//gallery/index.php">Picture Album</a></li>
+</ul>
+</li>
+<li><a href="//forsale.html">FOR SALE</a>
+</li>
+<li><a href="//testimonials.html">TESTIMONIALS</a>
+<ul>
+<li><a href="//aboutus.html">About Us</a></li>
+</ul>
+</li>
+<li><a href="//contact.html">CONTACT</a>
+</li>
+<li><a href="//caseblog">BLOG</a>
+</li>
+<li><a href="//links.html">LINKS</a>
+</li>
+</ul></noscript>
+<!-- DHTML Menu Builder Loader Code END -->

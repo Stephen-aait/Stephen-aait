@@ -1,0 +1,85 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_Orderattach
+ */
+?>
+<?php 
+$formUrl = $this->getUrl('attaches/order/upload');
+if (isset($_SERVER['HTTPS']) && 'off' != $_SERVER['HTTPS'])
+{
+    $formUrl   = str_replace('http:', 'https:', $formUrl);
+}
+?>
+
+<div id="viewblock_<?php echo $this->getItemCode(); ?>">
+    <?php if ($this->getItemValue()): ?>
+        <?php
+        if (!is_array($this->getItemValue())) {
+            $val = explode(';', $this->getItemValue());
+            $this->setItemValue($val);
+        }
+        ?>
+        <?php foreach ($this->getItemValue() as $value): ?>
+            <?php if (trim($value)): ?>
+				<?php
+					$ext=pathinfo($value, PATHINFO_EXTENSION);
+					switch($ext){
+						case 'jpg':
+						case 'jpeg':
+						case 'png':
+						case 'JPG':
+							?>
+							<a title="Click for original image" href="<?php echo Mage::getBaseUrl('media') . 'attachments/' . $value;?>" target="_blank">
+								<img src="<?php echo Mage::getBaseUrl('media') . 'attachments/small/' . $value;?>" width="200" />
+							</a>	
+							<?php
+					}
+					?>
+				
+                <strong><a title="Download original image" href="<?php echo $this->getUrl('attaches/order/download', array('file' => $value, 'customer_id' => Mage::getSingleton('customer/session')->getCustomerId())); ?>"><?php echo $value; ?></a></strong><br />
+            <?php endif; ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
+
+<div id="editblock_<?php echo $this->getItemCode(); ?>" style="display: none;">
+
+    <?php if ($this->getItemValue()): ?>
+        <?php foreach ($this->getItemValue() as $value): ?>
+            <?php if (trim($value)): ?>
+                <?php echo $value; ?>
+                <div style="margin-top: 2px; margin-bottom: 10px;">
+                    <button class="scalable" type="button"
+                            onclick="javascript: attachDeleteFile('<?php echo $this->getItemCode(); ?>', '<?php echo $value; ?>', 'file_multiple');">
+                        <span><?php echo $this->__('Delete'); ?></span>
+                    </button>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+    <form method="post" id="upload_form_<?php echo $this->getItemCode(); ?>" enctype="multipart/form-data" action="<?php echo $formUrl; ?>">
+        <input type="hidden" name="form_key" value="<?php echo $this->getFormKey() ?>" />
+        <input type="hidden" name="field" value="<?php echo $this->getItemCode(); ?>"/>
+        <input type="hidden" name="order_id" value="<?php echo Mage::registry('current_order')->getId(); ?>" />
+        <input type="hidden" name="type" value="file_multiple" />
+        <input type="file" name="to_upload" />
+
+        <iframe id="upload_target_<?php echo $this->getItemCode(); ?>"
+                name="upload_target_<?php echo $this->getItemCode(); ?>" src="" style="display: none; width: 700px; height: 500px;"></iframe>
+    
+        <div style="margin-top: 2px;width:300px">
+            <button class="button" type="button" onclick="javascript: attachUpload('<?php echo $this->getItemCode(); ?>');">
+                <span><span><?php echo $this->__('Upload'); ?></span></span>
+            </button>
+            <button class="button" type="button" onclick="javascript: attachCancel('<?php echo $this->getItemCode(); ?>');">
+                 <span><span><?php echo $this->__('Cancel'); ?></span></span>
+            </button>            
+            <button class="button" type="button" onclick="javascript: attachDeleteAllFile('<?php echo $this->getItemCode(); ?>','','file_multiple');">
+                 <span><span><?php echo $this->__('Delete All'); ?></span></span>
+            </button>            
+        </div>
+    </form>
+</div>

@@ -1,0 +1,97 @@
+<?php
+/* * ********************************************************************
+ * Customization Services by ModulesGarden.com
+ * Copyright (c) ModulesGarden, INBS Group Brand, All Rights Reserved 
+ * (2014-06-11, 09:45:06)
+ * 
+ *
+ *  CREATED BY MODULESGARDEN       ->        http://modulesgarden.com
+ *  CONTACT                        ->       contact@modulesgarden.com
+ *
+ *
+ *
+ *
+ * This software is furnished under a license and may be used and copied
+ * only  in  accordance  with  the  terms  of such  license and with the
+ * inclusion of the above copyright notice.  This software  or any other
+ * copies thereof may not be provided or otherwise made available to any
+ * other person.  No title to and  ownership of the  software is  hereby
+ * transferred.
+ *
+ *
+ * ******************************************************************** */
+
+/**
+ * @author Grzegorz Draganik <grzegorz@modulesgarden.com>
+ */
+$_task = $this->getTask();
+$statusMap = Modulesgarden_Teamandtaskorganizer_Model_Task::getStatusMap();
+?>
+
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Task'); ?></h4>
+        <div class="form-buttons"></div>
+    </div>
+    <div class="fieldset " id="teamandtaskorganizer_form">
+        <div class="hor-scroll">
+            <table cellspacing="0" class="form-list" id="edit_task_ajax_form2">
+                <tbody>
+                    <tr>
+                        <td class="label"><label for="title"><?php echo $this->__('Title'); ?></label></td>
+                        <td class="value">
+                            <input type="text" disabled name="title" value="<?php echo $_task->getTitle(); ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label"><label for="priority"><?php echo $this->__('Priority'); ?></label></td>
+                        <td class="value">
+                            <input type="text" disabled name="priority" value="<?php echo $_task->getPriorityStr(); ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label"><label for="status"><?php echo $this->__('Status'); ?></label></td>
+                        <td class="value">
+                            <input type="text" disabled name="status" value="<?php echo $_task->getStatusStr(); ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label"><label for="startdate"><?php echo $this->__('Start Date'); ?></label></td>
+                        <td class="value">
+                            <input type="text" disabled name="startdate" value="<?php echo $_task->getStartDateStr(); ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label"><label for="enddate"><?php echo $this->__('End Date'); ?></label></td>
+                        <td class="value">
+                            <input type="text" disabled name="enddate" value="<?php echo $_task->getDeadlineStr(); ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label"><label for="description"><?php echo $this->__('Description'); ?></label></td>
+                        <td class="value">
+                            <textarea disabled name="description"><?php echo $_task->getDescription(); ?></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label"><label for="title"><?php echo $this->__('Status'); ?></label></td>
+                        <td class="value">
+                            <select id="status" disabled name="status" class="select">
+                                <?php foreach ($statusMap as $k => $v) { ?>
+                                    <option value="<?php echo $k; ?>" <?php echo $_task->getStatus() == $k ? 'selected' : ''; ?>><?php echo $v; ?></option>
+                                <?php } ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label"><label for="title"><?php echo $this->__('Progress'); ?></label></td>
+                        <td class="value">
+                            <input type="text" disabled value="<?php echo $_task->getProgress(); ?> %" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

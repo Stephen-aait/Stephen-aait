@@ -1,0 +1,15 @@
+1.0 - Initial Release
+1.1 - USPS-1 - Removed time in transit info. Added logs. Changed version check to be logger helper. Added Logger. Updated code to remove old USPS patch. Removed DIMSHIP 51 change
+1.1.1  -  COMMON-35 Contains latest Logger
+1.1.2  -  COMMON-35 Contains latest Logger
+1.2    -  Updated to accommodate USPS Web Tools API release 1.3 : September 7th 2014
+1.2.1  -  Updated displayed codes for Library Mail Parcel and Media Mail Parcel in line with API changes in 1.3 release
+1.3     - Compatible with v1.4.0 CE
+1.4     - USPS-10: altered error handling
+1.5  - USPS-11 Moved back to using USPS logger
+1.5.1  - DIMSHIP-188 Updated USPS API for May 2015 changes
+1.5.2  - DROP-123 Fixed issue with allowed Methods not showing correctly.
+1.5.3  - DIMSHIP-192 - Added getCountryName from USPSV2
+1.5.4  - Latest common code
+1.6  - DIMSHIP-199 USPS API Updates
+1.6.1  - DIMSHIP-199 USPS API Updates

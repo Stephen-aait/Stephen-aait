@@ -1,0 +1,28 @@
+<?php
+	$helper = Mage::helper('cms');
+    $hlp = Mage::helper('masonotes');
+	$processor = $helper->getPageTemplateProcessor();
+	
+	if (!isset($notes)) {
+        $notes = $this->getCollection();
+	}
+	
+	$customerName = Mage::getSingleton('customer/session')->getCustomer()->getName();
+?>
+<?php foreach ($notes as $note):?>
+<li class="clearfix">				
+    <div class="notes-body clearfix <?php if (is_null($note->getUserId())):?>note-by-customer<?php endif;?>" >
+        <div class="post-header">
+            <strong class="primary-font"><?php if ($note->getCustomerId()):?><?php echo $customerName;?><?php else:?><?php echo $note->getFirstname()?><?php endif;?></strong>
+            <small class="text-muted"><?php echo $hlp->__('Added: %s', $note->getCreatedAt())?></small>
+            <?php if ($note->getUpdatedAt() != ''):?>
+                &nbsp;
+                <small class="text-muted"><?php echo $hlp->__('Updated: %s',$note->getUpdatedAt())?></small>
+            <?php endif;?>
+        </div>
+        <p>
+            <?php echo $processor->filter($note->getNote());?>										
+        </p>
+    </div>
+</li>
+<?php endforeach;?>

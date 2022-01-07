@@ -1,0 +1,132 @@
+<style>
+.product-result-div {
+	background: none repeat scroll 0 0 #f6f6f6;
+    color: #2f2f2f;    
+    position: absolute;    
+    display:none;
+}
+.product-result-li {
+	cursor:pointer;
+	padding : 3px 5px;
+	transition: all 0.3s eas-in;
+}
+.product-result-li:hover {
+	background: none repeat scroll 0 0 #fcf5dd !important;
+}
+.hover {
+	background: none repeat scroll 0 0 #fcf5dd !important;
+}
+.product-result-li:nth-child(odd) {
+    background: none repeat scroll 0 0 #ffffff;
+}
+.product-result-li:nth-child(even) {
+    
+}
+.bubble {
+	background: #F6F6F6;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 2px 2px 15px 0px #616161;
+    -moz-box-shadow: 2px 2px 15px 0px #616161;
+    box-shadow: 2px 2px 15px 0px #616161;
+    margin-top: 10px;    
+    position: absolute;
+}
+
+  .bubble:after {
+    border-color: #F6F6F6 transparent;
+    border-style: solid;
+    border-width: 0 10px 10px;
+    content: "";
+    display: block;
+    left: 69px;
+    position: absolute;
+    top: -9px;
+    width: 0;
+    z-index: 1;
+}
+.ajax-loading {
+	max-width: 100%;
+    vertical-align: top;
+    display:none;
+}
+.auction-notification {
+	background : #fff9e9;
+	border: 1px solid #eee2be;
+	padding: 3px 10px;
+}
+</style>
+<?php 
+/*$auctionId = $this->getRequest()->getParam('id');
+$auctionModel = Mage::getModel("auction/auction")->load($auctionId);
+$productModel = Mage::getModel("catalog/product")->load($auctionModel->getProductId());
+$product_selected = $auctionId ? $productModel->getSku()." - ".$productModel->getName() : '';*/
+
+$collection = Mage::getModel("emipro_customoptions/product_option")->getCollection();
+$collection->getSelect()->join(
+			Mage::getConfig()->getTablePrefix() . 'emipro_product_option_title', 'main_table.option_id =' . Mage::getConfig()->getTablePrefix() . 'emipro_product_option_title.option_id', array("title" => "title"))
+				->group(Mage::getConfig()->getTablePrefix() ."emipro_product_option_title.option_id");
+?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+		<h4>
+			<?php echo Mage::helper('emipro_customoptions')->__('Custom Options') ?>
+		</h4>
+	</div>
+	<div class="grid">
+		<div class="hor-scroll">
+			<table cellspacing="0" class="data" border="1">
+				<colgroup>
+					<col width="10">
+					<col width="50">
+					<col width="140">
+				</colgroup>
+				<thead>
+					<tr class="headings">
+						<th> </th>
+						<th>SKU</th>
+						<th>Title</th>
+					</tr>
+					<tr class="filter">
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+			   </thead>
+			   <tbody>
+				   <?php
+				   foreach($collection as $option)
+				   {
+					?>
+						<tr>
+							<td class="a-center ">
+								<input type="checkbox" class="checkbox" value="<?php echo $option->getOptionId(); ?>" name="custom_option[]">
+							</td>
+							<td>
+								<?php echo $option->getSku();?>
+							</td>
+							<td>
+								<?php echo $option->getTitle();?>
+							</td>
+						</tr>
+					<?php
+					}
+					?>
+			   </tbody>
+		   </table>
+		  <!-- <div class="auction-notification">
+			   Those products listed here who has match following criteria.
+			   <ul style="list-style:inside none disc;">
+					<li>Product visibility Catalog, Search</li>
+					<li>Product qty >= 1</li>
+					<li>Product status Enabled.</li>
+					<li>Product In Stock.</li>
+					<li>Product shouldn't assign in another auction.</li>
+			   </ul>
+		   </div>-->
+		</div>
+	</div>    
+</div>
+<div class="clear"></div>
+<br/>

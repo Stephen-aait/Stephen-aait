@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * System config file
+ *
+ * @category   Clarion
+ * @package    Clarion_Storelocator
+ * @author     Clarion Magento Team
+ */
+-->
+<config>
+    <tabs>
+        <clarion_storelocator_tab translate="label" module="clarion_storelocator">
+            <label>Store Locator</label>
+            <sort_order>0</sort_order>
+        </clarion_storelocator_tab>
+    </tabs> 
+    
+    <sections>
+        <clarion_storelocator_general_setting translate="label" module="clarion_storelocator">
+            <label>General Settings</label>
+            <tab>clarion_storelocator_tab</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>0</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>     
+            <groups>
+                <clarion_storelocator_status translate="label">
+                    <label>Status</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>                
+                    <fields>
+                        <enable translate="label">
+                            <label>Enable Store Locator On Frontend</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable>
+                    </fields>
+                </clarion_storelocator_status>
+                
+                <clarion_storelocator_display_setting translate="label">
+                    <label>Display Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>  
+                    <fields>
+                        <default_radius translate="label">
+                            <label>Default Radius</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Radius is in miles</comment>
+                            <validate>required-entry validate-number</validate>
+                        </default_radius>
+                        
+                        <zoom_level translate="label">
+                            <label>Zoom Level</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry validate-digits</validate>
+                        </zoom_level>
+                        
+                        <stores_per_page translate="label">
+                            <label>Stores Per Page</label>
+                            <comment>Empty value is the same as default 8.</comment>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry validate-digits</validate>
+                        </stores_per_page>
+                    </fields>
+                </clarion_storelocator_display_setting>
+            </groups>          
+        </clarion_storelocator_general_setting>
+    </sections>
+</config>

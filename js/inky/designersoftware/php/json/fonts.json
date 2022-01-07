@@ -1,0 +1,87 @@
+{
+	"fonts":
+	[
+	    {
+	        "fontsId": "1",
+	        "title": "Arial",
+	        "imagePath": "media/files/font/original/font_551130791ca1841.png",
+	        "fontTtf":
+	        [
+		        {
+		        	"fontTitle":"Arial",
+		        	"fontDiff":"normal",
+		        	"ttf": "media/files/font/ttf/Arial.ttf"
+		        },
+	        	{
+	        		
+	        		"fontTitle":"ArialBold",
+	        		"fontDiff":"bold",
+	        		 "ttf":"media/files/font/ttf/ArialBold.ttf"
+	        	},
+	        	{
+	        		"fontTitle":"ArialItalic",
+	        		"fontDiff":"italic",
+	        		"ttf":"media/files/font/ttf/ArialItalic.ttf"
+	        	},
+	        	{
+	        		"fontTitle":"ArialBoldItalic",
+	        		"fontDiff":"boldItalic",
+	        	 	"ttf":"media/files/font/ttf/ArialBoldItalic.ttf"
+	        	}
+	       
+	        
+	       
+	        ]
+	    },
+	    {
+	        "fontsId": "2",
+	        "title": "DejaVu Sans Condensed",
+	        "imagePath": "media/files/font/original/font_551130791ca1841.png",
+	        
+	        "fontTtf":
+	        [
+		        {
+		        	"fontTitle":"DejaVu Sans Condensed",
+		        	"fontDiff":"normal",
+		        	"ttf": "media/files/font/ttf/font_551130791ca1841.ttf"
+		        },
+	        	{
+	        		"fontTitle":"",
+	        		"fontDiff":"bold",
+	        		 "boldttf":""
+	        	},
+	        	{
+	        		"fontTitle":"",
+	        		"fontDiff":"italic",
+	        		"italicttf":""
+	        	},
+	        	{
+	        		"fontTitle":"",
+	        		"fontDiff":"bolditalic",
+	        	 	"bolditalicttf":""
+	        	}
+	       
+	        
+	       
+	        ]
+	    }
+	    
+	],
+	"fontSize":
+	[
+		{
+			"fontSize":16
+		},
+		{
+			"fontSize":18
+		},
+		{
+			"fontSize":20
+		},
+		{
+			"fontSize":22
+		},{
+			"fontSize":24
+		}
+	]
+}

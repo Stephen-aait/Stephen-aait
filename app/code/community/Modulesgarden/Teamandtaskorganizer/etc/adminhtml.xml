@@ -1,0 +1,90 @@
+<?xml version="1.0" ?>
+<config>
+    <menu>
+        <teamandtaskorganizer>
+            <title><![CDATA[Team & Task Organizer]]></title>
+            <sort_order>1500</sort_order>
+            <children>
+                <teamandtaskorganizer_tasks translate="title">
+                    <title>Your Tasks List</title>
+                    <action>adminhtml/teamandtaskorganizer_tasks</action>
+                </teamandtaskorganizer_tasks>
+                <teamandtaskorganizer_statistics translate="title">
+                    <title>Statistics</title>
+                    <action>adminhtml/teamandtaskorganizer_tasks/rstatistics</action>
+                </teamandtaskorganizer_statistics>
+                <teamandtaskorganizer_settings translate="title">
+                    <title>Settings</title>
+                    <action>adminhtml/teamandtaskorganizer_tasks/rsettings</action>
+                </teamandtaskorganizer_settings>
+                <teamandtaskorganizer_managesuperadmin translate="title">
+                    <title>Admin Control Panel</title>
+                    <action>adminhtml/teamandtaskorganizer_managesuperadmin</action>
+                    <children>
+                        <teamandtaskorganizer_managesuperadmin_tasklist translate="title">
+                            <title>List All Tasks</title>
+                            <action>adminhtml/teamandtaskorganizer_managesuperadmin</action>
+                        </teamandtaskorganizer_managesuperadmin_tasklist>
+                        <teamandtaskorganizer_managesuperadmin_userprivileges translate="title">
+                            <title>Users Privileges</title>
+                            <action>adminhtml/teamandtaskorganizer_managesuperadmin/rusers</action>
+                        </teamandtaskorganizer_managesuperadmin_userprivileges>
+                        <teamandtaskorganizer_autotask translate="title">
+                            <title>Auto Tasks</title>
+                            <action>adminhtml/teamandtaskorganizer_managesuperadmin/rautotasks</action>
+                        </teamandtaskorganizer_autotask>
+                    </children>
+                </teamandtaskorganizer_managesuperadmin>
+                <!-- @s -->
+                <teamandtaskorganizer_openticket translate="title">
+                    <title>Open Support Ticket</title>
+                    <action>adminhtml/teamandtaskorganizer_support/index</action>
+                </teamandtaskorganizer_openticket>
+            </children>
+        </teamandtaskorganizer>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <teamandtaskorganizer>
+                        <title><![CDATA[Modulesgarden - Team & Task Organizer]]></title>
+                        <sort_order>1500</sort_order>
+                        <children>
+                            <teamandtaskorganizer_tasks translate="title">
+                                <title>Task list</title>
+                                <sort_order>1</sort_order>
+                            </teamandtaskorganizer_tasks>
+                            <teamandtaskorganizer_statistics translate="title">
+                                <title>Statistics</title>
+                                <sort_order>2</sort_order>
+                            </teamandtaskorganizer_statistics>
+                            <teamandtaskorganizer_settings translate="title">
+                                <title>Settings</title>
+                                <sort_order>3</sort_order>
+                            </teamandtaskorganizer_settings>
+                            <teamandtaskorganizer_managesuperadmin translate="title">
+                                <title>Control panel</title>
+                                <sort_order>4</sort_order>
+                                <children>
+                                    <teamandtaskorganizer_managesuperadmin_tasklist translate="title">
+                                        <title>List All Tasks</title>
+                                        <sort_order>5</sort_order>
+                                    </teamandtaskorganizer_managesuperadmin_tasklist>
+                                    <teamandtaskorganizer_managesuperadmin_userprivileges translate="title">
+                                        <title>Users Privileges</title>
+                                        <sort_order>6</sort_order>
+                                    </teamandtaskorganizer_managesuperadmin_userprivileges>
+                                    <teamandtaskorganizer_autotask translate="title">
+                                        <title>Auto Tasks</title>
+                                        <sort_order>7</sort_order>
+                                    </teamandtaskorganizer_autotask>
+                                </children>
+                            </teamandtaskorganizer_managesuperadmin>
+                        </children>
+                    </teamandtaskorganizer>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

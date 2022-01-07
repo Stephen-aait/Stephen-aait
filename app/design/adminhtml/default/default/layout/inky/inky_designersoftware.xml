@@ -1,0 +1,323 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<!-- =====================================  Designersoftware Section ===================================== -->	
+    <designersoftware_adminhtml_designersoftware_index>
+		<referense name="head">
+            <action method="setTitle" translate="title"><title>Manage Designs</title></action>
+        </referense>
+        <reference name="content">
+			<block type="designersoftware/adminhtml_designersoftware" name="designersoftware">
+				 <block type="adminhtml/store_switcher" name="store_switcher" as="store_switcher">
+                    <action method="setUseConfirm"><params>0</params></action>
+                </block>
+            </block>
+        </reference>
+    </designersoftware_adminhtml_designersoftware_index>
+    
+    <!-- =====================================  Designersoftware Orders Section ===================================== -->	
+    <designersoftware_adminhtml_orders_design_index>
+		<referense name="head">
+            <action method="setTitle" translate="title"><title>Manage Designs</title></action>            
+        </referense>
+        <reference name="content">
+			<block type="designersoftware/adminhtml_orders_design" name="orders_design">
+				 <block type="adminhtml/store_switcher" name="store_switcher" as="store_switcher">
+                    <action method="setUseConfirm"><params>0</params></action>
+                </block>
+            </block>
+        </reference>
+    </designersoftware_adminhtml_orders_design_index>
+        
+    
+    <!-- ===================================== angles Section in Designer Software -->    
+    <designersoftware_adminhtml_angles_index>
+        <reference name="content">
+            <block type="designersoftware/adminhtml_angles" name="angles" />
+        </reference>
+    </designersoftware_adminhtml_angles_index>
+    
+    
+    <!-- ===================================== category Section in Designer Software -->    
+    <designersoftware_adminhtml_category_index>
+        <reference name="content">
+            <block type="designersoftware/adminhtml_category" name="category" />
+        </reference>
+    </designersoftware_adminhtml_category_index>
+    
+    
+    <!-- ===================================== color Section in Designer Software -->
+    <designersoftware_adminhtml_color_index>
+        <reference name="content">
+            <block type="designersoftware/adminhtml_color" name="color" />
+        </reference>
+    </designersoftware_adminhtml_color_index>  
+    
+    
+    <!-- ===================================== Texture Section in Designer Software -->
+    <designersoftware_adminhtml_texture_index>
+        <reference name="content">
+            <block type="designersoftware/adminhtml_texture" name="texture" />
+        </reference>
+    </designersoftware_adminhtml_texture_index> 
+    
+    
+    <!-- ===================================== Font Section in Designer Software -->
+    <designersoftware_adminhtml_font_index>
+        <reference name="content">
+            <block type="designersoftware/adminhtml_font" name="font" />
+        </reference>
+    </designersoftware_adminhtml_font_index>
+    <designersoftware_adminhtml_font_new>
+        <reference name="head">
+			<action method="addJs"><script>jquery/jquery.js</script></action>
+			<action method="addJs"><script>jquery/noConflict.js</script></action>
+        </reference>
+    </designersoftware_adminhtml_font_new>
+    <designersoftware_adminhtml_font_edit>
+        <reference name="head">
+          <action method="addJs"><script>jquery/jquery.js</script></action>
+          <action method="addJs"><script>jquery/noConflict.js</script></action>
+        </reference>
+    </designersoftware_adminhtml_font_edit> 
+    
+    
+    <!-- ===================================== clipart Section in Designer Software -->
+    <designersoftware_adminhtml_clipart_index>
+        <reference name="content">
+            <block type="designersoftware/adminhtml_clipart" name="clipart" />
+        </reference>
+    </designersoftware_adminhtml_clipart_index>
+    
+    <!-- Custom Color Grid Inside Tab--> 
+    <designersoftware_adminhtml_clipart_color>
+       <block type="core/text_list" name="root" as="root" output="toHtml">
+		   <block type="designersoftware/adminhtml_clipart_edit_tab_color_grid" name="clipart.color.grid" />
+           <block type="adminhtml/widget_grid_serializer" name="color_grid_serializer">
+               <reference name="color_grid_serializer">
+                   <action method="initSerializerBlock">
+                       <grid_block_name>clipart.color.grid</grid_block_name>
+                       <data_callback>getSelectedColors</data_callback>
+                       <hidden_input_name>links[color]</hidden_input_name>
+                       <reload_param_name>colors</reload_param_name>
+                   </action>
+                   <action method="addColumnInputName">
+                       <input_name>position</input_name>
+                   </action>                  
+               </reference>
+           </block>
+       </block>
+   </designersoftware_adminhtml_clipart_color>
+   <designersoftware_adminhtml_clipart_colorgrid>
+        <block type="core/text_list" name="root" as="root" output="toHtml">
+            <block type="designersoftware/adminhtml_clipart_edit_tab_color_grid" name="clipart.color.grid"/>
+        </block>
+	</designersoftware_adminhtml_clipart_colorgrid>	
+	<designersoftware_adminhtml_clipart_new>
+        <reference name="head">
+			<action method="addJs"><script>jquery/jquery.js</script></action>
+			<action method="addJs"><script>jquery/noConflict.js</script></action>
+        </reference>
+    </designersoftware_adminhtml_clipart_new>
+    <designersoftware_adminhtml_clipart_edit>
+        <reference name="head">
+          <action method="addJs"><script>jquery/jquery.js</script></action>
+          <action method="addJs"><script>jquery/noConflict.js</script></action>
+        </reference>
+    </designersoftware_adminhtml_clipart_edit> 	  
+    <designersoftware_adminhtml_clipart_category_index>
+		<reference name="head">
+			 <action method="addJs"><script>inky/mage/adminhtml/grid.js</script></action>
+		</reference>
+        <reference name="content">
+            <block type="designersoftware/adminhtml_clipart_category" name="clipart_category" />
+        </reference>
+    </designersoftware_adminhtml_clipart_category_index>
+     <designersoftware_adminhtml_clipart_color_index>
+        <reference name="content">
+            <block type="designersoftware/adminhtml_clipart_color" name="clipart_color" />
+        </reference>
+    </designersoftware_adminhtml_clipart_color_index>
+    <designersoftware_adminhtml_clipart_price_index>
+        <reference name="content">
+            <block type="designersoftware/adminhtml_clipart_price" name="clipart_price" />
+        </reference>
+    </designersoftware_adminhtml_clipart_price_index>
+    <designersoftware_adminhtml_clipart_upload_index>		
+        <reference name="content">
+            <block type="designersoftware/adminhtml_clipart_upload" name="clipart_upload" />
+        </reference>
+    </designersoftware_adminhtml_clipart_upload_index>
+    
+    
+     <!-- ===================================== angles Section in Designer Software -->    
+    <designersoftware_adminhtml_text_index>
+        <reference name="content">
+            <block type="designersoftware/adminhtml_text" name="text" />
+        </reference>
+    </designersoftware_adminhtml_text_index>
+    
+    
+    <!-- ===================================== Style Parts (Layer) Section in Designer Software -->    
+    <designersoftware_adminhtml_parts_index>
+        <reference name="content">
+            <block type="designersoftware/adminhtml_parts" name="parts" />
+        </reference>
+    </designersoftware_adminhtml_parts_index>
+         
+    <designersoftware_adminhtml_parts_style_index>
+        <reference name="content">			
+            <block type="designersoftware/adminhtml_parts_style" name="parts_style"/>
+        </reference>
+    </designersoftware_adminhtml_parts_style_index> 
+    
+    <designersoftware_adminhtml_parts_style_edit>         
+    </designersoftware_adminhtml_parts_style_edit>       
+    
+    <designersoftware_adminhtml_parts_layers_index>
+        <reference name="content">
+            <block type="designersoftware/adminhtml_parts_layers" name="parts_layers" />
+        </reference>
+    </designersoftware_adminhtml_parts_layers_index>       
+    <!-- Custom Color Grid Inside Tab--> 
+    <designersoftware_adminhtml_parts_layers_color>
+       <block type="core/text_list" name="root" as="root" output="toHtml">
+		   <block type="designersoftware/adminhtml_parts_layers_edit_tab_color_grid" name="layers.color.grid" />
+           <block type="adminhtml/widget_grid_serializer" name="color_grid_serializer">
+               <reference name="color_grid_serializer">
+                   <action method="initSerializerBlock">
+                       <grid_block_name>layers.color.grid</grid_block_name>
+                       <data_callback>getSelectedColors</data_callback>
+                       <hidden_input_name>links[color]</hidden_input_name>
+                       <reload_param_name>colors</reload_param_name>
+                   </action>
+                   <action method="addColumnInputName">
+                       <input_name>position</input_name>
+                   </action>                  
+               </reference>
+           </block>
+       </block>
+   </designersoftware_adminhtml_parts_layers_color>  
+   <!-- Custom Color Grid Inside Tab--> 
+    <designersoftware_adminhtml_parts_layers_texture>
+       <block type="core/text_list" name="root" as="root" output="toHtml">
+		   <block type="designersoftware/adminhtml_parts_layers_edit_tab_texture_grid" name="layers.texture.grid" />
+           <block type="adminhtml/widget_grid_serializer" name="texture_grid_serializer">
+               <reference name="texture_grid_serializer">
+                   <action method="initSerializerBlock">
+                       <grid_block_name>layers.texture.grid</grid_block_name>
+                       <data_callback>getSelectedTextures</data_callback>
+                       <hidden_input_name>links[texture]</hidden_input_name>
+                       <reload_param_name>textures</reload_param_name>
+                   </action>
+                   <action method="addColumnInputName">
+                       <input_name>position</input_name>
+                   </action>                  
+               </reference>
+           </block>
+       </block>
+	</designersoftware_adminhtml_parts_layers_texture>    
+	<designersoftware_adminhtml_parts_layers_colorgrid>
+        <block type="core/text_list" name="root" as="root" output="toHtml">
+            <block type="designersoftware/adminhtml_parts_layers_edit_tab_color_grid" name="layers.color.grid"/>
+        </block>
+	</designersoftware_adminhtml_parts_layers_colorgrid>	
+	<designersoftware_adminhtml_parts_layers_texturegrid>
+        <block type="core/text_list" name="root" as="root" output="toHtml">
+            <block type="designersoftware/adminhtml_parts_layers_edit_tab_texture_grid" name="layers.texture.grid"/>
+        </block>
+	</designersoftware_adminhtml_parts_layers_texturegrid>
+	
+	<designersoftware_adminhtml_parts_layers_texture_index>
+		 <reference name="content">
+            <block type="designersoftware/adminhtml_parts_layers_texture" name="parts_layers_texture" />
+        </reference>
+	</designersoftware_adminhtml_parts_layers_texture_index>
+	<designersoftware_adminhtml_parts_layers_texture_new>
+       <reference name="head">
+          <action method="addJs"><script>jquery/jquery.js</script></action>
+          <action method="addJs"><script>jquery/noConflict.js</script></action>
+        </reference> 
+    </designersoftware_adminhtml_parts_layers_texture_new>
+    <designersoftware_adminhtml_parts_layers_texture_edit>
+      <reference name="head">
+          <action method="addJs"><script>jquery/jquery.js</script></action>
+          <action method="addJs"><script>jquery/noConflict.js</script></action>
+        </reference>  
+    </designersoftware_adminhtml_parts_layers_texture_edit>    
+    <designersoftware_adminhtml_parts_layers_new>
+       <reference name="head">
+          <action method="addJs"><script>jquery/jquery.js</script></action>
+          <action method="addJs"><script>jquery/noConflict.js</script></action>
+        </reference> 
+    </designersoftware_adminhtml_parts_layers_new>
+    <designersoftware_adminhtml_parts_layers_edit>
+      <reference name="head">
+          <action method="addJs"><script>jquery/jquery.js</script></action>
+          <action method="addJs"><script>jquery/noConflict.js</script></action>
+        </reference>  
+    </designersoftware_adminhtml_parts_layers_edit> 
+    <designersoftware_adminhtml_parts_layers_updateattributes>
+      <reference name="head">
+          <action method="addJs"><script>jquery/jquery.js</script></action>
+          <action method="addJs"><script>jquery/noConflict.js</script></action>
+        </reference>  
+    </designersoftware_adminhtml_parts_layers_updateattributes>    
+        
+    
+    <!-- Style Section in Designer Software -->
+    
+    <designersoftware_adminhtml_style_index>
+        <reference name="content">
+            <block type="designersoftware/adminhtml_style" name="style" />
+        </reference>
+    </designersoftware_adminhtml_style_index>            
+    
+    
+    <!-- ======================================= Sizes Section ============================================ -->
+    <designersoftware_adminhtml_sizes_index>
+		<reference name="head">
+			 <action method="addJs"><script>inky/mage/adminhtml/grid.js</script></action>
+		</reference>
+        <reference name="content">
+            <block type="designersoftware/adminhtml_sizes" name="sizes" />
+        </reference>
+    </designersoftware_adminhtml_sizes_index>
+    
+     <!-- Custom Color Grid Inside Tab--> 
+    <designersoftware_adminhtml_sizes_color>
+       <block type="core/text_list" name="root" as="root" output="toHtml">
+		   <block type="designersoftware/adminhtml_sizes_edit_tab_color_grid" name="sizes.color.grid" />
+           <block type="adminhtml/widget_grid_serializer" name="color_grid_serializer">
+               <reference name="color_grid_serializer">
+                   <action method="initSerializerBlock">
+                       <grid_block_name>sizes.color.grid</grid_block_name>
+                       <data_callback>getSelectedColors</data_callback>
+                       <hidden_input_name>links[color]</hidden_input_name>
+                       <reload_param_name>colors</reload_param_name>
+                   </action>
+                   <action method="addColumnInputName">
+                       <input_name>position</input_name>
+                   </action>                  
+               </reference>
+           </block>
+       </block>
+   </designersoftware_adminhtml_sizes_color>
+   <designersoftware_adminhtml_sizes_colorgrid>
+        <block type="core/text_list" name="root" as="root" output="toHtml">
+            <block type="designersoftware/adminhtml_sizes_edit_tab_color_grid" name="sizes.color.grid"/>
+        </block>
+	</designersoftware_adminhtml_sizes_colorgrid>	
+	<designersoftware_adminhtml_sizes_new>
+        <reference name="head">
+			<action method="addJs"><script>jquery/jquery.js</script></action>
+			<action method="addJs"><script>jquery/noConflict.js</script></action>
+        </reference>
+    </designersoftware_adminhtml_sizes_new>
+    <designersoftware_adminhtml_sizes_edit>
+        <reference name="head">
+          <action method="addJs"><script>jquery/jquery.js</script></action>
+          <action method="addJs"><script>jquery/noConflict.js</script></action>
+        </reference>
+    </designersoftware_adminhtml_sizes_edit> 	 
+	
+</layout>

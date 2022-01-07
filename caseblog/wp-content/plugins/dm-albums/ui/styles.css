@@ -1,0 +1,447 @@
+/*************************************************************** 
+ * Plugin Name: DM Albums									
+ * Plugin URI: http://www.dutchmonkey.com/wp-plugins/
+ * Description: In-Line Version of DM PhotoAlbums.
+ * Author: Frank D. Strack
+ * Author Email: development@dutchmonkey.com
+ * Author URI: http://www.dutchmokney.com
+ ***************************************************************/
+
+/***************************************************************
+ * STYLES:
+ * CUSTOMIZE THESE STYLES IN ORDER ADJUST THE COLORS OF YOUR
+ * PHOTO ALBUM
+ ***************************************************************/
+
+/******************
+/* THUMNAIL STYLES 
+/******************
+
+/* MAIN THUMBNAILS */
+#td_thumbnails
+{
+	border-top: 1px #FFFFFF solid;
+	border-bottom: 1px #FFFFFF solid;
+	border-left: 1px #FFFFFF solid;
+	border-right: 1px #FFFFFF solid;
+}
+
+/* CURRENTLY SELECTED THUMBNAIL */
+.selectedthumb
+{
+  	border: 2px solid;
+	border-color:#1472EC;
+}
+
+/* REGULAR THUMBNAILS */
+.thumb
+{
+  	border: 2px solid;
+	border-color:#303030;
+	background-color: #303030;
+}
+
+/* BACKGROUND COLOR OF BUTTONS TO SCROLL THUMBNAILS */
+/* THIS DOES NOT APPLY TO SAFARI, AS SAFARI USES A  */
+/* STANDARD SCROLLBAR                               */
+.moreslides
+{
+  	display: block;
+	
+	text-align: center;
+	
+	background-color: #A6A6A6;
+}
+
+/******************
+/* PHOTO STYLES 
+/******************
+
+/* USED FOR ALL IMAGES BUT JPEG */
+.img_noborder
+{
+	border: 0px #FFFFFF solid #000000;
+}
+
+/* USED FOR JPEG IMAGES */
+.img_border 
+{
+	border: 0px solid #000000;
+}
+
+/* MAIN PHOTO CONTAINER */
+#td_image
+{
+	background-color: #FFFFFF;
+	border-top: 0px #FFFFFF solid;
+	border-bottom: 0px #FFFFFF solid;
+	border-left: 1px #FFFFFF solid;
+	border-right: 1px #FFFFFF solid;
+}
+
+/******************
+/* LOADING DIALOG 
+/******************
+
+/* LOADING DIALOG CONTAINER */
+#div_photoloading
+{
+	position: absolute; 
+	visibility: hidden;
+	left:0px; 
+	top:0px;
+	width: 300px;
+	height: 75px;
+	background-color: #eeeeee; 
+	
+	border-top: 0px #aaaaaa solid;
+	border-bottom: 1px #aaaaaa solid;
+	border-left: 1px #aaaaaa solid;
+	border-right: 1px #aaaaaa solid;
+	
+	opacity: 0.8;
+}
+
+/* LOADING DIALOG MESSAGE TEXT */
+.loadingmessage
+{ 
+  	color: #000000;
+
+  	font-size: 10px; 
+  	letter-spacing: normal; 
+  	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular, sans-serif;
+	text-align: center;
+	
+	border: 0px solid;
+}
+
+/* PHOTO CAPTION */
+.td_caption
+{ 
+  	color: #000000;
+
+  	font-size: 7pt; 
+  	letter-spacing: normal; 
+  	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular, sans-serif;
+	text-align: center;
+	
+	border: 0px solid;
+}
+
+/* PHOTO CAPTION EDIT BOX (INPUT) */
+.caption
+{ 
+  	color: #000000;
+	background-color: #ffffff;
+  	font-size: 7pt; 
+  	letter-spacing: normal; 
+  	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular, sans-serif;
+	text-align: center;
+	width: 400px;
+	margin: 0px;
+	padding: 0px;
+	border: 0px solid;
+}
+
+/* PHOTO COUNT (e.g. Photo 3 of 32) */
+.td_photocount
+{ 
+  	color: #000000;
+
+  	font-size: 7pt; 
+  	letter-spacing: normal; 
+  	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular, sans-serif;
+	text-align: center;
+	
+	border: 0px solid;
+}
+
+/* ERROR LOADING PHOTO ALBUM MESSAGE */
+#tbl_error
+{
+	background-color: #eeeeee; 
+	
+	border-top: 1px #aaaaaa solid;
+	border-bottom: 1px #aaaaaa solid;
+	border-left: 1px #aaaaaa solid;
+	border-right: 1px #aaaaaa solid;
+}
+
+.error_header
+{ 
+  	color: #000000;
+  	font-size: 10pt; 
+  	letter-spacing: normal; 
+  	font-family: Tahoma, Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular, sans-serif;
+	text-decoration: none;
+	font-weight: bold; 
+}
+
+.error_message
+{ 
+  	color: #000000;
+  	font-size: 8pt; 
+  	letter-spacing: normal; 
+  	font-family: Tahoma, Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular, sans-serif;
+	text-decoration: none;
+	font-weight: normal; 
+}
+
+.error_message_detail
+{
+  	color: #000000;
+  	font-size: 9pt; 
+  	letter-spacing: normal; 
+  	font-family: Tahoma, Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular, sans-serif;
+	text-decoration: none;
+	font-weight: bold; 
+}
+
+.error_root_cause
+{ 
+  	color: #990000;
+}
+
+.error_details
+{ 
+  	color: #000000;
+  	font-size: 7pt; 
+  	letter-spacing: normal; 
+  	font-family: Tahoma, Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular, sans-serif;
+	text-decoration: none;
+	font-weight: normal; 
+}
+
+/***************************************************************
+ * STYLES BELOW THIS LINE SHOULD NOT NEED TO BE ADJUSTED 
+ * ONLY EDIT THESE IF YOU KNOW WHAT YOU'RE DOING
+ ***************************************************************/
+a.ui_slideshow, a.ui_slideshow:hover
+{
+	padding: 1px 1px 1px 20px;
+	background: url(startslideshow.png) no-repeat center left;
+}
+
+a.ui_slideshowstop, a.ui_slideshowstop:hover
+{
+	padding: 1px 1px 1px 20px;
+	background: url(stopslideshow.png) no-repeat center left;
+}
+	
+a.ui_slideshow_speedcontrols
+{
+	font-weight: bold;	
+}
+
+#div_currimage_preload
+{
+	display: none;	
+}
+ 
+#div_moreslides_left, #div_moreslides_right
+{
+	visibility: hidden;
+	position: absolute;
+		
+	width: 20px;
+	
+	left: 0px;
+	top: 0px;
+
+	opacity: 0.8;
+	
+	background-color: #FFFFFF;
+}
+
+#div_nexthint, #div_prevhint
+{
+	visibility: hidden;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+#div_caption
+{
+	visibility: hidden;
+	position: absolute;
+	
+	left: 0px;
+	top: 0px;
+}
+
+.albumtitle
+{
+	color: #000000;
+  	font-size: 10pt; 
+  	letter-spacing: normal; 
+  	font-family: Arial, Helvetica, Geneva, Swiss, SunSans-Regular, sans-serif;
+	text-decoration: none;
+	font-weight: bold; 
+}
+
+.edittitle
+{ 
+  	color: #000000; 
+	border: 0px solid;
+	border-top-color:#A6A6A6;
+	border-left-color:#A6A6A6;
+	border-right-color:#A6A6A6;
+	border-bottom-color:#A6A6A6;
+	background-color: #E2E2E2; 
+	width: 300px; 
+	font-size: 10px; 
+	letter-spacing: normal; 
+	font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular;  
+	font-weight: bold;
+}
+
+td.editcaption
+{ 
+  	color: #A6A6A6;
+  	font-size: 7pt; 
+  	letter-spacing: normal; 
+  	font-family: Tahoma, Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular, sans-serif;
+	text-decoration: none;
+	font-weight: normal; 
+}
+
+a.editcaption, a.editcaption:visited, a.editcaption:active
+{ 
+  	color: #A6A6A6;
+  	font-size: 7pt; 
+  	letter-spacing: normal; 
+  	font-family: Tahoma, Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular, sans-serif;
+	text-decoration: none;
+	font-weight: normal; 
+}
+
+a.editcaption:hover
+{ 
+	color: #A6A6A6;
+  	font-size: 7pt; 
+  	letter-spacing: normal; 
+  	font-family: Tahoma, Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular, sans-serif;
+	text-decoration: none;
+	font-weight: normal; 
+}
+
+a.hint, a.hint:visited, a.hint:active, a.hint:hover
+{ 
+	 display: block;
+	 padding-top: 200px;
+	 padding-bottom: 200px;
+}
+
+/* LOADING DIALOG MESSAGE */
+#div_loadingmessage
+{
+	position: absolute; 
+	visibility: hidden;
+	width: 300px;
+	height: 75px;
+	left:0px; 
+	top:0px;
+	opacity: 1.0;
+}
+
+/* FULLSCREEN MODE BAR */
+#td_fullscreenmode
+{
+	background-color: #FFFFFF; 
+}
+
+#td_fullscreenmode td
+{
+	font: 11px "Lucida Sans Unicode", "Lucida Sans", verdana, arial, helvetica;
+	color: #555;
+}
+
+#td_fullscreenmode a
+{
+	font: 11px "Lucida Sans Unicode", "Lucida Sans", verdana, arial, helvetica;
+	display: block;
+	text-decoration: none;
+	color: #555;
+}
+
+#td_fullscreenmode a:hover
+{
+	color: #000000;
+}
+
+/* PROPERTIES DIALOG */
+#div_directoryproperties
+{
+	position: absolute; 
+	visibility: hidden;
+	left:-1000; 
+	top:-1000;
+	
+	width: 350px;
+	
+	color: #FFFFFF; 
+	font-size: 10px; 
+	letter-spacing: normal; 
+	font-family: "Lucida Sans Unicode", "Lucida Sans", verdana, arial, helvetica;
+  
+	font-weight: normal;
+	
+	border: 1px solid;
+	border-top-color:#A6A6A6;
+	border-left-color:#A6A6A6;
+	border-right-color:#A6A6A6;
+	border-bottom-color:#A6A6A6;
+	background-color: #FFFFFF; 
+	
+	opacity: 0.9;
+}
+
+#div_directoryproperties td
+{
+	font: 11px "Lucida Sans Unicode", "Lucida Sans", verdana, arial, helvetica;
+	color: #555;
+}
+
+
+/* CONTEXT MENU */
+#contextmenu
+{
+	position: absolute;
+	visibility: hidden;
+	left:-1000px;
+	top:-1000px;
+	width: 150px;
+}
+
+tr.context_option:hover
+{
+	background-color: #E7EDF6;
+}
+
+a.context_option, a.context_option:visited, a.context_option:active
+{ 
+	display: block;
+
+	font-family: "Lucida Sans Unicode", "Lucida Sans", verdana, arial, helvetica;
+ 
+	color: #555; 
+	font-size: 11px; 
+	font-weight: normal; 
+	text-decoration: none;
+	
+	padding-top : 5px;
+	padding-bottom : 5px;
+}
+
+.menu
+{
+	background-color: #eeeeee;
+	opacity: 0.95;
+	/*background-image: url(../gif/menubackground.gif);*/
+}
+
+.menuborder
+{
+  	background-color: #CCCCCC;
+}

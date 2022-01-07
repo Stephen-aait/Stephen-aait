@@ -1,0 +1,87 @@
+<?php
+/**
+ * Copy Custom Options.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Team
+ * that is bundled with this package of Medma Infomatix Pvt. Ltd.
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * Medma Support does not guarantee correct work of this package
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * =================================================================
+**/
+?>
+<script type="text/javascript">
+//<![CDATA[
+function setCategoryAction(val)
+{
+	document.getElementById("custom_options_category").action = val;
+}
+//]]>
+</script>
+<?php
+$Options	=	$this->_getOptions();
+$withOutCoptions 	=	$this->_getCollectionWithoutOptions();
+$i=0;
+?>
+<div class="main-col-copy-options">
+<input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+
+
+    <div class="entry-edit">
+                <div class="entry-edit-head">
+                     <strong><?php echo $this->__('Select category');?></strong>
+                </div>
+        <div class="fieldset copy-options">
+        <table class="form-list" cellspacing="0" style="width:80%">
+        <tbody>
+        <?php if(count($withOutCoptions->getData())<=0):?>
+      	<tr>
+					<td colspan = "3" class="value"><?php echo $this->__('All Products have already custom options.')?></td>
+							
+					</tr>
+				<?php else :?>
+				<tr>
+				<td colspan = "5">
+<?php
+$_categories	=	$this->getRootCategories(1);
+?>
+<?php //$_categories = Mage::getModel('catalog/category') ->load(2); ?>
+<?php if (count($_categories) > 0): ?>
+<ul id="tree<?php echo $i?>" class="ui-widget-daredevel-checkboxTree ui-widget ui-widget-content">
+<?php foreach($_categories as $_category): ?>
+        <li><input type="checkbox" name="categories[]" value="<?php echo $_category->getId() ?>" <?php echo $this->getSelectedCategory($_category->getId()); ?>/><?php echo $_category->getName() ?>
+			<?php $_category = Mage::getModel('catalog/category')->load($_category->getId()) ?>
+			<?php $_subcategories = $_category->getChildrenCategories() ?>
+			<?php if (count($_subcategories) > 0): ?>
+		          <?php echo $this->getCategoriesRecursively($_subcategories) ?>
+			<?php endif; ?>
+<?php endforeach; ?>
+</ul>
+<?php endif; ?>
+<script class="jquery" lang="text/javascript">
+	jQuery.noConflict();
+	
+	jQuery(document).ready(function(){
+	        jQuery('#tree'+<?php echo $i ?>).checkboxTree();
+	});
+
+  jQuery('#tree'+<?php echo $i ?>).checkboxTree({ onCheck: { ancestors: 'uncheck', descendants: 'check' }, onUncheck: {descendants: 'uncheck' } });
+</script>
+<?php $i++; 
+?>
+
+				<?php endif; ?>
+		</td>
+		</tr>		
+		</tbody>
+		</table> 
+        </div>
+  
+</div>	
+<!-- </form> -->
+</div>

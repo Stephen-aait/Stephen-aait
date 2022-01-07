@@ -1,0 +1,79 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product media data template
+ *
+ * @see Mage_Catalog_Block_Product_View_Media
+ */
+
+/* @var $this Mage_Catalog_Block_Product_View_Media */
+?>
+<?php
+    $_product = $this->getProduct();
+    $_helper = $this->helper('catalog/output');
+    
+    $params = Mage::helper('designersoftware/product')->getParams($_REQUEST);
+    if($params['did']>0):
+		$collection = Mage::getModel('designersoftware/designersoftware')->getCollection()->addFieldToFilter('designersoftware_id',$params['did'])->getFirstItem();
+		$baseImageUrl = Mage::getBaseUrl('media').'inky/designs/'.$collection->getStyleDesignCode().'/original/';
+		$imageUrl = Mage::getBaseUrl('media').'inky/designs/'.$collection->getStyleDesignCode().'/original/000.png';
+	else:
+		$imageUrl = $this->helper('catalog/image')->init($_product, 'image');
+    endif;
+    
+    $anglesCollection = Mage::getModel('designersoftware/angles')->getAnglesCollection();
+    
+?>
+<div class="product-image product-image-zoom">
+    <div class="product-image-gallery">
+        <img id="image-main"
+             class="gallery-image visible"
+             src="<?php //echo $this->helper('catalog/image')->init($_product, 'image') 
+						echo $imageUrl;?>"
+             alt="<?php echo $this->escapeHtml($this->getImageLabel()) ?>"
+             title="<?php echo $this->escapeHtml($this->getImageLabel()); ?>" />
+
+        <?php $i=0;	foreach ($anglesCollection as $angles):?>            
+            <img id="image-<?php echo $i; ?>" class="gallery-image" src="<?php echo $baseImageUrl.$angles->getTitle().'.png'; ?>" data-zoom-image="<?php echo $baseImageUrl.$angles->getTitle().'.png'; ?>" />            
+        <?php $i++; endforeach; ?>
+    </div>
+</div>
+<div class="more-views">
+    <h2><?php echo $this->__('More Views') ?></h2>
+    <ul class="product-image-thumbs">
+    <?php $i=0;	foreach ($anglesCollection as $angles):?>        
+        <li>
+            <a class="thumb-link" href="#" title="" data-image-index="<?php echo $i; ?>">
+                <img src="<?php echo $baseImageUrl.$angles->getTitle().'.png'; ?>" width="75" height="140" alt="alernate" />
+            </a>
+        </li>        
+    <?php $i++; endforeach; ?>
+    </ul>
+</div>
+
+
+<?php echo $this->getChildHtml('after'); ?>

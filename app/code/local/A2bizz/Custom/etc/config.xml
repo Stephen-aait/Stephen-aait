@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <A2bizz_Custom>
+            <version>0.1.0</version>
+        </A2bizz_Custom>
+    </modules>
+    <adminhtml>
+		<layout>
+			<updates>
+                <custom_layout module="custom">
+                    <file>a2bizz/a2bizz_custom.xml</file>
+                </custom_layout>
+            </updates>
+		</layout>
+    </adminhtml>   
+</config>

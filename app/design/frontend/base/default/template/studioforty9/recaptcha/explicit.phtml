@@ -1,0 +1,39 @@
+<?php
+/**
+ * Studioforty9_Recaptcha
+ *
+ * @category  Studioforty9
+ * @package   Studioforty9_Recaptcha
+ * @author    StudioForty9 <info@studioforty9.com>
+ * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
+ * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
+ * @version   1.5.0
+ * @link      https://github.com/studioforty9/recaptcha
+ * @see       Studioforty9_Recaptcha_Block_Explicit
+ */
+$id = $this->getRecaptchaId();
+?>
+<?php if ($this->isAllowed($this->getAction()->getFullActionName())): ?>
+
+<div class="recaptcha" style="overflow:hidden;position:relative;margin-bottom:10px;">
+    <input type="checkbox" id="cb-<?php echo $id ?>" name="cb-<?php echo $id ?>" value="" class="hide required-entry" style="visibility:hidden; position:absolute; left:-1000000px" />
+    <div id="el-<?php echo $id ?>"></div>
+    <script type="text/javascript">
+        var onloadCallback = function() {
+            grecaptcha.render('el-<?php echo $id ?>', {
+                'sitekey': "<?php echo $this->getSiteKey(); ?>",
+                'theme': "<?php echo $this->getTheme(); ?>",
+                'type': "<?php echo $this->getType(); ?>",
+                'size': "<?php echo $this->getSize(); ?>",
+                'callback': function(response) {
+                    if (response.length > 0) {
+                        $('cb-<?php echo $id ?>').writeAttribute('value', 'checked');
+                        $('cb-<?php echo $id ?>').checked = true;
+                    }
+                }
+            });
+        };
+    </script>
+    <?php echo $this->getRecaptchaScript(); ?>
+</div>
+<?php endif; ?>

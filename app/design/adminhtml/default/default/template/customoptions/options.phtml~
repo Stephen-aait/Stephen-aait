@@ -1,0 +1,2 @@
+<?php		echo $this->getLayout()->createBlock('adminhtml/catalog_product_edit_tab_options')->setTemplate('catalog/product/edit/options.phtml')->toHtml();
+?>

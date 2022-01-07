@@ -1,0 +1,89 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_Orderattach
+ */
+?>
+<?php
+$order                   = Mage::registry('current_order');
+$itemId                  = $this->getItemId();
+$attachmentFields        = $this->getAttachmentFields();
+$attachmentProductFields = $this->getAttProductFields();
+
+$attachSaveUrl   = $this->getUrl('attaches/order/save');
+$attachReloadUrl = $this->getUrl('attaches/order/reload');
+$attachDeleteUrl = $this->getUrl('attaches/order/delete');
+$attachDeleteAllUrl = $this->getUrl('attaches/order/deleteall');
+
+if (isset($_SERVER['HTTPS']) && 'off' != $_SERVER['HTTPS']) {
+    $attachSaveUrl   = str_replace('http:', 'https:', $attachSaveUrl);
+    $attachReloadUrl = str_replace('http:', 'https:', $attachReloadUrl);
+    $attachDeleteUrl = str_replace('http:', 'https:', $attachDeleteUrl);
+    $attachDeleteAllUrl = str_replace('http:', 'https:', $attachDeleteAllUrl);
+}
+
+?>
+
+<?php if (!$attachmentProductFields) { ?>
+<script type="text/javascript">
+    attachSaveUrl = '<?php echo $attachSaveUrl; ?>';
+    attachReloadUrl = '<?php echo $attachReloadUrl; ?>';
+    attachDeleteUrl = '<?php echo $attachDeleteUrl; ?>';
+    attachDeleteAllUrl = '<?php echo $attachDeleteAllUrl; ?>';
+</script>
+
+<div class="col2-set order-info-box" style="position: relative;">
+    <div id="amattach-pleasewait" style="position: absolute; left: 150px; display: none;"><h2><?php echo $this->__('Please wait...'); ?></h2></div>
+    <div class="box" id="amattach-block">
+        <div class="box-title">
+            <h2><?php echo $this->__('Order Attachments'); ?></h2>
+        </div>
+        <div class="box-content">
+            <fieldset id="order_attachments">
+                <?php } ?>
+                <?php if ($attachmentFields->getSize() > 0) { ?>
+                    <table cellspacing="0" style="width: 100%;">
+                        <tbody>
+                        <?php $order = Mage::registry('current_order'); ?>
+                        <input type="hidden" name="order_id" value="<?php echo $order->getId(); ?>">
+                        <?php      foreach ($attachmentFields as $field) {
+                            $itemValue = $attachmentProductFields ? $attachmentProductFields->getData($field->getCode()) : $field->getRenderer()->getValue();
+                            $itemCode  = $attachmentProductFields ? $field->getItemCode($itemId) : $field->getCode();
+                            $itemDisplay = $attachmentProductFields ? $field->getApplyToEachProduct() : true;
+                            if (Mage::helper('amorderattach')->isInSetStatus($order->getStatus(), $field->getStatusFrontend()) && $itemDisplay) {?>
+                                <tr>
+                                    <td style="width: 30%;">
+
+                                        <label style="white-space: nowrap;"><?php echo $this->__($field->getLabel()); ?>
+                                            <span style="padding-left: 4px; position: relative; top: 2px;" id="edit_<?php echo $itemCode ?>">
+                                                <?php if ('edit' == $field->getCustomerVisibility()) { ?>
+                                                    <a href="#" onclick="attachEdit('<?php echo $itemCode ?>'); return false;">
+                                                        <img src="<?php echo $this->getSkinUrl('images/amorderattach/edit.png') ?>" border="0"
+                                                             alt="Edit"
+                                                             title="Edit"/>
+                                                    </a>
+                                                <?php } ?>
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td id="field_<?php echo $itemCode ?>">
+                                        <?php echo $field->setType($field->getType())
+                                                         ->getRenderer()
+                                                         ->setItemCode($itemCode)
+                                                         ->setItemValue($itemValue)
+                                                         ->render(); ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="6" colspan="2"></td>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                <?php } ?>
+            </fieldset>
+        </div>
+    </div>
+</div>

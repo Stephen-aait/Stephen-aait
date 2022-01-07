@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mas_Masonotes extension by Makarovsoft.com
+ * 
+ * @category   	Mas
+ * @package		Mas_Masonotes
+ * @copyright  	Copyright (c) 2014
+ * @license		http://makarovsoft.com/license.txt
+ * @author		makarovsoft.com
+ */
+-->
+<config>
+ 	<sections>
+		<masonotes translate="label" module="masonotes">
+			<class>separator-top</class>
+			<label>Notes On Orders</label>
+			<tab>mas</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>100</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>		
+				<general translate="label" module="masonotes">
+					<label>General</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>20</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>						
+						<editor translate="label" module="masonotes">
+							<label>Enable WYSIWYG Editor?</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                            <comment><![CDATA[If enabled you may edit notes on not edit page in WYSIWYG Editor]]></comment>
+						</editor>
+					</fields>
+				</general>
+				<customer translate="label" module="masonotes">
+					<label>Customer Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>30</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>						
+						<enabled translate="label" module="masonotes">
+							<label>Show allowed notes to customer?</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                            <comment><![CDATA[If allowed, link to customer notes will be displayed in menu at customer dashboard page]]></comment>
+						</enabled>
+						<text_above translate="label" module="masonotes">
+							<label>Text above notes on specific order</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                            <comment><![CDATA[Text to be shown to customer above all notes. HTML tags are allowed]]></comment>
+						</text_above>
+						<text_above_all translate="label" module="masonotes">
+							<label>Text above list of all notes</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                            <comment><![CDATA[Text to be shown to customer above notes at order view page. HTML tags are allowed]]></comment>
+						</text_above_all>
+						<let_reply translate="label" module="masonotes">
+							<label>Customer may add notes to orders?</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                            <comment><![CDATA[If allowed, customer may leave note to order which will be visible in list of notes at order view page in admin panel]]></comment>
+						</let_reply>
+					</fields>
+				</customer>										
+				<notifications translate="label" module="masonotes">
+					<label>Notifications</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>40</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>						
+						<enabled translate="label" module="masonotes">
+							<label>Send notifications about order notes to customer?</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>                            
+						</enabled>
+						<receive_notes translate="label" module="masonotes">
+							<label>Email addresses to receive notes on orders from customers</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                            <comment><![CDATA[Comma separated list of email addresses, leave empty to do not receive email notifications from customers]]></comment>
+						</receive_notes>						
+						<sender_name translate="label" module="masonotes">
+							<label>Sender name</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>55</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>                            
+						</sender_name>						
+						<sender_email translate="label" module="masonotes">
+							<label>Sender Email</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>                            
+						</sender_email>					
+					</fields>
+				</notifications>										
+			</groups>
+		</masonotes>
+	</sections>
+</config> 

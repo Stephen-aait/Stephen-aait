@@ -1,0 +1,114 @@
+{
+	"colors":
+	[
+		{
+		"title":"Black",
+		"colorCode":"000000"
+		
+		
+		},
+		{
+		"title":"White",
+		"colorCode":"FFFFFF"
+		
+		
+		},	
+		{
+		"title":"red",
+		"colorCode":"FF0000"
+		
+		
+		},	
+		{
+		"title":"Green",
+		"colorCode":"00FF00"
+
+		},
+		
+		{
+		"title":"Blue",
+		"colorCode":"0000FF"
+		
+		
+		},
+		{
+		"title":"Acid Green",
+		"colorCode":"B0BF1A"
+		
+		
+		},	
+		{
+		"title":"Bottle Green",
+		"colorCode":"006A4E"
+		
+		},
+		
+		{
+		"title":"Brass",
+		"colorCode":"B5A642"
+		
+		},
+		{
+		"title":"Blue",
+		"colorCode":"0000FF"
+		
+		
+		},
+		{
+		"title":"Acid Green",
+		"colorCode":"B0BF1A"
+		
+		
+		},	
+		{
+		"title":"Bottle Green",
+		"colorCode":"006A4E"
+		
+		},
+		
+		{
+		"title":"Brass",
+		"colorCode":"B5A642"
+		
+		},
+		{
+		"title":"Blue",
+		"colorCode":"0000FF"
+		
+		
+		},
+		{
+		"title":"Acid Green",
+		"colorCode":"B0BF1A"
+		
+		
+		},	
+		{
+		"title":"Bottle Green",
+		"colorCode":"006A4E"
+		
+		},
+		
+		{
+		"title":"Brass",
+		"colorCode":"B5A642"
+		
+		},
+		{
+		"title":"Brass",
+		"colorCode":"B5A642"
+		
+		},
+		{
+		"title":"Brass",
+		"colorCode":"B5A642"
+		
+		},
+		{
+		"title":"Brass",
+		"colorCode":"B5A642"
+		
+		}
+		
+	]
+}

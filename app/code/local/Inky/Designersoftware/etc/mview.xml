@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config>
+<view id="designersoftware_view" class="Sparx\Designersoftware\Model\Indexer\Flat" group="indexer">
+    <subscriptions>
+        <table name="sparx_designersoftware" entity_column="designersoftware_id" />
+    </subscriptions>
+</view>

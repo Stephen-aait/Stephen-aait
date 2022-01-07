@@ -1,0 +1,63 @@
+<?php
+$qty_ordered = 0;
+$qty_backorder = 0;
+$qty_shipable = 0;
+$qty_paid = 0;
+$qty_rows = 0;
+?>
+<table width="100%" cellspacing="0" cellpadding="0" class="prodordered" id="ordered_items">
+    <col width="130"/>
+    <col/>
+    <col width="15"/>
+    <col width="15"/>
+    <col width="15"/>
+    <col width="15"/>
+    <thead>
+    <tr class="prodbold">
+        <th><span class="nobr"><?php echo $this->__('SKU'); ?></span></th>
+        <th><span class="nobr"><?php echo $this->__('Description'); ?></span></th>
+        <th><span class="nobr"><?php echo $this->__('Qty'); ?></span></th>
+        <th><span class="nobr"><?php echo $this->__('Paid'); ?></span></th>
+        <th><span class="nobr"><?php echo $this->__('Back'); ?></span></th>
+        <th><span class="nobr"><?php echo $this->__('Ship'); ?></span></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($this->getItems() as $item): ?>
+        <?php
+        $qty_ordered += $item['qty_ordered'];
+        $qty_backorder += $item['qty_backordered'];
+        $qty_shipable += $item['qty_toship'];
+        $qty_paid += $item['qty_invoiced'];
+        $qty_rows += 1;
+        ?>
+        <tr class="prodlst <?php echo $item['class']; ?>">
+            <td>
+                <a href='<?php echo Mage::helper('adminhtml')->getUrl(
+                    'adminhtml/catalog_product/edit',
+                    array('id' => $item['product_id'])
+                ); ?>'><?php echo $item['sku']; ?></a>
+            </td>
+            <td><?php echo $item['name']; ?></td>
+            <td align="right"><?php echo $item['qty_ordered']; ?></td>
+            <td align="right"><?php echo $item['qty_invoiced']; ?></td>
+            <td align="right"><?php echo $item['qty_backordered']; ?></td>
+            <td align="right"><?php echo $item['qty_toship']; ?></td>
+        </tr>
+    <?php endforeach; ?>
+    <?php if ($qty_rows % 2): ?>
+        <tr class="hiddenrow">
+            <td colspan="6">&nbsp;</td>
+        </tr>
+    <?php endif; ?>
+    </tbody>
+    <tfoot>
+    <tr class="prodlst">
+        <td colspan="2"><?php echo $this->__('Total row(s): %s', $qty_rows); ?></td>
+        <td align="right"><?php echo $qty_ordered; ?></td>
+        <td align="right"><?php echo $qty_paid; ?></td>
+        <td align="right"><?php echo $qty_backorder; ?></td>
+        <td align="right"><?php echo $qty_shipable; ?></td>
+    </tr>
+    </tfoot>
+</table>

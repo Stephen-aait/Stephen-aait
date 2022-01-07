@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Iksanika_Productupdater>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Iksanika_Productupdater>
+    </modules>
+</config>

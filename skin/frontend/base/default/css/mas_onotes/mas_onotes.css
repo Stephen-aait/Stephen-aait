@@ -1,0 +1,14 @@
+.box-notes {
+    
+    padding: 5px;
+    box-shadow: 0px 0px 8px 0px rgba(159, 154, 154, 0.75);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(159, 154, 154, 0.75);
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(159, 154, 154, 0.75);    
+    border: 2px solid #fff;
+}
+.box-notes .mas_note {
+    clear: both;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0px 5px 25px;
+    background: url('../../images/mas_notes/pencil.png') 5px 5px no-repeat;
+}

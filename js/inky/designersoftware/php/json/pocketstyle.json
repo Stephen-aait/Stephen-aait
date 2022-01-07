@@ -1,0 +1,29 @@
+{
+"pockets":
+[
+    {
+        "partsStyleId": "4",
+        "partsStyleName": "Pocket3\"",
+        "partsStyleCode": "PK3",
+        "partIdenti": "Pocket",
+        "size": "3",
+		"thumb": "media/staticclipart/pocket.png"
+    },
+    {
+        "partsStyleId": "5",
+        "partsStyleName": "Pocket 6\"",
+        "partsStyleCode": "PK6",
+        "partIdenti": "Pocket",
+        "size": "6",
+		"thumb": "media/staticclipart/pocket.png"
+    },
+    {
+        "partsStyleId": "6",
+        "partsStyleName": "Pocket 10\"",
+        "partsStyleCode": "PK10",
+        "partIdenti": "Pocket",
+        "size": "10",
+		"thumb": "media/staticclipart/pocket.png"
+    }
+]
+}

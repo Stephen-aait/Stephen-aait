@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Genmato_Core>
+            <version>15.53.1</version>
+        </Genmato_Core>
+    </modules>
+    <global>
+        <blocks>
+            <genmato_core>
+                <class>Genmato_Core_Block</class>
+            </genmato_core>
+        </blocks>
+
+        <helpers>
+            <genmato_core>
+                <class>Genmato_Core_Helper</class>
+            </genmato_core>
+        </helpers>
+
+        <models>
+            <genmato_core>
+                <class>Genmato_Core_Model</class>
+            </genmato_core>
+        </models>
+
+        <resources>
+            <genmato_core_setup>
+                <setup>
+                    <module>Genmato_Core</module>
+                    <class>Genmato_Core_Model_Resource_Setup</class>
+                </setup>
+            </genmato_core_setup>
+        </resources>
+    </global>
+
+    <adminhtml>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <genmato_core_predispatch>
+                        <class>genmato_core/observer</class>
+                        <method>preDispatch</method>
+                    </genmato_core_predispatch>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+        <translate>
+            <modules>
+                <genmato_core>
+                    <files>
+                        <default>Genmato_Core.csv</default>
+                    </files>
+                </genmato_core>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <genmato_core>
+                    <file>genmato/core.xml</file>
+                </genmato_core>
+            </updates>
+        </layout>
+    </adminhtml>
+    <default>
+        <genmato_core>
+            <extension>
+                <url>https://genmato.com/extensions.xml</url>
+                <data>https://genmato.com/extension/data/</data>
+            </extension>
+        </genmato_core>
+    </default>
+</config>

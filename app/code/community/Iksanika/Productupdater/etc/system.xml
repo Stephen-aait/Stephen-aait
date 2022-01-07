@@ -1,0 +1,394 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <iksanika translate="label">
+            <label>Iksanika</label>
+            <sort_order>9</sort_order>
+        </iksanika>
+    </tabs>
+    <sections>
+        <productupdater translate="label" module="productupdater">
+            <label>Product Manager (Advanced)</label>
+            <tab>iksanika</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>0</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>0</show_in_store>
+            
+            <groups>
+                <general translate="label">
+                    <fields>
+                        <currentProfile translate="label">
+                            <label>Current Profile</label>
+                            <frontend_type>hidden</frontend_type>
+                            <source_model>text</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                        </currentProfile>
+                        <profiles translate="label">
+                            <label>Current Profile</label>
+                            <frontend_type>hidden</frontend_type>
+                            <source_model>text</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                        </profiles>
+                    </fields>
+                </general>
+                <columns translate="label">
+                    <label>Grid Settings</label>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <fields>
+                        <!--isenabled translate="label">
+                            <label>Enable Enhanced Grid</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </isenabled-->
+                        <showcolumns translate="label">
+                            <label>Show Columns</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>Iksanika_Productupdater_Model_System_Config_Source_Columns_Show</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </showcolumns>
+                        <!--
+                        <truncatelongtextafter translate="label">
+                            <label>Truncate Long Texts After X Characters </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </truncatelongtextafter>
+                        -->
+                        <!--showimages translate="label">
+                            <label>Show Product Images</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </showimages-->
+                        <!--
+                        <limit translate="label">
+                            <label>Page Size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </limit>
+                        <page translate="label">
+                            <label>Initial Page Number</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </page>
+                        <sort translate="label">
+                            <label>Sort Column</label>
+                            <comment>The selected column must be also selected above if it's not already there</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Iksanika_Productupdater_Model_system_config_source_columns_show</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </sort>
+                        <dir translate="label">
+                            <label>Sort Column Direction</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Iksanika_Productupdater_Model_system_config_source_sort_direction</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </dir>
+                        -->
+                        
+                        
+                        
+                        
+                        <sort translate="label">
+                            <label>Sort Column</label>
+                            <comment>The selected column must be also selected above if it's not already there</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Iksanika_Productupdater_Model_System_Config_Source_Columns_Show</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </sort>
+                        <dir translate="label">
+                            <label>Sort Column Direction</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Iksanika_Productupdater_Model_System_Config_Source_Sort_Direction</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </dir>
+                        <limit translate="label">
+                            <label>Page Size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </limit>
+                        <page translate="label">
+                            <label>Initial Page Number</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </page>
+                        <associatedShow translate="label">
+                            <label>Show Associated Products</label>
+                            <comment>If Yes/No - associated products for Configurable/Groupped products will be shown/hidden right under Configurable/Groupped product row</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </associatedShow>
+                        <redirectAdvancedProductManager translate="label">
+                            <label>Redirect to Products Manager (Advanced)</label>
+                            <comment>Yes - redirect to 'Manage Products (Advanced)', No - to standard 'Manage Products' - from individual Product Edit page</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </redirectAdvancedProductManager>
+                        
+                        
+                    </fields>
+                </columns>
+                <images translate="label">
+                    <label>Image Settings in Products Grid</label>
+                    <sort_order>200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <fields>
+                        <!--
+                        <showbydefault translate="label">
+                            <label>Show Image By Default</label>
+                            <comment>If your grid has a large page size by default this could get slow.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </showbydefault>
+                        -->
+                        <width translate="label">
+                            <label>Image Width</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </width>
+                        <height translate="label">
+                            <label>Image Height</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </height>
+                        <scale translate="label">
+                            <label>Image Scale</label>
+                            <comment>(If Yes - images will be resized into Width+Height space, if No - proportionaly to defined value of Width or Height)</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </scale>
+                        <showurl translate="label">
+                            <label>Show Image Url</label>
+                            <comment>(When product image is hidden for that row)</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </showurl>
+                    </fields>
+                </images>
+                <stockmanage translate="label">
+                    <label>Stock Management Settings</label>
+                    <sort_order>300</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <autoStockStatus translate="label">
+                            <label>Stock quantity based status availability</label>
+                            <comment>If you select 'Yes' - extension will automatically update is_in_stock (Stock Status) based on Qty value (if more than 0 - will set Stock Status into available, if 0 - then will set Stock Status into 'No available'). If 'No' - you will need edit Stock Status availability individually for each product.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </autoStockStatus>
+                    </fields>
+                </stockmanage>
+                <productrelator translate="label">
+                    <label>Product Relator Settings</label>
+                    <sort_order>500</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enablerelated translate="label">
+                            <label>Enable Related</label>
+                            <comment>This shows/hides "relate-to" mass actions.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </enablerelated>
+                        <enablecrosssell translate="label">
+                            <label>Enable Cross-sell</label>
+                            <comment>This shows/hides "cross-sell" mass actions.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </enablecrosssell>
+                        <enableupsell translate="label">
+                            <label>Enable Up-sell</label>
+                            <comment>This shows/hides "up-sell" mass actions.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </enableupsell>
+                    </fields>
+                </productrelator>
+                <massactions translate="label">
+                    <label>Mass Actions Settings</label>
+                    <sort_order>500</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enableaddcategory translate="label">
+                            <label>Enable Add Category Action</label>
+                            <comment>This shows/hides "Add Category" mass action.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </enableaddcategory>
+                        <enableremovecategory translate="label">
+                            <label>Enable Remove Category Action</label>
+                            <comment>This shows/hides "Remove Category" mass action.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </enableremovecategory>
+                        <categorynames translate="label">
+                            <label>Category Names/IDs</label>
+                            <comment>This shows/hides "relate-to" mass actions.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Iksanika_Productupdater_Model_System_Config_Source_CategoryId</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </categorynames>
+                    </fields>
+                </massactions>
+                <!--
+                <defaults translate="label">
+                    <label>Default Settings for Grid</label>
+                    <sort_order>300</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <fields>
+                        <limit translate="label">
+                            <label>Page Size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </limit>
+                        <page translate="label">
+                            <label>Initial Page Number</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </page>
+                        <sort translate="label">
+                            <label>Sort Column</label>
+                            <comment>The selected column must be also selected above if it's not already there</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Iksanika_Productupdater_Model_System_Config_Source_Columns_Show</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </sort>
+                        <dir translate="label">
+                            <label>Sort Column Direction</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Iksanika_Productupdater_Model_System_Config_Source_Sort_Direction</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </dir>
+                    </fields>
+                </defaults>
+                -->
+                
+                
+                
+                <!--export translate="label">
+                    <label>Products Grid Export</label>
+                    <sort_order>200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <fields>
+                        <isenabled translate="label">
+                            <label>Enable Quick Export</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </isenabled>
+                    </fields>
+                </export-->
+                <!--search translate="label">
+                    <label>Products Grid Search</label>
+                    <sort_order>300</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <fields>
+                        <isenabled translate="label">
+                            <label>Enable Fulltext Search</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </isenabled>
+                    </fields>
+                </search-->
+            </groups>
+            
+            
+            
+            
+            
+        </productupdater>
+    </sections>
+</config>

@@ -1,0 +1,148 @@
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Table Layout Diagram | BilliardsTheGame.com</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="jquery.min.js"></script>
+    <script src="kinetic-v4.3.3.min.js"></script>
+    <script src="btg-table-1.1.js"></script>
+    <script>
+      var btg;
+      var sources = {
+        'grain': 'grain.jpg'
+      };
+      window.onload = function() {
+        btg = new BTGTable();
+        loadImages(sources, function(images) {
+            btg.images = images;
+            setupTable();
+        });
+      };
+      function loadImages(sources, callback) {
+        var images = {};
+        var loadedImages = 0;
+        var numImages = 0;
+        // get num of sources
+        for(var src in sources) {
+          numImages++;
+        }
+        for(var src in sources) {
+          images[src] = new Image();
+          images[src].onload = function() {
+            if(++loadedImages >= numImages) {
+              callback(images);
+            }
+          };
+          images[src].src = sources[src];
+        }
+      }
+      function setupTable() {
+        btg.setupTable("container",940,540);
+        // bindings
+        document.getElementById("save").addEventListener("click", function() {
+                  //var img = btg.stage.toDataURL('image/jpeg', 0.9).split(',')[1];
+                  btg.stage.toDataURL({
+                      callback: function(dataUrl){
+                        // open the popup in the click handler so it will not be blocked
+                        $('#save').attr('disabled','disabled');
+                        $('.save_text').val('Uploading image to imgur.com ...');
+                        $('.save_text_help').html('<img src="ajax-loader.gif">');
+                        // upload to imgur using jquery/CORS
+                        // https://developer.mozilla.org/En/HTTP_access_control
+                        $.ajax({
+                            url: 'http://api.imgur.com/2/upload.json',
+                            type: 'POST',
+                            data: {
+                                type: 'base64',
+                                // get your key here, quick and fast http://imgur.com/register/api_anon
+                                key: '0e7dae3fea0534af58b4d4faa4060de8',
+                                name: 'BTGPoolTableDiagram.jpg',
+                                title: 'BTG Pool Table Diagram',
+                                caption: 'BTG Pool Table Diagram',
+                                image: dataUrl.split(',')[1]
+                            },
+                            dataType: 'json'
+                        }).success(function(data) {
+                            //w.location.href = data['upload']['links']['imgur_page'];
+                            var positions = btg.getBallPositions();
+                            var stringPositions = '';
+                            for (var i = 0; i < positions.length; i++) {
+                                stringPositions = stringPositions + positions[i].x + '|' + positions[i].y + ',';
+                          	}             
+                          	stringPositions = stringPositions.substring(0, stringPositions.length - 1); // chop off last comma                    
+                          	$('.save_text').val('[URL=http://www.billiardsthegame.com/btgtable/?pos='+stringPositions+'][IMG]'+data['upload']['links']['imgur_page']+'.png[/IMG][/URL]').select();
+                            $('.save_text_help').html('Press Ctrl-C to copy to clipboard, then Ctrl-V to paste into forum post.');
+                            $('#save').removeAttr('disabled');
+                        }).error(function(err) {
+                            $('.save_text').val('error uploading image, try again later.');
+                            $('#save').removeAttr('disabled');
+                        });
+                      },
+                      mimeType: 'image/png'
+                    });
+        }, false);
+
+        $('.save_text').click(function(input) { $('.save_text').focus().select(); });
+
+        document.getElementById("reset-clear").addEventListener("click", function() {
+          btg.resetBallPositions(btg.resetPositions["clear"]);
+        }, false);
+
+        document.getElementById("reset-8ball").addEventListener("click", function() {
+          btg.resetBallPositions(btg.resetPositions["8-ball"]);
+        }, false);
+
+        document.getElementById("reset-9ball").addEventListener("click", function() {
+          btg.resetBallPositions(btg.resetPositions["9-ball"]);
+        }, false);
+
+        document.getElementById("reset-10ball").addEventListener("click", function() {
+          btg.resetBallPositions(btg.resetPositions["10-ball"]);
+        }, false);
+        
+        document.getElementById("toggle-grid").addEventListener("click", function() {
+      		if(btg.gridHidden) {
+      		  btg.gridGroup.show();
+      		  btg.gridHidden = false;
+      		} else {
+      		  btg.gridGroup.hide();
+      		  btg.gridHidden = true;
+      		}
+      		btg.stage.draw();
+        	}, false);
+        	
+        	        	
+      }
+    </script>
+  </head>
+  <body>
+    <div id="container"></div>
+    <div id="buttons">
+      <button id="reset-clear">
+        Clear
+      </button>
+      <button id="reset-8ball">
+        Reset 8 ball
+      </button>
+      <button id="reset-9ball">
+        Reset 9 ball
+      </button>
+      <button id="reset-10ball">
+        Reset 10 ball
+      </button>
+      <button id="toggle-grid">
+        Toggle Grid
+      </button>
+    </div>
+    <div id="uploads">
+      <button id="save">
+        Generate Image
+      </button>
+      <input type="text" size="50" value="" class="save_text" readonly>
+      <span class="save_text_help"></span>
+    </div>
+  </body>
+</html>
+
+

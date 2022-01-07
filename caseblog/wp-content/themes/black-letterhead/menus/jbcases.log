@@ -1,0 +1,20 @@
+Transfer Log for 'jbcases'
+Monday, September 10, 2012 9:49:45 PM
+***********************************
+
+MKDIR /www
+Error (12003): 550 Can't create directory: File exists
+
+Uploading iejbcases.js to /www/iejbcases.js
+Uploading nsjbcases.js to /www/nsjbcases.js
+MKDIR /www
+Error (12003): 550 Can't create directory: File exists
+
+MKDIR /www/images
+Error (12003): 550 Can't create directory: File exists
+
+Uploading Sheridan Tooling - Clint Fay.jpg to /www/images/Sheridan Tooling - Clint Fay.jpg
+Uploading sl_hl.gif to /www/images/sl_hl.gif
+Uploading sl_hl_anim.gif to /www/images/sl_hl_anim.gif
+Uploading font_back.jpg to /www/images/font_back.jpg
+

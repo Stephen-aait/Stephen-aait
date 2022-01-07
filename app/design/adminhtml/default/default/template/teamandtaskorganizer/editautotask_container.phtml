@@ -1,0 +1,66 @@
+<?php
+/* * ********************************************************************
+ * Customization Services by ModulesGarden.com
+ * Copyright (c) ModulesGarden, INBS Group Brand, All Rights Reserved 
+ * (2014-05-09, 09:17:31)
+ * 
+ *
+ *  CREATED BY MODULESGARDEN       ->        http://modulesgarden.com
+ *  CONTACT                        ->       contact@modulesgarden.com
+ *
+ *
+ *
+ *
+ * This software is furnished under a license and may be used and copied
+ * only  in  accordance  with  the  terms  of such  license and with the
+ * inclusion of the above copyright notice.  This software  or any other
+ * copies thereof may not be provided or otherwise made available to any
+ * other person.  No title to and  ownership of the  software is  hereby
+ * transferred.
+ *
+ *
+ * ******************************************************************** */
+
+/**
+ * @author Grzegorz Draganik <grzegorz@modulesgarden.com>
+ */
+$id = Mage::app()->getRequest()->getParam('id');
+
+?>
+
+<div class="main-col-inner">
+    <div class="modulesgarden_form_container">
+        <div class="content-header">
+            <h3 class="icon-head head-adminhtml-managesuperadmin-autotasks-tabs-conditions"><?php echo $this->__('Auto Task Details'); ?></h3>
+            
+            <p class="form-buttons">
+                <button type="button" class="scalable back" onclick="setLocation('<?php echo Mage::helper("adminhtml")->getUrl('*/*/index', array('tab' => 'teamandtaskorganizer_managesuperadmin_tabs_auto_tasks')); ?>')">
+                    <span><span><span><?php echo $this->__('Back'); ?></span></span></span>
+                </button>
+                
+                <?php if ($id): ?>
+                    <button type="button" class="scalable delete" onclick="deleteConfirm('Are you sure you want to do this?', '<?php echo Mage::helper('adminhtml')->getUrl('*/*/deleteautotask', array('id' => $id)); ?>')">
+                        <span><span><span>Delete</span></span></span>
+                    </button>
+                <?php endif ?>
+                
+                <button type="button" class="scalable save" onclick="editForm.submit();">
+                    <span><span><span><?php echo $this->__('Save'); ?></span></span></span>
+                </button>
+            </p>
+        </div>
+        
+        <form method="POST" action="<?php echo Mage::helper("adminhtml")->getUrl('*/*/saveautotask'); ?>" id="edit_form">
+            <input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" />
+        </form>
+    </div>
+    
+    <script type="text/javascript">
+        var editForm = new varienForm('edit_form', '');
+    
+        jQuery(document).ready(function () {
+            var $ch = jQuery('.rule-chooser');
+            $ch.attr('url', $ch.attr('url') + 'form/rule_conditions_fieldset');
+        });
+    </script>
+</div>

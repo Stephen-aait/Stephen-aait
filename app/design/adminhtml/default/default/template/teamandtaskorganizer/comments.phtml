@@ -1,0 +1,32 @@
+<div class="comments-preview">
+    <?php if( $this->canPostComment() ): ?>
+        <form id="comments-add-form" method="post" action="<?php echo $this->getAddCommentUrl() ?>">
+            <input type="hidden" name="form_key" id="quick_comment_form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" />
+            <input type="hidden" name="task_id" id="quick_comment_task_id" value="<?php echo $this->getTask()->getId() ?>" />
+            <textarea name="comments_content" id="quick_comment_content" cols="40" rows="5"></textarea>
+
+            <button class="scalable save" id="save_comments_form" type="submit" >
+                <span>
+                    <span>
+                        <span><?php echo $this->__('Add') ?></span>
+                    </span>
+                </span>
+            </button>
+        </form>
+    <?php endif ?>
+    
+    <ul id="comments-list">
+        <?php if( ! $this->hasComments() ): ?>
+            <li class="comment-entity" id="no-comments-info"><?php echo Mage::helper('teamandtaskorganizer')->__('There is no comments for this task') ?></li>
+        <?php else: ?>
+            <?php foreach($this->getComments() as $comment): ?>
+            <li class="comment-entity">
+                <b class="comment-entity-user"><?php echo $comment->getUser() ?></b>
+                <span class="comment-entity-date"><?php echo $comment->getCrdate() ?></span>
+                <br>
+                <div class="comment-entity-content"><?php echo $comment->getContent() ?></div>
+            </li>
+            <?php endforeach ?>
+        <?php endif ?>
+    </ul>
+</div>

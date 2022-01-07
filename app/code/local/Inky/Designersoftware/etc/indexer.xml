@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<config>
+    <indexer id="designersoftware_flat" view_id="designersoftware_view" class="Sparx\Designersoftware\Model\Indexer\Flat">
+        <title translate="true">DesignerSoftware Products</title>
+        <description translate="true">Sort products in a category by popularity</description>
+    </indexer>
+</config>

@@ -1,0 +1,311 @@
+/*
+// ----------------------------------------------
+// Usage example:
+// For IE set $mq-support to false.
+// Set the fixed value.
+// Then use mixins to test whether styles should be applied.
+// ----------------------------------------------
+
+$mq-support: false;
+$mq-fixed-value: 1024;
+
+// Renders at fixed value
+@include bp (min-width, 300px) { 
+    div { color:#000; }
+}
+
+// Doesn't render without MQ support
+@include bp (min-width, 1200px) { 
+    div { color:#FFF; }
+}
+
+// Doesn't render without MQ support
+@include bp (max-width, 300px) { 
+    div { color:#444; }
+}
+
+// Renders at fixed value
+@include bp (max-width, 1200px) { 
+    div { color:#888; }
+}
+
+// ----------------------------------------------
+*/
+/* ============================================ *
+ * Homepage
+ * ============================================ */
+/* -------------------------------------------- *
+ * Primary Banner
+ */
+body.cms-home .main-container {
+  padding: 0px;
+}
+body.cms-home .slideshow-container {
+  margin-top: 0;
+}
+
+.slideshow .banner-msg {
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+  top: 30%;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.slideshow .banner-msg h2 {
+  color: #FFFFFF;
+  font-size: 24px;
+  text-shadow: 1px 1px 3px #555555;
+}
+
+.slideshow .banner-msg h2 strong {
+  font-weight: bold;
+  display: block;
+  font-size: 36px;
+}
+
+/* -------------------------------------------- *
+ * Promotion Banner Section
+ */
+.promos {
+  margin: 0 0 10px 0;
+  padding: 0;
+  width: 100%;
+}
+
+.promos:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+/* Specifying the body only in order to override the .std ul li styling */
+body .promos > li {
+  margin: 0 0 10px 0;
+  list-style: none;
+  text-align: center;
+  position: relative;
+  border: 1px solid #dcdcdc;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.promos > li:last-child {
+  margin-bottom: 0;
+}
+
+.promos img {
+  max-width: 100%;
+  width: 100%;
+}
+
+.promos a:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  display: block;
+}
+
+.promos span {
+  color: #FFFFFF;
+  text-transform: uppercase;
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 10%;
+  font-weight: 500;
+  font-size: 20px;
+  font-family: "Raleway", sans-serif;
+  text-shadow: 1px 1px 3px #555555;
+}
+
+.promos strong {
+  font-weight: 600;
+  font-size: 26px;
+  display: block;
+}
+
+.promos span {
+  font-size: 16px;
+}
+
+.promos strong {
+  font-size: 17px;
+}
+
+/* Config: Three columns + flexible gutter */
+body .promos > li {
+  float: left;
+  width: 31.74603%;
+  margin-right: 2.38095%;
+}
+
+.promos > li:nth-child(3n) {
+  margin-right: 0;
+}
+
+.promos span {
+  font-size: 18px;
+}
+
+.promos strong {
+  font-size: 24px;
+}
+
+/* -------------------------------------------- *
+ * New Products Section
+ */
+/* Hiding the reviews content via CSS because we can't modify the template, */
+/* since it may be used in other places where those elements are needed */
+.cms-index-index .products-grid .ratings,
+.cms-index-index .products-grid .actions,
+.cms-index-noroute .products-grid .ratings,
+.cms-index-noroute .products-grid .actions {
+  display: none;
+}
+
+.cms-index-index h2.subtitle {
+  padding: 6px 0;
+  text-align: center;
+  color: #000000;
+  font-weight: 600;
+  border-bottom: 1px solid #dcdcdc;
+  border-top: 1px solid #dcdcdc;
+}
+
+.cms-index-noroute h2.subtitle {
+  display: none;
+}
+
+/*Home content*/
+body.cms-home .main {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.home-full-promo {
+  background: #f2c45c url(../images/promo-linkbg.jpg) center top no-repeat;
+}
+.home-full-promo ul {
+  margin-bottom: 0px;
+  padding-top: 47px;
+  padding-bottom: 47px;
+  overflow: hidden;
+}
+.home-full-promo ul li {
+  margin-left: 0px;
+  color: #000000;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.home_section2 ul, .home_section3 ul {
+  overflow: hidden;
+  list-style: none;
+}
+.home_section2 ul li, .home_section3 ul li {
+  margin-left: 0px;
+}
+.home_section2 h2, .home_section3 h2 {
+  margin-bottom: 50px;
+}
+
+.home_section2 {
+  margin-bottom: 50px;
+}
+.home_section2 .more-desc {
+  position: absolute;
+  left: 10px;
+  top: 0px;
+  right: 10px;
+  bottom: 0px;
+  overflow: hidden;
+  text-align: center;
+  padding: 15px 15px;
+  transition: all 1.2s ease;
+}
+.home_section2 .more-desc .inner-block {
+  border: 1px solid #fff;
+  padding: 33px;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+.home_section2 .more-desc h3 {
+  color: #f2c45c;
+  font-size: 41px;
+  font-weight: 400;
+  text-transform: none;
+}
+.home_section2 .more-desc p {
+  color: #fff;
+  font-size: 21px;
+  line-height: 27px;
+  font-weight: 300;
+  text-transform: none;
+}
+.home_section2 .more-desc h3, .home_section2 .more-desc p, .home_section2 .more-desc .view-now {
+  opacity: 0;
+  transition: all 1.2s ease;
+}
+.home_section2 .more-desc:hover h3, .home_section2 .more-desc:hover p, .home_section2 .more-desc:hover .view-now {
+  opacity: 1;
+}
+
+.home_section3 h4 {
+  color: #535353;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 27px 0px;
+  text-align: center;
+}
+.home_section3 ul {
+  margin-bottom: 0px;
+}
+.home_section3 a:hover {
+  text-decoration: none;
+}
+
+.home_section4 .get_in_touch {
+  background: url(../images/news-letter-bg.jpg) center top no-repeat;
+  background-size: 100% auto;
+  overflow: hidden;
+  padding: 26px 0;
+}
+.home_section4 .input-text {
+  width: 70%;
+  height: 48px;
+  margin-right: 40px;
+}
+
+.customer-testimonials {
+  text-align: center;
+  padding: 70px 0px;
+}
+.customer-testimonials h4 {
+  color: #fbc853;
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: none;
+}
+.customer-testimonials h4 span {
+  color: #535353;
+  font-size: 14px;
+  display: block;
+}
+
+.testimonials-content {
+  background: url(../images/testimonial-icon.png) center 32px no-repeat;
+  padding-top: 90px;
+}
+.testimonials-content p {
+  max-width: 780px;
+  margin: 0 auto 25px;
+}

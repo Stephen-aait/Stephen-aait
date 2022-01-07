@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * SAGIPL
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * 
+ * @category   	SAGIPL
+ * @package	Sag_Shippingmessage
+ * @copyright  	Copyright (c) 2014 SAGIPL. (http://www.sagipl.com/)
+ * @license	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+/**
+ * Free Shipping Message
+ *
+ * @category	SAGIPL
+ * @package	Sag_Shippingmessage
+ * @author	Navneet <navneet.kshk@gmail.com>
+ */
+-->
+
+<config>
+    <modules>
+        <Sag_Shippingmessage>
+            <version>1.0.0</version>
+        </Sag_Shippingmessage>
+    </modules>
+	<frontend>
+        <layout>
+            <updates>
+                <shippingmessage>
+                    <file>shippingmessage.xml</file>
+                </shippingmessage>
+            </updates>
+        </layout>
+    </frontend>
+	<admin>
+        <routers>
+			<shippingmessage>
+				<use>admin</use>
+				<args>
+					<module>Sag_Shippingmessage</module>
+					<frontName>shippingmessage</frontName>
+				</args>
+			</shippingmessage>
+        </routers>
+    </admin>
+    <adminhtml>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<sagshippingmessage translate="title">
+											<title>Sag Free Shipping Message</title>
+											<sort_order>1</sort_order>
+										</sagshippingmessage>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+    </adminhtml>   
+    <global>
+        <blocks>
+            <shippingmessage>
+                <class>Sag_Shippingmessage_Block</class>
+            </shippingmessage>
+        </blocks>
+        <helpers>
+            <shippingmessage>
+                <class>Sag_Shippingmessage_Helper</class>
+            </shippingmessage>
+        </helpers>
+    </global>
+</config>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<mas translate="label">
+			<label>Alex Makarov Extensions</label>
+			<sort_order>2000</sort_order>
+			<class>alex-makarov-extensions</class>
+		</mas>
+	</tabs>
+	<sections>
+		<masm>
+   			<class>makarovsoft-store</class>
+			<label>New Extensions and Updates</label>
+			<tab>mas</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>10</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<listing translate="label">
+					<label>Modules</label>
+					<frontend_type>text</frontend_type>
+					<frontend_model>masmakarovsoft/modules</frontend_model>
+					<sort_order>777</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+				</listing>				
+			</groups>
+   		</masm>
+	</sections>
+</config>

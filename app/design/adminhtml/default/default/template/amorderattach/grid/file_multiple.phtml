@@ -1,0 +1,61 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_Orderattach
+ */
+?>
+<div class="values">
+    <?php if (!$this->values): ?>
+No Uploaded File
+<?php else:
+    foreach ($this->values as $value): ?>
+<a href="<?php echo $this->getUrl('adminhtml/amorderattach_order/download', array('file' => $value))?>">
+    <?php echo $value?>
+</a><br />
+<?php endforeach; endif;?>
+</div>
+
+<div class="edit" style="display: none;">
+
+    <?php if ($this->values): ?>
+        <?php foreach ($this->values as $value): ?>
+            <?php echo $value; ?>
+            <div style="margin-top: 2px; margin-bottom: 10px;">
+                <button class="scalable" type="button" onclick="javascript: attachDeleteFile(this, <?php echo $this->order_id ?>, '<?php echo $this->field; ?>', '<?php echo $value; ?>', 'file_multiple');event.stop();">
+                    <span><?php echo $this->__('Delete'); ?></span>
+                </button>
+            </div>
+        <?php endforeach ?>
+    <?php endif; ?>
+
+    <form method="post" enctype="multipart/form-data" action="<?php echo $this->getUrl('adminhtml/amorderattach_order/upload'); ?>">
+        <input type="hidden" name="form_key" value="<?php echo $this->getFormKey() ?>" />
+        <input type="hidden" name="field" value="<?php echo $this->field ?>" />
+        <input type="hidden" name="order_id" value="<?php echo $this->order_id ?>" />
+        <input type="hidden" name="type" value="file_multiple" />
+
+        <?php if (Mage::getStoreConfig('amorderattach/general/html5')): ?>
+            <div data-multiple=1 class="drop" ondragenter="FileDragHover(event)" ondragover="FileDragHover(event)" ondragleave="FileDragHover(event)" ondrop="DropFile(event)">
+                Drag files here to upload
+            </div>
+            <div class="progress" style="display:none;"></div>
+
+            <input type="file" name="to_upload[]" multiple="multiple" />
+        <?php else: ?>
+            <input type="file" name="to_upload" />
+        <?php endif ?>
+
+
+        <iframe name="upload_target_<?php echo $this->field.'_'.$this->order_id ?>" src="" style="display: none; width: 700px; height: 500px;"></iframe>
+
+        <div style="margin-top: 2px;width: 200px;">
+            <button class="scalable" type="button" onclick="javascript: attachUpload(this, '<?php echo $this->field; ?>');event.stop();">
+                <span><?php echo $this->__('Upload'); ?></span>
+            </button>
+            <button class="scalable" type="button" onclick="javascript: attachCancel(this);event.stop();">
+                <span><?php echo $this->__('Cancel'); ?></span>
+            </button>
+        </div>
+    </form>
+</div>

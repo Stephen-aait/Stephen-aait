@@ -1,0 +1,261 @@
+<config>
+	<module>
+		<Emipro_Customoptions>
+			<version>2.2.0</version>
+		</Emipro_Customoptions>
+	</module>
+	<global>
+		<customoptions>
+		<options>
+                    <custom>
+                        <groups>
+                            <text translate="label" module="adminhtml">
+                                <label>Text</label>
+                                <render>emipro_customoptions/adminhtml_customoptions_edit_tab_options_type_text</render>
+                                <types>
+                                    <field translate="label" module="adminhtml">
+                                        <label>Field</label>
+                                    </field>
+                                    <area translate="label" module="adminhtml">
+                                        <label>Area</label>
+                                    </area>
+                                </types>
+                            </text>
+                            <file translate="label" module="adminhtml">
+                                <label>File</label>
+                                <render>adminhtml/catalog_product_edit_tab_options_type_file</render>
+                                <types>
+                                    <file translate="label" module="adminhtml">
+                                        <label>File</label>
+                                    </file>
+                                </types>
+                            </file>
+                            <select translate="label" module="adminhtml">
+                                <label>Select</label>
+                                <render>emipro_customoptions/adminhtml_customoptions_edit_tab_options_type_select</render>
+                                <types>
+                                    <drop_down translate="label" module="adminhtml">
+                                        <label>Drop-down</label>
+                                    </drop_down>
+                                    <radio translate="label" module="adminhtml">
+                                        <label>Radio Buttons</label>
+                                    </radio>
+                                    <checkbox translate="label" module="adminhtml">
+                                        <label>Checkbox</label>
+                                    </checkbox>
+                                    <multiple translate="label" module="adminhtml">
+                                        <label>Multiple Select</label>
+                                    </multiple>
+                                </types>
+                            </select>
+                            <date translate="label" module="adminhtml">
+                                <label>Date</label>
+                                <render>adminhtml/catalog_product_edit_tab_options_type_date</render>
+                                <types>
+                                    <date translate="label" module="adminhtml">
+                                        <label>Date</label>
+                                    </date>
+                                    <date_time translate="label" module="adminhtml">
+                                        <label>Date &amp; Time</label>
+                                    </date_time>
+                                    <time translate="label" module="adminhtml">
+                                        <label>Time</label>
+                                    </time>
+                                </types>
+                            </date>
+                        </groups>
+                    </custom>
+                </options>
+                </customoptions>
+		<blocks>
+			<emipro_customoptions>
+				<class>Emipro_Customoptions_Block</class>
+			</emipro_customoptions>
+			<adminhtml>
+				<rewrite>
+                    <catalog_product_edit_tab_options_option>Emipro_Customoptions_Block_Adminhtml_Catalog_Product_Edit_Tab_Options_Option</catalog_product_edit_tab_options_option>
+				</rewrite>
+
+				<rewrite>
+					<catalog_product_edit_tab_options_type_date>Emipro_Customoptions_Block_Adminhtml_Catalog_Product_Edit_Tab_Options_Type_Date</catalog_product_edit_tab_options_type_date>
+				</rewrite>
+
+				<rewrite>
+					<catalog_product_edit_tab_options_type_file>Emipro_Customoptions_Block_Adminhtml_Catalog_Product_Edit_Tab_Options_Type_File</catalog_product_edit_tab_options_type_file>
+				</rewrite>
+
+				<rewrite>
+					<catalog_product_edit_tab_options_type_text>Emipro_Customoptions_Block_Adminhtml_Catalog_Product_Edit_Tab_Options_Type_Text</catalog_product_edit_tab_options_type_text>
+				</rewrite>
+			</adminhtml>
+		</blocks>
+		<models>
+			<emipro_customoptions>
+				<class>Emipro_Customoptions_Model</class>
+				  <resourceModel>emipro_customoptions_resource</resourceModel>
+			</emipro_customoptions>
+			<emipro_customoptions_resource>
+				<class>Emipro_Customoptions_Model_Resource</class>
+				<entities>
+					 <product_option>
+                        <table>emipro_product_option</table>
+                    </product_option>
+                     <product_option_price>
+                        <table>emipro_product_option_price</table>
+                    </product_option_price>                  
+                    <product_option_title>
+                        <table>emipro_product_option_title</table>
+                    </product_option_title>
+                    <product_option_type_value>
+                        <table>emipro_product_option_type_value</table>
+                    </product_option_type_value>
+                    <product_option_type_price>
+                        <table>emipro_product_option_type_price</table>
+                    </product_option_type_price>
+                    <product_option_type_title>
+                        <table>emipro_product_option_type_title</table>
+                    </product_option_type_title>
+				</entities>
+			</emipro_customoptions_resource>
+		</models>
+		<resources>
+            <customoptions_setup>
+                <setup>
+                    <module>Emipro_Customoptions</module>
+                </setup>
+            </customoptions_setup>
+            <customoptions_write>
+                <connection>
+                    <use>default_write</use>
+                </connection>
+            </customoptions_write>
+            <customoptions_read>
+                <connection>
+                    <use>default_read</use>
+                </connection>
+            </customoptions_read>
+        </resources>
+		<helpers>
+			<emipro_customoptions>
+				<class>Emipro_Customoptions_Helper</class>
+			</emipro_customoptions>
+		</helpers>
+		<events>
+			<emipro_customoption_save_after>
+				<observers>
+					<emipro_customoptions>
+						<type>model</type>
+						<class>emipro_customoptions/observer</class>
+						<method>addToProduct</method>
+					</emipro_customoptions>
+				</observers>
+			</emipro_customoption_save_after>
+			<admin_system_config_changed_section_customoptions>
+				<observers>
+					<emipro_checkoptions>
+						<type>model</type>
+						<class>emipro_customoptions/observer</class>
+						<method>checkcustomoption</method>
+					</emipro_checkoptions>
+				</observers>
+			</admin_system_config_changed_section_customoptions>
+		</events>
+	</global>
+	<frontend>
+        <routers>
+            <emipro_customoptions>
+                <use>standard</use>
+                <args>
+                    <module>Emipro_Customoptions</module>
+                    <frontName>customoptions</frontName>
+                </args>
+            </emipro_customoptions>
+        </routers>
+    </frontend> 
+	<admin>
+		<routers>
+		<emipro_customoptions>
+			<use>admin</use>
+			<args>
+				<module>Emipro_Customoptions</module>
+				<frontName>customoptionadmin</frontName>
+			</args>
+			</emipro_customoptions>
+		</routers>
+	</admin>
+	<adminhtml>
+			<menu>
+				<catalog>
+					<children>
+						<emipro_customoptions translate="title">
+							<title>Manage Custom Options</title>
+							<sort_order>11</sort_order>
+							<action>emipro_customoptions/adminhtml_index</action>
+						</emipro_customoptions>
+						<emipro_customoptionsforproducts translate="title">
+							<title>Assign/remove multiple custom options to product(s)</title>
+							<sort_order>12</sort_order>
+							<action>emipro_customoptions/adminhtml_index/assigntoproduct</action>
+						</emipro_customoptionsforproducts>
+						<emipro_manageoptions translate="title">
+							<title>Assign/remove Custom Options for Selected Product</title>
+							<sort_order>13</sort_order>
+							<action>emipro_customoptions/adminhtml_manage/index</action>
+						</emipro_manageoptions>												
+					</children>
+				</catalog>
+	
+	</menu>
+	<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <customoptions>
+                                        <title>Custom Option Licence</title>
+                                    </customoptions>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+					<children>
+						<catalog>
+							<children>
+						<emipro_customoptions>
+							<title>Manage Custom Options</title>
+							<sort_order>11</sort_order>
+						</emipro_customoptions>
+						</children>
+						<children>
+						<emipro_customoptionsforproducts>
+							<title>Assign/remove multiple custom options to product(s)</title>
+							<sort_order>12</sort_order>
+						</emipro_customoptionsforproducts>
+						</children>
+						<children>
+						<emipro_manageoptions>
+							<title>Assign/remove Custom Options for Selected Product</title>
+							<sort_order>13</sort_order>
+						</emipro_manageoptions>
+						</children>
+						</catalog>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<emipro_customoptions>
+					<file>customoptions.xml</file>
+				</emipro_customoptions>
+			</updates>
+		</layout>
+	</adminhtml>
+</config>

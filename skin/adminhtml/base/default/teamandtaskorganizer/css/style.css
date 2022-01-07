@@ -1,0 +1,125 @@
+.task-list {
+	position: fixed;
+	background: #fff;
+	border-top: 2px solid #DFDFDF;
+	-webkit-box-shadow:  0px 0px 10px 5px rgba(0, 0, 0, 0.5);
+	box-shadow:  0px 0px 10px 5px rgba(0, 0, 0, 0.5);
+	z-index: 101;
+}
+.task-list.bottom {
+	bottom: -100px;
+	left: 0;
+	right: 0;
+	height: 100px;
+}
+.task-list.right {
+	right: -600px;
+	width: 600px;
+	left: auto;
+	top: 0;
+	bottom: 0;
+	height: 100%;
+}
+.task-list.corner {
+	right: -446px;
+	width: 600px;
+	left: auto;
+	top: auto;
+	bottom: -302px;
+	height: 300px;
+}
+.task-list .toggle-button, .tto_new_task {
+	width: 150px;
+	height: 30px;
+	margin-top: -32px;
+	margin-left: 10px;
+	-webkit-border-radius: 4px 4px 0px 0px;
+	border-radius: 4px 4px 0px 0px;
+	position: absolute;
+
+	-webkit-box-shadow:  0px -3px 10px 1px rgba(0, 0, 0, 0.5);
+	box-shadow:  0px -3px 10px 1px rgba(0, 0, 0, 0.5);
+	
+	background:#1c4b8c;
+	border-color:#1c4b8c;
+}
+
+.task-list.right .toggle-button {
+	transform:rotate(270deg);
+	-webkit-transform:rotate(270deg);
+	-moz-transform:rotate(270deg);
+	-o-transform:rotate(270deg);
+	left: -100px;
+	margin-top: 100px;
+}
+
+.task-list.corner .toggle-button {
+	margin-left: 0;
+}
+
+/*#task-list-live table {
+	border-collapse: collapse;
+	width: 96%;
+	margin: 20px 2%;
+}
+
+#task-list-live table td {
+	border: 1px solid #bbb;
+	padding: 5px;
+}*/
+#task-list-live button {
+	margin-right: 5px;
+}
+
+.tto-form-buttons {
+	text-align: right;
+	margin-bottom: 1.5em;
+}
+.tto-form-buttons button {
+	margin-left: 5px;
+}
+
+[id^="tto_edit"] .entry-edit-head, [id^="teamandtaskorganizer_managesuperadmin_tabs_"] .entry-edit-head {
+	clear: none;
+	height: 20px;
+}
+
+#taskGrid_massaction #taskGrid_massaction-form-additional select {
+	width: 100px;
+}
+tr[href^="http"] {
+    cursor: pointer;
+}
+tr[href]:hover {
+    background-color: #FCF5DD;
+}
+
+.notify-popup-container {
+    height: 50px;
+    left: auto;
+    padding: 4px;
+    position: fixed;
+    right: 20px;
+    top: 50px;
+    width: 200px;
+}
+.notify-popup-container .notify-popup {
+    position: relative;
+    width: 100%;
+    margin: 3px 0;
+    top: 0;
+    left: 0;
+    padding: 4px;
+}
+.notify-popup-container .notify-popup  .message-popup-content {
+    padding: 10px;
+}
+.calendar {
+    z-index: 1100;
+}
+
+.tto_progress_container {border:1px solid gray;width:100px;height:12px;display:inline-block;overflow:hidden;}
+.tto_progress_container .tto_progress {background:#2562b7;height:12px;}
+
+#edit_task_ajax_form td.label {text-align: left;}
+#edit_task_ajax_form td.value input[type=checkbox] {width:auto;}

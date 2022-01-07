@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config>
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<config>
+								<children>
+									<masmakarovsoft translate="title" module="masmakarovsoft">
+										<title>Alex Makarov Extensions</title>
+									</masmakarovsoft>
+									<masm translate="title" module="masmakarovsoft">
+										<title>Alex Makarov Stores</title>
+									</masm>
+								</children>
+							</config>
+						</children>
+					</system>					
+				</children>
+			</admin>
+		</resources>
+	</acl>	
+</config>

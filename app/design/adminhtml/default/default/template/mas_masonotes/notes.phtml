@@ -1,0 +1,140 @@
+<?php
+$hlp = Mage::helper('masonotes');
+?>
+
+<?php 
+$action = $this->getUrl('adminhtml/masonotes_note/mass-save');
+?>
+
+<script type="text/javascript">		
+    function sendReply() {
+        new Ajax.Request('<?php echo $this->getUrl('adminhtml/masonotes_note/mass-save', array('isAjax'=>true))?>', {
+                	parameters: Form.serialize('mascallbackrequest_form'),
+                	onSuccess: function(transport) {
+                    	$$('.note-reply-status').each(function(item) { item.innerHTML = transport.responseText;});
+	                }
+        });
+        return false;
+    }
+
+</script>
+<style>
+    .notes li .notes-body .post-header {
+        padding-bottom: 5px;
+        border-bottom: 1px solid #f1f5fc;
+    }
+	.notes li .notes-body .post-footer {
+        padding-top: 5px;
+        border-top: 1px solid #f1f5fc;
+    }
+    .notes { 
+        list-style: none;
+        margin: 0;
+    }
+    .notes li {
+        margin-bottom: 15px;
+    }
+	.notes-body {
+        position: relative;
+        font-size: 11px;
+        padding: 10px;
+        border: 1px solid #f1f5fc;
+        box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        -moz-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        background: #fff;
+	}
+	.notes-holder {
+        background: #E7EFEF;
+        padding: 10px;
+	}
+	.notes-holder textarea {
+        width: 99%;
+	}
+	
+	.note-by-customer {
+    background: #dedede;
+}
+.note-by-customer .post-header, .note-by-customer p {
+    text-align: right;
+}
+
+
+
+	</style>
+	<script type="text/javascript">
+	function masonotes_sort(key,dir)
+	{
+		new Ajax.Request('<?php echo $this->getUrl('adminhtml/masonotes_note/massSave', array('isAjax'=>true))?>', {
+                	parameters: 'order_id=<?php echo $this->getOrderId();?>&sort=' + key + '&dir=' + dir,
+                	onSuccess: function(transport) {
+                    	document.getElementById('notes-list').innerHTML = transport.responseText;
+                    	document.getElementById('new-note').value = '';
+	                }
+        });
+	}
+	</script>
+	
+<?php $notes = $this->getCollection();?>
+<form action="" method="POST" id="mascallbackrequest_form" onsubmit="new Ajax.Request('<?php echo $this->getUrl('adminhtml/masonotes_note/massSave', array('isAjax'=>true))?>', {
+                	parameters: Form.serialize('mascallbackrequest_form'),
+                	onSuccess: function(transport) {
+                    	document.getElementById('notes-list').innerHTML = transport.responseText;
+                    	document.getElementById('new-note').value = '';
+	                }
+        });
+        return false;">
+        <input type="hidden" name="order_id" value="<?php echo $this->getOrderId();?>" />
+        <input type="hidden" name="store_id" value="<?php echo $this->getStoreId();?>" />
+        
+<p style="text-align: right;padding-top: 5px">	
+	<a href="#" onclick="new Ajax.Request('<?php echo $this->getUrl('adminhtml/masonotes_note/massSave', array('isAjax'=>true))?>', {
+                	parameters: 'order_id=<?php echo $this->getOrderId();?>&sort=created_at&dir=desc',
+                	onSuccess: function(transport) {
+                    	document.getElementById('notes-list').innerHTML = transport.responseText;
+                    	document.getElementById('new-note').value = '';
+	                }
+        });return false;">Newest first</a>&nbsp;
+    <a href="#" onclick="new Ajax.Request('<?php echo $this->getUrl('adminhtml/masonotes_note/massSave', array('isAjax'=>true))?>', {
+                	parameters: 'order_id=<?php echo $this->getOrderId();?>&sort=created_at&dir=asc',
+                	onSuccess: function(transport) {
+                    	document.getElementById('notes-list').innerHTML = transport.responseText;
+                    	document.getElementById('new-note').value = '';
+	                }
+        });return false;">Oldest first</a>&nbsp;
+    <span class="note-reply-status"></span>
+    <button type="submit" class="button"><span><span><?php echo $this->__('Save Changes');?></span></span></button>        
+</p>
+<div class="notes-holder">
+    <div class="notes-message">
+    <?php if (count($notes) > 0):?>
+    <ul class="notes" id="notes-list">
+        <?php include "list.phtml"?>
+    </ul>
+    <?php else:?>
+        <ul class="notes" id="notes-list"></ul>
+        <?php if ($this->getIsOrder()):?>
+        <button type="button" onclick="window.location = '<?php echo $this->getUrl('*/customer/edit', array('tab' => 'customer_notes', 'id' => $this->getCustomerId()))?>';">
+        <span><span><?php echo $hlp->__('Add New Note On Order')?></span></span>
+        </button>
+        <?php endif;?>
+    <?php endif;?>
+    <?php if (!$this->getIsOrder()):?>
+        <div>
+        <b><?php echo $hlp->__('New Note')?></b><br />
+        <textarea name="mascnotes_new[0][note]" id="new-note"></textarea>
+        <br />
+        <input type="hidden" name="mascnotes_new[0][status]" value="0" />
+        <label for="mastnotes_new"><input id="mastnotes_new" type="checkbox" name="mascnotes_new[0][status]" value="1" />&nbsp;<?php echo $hlp->__('Show To Customer');?></label><br />        
+        </div>
+    <?php endif;?>
+    </div>
+</div>
+<p style="text-align: right;padding-top: 5px">
+    <span class="note-reply-status"></span>
+    <button type="submit" class="button"><span><span><?php echo $this->__('Save Changes');?></span></span></button>        
+</p>
+</form>
+
+
+

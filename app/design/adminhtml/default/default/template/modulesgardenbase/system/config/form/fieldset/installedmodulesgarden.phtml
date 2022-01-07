@@ -1,0 +1,73 @@
+<?php
+/* * ********************************************************************
+ * Customization Services by ModulesGarden.com
+ * Copyright (c) ModulesGarden, INBS Group Brand, All Rights Reserved 
+ * (2014-10-30, 12:11:38)
+ * 
+ *
+ *  CREATED BY MODULESGARDEN       ->        http://modulesgarden.com
+ *  CONTACT                        ->       contact@modulesgarden.com
+ *
+ *
+ *
+ *
+ * This software is furnished under a license and may be used and copied
+ * only  in  accordance  with  the  terms  of such  license and with the
+ * inclusion of the above copyright notice.  This software  or any other
+ * copies thereof may not be provided or otherwise made available to any
+ * other person.  No title to and  ownership of the  software is  hereby
+ * transferred.
+ *
+ *
+ * ******************************************************************** */
+
+/**
+ * @author Grzegorz Draganik <grzegorz@modulesgarden.com>
+ * @author Marcin Kozak <marcin.ko@modulesgarden.com>
+ */
+?>
+
+<div class="modulesgarden_grid_container">
+    <div class="grid">
+        <div class="hor-scroll">
+            <table cellspacing="0" class="data">
+                <thead>
+                    <tr class="headings">
+                        <th class=" no-link" style="width:50%;"><span class="nobr"><?php echo $this->__('Extension Name'); ?></span></th>
+                        <th class=" no-link"><span class="nobr"><?php echo $this->__('Your Version'); ?></span></th>
+                        <th class=" no-link" style="width:100px;"><span class="nobr"><?php echo $this->__('Documentation'); ?></span></th>
+                        <th class=" no-link last" style="width:100px;"><span class="nobr"><?php echo $this->__('Changelog'); ?></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($this->getExtensions() as $k => $extension): ?>
+                        <?php if( ! $extension->isModulesgardenTheme()): ?>
+                            <tr class="<?php echo $k % 2 == 0 ? 'even' : ''; ?>">
+                                <td class="a-left"><?php echo $extension->getFriendlyName(); ?></td>
+                                <td class="a-left">
+                                    <?php echo $extension->getVersion(); ?>
+                                    <?php if ($extension->isUpgardeAvailable()){ ?>
+                                    <strong style="padding-left: 10px;">
+                                        <?php echo $this->__('Upgrade Available!'); ?>
+                                        <a href="<?php echo $extension->getChangelogUrl(); ?>" target="_blank"><?php echo $extension->getLatestVersion(); ?></a>
+                                    </strong>
+                                    <?php } ?>
+                                </td>
+                                <td class="a-center">
+                                    <?php if ($extension->getWikiUrl()){ ?>
+                                    <a href="<?php echo $extension->getWikiUrl(); ?>" target="_blank"><?php echo $this->__('Documentation'); ?></a>
+                                    <?php } ?>
+                                </td>
+                                <td class="a-center last">
+                                    <?php if ($extension->getChangelogUrl()){ ?>
+                                    <a href="<?php echo $extension->getChangelogUrl(); ?>" target="_blank"><?php echo $this->__('Changelog'); ?></a>
+                                    <?php } ?>
+                                </td>
+                            </tr>
+                        <?php endif ?>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

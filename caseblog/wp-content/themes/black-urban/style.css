@@ -1,0 +1,582 @@
+/*  
+Theme Name: Black Urban
+Theme URI: http://anton.shevchuk.name/web20/creative-design-in-15-minutes/
+Description: Wordpress Black Urban Theme, only black and white. Source is aviable on homepage. Built for WordPress Version 2.7+ and Widget Ready. 
+Version: 0.5.2
+Author: Anton Shevchuk
+Author URI: http://anton.shevchuk.name/
+Tags: black, dark, fixed-width, two-columns, threaded-comments, theme-options
+
+
+	This theme was designed and built by Anton Shevchuk,
+	whose blog you will find at http://anton.shevchuk.name/
+	
+	
+*/
+
+html, body {
+    height:100%;
+    margin:0;
+    min-width:1000px;
+    padding:0;
+}
+
+body {    
+    color:#fff;
+    font:62.5%/1.6 Verdana,Tahoma,sans-serif;
+    line-height:1.5em;
+    background: #000 url(images/header.jpg) 50% top no-repeat;
+}
+
+div, ul, ol, li, p, img {
+    margin:0;
+    padding:0;
+}
+
+li ul, li ol {
+    padding-left:20px;
+}
+
+
+
+h1 { font-size:2.0em }
+h2 { font-size:1.8em }
+h3 { font-size:1.6em; margin:12px 0; }
+h4 { font-size:1.4em; margin:8px  0;}
+h5, h6 { font-size:1.2em; color:#aaa; margin:4px 0; }
+pre { font-size:1.4em}
+blockquote{
+    border-left:3px dotted #333;
+    padding-left:6px;
+}
+a {
+    color:#fff;
+    outline:none;
+    text-decoration:none;
+}
+
+a:hover {
+    color:#fff;
+}
+a:visited {
+    color:#fffff5;
+}
+
+.aligncenter,
+div.aligncenter {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.alignleft, .left {
+   float: left;
+}
+
+.alignright, .right {
+   float: right;
+}
+
+.clear {
+    clear:both;
+}
+
+/* Caption Begin */
+.wp-caption {
+   border: 1px solid #333;
+   text-align: center;
+   background-color: #000;
+   padding-top: 4px;
+   margin: 10px;
+   /* optional rounded corners for browsers that support it */
+   -moz-border-radius: 3px;
+   -khtml-border-radius: 3px;
+   -webkit-border-radius: 3px;
+   border-radius: 3px;
+}
+
+.wp-caption img {
+   margin: 0;
+   padding: 0;
+   border: 0 none;
+}
+
+.wp-caption p.wp-caption-text {
+   font-size: 11px;
+   line-height: 17px;
+   padding: 0 4px 5px;
+   margin: 0;
+}
+
+/* Caption End */
+/* Begin Layout */
+#body {
+    width:1024px;
+    margin:0 auto;
+}
+
+#wrapper {
+    float:left;
+    width:100%;
+}
+
+#container {
+    /*margin: 0 0 0 200px;*/ /* Left Sidebar */
+    margin: 0 200px 0 0; /* Right Sidebar */
+    /*margin: 0 200px 0 200px;*/ /* Two Sidebar */
+}
+/* Right Sidebar */
+#sidebar {
+    float:left;
+    width:180px; /* minus border and padding */
+    margin-left:-200px
+}
+/* Left Extra bar */
+/*
+#extra {
+    float:left;
+    width:200px;
+    margin-left:-824px;
+}
+*/
+/* End Layout */
+
+/* Start Urban Theme */
+/* Begin Header */
+#header {
+    height:320px;
+    position:relative;
+}
+    #header .logo {
+        height:80px;
+        width:800px;
+    	text-transform: uppercase;
+        margin:0 auto
+    }
+        #header h1 {
+        	font: bold 600%/100% Verdana,Tahoma,sans-serif;
+        	padding:8px 24px;
+        	text-transform: uppercase;
+        	letter-spacing: -6px;
+            margin:0 auto;
+        	position: relative;
+        }
+        #header h1 span {
+        	background: url(images/zebra.png) repeat-x;
+        	position: absolute;
+        	display: block;
+        	width: 100%;
+        	height: 60px;
+        }
+        /* Stupid IE6 */
+        * html #header h1 span {
+            background: none;
+        }
+        
+        #header h2 {
+            display:block;
+            width:680px;
+            border-top:3px dotted #333;
+            padding-right:40px;
+        	margin:2px auto;
+            color:#aaa;
+            font-size:1.2em;
+            text-align:right;
+        }
+    #header .links a {
+        position:absolute;
+        display:block;
+        width:72px;
+        height:72px;
+        text-indent:-9999%;
+    }
+    
+
+    #header .links a span {
+        background:url(images/hover.png) no-repeat;
+        position:absolute;
+        padding-top:32px;
+        text-indent:0;
+        text-align:center;
+        font-size:1.6em;
+        font-weight:bold;
+        display:none;
+        width:148px;
+        height:80px;
+        top:-84px;
+        left:-40px;
+    }
+    
+    #logo {
+        top:0;
+        left:0;
+        width:100% !important;
+        height:96px !important;
+    }
+    
+    #home {
+        top:210px;
+        left:244px;    
+    }
+    #online {
+        top:116px;
+        left:370px;    
+    }
+        #online span {        
+            top:80px !important
+        }
+    #archive {
+        top:200px;
+        left:520px;    
+    }
+    #rss {
+        top:110px;
+        left:700px;    
+    }
+        #rss span {
+            top:80px !important
+        }
+/* End Header */
+/* Begin Sidebar */
+#sidebar {
+    background: url(images/sidebar.jpg) 0px bottom no-repeat;
+    padding:0 0 140px 10px;
+    border-left:3px dotted #222
+}
+    #sidebar h3{
+        color:#999;
+        padding:12px 6px 8px 6px
+    }
+    
+    #sidebar a {
+        font-size:1.2em;
+        line-height:1.2em
+    }
+    #sidebar a:hover {
+        text-decoration:underline
+    }
+    #sidebar .tagcloud {
+        padding:0px 12px
+    }
+    #sidebar ul {
+        list-style:none;
+    }
+    #sidebar li ul li a{
+        padding:2px;
+    }
+
+/* End Sidebar */
+
+/* Begin Post Style */    
+.post {
+    background: url(images/cursor.jpg) right bottom no-repeat;
+    width:800px;
+    margin:4px auto;
+    /*border:3px dotted #0e0e0e;*/
+}
+    .post h2 {
+        font-weight:bold;
+        font-size:1.8em;
+    }
+    .post-title {
+        padding:4px;
+        margin-bottom: 12px;
+    }
+    .post-title a, .post-title span{
+        border-bottom:3px dotted #555
+    }
+    .post-entry ul, .post-entry ol{
+        padding-left:20px
+    }
+    .post-entry p{
+        font-size:1.2em;
+        line-height:1.4em;
+	    text-indent:12px;
+	    margin-bottom:4px;
+	}
+	.post-entry p:first-letter {
+	    font-weight:700;
+	}    
+    .post-entry a, .post-footer a {
+        border-bottom:1px #fff dotted;
+    }
+    .post-entry a:hover, .post-footer a:hover {
+        border-bottom:1px #fff solid;
+    }
+    .post-entry img {
+        padding:4px;
+        
+    	border:#fff solid 1px;
+    	-moz-border-radius: 4px;
+    	-khtml-border-radius: 4px;
+    	-webkit-border-radius: 4px;
+    	border-radius: 4px;
+        
+    }
+
+    .post-entry ol, .post-entry ul {
+        padding-left:20px;
+    }
+    .post-entry ul {
+        list-style:bullet;
+    }
+    .post .pages {
+        font-size:1.4em
+    }
+    .post-footer-links {
+        padding-right:80px;
+    }
+    .post-footer-line {
+        height:64px;
+        background: url(images/barbed-wire.jpg) 50% top no-repeat;
+    }
+/* End Post Style */
+
+
+
+/* Begin Navigation */
+.navigation div a{
+    text-indent:-9999%;
+    display:block;
+    width:80px;
+    height:72px;
+    margin:0 20px;
+}
+.navigation .alignleft a{
+    background: url(images/prev.jpg) 0 0 no-repeat;
+}
+.navigation .alignright a{
+    background: url(images/next.jpg) 0 0 no-repeat;
+}
+
+/* End Navigation */
+/* Begin Search Form */
+#searchform {
+    padding: 0px;
+    width:300px;
+    margin:12px auto;
+}
+#searchform input {
+	margin: 5px 5px 1px 0;
+}
+
+/* End Search Form */
+/* Begin Form Elements */
+input, select,  textarea {
+    padding: 2px;
+    color:#fff;
+    background:#000;
+	border:#fff solid 1px;
+	-moz-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+optgroup {    
+    background:#333;
+}
+fieldset{
+    border:1px solid #555;
+    padding: 8px;
+}
+textarea {
+	width: 98%;
+	}
+    	
+#commentform {
+	margin: 5px 10px 0 0;
+	}
+	#commentform input {
+    	width: 170px;
+    	padding: 2px;
+    	margin: 5px 5px 1px 0;
+	}
+    #commentform textarea {
+    	width: 100%;
+    	padding: 2px;
+    	}
+    #commentform #submit {
+    	margin: 0 0 5px auto;
+    	float: right;
+    	cursor:pointer
+    	}
+    #commentform p {
+    	margin: 5px 0;
+    	}
+/* End Form Elements */
+/* Begin Calendar */
+#wp-calendar {
+    border-collapse: collapse;
+    margin-left:20px
+}
+
+#wp-calendar th {
+    border:0;
+    border-bottom:1px solid #555;
+    background-color:#000;
+}
+
+#wp-calendar td {
+    text-align:center;
+    font-size:1.2em;
+    padding:4px 2px;
+    border:0 !important
+}
+
+#wp-calendar tbody{
+
+    border-bottom:1px solid #555;
+}
+#wp-calendar tbody a{
+    padding:2px;
+    display:block;
+    font-weight:700;
+    text-decoration:underline
+}
+#wp-calendar tbody a:hover{
+    background:#222;
+    text-decoration:none;
+}
+/* End Calendar */
+/* Begin Table Element */
+table {
+    border-collapse:collapse;
+}
+
+th {
+    font-size:1.2em;
+    padding:4px 6px;
+    background-color:#333;
+    border:1px solid #777;
+}
+td {
+    padding:4px;
+    border:1px solid #777;
+}
+/* End Table Element */
+/* Begin Comments*/
+
+.thread-even, .even {
+	background-color: #000;
+    border: 1px solid #777;
+}
+
+.thread-odd, .odd {
+	background-color: #111;
+    border: 1px solid #333;
+}
+.depth-2, .depth-4 {
+	border-left:3px dotted #aaa;
+}
+#respond {
+    clear:both;
+    margin-bottom:24px;
+}
+#comments {
+    width:800px;
+    margin:8px auto;
+    border:3px dotted #0a0a0a;
+}
+#comments h3 {
+    padding:8px;
+}
+.commentlist {
+    	padding: 0;
+    	text-align: justify;
+	}
+    
+    .commentlist li {
+    	margin: 15px 0 10px;
+    	padding: 5px 5px 10px 10px;
+    	list-style: none;    
+    	clear:both;   
+    }
+    
+    .commentlist ul {
+    	clear:both;   
+    }
+    	
+    .commentlist li ul li { 
+    	margin-right: -5px;
+    	margin-left: 10px;
+    }
+
+    .commentlist li .avatar { 
+    	float: right;
+    	border: 1px solid #777;
+    	padding: 2px;
+    	background: #000;
+    	-moz-border-radius: 2px;
+    	-khtml-border-radius: 2px;
+    	-webkit-border-radius: 2px;
+    	border-radius: 2px;
+    	}
+    .commentlist p {
+        font-size:1.2em;
+    	margin: 10px 5px 10px 0;
+    }
+    .commentlist a {
+        border-bottom:1px #fff dotted;
+    }
+    .commentlist a:hover {
+        border-bottom:1px #fff solid;
+    }
+.children { padding: 0; }
+
+
+.nocomments {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	}
+.comment-author{
+    font-size:1.2em;
+}
+.comment-meta a{
+    color:#999;
+    border:0;
+	}
+.comment-meta a:hover{
+    border:0
+	}
+/* End Comments */
+/* Begin Footer */
+#footer {
+    clear:both;
+    width:824px;
+    padding: 20px 80px;
+    margin: 0 auto;
+    border-top:3px #222 dotted;
+    background: url(images/footer.jpg) left bottom no-repeat    
+}
+
+#footer div {
+    width:180px;
+    float:left;
+}
+
+#footer h3 {
+    color:#999;
+    padding:0 4px;
+    line-height:2em
+}
+#footer ul{
+    list-style:none;
+    padding:0 4px;
+}
+#footer li{
+    line-height:1.4em;
+    font-size:1.2em;
+}
+#footer li a{
+    padding:3px 12px;
+    display:block
+}
+#footer li a:hover{
+    text-decoration:underline;
+}
+#footer .copy{
+    text-align:right;
+}
+/* End Footer */
+/* End Urban Theme */

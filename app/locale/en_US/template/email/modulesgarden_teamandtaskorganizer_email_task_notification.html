@@ -1,0 +1,44 @@
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"htmlescape var=$user":"Customer Name"}
+@-->
+
+<!--@styles
+@-->
+
+<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+    <a href="{{store url=""}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}" style="margin-bottom:10px;" border="0"/></a>
+
+    <h1 style="font-size:22px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">Dear {{htmlescape var=$user}},</h1>
+    {{if updated}}
+    <p>Task was updated</p>
+    {{else}}
+    <p>New task assigned</p>
+    {{/if}}
+    <table>
+        <tbody>
+            <tr>
+                <td>Title</td>
+                <td>{{htmlescape var=$title}}</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>{{htmlescape var=$description}}</td>
+            </tr>
+            <tr>
+                <td>Prioirty</td>
+                <td>{{htmlescape var=$priority}}</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>{{htmlescape var=$status}}</td>
+            </tr>
+            <tr>
+                <td>Created by</td>
+                <td>{{htmlescape var=$user}} on {{htmlescape var=$crdate}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>

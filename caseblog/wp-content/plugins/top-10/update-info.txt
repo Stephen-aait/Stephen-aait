@@ -1,0 +1,3 @@
+* Fixed: PHP errors on certain installs<br />
+* Added: Dutch language
+

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<layout>
+	<adminhtml_customer_edit>
+		<reference name="customer_edit_tabs">
+			<action method="addTab">
+				<name>storelocator</name>
+				<block>storelocator/adminhtml_customer_tab</block>
+			</action>
+		</reference>
+	</adminhtml_customer_edit>
+</layout>

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Iksanika_ProductUpdater>
+            <version>0.1.0</version>
+        </Iksanika_ProductUpdater>
+    </modules>
+    <admin>
+        <routers>
+            <Iksanika_ProductUpdater>
+                <use>admin</use>
+                <args>
+                    <module>Iksanika_ProductUpdater</module>
+                    <frontName>product_updater</frontName>
+                </args>
+            </Iksanika_ProductUpdater>
+        </routers>
+    </admin>
+    <adminhtml>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <Iksanika_ProductUpdater>
+                            <title>Product Updater Module</title>
+                            <sort_order>10</sort_order>
+                        </Iksanika_ProductUpdater>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <Iksanika_ProductUpdater>
+                    <file>product_updater.xml</file>
+                </Iksanika_ProductUpdater>
+            </updates>
+        </layout>
+    </adminhtml>   
+    <global>
+        <blocks>
+            <Iksanika_ProductUpdater>
+                <class>Iksanika_ProductUpdater_Block</class>
+            </Iksanika_ProductUpdater>
+        </blocks>
+        <helpers>
+            <Iksanika_ProductUpdater>
+                <class>Iksanika_ProductUpdater_Base_Helper</class>
+            </Iksanika_ProductUpdater>
+        </helpers>
+    </global>
+</config>

@@ -1,0 +1,30 @@
+{
+	"cats":
+	[
+		{
+			"catId":"123",
+			"title":"Car"
+			
+		},
+		{
+			"catId":"123",
+			"title":"Child"
+			
+		},
+		{
+			"catId":"123",
+			"title":"Woman"
+			
+		},
+		{
+			"catId":"123",
+			"title":"Animal"
+			
+		},
+		{
+			"catId":"123",
+			"title":"Nature"
+			
+		}
+	]
+}

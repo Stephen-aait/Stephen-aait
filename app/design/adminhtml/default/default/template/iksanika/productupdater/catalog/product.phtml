@@ -1,0 +1,281 @@
+<?php
+
+/**
+ * Iksanika llc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.iksanika.com/products/IKS-LICENSE.txt
+ *
+ * @category   Iksanika
+ * @package    Iksanika_Productupdater
+ * @copyright  Copyright (c) 2013 Iksanika llc. (http://www.iksanika.com)
+ * @license    http://www.iksanika.com/products/IKS-LICENSE.txt
+ */
+
+?>
+    
+    <div role="app-body" class="iks-app-body">
+        
+        <div class="content-header">
+            <table cellspacing="0">
+                <tr>
+                    <td style="width:50%;"><h3 class="icon-head head-products"><?php echo $this->_headerText ?></h3></td>
+                    <td class="a-right">
+                        <div class="iks-menu-item" style="padding-right: 0px;">
+                        <?php // echo $this->getButtonsHtml() ?>
+                        <?php echo $this->getButtonsHtml() ?>
+                        </div>
+                        <div class="iks-menu-item iks-menu-item-settings">
+                            <a class="iks-icon-general iks-icon-settings i-role-settings" title="Request support or upgrade"></a>
+                        </div>
+                        <div class="iks-menu-item iks-social-share">
+                            <span class="iks-icon-general iks-icon-social-share" title="Stay tuned and share you experience!"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    
+    <div class="iks-bubble iks-bubble-share i-role-bubble i-orientation_top i-state_visible" id="bubble6" caller-button="iks-social-share" data-orientation="top" style="z-index: 999; display: none; width:180px;"> <?php /*top: 36px; left: 1225px; */?>
+        <div class="iks-bubble__arrow" role="arrow" data-orientation="top" style="top: 0px; right: 0px;"></div> <?php /*  left: 26px; */?>
+        <div class="iks-bubble__inner" role="content">
+            <div class="iks-social-share-popup">
+                <span>Like new <a href="http://www.iksanika.com/gomage/ext-aapm" target="_blank">Advanced Products Manager</a>?</span><br>
+                <span>Spread the word!</span>
+                <ul class="iks-share-links">
+                    <li class="iks-share-link">
+                        <a class="iks-btn iks-facebook" href="http://www.iksanika.com/gomage/facebook" title="Like Iksanika magento news on Facebook" target="_blank">Facebook</a>
+                    </li>
+                    <li class="iks-share-link">               
+                        <a class="iks-btn iks-googleplus" href="http://www.iksanika.com/gomage/googleplus" title="Follow Iksanika magento news on Google+" target="_blank">Google+</a>
+                    </li>
+                    <li class="iks-share-link">
+                        <a class="iks-btn iks-twitter" href="http://www.iksanika.com/gomage/twitter-share-aapm" title="Share on Twitter" target="_blank">Twitter</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="iks-bubble i-role-bubble i-orientation_top i-state_visible iks-bubble-settings" id="bubble8" caller-button="iks-menu-item-settings" data-orientation="top" style="z-index: 10000; display: none;"> <?php /* top: 32px; left: 1198px;*/?>
+        <div class="iks-bubble__arrow" role="arrow" data-orientation="top" style="top: -1px; right: 0px;"></div> <?php /* left: 154px; */?>
+        <div class="iks-bubble__inner" role="content">
+            <div style="visibility: visible;">
+                <ul class="iks-setting-submenu">
+                    <li class="iks-setting-submenu__item">
+                        <a href="http://www.iksanika.com/gomage/magento-extensions" target="_blank" class="i-role-item-settings iks-setting-submenu__item_settings_link i-taus" tauspref="global settings" taustype="header-menu-click"><span class="iks-icon-general iks-icon-settings-dark"></span>       Magento Extensions   </a>
+                    </li>
+                    <li class="iks-setting-submenu__item">
+                        <a href="http://www.iksanika.com/gomage/guide-aapm" class="i-role-user-guide i-taus" target="_blank" tauspref="guide" taustype="header-menu-click">User guide</a>
+                    </li>
+                    <li class="iks-setting-submenu__item">
+                        <a href="mailto:support@iksanika.com" target="_blank" class="i-role-feedback">      Email Support   </a>
+                    </li>
+                    <li class="iks-setting-submenu__item">
+                        <a href="mailto:support@iksanika.com" target="_blank" class="i-role-user-voice">Send idea</a>
+                    </li>
+                </ul>
+                <?php /*
+                <ul class="iks-user-submenu" style="border-bottom: 1px solid #e6e6e6;">
+                    <li class="iks-system-info">
+                        <div class="iks-line">
+                            <span class="iks-date"><a href="http://www.iksanika.com/gomage/ext-aapm" target="_blank" class="iks-version">Upgrade to Advanced Manager</a></span>
+                        </div>
+                    </li>
+                </ul>
+                 */ ?>
+                <ul class="iks-user-submenu">
+                    <li class="iks-system-info">
+                        <?php /*
+                        <table class="iks-system-info_table">
+                            <tbody>
+                                <tr>
+                                    <th>Load time</th>
+                                    <th>Server</th>
+                                    <th>Client</th>
+                                </tr>
+                                <tr>
+                                    <td>Page</td>
+                                    <td><span class="iks-server-time">2.39 s</span></td>
+                                    <td><span class="iks-client-time">8.53 s</span></td>
+                                </tr>
+                                <tr>
+                                    <td>View</td>
+                                    <td><span class="iks-board-server-time">0.18 s</span></td>
+                                    <td><span class="iks-board-client-time">1.49 s</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="iks-system-info_table i-role-slow-mashups-list" style="display: none;">
+                            <tbody>
+                                <tr>
+                                    <th>Slow loading mashups</th>
+                                    <th></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                         */ ?>
+                        <button class="iks-btn i-role-diagnostic iks-btn-get-extension-update" onclick="return false;">Check new extension version</button>
+                        <div class="iks-line">
+                            <span class="iks-date">Current Version <?php echo Mage::getConfig()->getModuleConfig("Iksanika_Productupdater")->version;?></span>
+                            
+                                                    
+<?php 
+    $newVersion = 'New Version: Not Available';
+    if(Mage::getStoreConfigFlag('iksanika_productupdater/extNewVersionDetails'))
+    {
+        $details = unserialize(Mage::getStoreConfig('iksanika_productupdater/extNewVersionDetails'));
+        if($details && $details['version'])
+        {
+            if(Mage::helper('productupdater')->isVersionNew(Mage::getConfig()->getModuleConfig("Iksanika_Productupdater")->version, $details['version']))
+            {
+                $newVersion = 'New Version: <a href="'.$details['url'].'" target="_blank" class="iks-version">'.$details['version'].' Download!</a>';
+            }
+        }
+    }
+?>
+                            <span class="iks-date iks-new-version"><?php echo $newVersion; ?></span>
+                            <a class="iks-changelog-link" href="http://www.iksanika.com/gomage/win-aapm" target="_blank">What is new?</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        $j('.iks-btn-get-extension-update').click(function(event){
+            var postData = 'form_key=' + FORM_KEY;
+            // request new version of extension
+            new Ajax.Request('<?php echo $this->getUrl('*/*/checkExtensionVersion', array('_current' => true))?>', {
+                method: 'post',
+                postBody : postData,
+                onSuccess: function(transport) {
+                    var response = transport.responseText.evalJSON();
+                    
+                    if(response.success && response.details)
+                    {
+                        var details = response.details;
+                        $j('.iks-new-version').empty();
+                        $j('.iks-new-version').append('New Version: <a href="'+details['url']+'" target="_blank" class="iks-version">'+details['version']+' Download!</a>');
+                    }
+                }.bind(this),
+                onFailure: function()
+                {
+                    alert('Request failed. Please retry later. Something went wrong during request.');
+                }
+            });
+            
+        });
+        
+    </script>
+    
+    <script type="text/javascript">
+        function dropMenuShareReposition()
+        {
+            var dropMenuActions = $j('.iks-social-share').offset();
+            var elementIndex = '.iks-social-share';
+            if($j('.content-header-floating').is(':visible'))
+            {
+                elementIndex = '.content-header-floating .iks-social-share';
+            }
+            dropMenuActions.top = $j('.iks-bubble-share').css({top: $j(elementIndex).offset().top+$j(elementIndex).height()+1}); //-$j('#productGrid').offset().top
+            dropMenuActions.left = $j('.iks-bubble-share').css({left: $j(elementIndex).offset().left-$j('.iks-bubble-share .iks-bubble__arrow').position().left-5});
+            $j('.iks-bubble-share').css(dropMenuActions);
+        }
+        
+        function dropMenuSettingsReposition()
+        {
+            var dropMenuActions = $j('.iks-menu-item-settings').offset();
+            var elementIndex = '.iks-menu-item-settings';
+            if($j('.content-header-floating').is(':visible'))
+            {
+                elementIndex = '.content-header-floating .iks-menu-item-settings';
+            }
+            dropMenuActions.top = $j('.iks-bubble-settings').css({top: $j(elementIndex).offset().top+$j(elementIndex).height()+3});
+            dropMenuActions.left = $j('.iks-bubble-settings').css({left: $j(elementIndex).offset().left-$j('.iks-bubble-settings .iks-bubble__arrow').position().left-5});
+            $j('.iks-bubble-settings').css(dropMenuActions);
+        }
+        
+//        $j('.iks-menu-item-settings').click(function(event) {
+        $j('body').on('click', '.iks-menu-item-settings', function(event){
+            var f = $j('.iks-menu-item-settings').hasClass('iks-active') ? true : false;
+            $j('.iks-bubble').trigger('dropUp:hide');
+            if(!f)
+            {
+                $j('.iks-menu-item-settings').addClass('iks-active');
+                $j('.iks-bubble-settings').show();
+                dropMenuSettingsReposition();
+
+                event.stopPropagation();
+            }
+        });
+  
+//        $j('.iks-social-share').click(function(event) {
+        $j('body').on('click', '.iks-social-share', function(event){
+            var f = $j('.iks-social-share').hasClass('iks-active') ? true : false;
+            $j('.iks-bubble').trigger('dropUp:hide');
+            if(!f)
+            {
+                $j('.iks-social-share').addClass('iks-active');
+                $j('.iks-bubble-share').show();
+                dropMenuShareReposition();
+
+                event.stopPropagation();
+            }
+        });
+        
+        $j(document).scroll(function () 
+        {
+            dropMenuShareReposition();
+            dropMenuSettingsReposition();
+        });
+        
+        $j(window).resize(function() 
+        {
+            dropMenuShareReposition();
+            dropMenuSettingsReposition();
+        });
+        
+        $j(document).click(function(event) {
+            if(!$j(event.target).closest('.iks-bubble-settings').length) {
+                if($j('.iks-bubble-settings').is(":visible")) {
+                    $j('.iks-menu-item-settings').removeClass('iks-active');
+                    $j('.iks-bubble-settings').hide();
+                }
+            }        
+            if(!$j(event.target).closest('.iks-bubble-share').length) {
+                if($j('.iks-bubble-share').is(":visible")) {
+                    $j('.iks-social-share').removeClass('iks-active');
+                    $j('.iks-bubble-share').hide();
+                }
+            }        
+        });
+
+    </script>
+
+        
+        <?php echo $this->getStoreSwitcherHtml(); ?>
+        
+<!--        <div role="main" class="iks-app-main-pane iks-layout iks-layout-board iks-layout-board_south-visible_true iks-layout-board_south-expanded_true"> -->
+        <div role="main" class="">
+            <?php echo $this->getGridHtml() ?>
+        </div>
+        
+    </div>
+
+
+    <script type="text/javascript">
+        $j(".iks-bubble").on("dropUp:hide", function(event) {
+            var dropUp = $j(this);
+            if(dropUp.is(":visible"))
+            {
+                dropUp.hide();
+                $j('.'+dropUp.attr('caller-button')).removeClass((!dropUp.hasClass('iks-board-actions-bubble')) ? 'iks-active' : 'iks-checked');
+            }
+        });
+    </script>

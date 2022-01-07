@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_Orderattach
+ */
+-->
+<config>
+    <modules>
+        <Amasty_Orderattach>
+            <version>2.5.0</version>
+        </Amasty_Orderattach>
+    </modules>
+    
+    
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Amasty_Orderattach after="Mage_Adminhtml">Amasty_Orderattach_Adminhtml</Amasty_Orderattach>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    
+    
+    <frontend>
+        <translate>
+            <modules>
+                <Amasty_Orderattach>
+                    <files>
+                        <default>Amasty_Orderattach.csv</default>
+                    </files>
+                </Amasty_Orderattach>
+            </modules>
+        </translate>
+        
+        <layout>
+            <updates>
+                <amorderattach>
+                    <file>amorderattach.xml</file>
+                </amorderattach>
+            </updates>
+        </layout>
+        
+        <routers>
+            <amorderattachfront>
+                <use>standard</use>
+                <args>
+                    <module>Amasty_Orderattach</module>
+                    <frontName>attaches</frontName>
+                </args>
+            </amorderattachfront>
+        </routers>
+    </frontend>
+    
+    
+    <adminhtml>
+        <menu>
+            <system>
+                <children>
+                    <amorderattach translate="title">
+                        <title>Order Notes and Files</title>
+                        <action>adminhtml/amorderattach_field</action>
+                        <sort_order>110</sort_order>
+                    </amorderattach>
+                </children>
+            </system>
+        </menu>
+        
+        <translate>
+            <modules>
+                <Amasty_Orderattach>
+                    <files>
+                        <default>Amasty_Orderattach.csv</default>
+                    </files>
+                </Amasty_Orderattach>
+            </modules>
+        </translate>
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <sales module="sales">
+                            <children>
+                                <order>
+                                    <children>
+                                        <actions translate="title">
+                                            <title>Actions</title>
+                                            <children>
+                                                <edit_memos translate="title"><title>Edit Order Notes and Files</title></edit_memos>
+                                                <mass_edit_order_attach translate="title"><title>Mass Edit Orders Notes and Files</title></mass_edit_order_attach>
+                                            </children>
+                                        </actions>
+                                    </children>
+                                </order>
+                            </children>
+                        </sales>
+                        <system>
+                            <children>
+                                <amorderattach translate="title">
+                                    <title>Order Notes and Files</title>
+                                    <sort_order>29</sort_order>
+                                </amorderattach>
+                                <config>
+                                    <children>
+                                        <amorderattach translate="title" module="amorderattach">
+                                            <title>Order Notes and Files</title>
+                                        </amorderattach>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    
+        <layout>
+            <updates>
+                <amorderattach module="Amasty_Orderattach">
+                    <file>amorderattach.xml</file>
+                </amorderattach>
+            </updates>
+        </layout>
+        
+        <events>
+            <model_save_commit_after>
+                <observers>
+                    <amorderattach>
+                        <type>singleton</type>
+                        <class>amorderattach/observer</class>
+                        <method>onModelSaveCommitAfter</method>
+                    </amorderattach>
+                </observers>
+            </model_save_commit_after>
+            <core_block_abstract_prepare_layout_before>
+                <observers>
+                    <amorderattach>
+                        <type>singleton</type>
+                        <class>amorderattach/observer</class>
+                        <method>coreBlockAbstractPrepareLayoutBefore</method>
+                    </amorderattach>
+                </observers>
+            </core_block_abstract_prepare_layout_before>
+        </events>
+    </adminhtml>
+    
+    <global>
+        <models>
+            <amorderattach>
+                <class>Amasty_Orderattach_Model</class>
+                <resourceModel>amorderattach_mysql4</resourceModel>
+            </amorderattach>
+            <amorderattach_mysql4>
+                <class>Amasty_Orderattach_Model_Mysql4</class>
+                <entities>
+                    <field>
+                        <table>amasty_amorderattach_field</table>
+                    </field>
+                    <order_field>
+                        <table>amasty_amorderattach_order_field</table>
+                    </order_field>
+                    <order_products>
+                        <table>amasty_amorderattach_order_products</table>
+                    </order_products>
+                </entities>
+            </amorderattach_mysql4>
+            
+            <sales>
+                <rewrite>
+                    <order>Amasty_Orderattach_Model_Sales_Order</order>
+                </rewrite>
+            </sales>
+
+            <enterprise_salesarchive_resource>
+                <rewrite>
+                    <order_collection>Amasty_Orderattach_Model_SalesArchive_Resource_Order_Collection</order_collection>
+                </rewrite>
+            </enterprise_salesarchive_resource>
+        </models>
+        
+		<resources>
+             <amorderattach_setup>
+                <setup>
+                    <module>Amasty_Orderattach</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </amorderattach_setup>
+		    <amorderattach_write>
+		        <connection><use>core_write</use></connection>
+		    </amorderattach_write>
+		    <amorderattach_read>
+		        <connection><use>core_read</use></connection>
+		    </amorderattach_read>
+		</resources>
+		  
+        <blocks>
+            <amorderattach>
+                <class>Amasty_Orderattach_Block</class>
+            </amorderattach>
+        </blocks>
+        
+        <helpers>
+            <amorderattach>
+                <class>Amasty_Orderattach_Helper</class>
+            </amorderattach>
+        </helpers>
+        
+        <events>
+            <checkout_submit_all_after>
+                <observers>
+                    <amorderattach>
+                        <type>singleton</type>
+                        <class>amorderattach/observer</class>
+                        <method>checkoutSubmitAfter</method>
+                    </amorderattach>
+                </observers>
+            </checkout_submit_all_after>
+            
+            <sales_order_place_after>
+                <observers>
+                    <amorderattach>
+                        <type>singleton</type>
+                        <class>amorderattach/observer</class>
+                        <method>onPaypalSaveOrderAfter</method>
+                    </amorderattach>
+                </observers>
+            </sales_order_place_after>
+            
+            <core_collection_abstract_load_before>
+                <observers>
+                    <amorderattach>
+                        <type>singleton</type>
+                        <class>amorderattach/observer</class>
+                        <method>onCoreCollectionAbstractLoadBefore</method>
+                    </amorderattach>
+                </observers>
+            </core_collection_abstract_load_before>
+            
+            <core_layout_block_create_after>
+                <observers>
+                    <amorderattach>
+                        <type>singleton</type>
+                        <class>amorderattach/observer</class>
+                        <method>onCoreLayoutBlockCreateAfter</method>
+                    </amorderattach>
+                </observers>
+            </core_layout_block_create_after>
+            
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <amorderattach>
+                        <type>singleton</type>
+                        <class>amorderattach/observer</class>
+                        <method>handleBlockOutput</method>
+                    </amorderattach>
+                </observers>
+            </core_block_abstract_to_html_after>
+        </events>
+    </global>
+    
+    <default>
+        <amorderattach>
+            <general>
+                <collapsed>1</collapsed>
+                <update_updated_at>1</update_updated_at>
+                <html5>1</html5>
+            </general>
+        </amorderattach>
+    </default>
+    
+</config>

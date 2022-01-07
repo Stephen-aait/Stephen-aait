@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<layout>
+	<adminhtml_sales_order_view>
+		<reference name="head">
+			<action method="addItem" ifconfig="orderattachments/general/enabled">
+				<type>js_css</type>
+				<script>nborderattachments/orderattachments.css</script>
+			</action>
+			<action method="addItem" ifconfig="orderattachments/general/enabled">
+				<type>js</type>
+				<name>nborderattachments/plupload.full.min.js</name>
+			</action>
+        </reference> 
+		<reference name="left">
+			<reference name="sales_order_tabs">
+				<block type="orderattachments/adminhtml_sales_order_view_tab_fileattachments" name="order_attachments"></block>
+				<action method="addTab" ifconfig="orderattachments/general/enabled">
+					<name>order_attachments</name>
+					<block>orderattachments/adminhtml_sales_order_view_tab_fileattachments</block>
+				</action>
+			</reference>
+		</reference>
+	</adminhtml_sales_order_view>
+</layout>

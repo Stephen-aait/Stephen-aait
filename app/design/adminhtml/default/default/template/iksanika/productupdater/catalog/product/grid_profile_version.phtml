@@ -1,0 +1,1026 @@
+<?php
+
+/**
+ * Iksanika llc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.iksanika.com/products/IKS-LICENSE.txt
+ *
+ * @category   Iksanika
+ * @package    Iksanika_Productupdater
+ * @copyright  Copyright (c) 2013 Iksanika llc. (http://www.iksanika.com)
+ * @license    http://www.iksanika.com/products/IKS-LICENSE.txt
+ */
+
+?>
+
+<?php 
+
+    function checkColumn($product, $column)
+    {
+        $colDataWithCategories = false;
+        $colDataWithRelated = false;
+        $colDataWithCrossSell = false;
+        $colDataWithUpSell = false;
+        $colDataWithAssociatedGroupped = false;
+        $colDataWithAssociatedConfigurable = false;
+        
+        $colData = $column;
+        if(isset($colData['index']))
+        {
+            if($colData['index'] == 'category_ids')
+                $colDataWithCategories = true;
+            if($colData['index'] == 'related_ids')
+                $colDataWithRelated = true;
+            if($colData['index'] == 'cross_sell_ids')
+                $colDataWithCrossSell = true;
+            if($colData['index'] == 'up_sell_ids')
+                $colDataWithUpSell = true;
+            if($colData['index'] == 'associated_groupped_ids')
+                $colDataWithAssociatedGroupped = true;
+            if($colData['index'] == 'associated_configurable_ids')
+                $colDataWithAssociatedConfigurable = true;
+        }
+        
+        if($colDataWithCategories)
+        {
+            $ids = implode(', ', $product->getCategoryIds());
+            $product->setData('category_ids', $ids);
+        }
+        if($colDataWithRelated)
+        {
+            $ids = implode(', ', $product->getRelatedProductIds());
+            $product->setData('related_ids', $ids);
+        }
+        if($colDataWithCrossSell)
+        {
+            $ids = implode(', ', $product->getCrossSellProductIds());
+            $product->setData('cross_sell_ids', $ids);
+        }
+        if($colDataWithUpSell)
+        {
+            $ids = implode(', ', $product->getUpSellProductIds());
+            $product->setData('up_sell_ids', $ids);
+        }
+        if($colDataWithAssociatedGroupped)
+        {
+            $ids = array();
+            if($product->getTypeId() == 'grouped')
+            {
+                $childrenList = $product->getTypeInstance(true)->getAssociatedProducts($product);
+                foreach($childrenList as $childProduct)
+                    $ids[] = $childProduct->getId();
+            }
+            $ids = implode(', ', $ids);
+            $product->setData('associated_groupped_ids', $ids);
+        }
+        if($colDataWithAssociatedConfigurable)
+        {
+            $ids = array();
+            if($product->getTypeId() == 'configurable')
+                $ids = $product->getTypeInstance()->getUsedProductIds();
+            $ids = implode(', ', $ids);
+            $product->setData('associated_configurable_ids', $ids);
+        }
+        return $product;
+    }
+
+
+    $colDataWithCategories = false;
+    $colDataWithRelated = false;
+    $colDataWithCrossSell = false;
+    $colDataWithUpSell = false;
+    $colDataWithAssociatedGroupped = false;
+    $colDataWithAssociatedConfigurable = false;
+    $numColumns = sizeof($this->getColumns()); 
+    
+    $includeProducts = Mage::helper('productupdater/profile')->getCurrentProfile()->columns_associatedShow; //Mage::getStoreConfig('productupdater/columns/associatedShow');
+
+?>
+<?php if($this->getCollection()): ?>
+
+    <?php if($this->canDisplayContainer()): ?>
+        <?php if($this->getGridHeader()): ?>
+        <div class="content-header">
+            <table cellspacing="0">
+                <tr>
+                    <td style="width:50%;"><h2><?php echo $this->getGridHeader(); ?></h2></td>
+                </tr>
+            </table>
+        </div>
+        <?php endif ?>
+
+        <div id="<?php echo $this->getId() ?>">
+    <?php else: ?>
+        <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php endif; ?>
+
+            
+    <?php if($this->getPagerVisibility() || $this->getExportTypes() || $this->getFilterVisibility()): ?>
+        <table cellspacing="0" class="actions">
+            <tr>
+                <td style="width: 45px;">
+                    
+                    <div style="width: 35px;padding-left:5px;">
+                        <div><button role="action-toggle-editor" class="iks-btn iks-options iks-board-settings-toggle iks-extension-board-tooltip " <?php //iks-checked?> data-collapsed-selector=".iks-checked" data-title="Show&nbsp;board&nbsp;setup" data-title-collapsed="Hide&nbsp;board&nbsp;setup" type="button"></button></div>
+                    </div>
+                    <script type="text/javascript">
+                        $j('.iks-options').click(function(){
+                            if($j('.iks-options').hasClass('iks-checked'))
+                            {
+                                $j('.iks-options').removeClass('iks-checked');
+                                $j('.settigsArea').hide();
+                            }else
+                            {
+                                $j('.iks-options').addClass('iks-checked');
+                                $j('.settigsArea').show();
+                            }
+//                            adjustAsideMenu();
+
+                        });
+                    </script>
+                    
+                </td>
+                
+            <?php if($this->getPagerVisibility()): ?>
+                <td class="pager">
+                <?php echo $this->__('Page') ?>
+
+                <?php $_curPage  = $this->getCollection()->getCurPage() ?>
+                <?php $_lastPage = $this->getCollection()->getLastPageNumber() ?>
+
+                <?php if($_curPage>1): ?>
+                    <a href="#" title="<?php echo $this->__('Previous page') ?>" onclick="<?php echo $this->getId() ?>JsObjectIKSProductupdater.setPage('<?php echo ($_curPage-1) ?>');return false;"><img src="<?php echo $this->getSkinUrl('images/pager_arrow_left.gif') ?>" alt="Go to Previous page" class="arrow"/></a>
+                <?php else: ?>
+                    <img src="<?php echo $this->getSkinUrl('images/pager_arrow_left_off.gif') ?>" alt="Go to Previous page" class="arrow"/>
+                <?php endif; ?>
+
+                <input type="text" name="<?php echo $this->getVarNamePage() ?>" value="<?php echo $_curPage ?>" class="input-text page" onkeypress="<?php echo $this->getId() ?>JsObjectIKSProductupdater.inputPage(event, '<?php echo $_lastPage ?>')"/>
+
+                <?php if($_curPage < $_lastPage): ?>
+                    <a href="#" title="<?php echo $this->__('Next page') ?>" onclick="<?php echo $this->getId() ?>JsObjectIKSProductupdater.setPage('<?php echo ($_curPage+1) ?>');return false;"><img src="<?php echo $this->getSkinUrl('images/pager_arrow_right.gif') ?>" alt="Go to Next page" class="arrow"/></a>
+                <?php else: ?>
+                    <img src="<?php echo $this->getSkinUrl('images/pager_arrow_right_off.gif') ?>" alt="Go to Previous page" class="arrow"/>
+                <?php endif; ?>
+
+
+                <?php echo $this->__('of %s pages', $this->getCollection()->getLastPageNumber()) ?>
+                <span class="separator">|</span>
+                <?php echo $this->__('View') ?>
+                <select name="<?php echo $this->getVarNameLimit() ?>" onchange="<?php echo $this->getId() ?>JsObjectIKSProductupdater.loadByElement(this)">
+                    <option value="20"<?php if($this->getCollection()->getPageSize()==20): ?> selected="selected"<?php endif; ?>>20</option>
+                    <option value="30"<?php if($this->getCollection()->getPageSize()==30): ?> selected="selected"<?php endif; ?>>30</option>
+                    <option value="50"<?php if($this->getCollection()->getPageSize()==50): ?> selected="selected"<?php endif; ?>>50</option>
+                    <option value="100"<?php if($this->getCollection()->getPageSize()==100): ?> selected="selected"<?php endif; ?>>100</option>
+                    <option value="200"<?php if($this->getCollection()->getPageSize()==200): ?> selected="selected"<?php endif; ?>>200</option>
+                </select>
+                <?php echo $this->__('per page') ?><span class="separator">|</span>
+                <?php echo $this->__('Total %d records found', $this->getCollection()->getSize()) ?>
+                <span id="<?php echo $this->getHtmlId() ?>-total-count" class="no-display"><?php echo $this->getCollection()->getSize() ?></span>
+<?php /*
+                <?php if($this->getRssLists()): ?>
+                    <?php foreach ($this->getRssLists() as $_rss): ?>
+                        <span class="separator">|</span><a href="<?php echo $_rss->getUrl() ?>" class="link-feed"><?php echo $_rss->getLabel() ?></a>
+                    <?php endforeach ?>
+                <?php endif; ?>
+ */ ?>
+            </td>
+        <?php endif ?>
+
+            
+            
+            
+            
+            
+        <?php  if($this->getExportTypes()): ?>
+            
+            
+            <?php /*
+            <td class="export a-right">
+            </td>
+             */ ?>
+            
+            
+            
+            
+            
+            <?php /*
+            <td class="export a-right">
+                <img src="<?php echo $this->getSkinUrl('images/icon_export.gif') ?>" alt="" class="v-middle"/>&nbsp; <?php echo $this->__('Export to:') ?>
+                <select name="<?php echo $this->getId() ?>_export" id="<?php echo $this->getId() ?>_export" style="width:8em;">
+                <?php foreach ($this->getExportTypes() as $_type): ?>
+                    <option value="<?php echo $_type->getUrl() ?>"><?php echo $_type->getLabel() ?></option>
+                <?php endforeach; ?>
+                </select>
+                <?php echo $this->getExportButtonHtml() ?>
+            </td>
+             */ ?>
+        <?php endif; /**/ ?>
+            
+            
+            <td class="filter-actions a-right right iks-inline-group iks-search">
+                <input type="text" value="<?php echo $this->getQuery(); ?>" id="advancedGridSearchQry" placeholder="Search terms" class="iks-in-text" onkeypress="if(keyWasPressed(event, 13)) { productGridJsObjectIKSProductupdater.doFilter(); }">
+                <?php echo $this->getMainButtonsHtml() ?>
+            </td>
+            <?php /*
+            */ ?>
+            
+            </tr>
+        </table>
+    <?php endif; ?>
+            
+            
+            
+            
+            
+            
+    <div class="settigsArea" style="display: none;">
+        <div style="height: 6px;">
+            <div class="current-indicator"></div>
+        </div>
+        <div class="iksProductUpdaterSettings "> <!--  style="height: 350px;"  -->
+            <div class="settingsBlock">
+                <div class="section-config active">
+                    <fieldset class="config collapseable" id="productupdater_columns">
+                        <table cellspacing="0" class="form-list">
+                            <colgroup class="label"></colgroup>
+                            <colgroup class="value"></colgroup>
+                            <colgroup class="scope-label"></colgroup>
+                            <colgroup class=""></colgroup>
+                            <tbody>
+                                <?php /* for next version (profiling version)
+                                <tr id="row_productupdater_columns_profileName">
+                                    <td class="label">
+                                        <label for="productupdater_columns_profileName"> <?php echo Mage::helper('productupdater')->__('Profile Name')?></label>
+                                    </td>
+                                    <td class="value">
+                                        <input id="productupdater_columns_profileName" name="profile[profileName]" value="<?php echo Mage::helper('productupdater/profile')->getCurrentProfile()->profileName; ?>" class=" input-text" type="text">
+                                    </td>
+                                    <td class="scope-label"></td>
+                                    <td class=""></td>
+                                </tr>
+                                 */ ?>
+                                <tr id="row_productupdater_columns_showcolumns">
+                                    <td class="label">
+                                        <label for="productupdater_columns_showcolumns"> <?php echo Mage::helper('productupdater')->__('Show Columns')?></label>
+                                    </td>
+                                    <td class="value">
+                                        <select id="productupdater_columns_showcolumns" name="profile[showcolumns]" class=" select multiselect" size="10" multiple="multiple">
+                                            <?php 
+                                                $attributes = new Iksanika_Productupdater_Model_System_Config_Source_Columns_Show();
+
+                                                foreach($attributes->toOptionArray() as $attribute)
+                                                {
+                                                    echo '<option value="'.$attribute['value'].'" '.((isset(Iksanika_Productupdater_Block_Catalog_Product_Grid::$columnSettings[$attribute['value']]) && Iksanika_Productupdater_Block_Catalog_Product_Grid::$columnSettings[$attribute['value']]) ? 'selected="selected"': '').'>'.$attribute['label'].'</option>';
+                                                }
+                                            ?>
+                                        </select>
+                                    </td>
+                                    <td class="scope-label"></td>
+                                    <td class=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </div>
+            </div>
+
+            
+            
+            <div class="settingsBlock">
+                <div class="section-config active">
+                    <fieldset class="config collapseable" id="productupdater_images">
+                        <table cellspacing="0" class="form-list">
+                            <colgroup class="label"></colgroup>
+                            <colgroup class="value"></colgroup>
+                            <colgroup class="scope-label"></colgroup>
+                            <colgroup class=""></colgroup>
+                            <tbody>
+                                <tr id="row_productupdater_columns_initialPageNumber">
+                                    <td class="label">
+                                        <label for="productupdater_columns_initialPageNumber"> <?php echo Mage::helper('productupdater')->__('Initial Page Number')?></label>
+                                    </td>
+                                    <td class="value">
+                                        <?php /* for next version (for profiling version of extension)
+                                        <input id="productupdater_columns_initialPageNumber" name="profile[initialPageNumber]" value="<?php echo Mage::helper('productupdater/profile')->getCurrentProfile()->columns_page; ?>" class=" input-text" type="text">
+                                        */ ?>
+                                        <input id="productupdater_columns_initialPageNumber" name="profile[initialPageNumber]" value="<?php echo Mage::helper('productupdater/profile')->getCurrentProfile()->columns_page; ?>" class=" input-text" type="text">
+                                    </td>
+                                    <td class="scope-label"></td>
+                                    <td class=""></td>
+                                </tr>
+                                <tr id="row_productupdater_columns_pageSize">
+                                    <td class="label">
+                                        <label for="row_productupdater_columns_pageSize"> <?php echo Mage::helper('productupdater')->__('Page Size')?></label>
+                                    </td>
+                                    <td class="value">
+                                        <?php /* for next version (for profiling version of extension)
+                                        <input id="productupdater_columns_pageSize" name="profile[pageSize]" value="<?php echo Mage::helper('productupdater/profile')->getCurrentProfile()->columns_limit; ?>" class=" input-text" type="text">
+                                         */ ?>
+                                        <input id="productupdater_columns_pageSize" name="profile[pageSize]" value="<?php echo Mage::helper('productupdater/profile')->getCurrentProfile()->columns_limit; ?>" class=" input-text" type="text">
+                                    </td>
+                                    <td class="scope-label"></td>
+                                    <td class=""></td>
+                                </tr>
+                                <tr id="row_productupdater_columns_sortColumnDirection">
+                                    <td class="label">
+                                        <label for="productupdater_columns_associatedShow"> <?php echo Mage::helper('productupdater')->__('Sort Column Direction')?></label>
+                                    </td>
+                                    <td class="value">
+                                        <select id="productupdater_columns_sortColumnDirection" name="profile[sortColumnDirection]" class=" select">
+                                            <?php 
+                                            $sortDirection = new Iksanika_Productupdater_Model_System_Config_Source_Sort_Direction();
+                                            foreach($sortDirection->toOptionArray() as $direction):
+                                            ?>
+                                            <?php /* for next version (for profiling version of extension)
+                                            <option value="<?php echo $direction['value']?>" <?php echo (Mage::helper('productupdater/profile')->getCurrentProfile()->columns_dir == $direction['value'] ? 'selected="selected"' : '')?>><?php echo $direction['label']?></option>
+                                            */ ?>
+                                            <option value="<?php echo $direction['value']?>" <?php echo (Mage::helper('productupdater/profile')->getCurrentProfile()->columns_dir == $direction['value'] ? 'selected="selected"' : '')?>><?php echo $direction['label']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <p class="note">
+                                        </p>
+                                    </td>
+                                    <td class="scope-label"></td>
+                                    <td class=""></td>
+                                </tr>
+                                <tr id="row_productupdater_columns_sortColumn">
+                                    <td class="label">
+                                        <label for="productupdater_columns_sortColumn"> <?php echo Mage::helper('productupdater')->__('Sort Column')?></label>
+                                    </td>
+                                    <td class="value">
+                                        <select id="productupdater_columns_sortColumn" name="profile[sortColumn]" class=" select">
+                                            <?php 
+                                            $sortByAttribute = new Iksanika_Productupdater_Model_System_Config_Source_Columns_Show();
+                                            foreach($sortByAttribute->toOptionArray() as $sort):
+                                            ?>
+                                            <?php /* for next version (for profiling version of extension)
+                                            <option value="<?php echo $sort['value']?>" <?php echo (Mage::helper('productupdater/profile')->getCurrentProfile()->columns_sort == $sort['value'] ? 'selected="selected"' : '')?>><?php echo $sort['label']?></option>
+                                             */ ?>
+                                            <option value="<?php echo $sort['value']?>" <?php echo (Mage::helper('productupdater/profile')->getCurrentProfile()->columns_sort == $sort['value'] ? 'selected="selected"' : '')?>><?php echo $sort['label']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <p class="note">
+                                        </p>
+                                    </td>
+                                    <td class="scope-label"></td>
+                                    <td class=""></td>
+                                </tr>
+                                <tr id="row_productupdater_columns_associatedShow">
+                                    <td class="label">
+                                        <label for="productupdater_columns_associatedShow"> <?php echo Mage::helper('productupdater')->__('Show Associated Products')?></label>
+                                    </td>
+                                    <td class="value">
+                                        <select id="productupdater_columns_associatedShow" name="settings[columns][associatedShow]" class=" select">
+                                            <?php /* for next version (for profiling version of extension)
+                                            <option value="1" <?php echo (Mage::helper('productupdater/profile')->getCurrentProfile()->columns_associatedShow ? 'selected="selected"' : '')?>>Yes</option>
+                                            <option value="0"  <?php echo (!Mage::helper('productupdater/profile')->getCurrentProfile()->columns_associatedShow ? 'selected="selected"' : '')?>>No</option>
+                                             */ ?>
+                                            <option value="1" <?php echo (Mage::helper('productupdater/profile')->getCurrentProfile()->columns_associatedShow ? 'selected="selected"' : '')?>>Yes</option>
+                                            <option value="0"  <?php echo (!Mage::helper('productupdater/profile')->getCurrentProfile()->columns_associatedShow ? 'selected="selected"' : '')?>>No</option>
+                                        </select>
+                                        <p class="note">
+                                            <span>(<?php echo Mage::helper('productupdater')->__('If Yes/No - associated products for Configurable/Groupped products will be shown/hidden right under Configurable/Groupped product row')?>)</span>
+                                        </p>
+                                    </td>
+                                    <td class="scope-label"></td>
+                                    <td class=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </div>
+            </div>
+
+<?php /*    before 1.1.3 (included) - general settings - which moved to profile settings
+            
+            <div class="settingsBlock">
+                <div class="section-config active">
+                    <fieldset class="config collapseable" id="productupdater_columns">
+                        <table cellspacing="0" class="form-list">
+                            <colgroup class="label"></colgroup>
+                            <colgroup class="value"></colgroup>
+                            <colgroup class="scope-label"></colgroup>
+                            <colgroup class=""></colgroup>
+                            <tbody>
+                                <tr id="row_productupdater_columns_showcolumns">
+                                    <td class="label">
+                                        <label for="productupdater_columns_showcolumns"> <?php echo Mage::helper('productupdater')->__('Show Columns')?></label>
+                                    </td>
+                                    <td class="value">
+                                        <select id="productupdater_columns_showcolumns" name="settings[columns][showcolumns]" class=" select multiselect" size="10" multiple="multiple">
+                                            <?php 
+                                                $attributes = new Iksanika_Productupdater_Model_System_Config_Source_Columns_Show();
+
+                                                foreach($attributes->toOptionArray() as $attribute)
+                                                {
+                                                    echo '<option value="'.$attribute['value'].'" '.((isset(Iksanika_Productupdater_Block_Catalog_Product_Grid::$columnSettings[$attribute['value']]) && Iksanika_Productupdater_Block_Catalog_Product_Grid::$columnSettings[$attribute['value']]) ? 'selected="selected"': '').'>'.$attribute['label'].'</option>';
+                                                }
+                                            ?>
+                                        </select>
+                                    </td>
+                                    <td class="scope-label"></td>
+                                    <td class=""></td>
+                                </tr>
+                                <tr id="row_productupdater_columns_associatedShow">
+                                    <td class="label">
+                                        <label for="productupdater_columns_associatedShow"> <?php echo Mage::helper('productupdater')->__('Show Associated Products')?></label>
+                                    </td>
+                                    <td class="value">
+                                        <select id="productupdater_columns_associatedShow" name="settings[columns][associatedShow]" class=" select">
+                                            <option value="1" <?php echo (Mage::getStoreConfig('productupdater/columns/associatedShow') ? 'selected="selected"' : '')?>>Yes</option>
+                                            <option value="0"  <?php echo (!Mage::getStoreConfig('productupdater/columns/associatedShow') ? 'selected="selected"' : '')?>>No</option>
+                                        </select>
+                                        <p class="note">
+                                            <span>(<?php echo Mage::helper('productupdater')->__('If Yes/No - associated products for Configurable/Groupped products will be shown/hidden right under Configurable/Groupped product row')?>)</span>
+                                        </p>
+                                    </td>
+                                    <td class="scope-label"></td>
+                                    <td class=""></td>
+                                </tr>
+                                <tr id="row_productupdater_columns_redirectAdvancedProductManager">
+                                    <td class="label">
+                                        <label for="productupdater_columns_redirectAdvancedProductManager"> <?php echo Mage::helper('productupdater')->__('Redirect to Products Manager (Advanced)')?></label>
+                                    </td>
+                                    <td class="value">
+                                        <select id="productupdater_columns_redirectAdvancedProductManager" name="settings[columns][redirectAdvancedProductManager]" class=" select">
+                                            <option value="1" <?php echo (Mage::getStoreConfig('productupdater/columns/redirectAdvancedProductManager') ? 'selected="selected"' : '')?>>Yes</option>
+                                            <option value="0"  <?php echo (!Mage::getStoreConfig('productupdater/columns/redirectAdvancedProductManager') ? 'selected="selected"' : '')?>>No</option>
+                                        </select>
+                                        <p class="note">
+                                            <span>(<?php echo Mage::helper('productupdater')->__('Yes - redirect to \'Manage Products (Advanced)\', No - to standard \'Manage Products\' - from individual Product Edit page')?>)</span>
+                                        </p>
+                                    </td>
+                                    <td class="scope-label"></td>
+                                    <td class=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </div>
+            </div>
+
+            
+            
+            <div class="settingsBlock">
+                <div class="section-config active">
+                    <fieldset class="config collapseable" id="productupdater_images">
+                        <table cellspacing="0" class="form-list">
+                            <colgroup class="label"></colgroup>
+                            <colgroup class="value"></colgroup>
+                            <colgroup class="scope-label"></colgroup>
+                            <colgroup class=""></colgroup>
+                            <tbody>
+                                <tr id="row_productupdater_images_width">
+                                    <td class="label">
+                                        <label for="productupdater_images_width"> <?php echo Mage::helper('productupdater')->__('Image Width')?></label>
+                                    </td>
+                                    <td class="value">
+                                        <input id="productupdater_images_width" name="settings[images][width]" value="<?php echo Mage::getStoreConfig('productupdater/images/width')?>" class=" input-text" type="text">
+                                    </td>
+                                    <td class="scope-label"></td>
+                                    <td class=""></td>
+                                </tr>
+                                <tr id="row_productupdater_images_height">
+                                    <td class="label">
+                                        <label for="productupdater_images_height"> <?php echo Mage::helper('productupdater')->__('Image Height')?></label>
+                                    </td>
+                                    <td class="value">
+                                        <input id="productupdater_images_height" name="settings[images][height]" value="<?php echo Mage::getStoreConfig('productupdater/images/height')?>" class=" input-text" type="text">
+                                    </td>
+                                    <td class="scope-label"></td>
+                                    <td class=""></td>
+                                </tr>
+                                <tr id="row_productupdater_images_scale">
+                                    <td class="label">
+                                        <label for="productupdater_images_scale"> <?php echo Mage::helper('productupdater')->__('Image Scale')?></label>
+                                    </td>
+                                    <td class="value">
+                                        <select id="productupdater_images_scale" name="settings[images][scale]" class=" select">
+                                            <option value="1" <?php echo (Mage::getStoreConfig('productupdater/images/scale') ? 'selected="selected"' : '')?>>Yes</option>
+                                            <option value="0" <?php echo (!Mage::getStoreConfig('productupdater/images/scale') ? 'selected="selected"' : '')?>>No</option>
+                                        </select>
+                                        <p class="note"><span>(<?php echo Mage::helper('productupdater')->__('If Yes - images will be resized into Width+Height space, if No - proportionaly to defined value of Width or Height')?>)</span></p>
+                                    </td>
+                                    <td class="scope-label"></td>
+                                    <td class=""></td>
+                                </tr>
+                                <tr id="row_productupdater_images_showurl">
+                                    <td class="label">
+                                        <label for="productupdater_images_showurl"> <?php echo Mage::helper('productupdater')->__('Show Image Url')?></label>
+                                    </td>
+                                    <td class="value">
+                                        <select id="productupdater_images_showurl" name="settings[images][showurl]" class=" select">
+                                            <option value="1" <?php echo (Mage::getStoreConfig('productupdater/images/showurl') ? 'selected="selected"' : '')?>>Yes</option>
+                                            <option value="0"  <?php echo (!Mage::getStoreConfig('productupdater/images/showurl') ? 'selected="selected"' : '')?>>No</option>
+                                        </select>
+                                        <p class="note">
+                                            <span>(<?php echo Mage::helper('productupdater')->__('When product image is hidden for that row')?>)</span>
+                                        </p>
+                                    </td>
+                                    <td class="scope-label"></td>
+                                    <td class=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </div>
+            </div>
+*/ ?>
+            
+            <div style="clear: both;margin: 0 auto;width: 100%;text-align: center;padding-top:25px;">
+                <?php echo $this->getSaveConfigButtonHtml();?>&nbsp;&nbsp;&nbsp;<a href="<?php echo Mage::getModel('adminhtml/url')->getUrl('adminhtml/system_config/edit', array('section'=> 'productupdater'));?>" target="_blank"><?php echo Mage::helper('productupdater')->__('Detailed configuration')?> ..</a>
+            </div>
+            
+            
+            <script type="text/javascript">
+                        
+                    function doSaveConfig()
+                    {
+                        var postData  = 'form_key=' + FORM_KEY;
+                        
+                        $j.each($j('.iksProductUpdaterSettings input'), function($key, $element) {
+                            postData += '&'+$element.getAttribute('name')+'='+$j('#'+$element.getAttribute('id')).val();
+//                            console.debug(postData);
+                        });
+
+
+                        $j.each($j('.iksProductUpdaterSettings select'), function($key, $element) {
+                            //setup variables names
+                            postData += '&'+$element.getAttribute('name')+'=';
+                            $itemsList = $j('#'+$element.getAttribute('id')).find(':selected');
+                            if($itemsList.length > 1)
+                            {
+                                //setup value name
+                                $value = '';
+                                $idx = 0;
+                                $j.each($itemsList, function($k, $v) 
+                                {
+                                    $value += ($idx++ !=0 ? ',' : '')+ $v.getAttribute('value');
+                                });
+                                postData += $value;
+                            }else
+                            {
+                                postData += ($itemsList.length == 1) ? $j('#'+$element.getAttribute('id')).val() : '';
+                            }
+                        });
+
+
+//                        $j.each($j('.iksProductUpdaterSettings select'), function($key, $element) {
+//                            postData += '&'+$element.getAttribute('name')+'='+$element.getAttribute('value');
+//                        });
+                        
+//                        $$('#' + this.tableId + ' .headings th').each(function(th){
+//                            var el = th.down('a');
+                            //                var el = th;
+                            
+                            
+//                            if (el)
+//                                postData += '&fields[]=' + el.getAttribute('name');
+                            //                    postData += '&fields[]=' + el.getAttribute('colname');
+//                        });
+//                        console.debug(postData);
+//                        console.debug(this.saveRepositionUrl);
+                        
+                        // save columns order
+                        new Ajax.Request('<?php echo $this->getUrl('*/*/saveSettingsSection', array('_current' => true))?>', {
+                            method: 'post',
+                            postBody : postData,
+                            onSuccess: function(transport) {
+//                                alert('onSuccess');
+                                $j('.iks-btn').removeClass('iks-checked');
+                                $j('.settigsArea').hide();
+//                                adjustAsideMenu();
+                                
+                                var response = transport.responseText.evalJSON();
+                                var profile = response.profile;
+//                                console.debug('Profile Data from response: ' + profile.profileId + ' = ' +profile.profileName);
+                                
+                                $j('.i-role-board-menu-item[data-call=\'item'+profile.profileId+'\'] .i-role-item-name').empty();
+                                $j('.i-role-board-menu-item[data-call=\'item'+profile.profileId+'\'] .i-role-item-name').append(profile.profileName);
+                                
+                                
+                                <?php echo $this->getJsObjectName()?>.resetFilter();
+                                
+                            }.bind(this),
+                            onFailure: function()
+                            {
+                                alert('Request failed. Please retry.');
+                            }
+                        });
+                    }
+                
+            </script>
+            
+            
+        </div>
+<!--
+        <div class="" style="height: 1px;background-color: #FFFFFF;"></div>
+        <div class="headerLine" style="height: 2px;background-color: #FFFFFF;"></div>
+-->
+    </div>
+
+            
+    <?php if($this->getMassactionBlock()->isAvailable()): ?>
+        <?php echo $this->getMassactionBlockHtml(); ?>
+    <?php endif; ?>
+            
+    <script type="text/javascript">
+        this.massUpdateProducts = '<?php echo $this->getUrl('*/*/massUpdateProducts', array('_current' => true))?>';
+    </script>
+            
+
+
+        
+        
+
+
+<form method="post" action="" id="editData">
+    <div class="grid">
+	<div class="hor-scroll">
+	<table cellspacing="0" class="data draggable     table table-bordered" id="<?php echo $this->getId() ?>_table" data-resizable-columns-id="gridBody">
+            
+            <?php /* advanced admin products manager injection */ ?>
+            <?php if($includeProducts) :?>
+            <col width="20"/>
+            <?php endif;?>
+            
+            
+	    <?php foreach ($this->getColumns() as $_column): ?>
+            
+            <?php
+                $colData = $_column->getData();
+            ?>
+            
+	    <col <?php echo $_column->getHtmlProperty() ?> <?php echo $_column->getIndex() == 'name' ? 'width="250"' : '';?>/>
+
+
+	    <?php endforeach; ?>
+
+
+	    <?php if ($this->getHeadersVisibility() || $this->getFilterVisibility()): ?>
+	        <thead>
+	            <?php if ($this->getHeadersVisibility()): ?>
+	                <tr class="headings">
+                            
+                        <?php /* advanced admin products manage injection */ ?>
+                        <?php if($includeProducts) :?>
+                        <th></th>
+                        <?php endif; ?>
+                        
+	                <?php foreach ($this->getColumns() as $_column): ?>
+	                    <th<?php echo $_column->getHeaderHtmlProperty() ?> colname="<?php echo $_column->getIndex(); ?>" data-resizable-column-id="<?php echo $_column->getIndex(); ?>"><span class="nobr"><?php echo $_column->getHeaderHtml() ?></span></th>
+	                <?php endforeach; ?>
+	                </tr>
+	            <?php endif; ?>
+	            <?php if ($this->getFilterVisibility()): ?>
+	                <tr class="filter">
+                            
+                            
+                        <?php /* advanced product manage injection */ ?>
+                        <?php if($includeProducts) :?>
+                        <th>
+                            <div class="text cellexpander parbase">
+                                <a href="#" class="triggerAll icon-plus-sign">&nbsp;</a>
+                                <a href="#" class="triggerAll icon-minus-sign">&nbsp;</a>
+                            </div>
+                        </th>
+                        <?php endif; ?>
+                        
+                        
+                        
+	                <?php $i=0;foreach ($this->getColumns() as $_column): ?>
+	                    <th<?php echo $_column->getHeaderHtmlProperty() ?> colname="<?php echo $_column->getIndex(); ?>"><?php echo $_column->getFilterHtml() ?></th>
+	                <?php endforeach; ?>
+	                </tr>
+	            <?php endif ?>
+	        </thead>
+	    <?php endif; ?>
+	    <?php if ($this->getCountTotals()): ?>
+	        <tfoot>
+	            <tr>
+	            <?php foreach ($this->getColumns() as $_column): ?>
+	                <th class="<?php echo $_column->getCssProperty() ?>" colname="<?php echo $_column->getIndex(); ?>"><?php echo $_column->getRowField($_column->getGrid()->getTotals()) ?>&nbsp;</th>
+	            <?php endforeach; ?>
+	            </tr>
+	         </tfoot>
+	    <?php endif; ?>
+	    <tbody id="gridBody">
+	    <?php if (($this->getCollection()->getSize()>0) && (!$this->getIsCollapsed())): ?>
+                
+                
+                
+                
+            
+	    <?php foreach ($this->getCollection() as $_index=>$_item): ?>
+                
+	        <tr title="<?php echo $this->getRowUrl($_item) ?>"<?php if ($_class = $this->getRowClass($_item)):?> class="<?php echo $_class; ?>"<?php endif;?> id="product<?php echo $_item->getData('entity_id');?>">
+                    
+                <?php /* advanced admin products manager injection */ ?>
+                <?php if($includeProducts) :?>
+                <td class="a-center">
+                    <div class="text cellexpander parbase"><?php //Mage::getStoreConfig('productupdater/columns/associatedShow')?>
+                        <?php if(($_item->getTypeId() == 'configurable' || $_item->getTypeId() == 'grouped')) : ?><a href="#" class="trigger <?php if(Mage::helper('productupdater/profile')->getCurrentProfile()->columns_associatedShow):?>icon-minus-sign<?php else:?>icon-plus-sign<?php endif;?>">&nbsp;</a><?php else: ?>&nbsp;<?php endif; ?>
+<?php /*                        <?php if(($_item->getTypeId() == 'configurable' || $_item->getTypeId() == 'grouped') && Mage::getStoreConfig('productupdater/columns/associatedShow')) : ?><div class="associatedProduct"></div><?php endif;?> */ ?>
+                    </div>
+                </td>
+                <?php endif;?>
+                
+                
+	        <?php $i=0;foreach ($this->getColumns() as $_column): ?>
+                    <?php
+                        $_item = checkColumn($_item, $_column);
+                    
+                        $showColumnContent = false;
+                        if(($_column->getIndex() != 'associated_groupped_ids' && $_item->getTypeId() == 'configurable') || 
+                            ($_column->getIndex() != 'associated_configurable_ids'  && $_item->getTypeId() == 'grouped'))
+                        {
+                            $showColumnContent = true;
+                        }elseif($_column->getIndex() != 'associated_groupped_ids' && $_column->getIndex() != 'associated_configurable_ids')
+                        {
+                            $showColumnContent = true;
+                        }
+                        
+//                        $style = ($_column->getIndex() == 'name') ? 'style="min-width: 250px;"' : '';
+//                        $style = ($_column->getIndex() == 'sku') ? 'style="min-width: 180px;"' : $style;
+                    ?>
+                    
+                    <td class="<?php echo $_column->getCssProperty() ?> <?php echo ++$i==$numColumns?'last':'' ?>" <?php echo $style;?>>
+                        <?php if($showColumnContent) : ?>
+                            <?php echo (($_html = $_column->getRowField($_item)) != '' ? ( $_column->getIndex() != 'associated_configurable_ids' ? $_html : htmlspecialchars($_item->getData($_column->getIndex()))) : '&nbsp;') ?>
+                        <?php endif;?>
+                    </td>
+	        <?php endforeach; ?>
+	        </tr>
+                <?php // Mage::getStoreConfig('productupdater/columns/associatedShow')?>
+                <?php if (Mage::helper('productupdater/profile')->getCurrentProfile()->columns_associatedShow) : ?>
+                
+                <?php if($_item->getTypeId() == 'configurable' || $_item->getTypeId() == 'grouped') : ?>
+                <?php 
+                    if($_item->getTypeId() == 'configurable')
+                        $childrenList = $_item->getTypeInstance()->getUsedProductIds();
+                    if($_item->getTypeId() == 'grouped')
+                        $childrenList = $_item->getTypeInstance(true)->getAssociatedProducts($_item);
+                ?>
+                <?php 
+                    $countChildrenList = count($childrenList);
+                    foreach ($childrenList as $keyChildProduct => $childProduct):
+                        
+                        if($_item->getTypeId() == 'configurable')
+                            $childProduct = Mage::getModel('catalog/product')->load($childProduct);
+                ?>
+                <tr title="<?php echo $this->getRowUrl($childProduct) ?>"<?php if ($_class = $this->getRowClass($childProduct)): ?> class="<?php echo $_class; ?> associatedProduct"<?php endif;?> id="product<?php echo $childProduct->getData('entity_id');?>" class="<?php if($countChildrenList-1 == $keyChildProduct): ?>lastAssociatedProduct<?php else: ?>associatedProduct<?php endif; ?> product<?php echo $_item->getId();?>Products productProducts">
+                    
+                    <?php /* advanced admin products manager injection */ ?>
+                    <?php if($includeProducts) :?>
+                    <td class="a-center">
+                        <div class="text cellexpander parbase">
+                            &nbsp;
+                        </div>
+                    </td>
+                    <?php endif;?>
+                
+                    <?php $i=0;foreach ($this->getColumns() as $_column): ?>
+                        <?php 
+                            $childProduct = checkColumn($childProduct, $_column);
+                            
+                            $showColumnContent = false;
+                            if(($_column->getIndex() != 'associated_groupped_ids' && $childProduct->getTypeId() == 'configurable') || 
+                                ($_column->getIndex() != 'associated_configurable_ids'  && $childProduct->getTypeId() == 'grouped'))
+                            {
+                                $showColumnContent = true;
+                            }elseif($_column->getIndex() != 'associated_groupped_ids' && $_column->getIndex() != 'associated_configurable_ids')
+                            {
+                                $showColumnContent = true;
+                            }
+                            
+                            if($_column->getIndex() == 'qty')
+                            {
+                                $childProductStock = $childProduct->getStockItem();
+                                $childProduct->setData('qty', $childProductStock->getData('qty'));
+                            }
+                        ?>
+                        <td class="<?php echo $_column->getCssProperty() ?> <?php echo ++$i==$numColumns?'last':'' ?>"><?php if($showColumnContent) : ?><?php echo (($_html = $_column->getRowField($childProduct)) != '' ? $_html : '&nbsp;') ?><?php endif;?></td>
+                    <?php endforeach; ?>
+	        </tr>
+                <?php endforeach; ?>                
+                <?php endif; ?>
+                
+                <?php endif; ?>
+                
+                
+                
+                
+                
+	    <?php endforeach; ?>
+                
+                
+                
+                
+                
+	    <?php elseif ($this->getEmptyText()): ?>
+	    	<tr>
+                    <td class="empty-text <?php echo $this->getEmptyTextClass() ?>" colspan="100"><?php echo $this->getEmptyText() ?></td>
+	    	</tr>
+	    <?php endif; ?>
+	    </tbody>
+	</table>
+	</div>
+    </div>
+        
+    </form>
+    <script type="text/javascript">
+//        dragtable.arguments.callee.done = null;
+        dragtable.init('<?php echo $this->getId() ?>_table','<?php echo $this->getUrl('*/*/saveColumnPositions', array('_current' => true))?>');
+        
+        $j(function(){
+            window.columnWidths = [];
+            <?php
+//            $columnWidth = (string) (Mage::getStoreConfig('productupdater/attributes/columnWidth'.Mage::getSingleton('admin/session')->getUser()->getId()));
+            $currentProfile = Mage::helper('productupdater/profile')->getCurrentProfile();
+            $columnWidth = (string) $currentProfile->columns_width;
+            if($columnWidth != '' && $columnWidth != null)
+            {
+               ?>
+                window.columnWidths = JSON.parse('<?php echo $columnWidth;?>');
+               <?php
+            }
+            ?>
+            $j("#<?php echo $this->getId() ?>_table").resizableColumns({resizedWidthUrl: '<?php echo $this->getUrl('*/*/saveColumnWidth', array('_current' => true))?>', formKey:  FORM_KEY});
+
+        });
+        
+        // collapse configurable/groupped product related to current product
+        $j('.trigger').click(function()
+        {
+//            console.debug('.trigger: click '+'#'+$j(this).parent().parent().parent().attr('id')+'Products');
+            if($j('.'+$j(this).parent().parent().parent().attr('id')+'Products').css('display') == 'none')
+            {
+                $j(this).parent().parent().parent().addClass('productExpanded');
+                
+                $j(this).removeClass('icon-plus-sign');
+                $j(this).addClass('icon-minus-sign');
+                $j('.'+$j(this).parent().parent().parent().attr('id')+'Products').show();
+//                console.debug($j(this).parent().parent().parent().attr('id')+' show');
+            }else
+            {
+                $j(this).parent().parent().parent().removeClass('productExpanded');
+                
+                $j(this).removeClass('icon-minus-sign');
+                $j(this).addClass('icon-plus-sign');
+                $j('.'+$j(this).parent().parent().parent().attr('id')+'Products').hide();
+//                console.debug($j(this).parent().parent().parent().attr('id')+' hide');
+            }
+//            adjustAsideMenu();
+            return false;
+        });
+
+        $j('.triggerAll').click(function()
+        {
+//            console.debug('.triggerAll: click');
+            if($j(this).hasClass('icon-plus-sign'))
+            {
+                $j('.trigger').parent().parent().parent().addClass('productExpanded');
+                
+                $j('.trigger').removeClass('icon-plus-sign');
+                $j('.trigger').addClass('icon-minus-sign');
+                $j('.productProducts').show();
+            }
+            if($j(this).hasClass('icon-minus-sign'))
+            {
+                $j('.trigger').parent().parent().parent().removeClass('productExpanded');
+                
+                $j('.trigger').removeClass('icon-minus-sign');
+                $j('.trigger').addClass('icon-plus-sign');
+                $j('.productProducts').hide();
+            }
+//            adjustAsideMenu();
+            return false;
+        });
+        
+    </script>
+    
+    
+    <?php if(!$this->canDisplayContainer()): ?>
+        <?php if($this->getMassactionBlock()->isAvailable()): ?>
+            <script type="text/javascript">
+            //<![CDATA[
+                <?php echo $this->getMassactionBlock()->getJavaScriptActionItems(); ?>
+            //]]>
+            </script>
+        <?php endif ?>
+    <?php endif; ?>
+    
+    
+<?php if($this->canDisplayContainer()): ?>
+</div>
+
+
+    <script type="text/javascript">
+    //<![CDATA[
+    function selectProductRow(trItemPointer)
+    {
+        $j("#gridBody tr#"+trItemPointer+" input:checkbox[name='product']").prop('checked', true);
+        <?php if($this->getMassactionBlock()->isAvailable()): ?>
+            <?php echo $this->getMassactionBlock()->getJsObjectName() ?>.setCheckbox($j("#gridBody tr#"+trItemPointer+" input:checkbox.massaction-checkbox")[0]);
+        <?php endif ?>
+    }
+
+    $j("#gridBody tr td").on("input", function() 
+    {
+        selectProductRow($j(this).parent().attr('id'));
+    });
+
+    $j("#gridBody tr td").on("textarea", function() 
+    {
+        selectProductRow($j(this).parent().attr('id'));
+    });
+
+    $j("#gridBody tr td").on("select", function() 
+    {
+        selectProductRow($j(this).parent().attr('id'));
+    });
+    //]]>
+    </script>
+    
+    
+    <script type="text/javascript">
+    //<![CDATA[
+        <?php echo $this->getJsObjectName() ?> = new varienGridIksanikaProductupdater('<?php echo $this->getId() ?>', '<?php echo $this->getGridUrl() ?>', '<?php echo $this->getVarNamePage() ?>', '<?php echo $this->getVarNameSort() ?>', '<?php echo $this->getVarNameDir() ?>', '<?php echo $this->getVarNameFilter() ?>');
+        <?php echo $this->getJsObjectName() ?>.useAjax = '<?php echo $this->getUseAjax() ?>';
+        <?php if($this->getRowClickCallback()): ?>
+            <?php echo $this->getJsObjectName() ?>.rowClickCallback = <?php echo $this->getRowClickCallback() ?>;
+        <?php endif; ?>
+        <?php if($this->getCheckboxCheckCallback()): ?>
+            <?php echo $this->getJsObjectName() ?>.checkboxCheckCallback = <?php echo $this->getCheckboxCheckCallback() ?>;
+        <?php endif; ?>
+        <?php if($this->getRowInitCallback()): ?>
+            <?php echo $this->getJsObjectName() ?>.initRowCallback = <?php echo $this->getRowInitCallback() ?>;
+            <?php echo $this->getJsObjectName() ?>.rows.each(function(row){<?php echo $this->getRowInitCallback() ?>(<?php echo $this->getJsObjectName() ?>, row)});
+        <?php endif; ?>
+        <?php if($this->getMassactionBlock()->isAvailable()): ?>
+            <?php echo $this->getMassactionBlock()->getJavaScript() ?>
+        <?php endif ?>
+    //]]>
+    </script>
+<?php endif; ?>
+    
+    
+        <?php  if($this->getExportTypes()): ?>
+        <div class="iks-bubble i-role-bubble i-orientation_top i-state_visible iks-board-export-bubble" id="bubble143" data-orientation="top" style="z-index: 42; display: none; top: 85px; left: 661px;">    
+            <div class="iks-bubble__arrow" role="arrow" data-orientation="top" style="left: 63px;"></div> <!-- style="top: 0px; left: 392px;" -->    
+            <div class="iks-bubble__inner" role="content">
+                <div class="actions-menu-items i-role-bubble-holder" style="visibility: visible;">
+
+                 <?php foreach ($this->getExportTypes() as $_type): ?>
+                    <div class="iks-board-actions-item">
+                        <span class="clone-board-button">
+                            <span class="iks-inline-group iks-board-clone">
+                                <button class="iks-btn iks-clone i-role-clone-trigger" onclick="<?php echo $this->getJsObjectName().'.doExport_Iks(\''.$_type->getUrl().'\')';?>"><?php echo $_type->getLabel() ?> Export</button>
+                            </span>
+                        </span>
+                        <div class="iks-txt">Export all the products from this collections to a .<?php echo $_type->getLabel() ?> file</div>
+                    </div>
+                <?php endforeach; ?>
+                    
+                </div>
+            </div>
+        </div>    
+    
+        <script type="text/javascript">
+        //<![CDATA[
+            $j(window).resize(function() {
+                dropMenuExportReposition();
+            });
+            
+            $j(document).click(function(event) {
+                if(!$j(event.target).closest('.iks-board-export-bubble').length) {
+                    if($j('.iks-board-export-bubble').is(":visible")) {
+                        $j('.iks-export').removeClass('iks-checked');
+                        $j('.iks-board-export-bubble').hide();
+                    }
+                }        
+            });
+            <?php /*
+            $j('html').click(function() {
+                console.debug('$j(html).click');
+                $j('.iks-board-actions-bubble').hide();
+            });
+
+            $j('.iks-board-actions-bubble').click(function(event){
+                console.debug('$j(iks-board-actions-bubble).click');
+                event.stopPropagation();
+            });
+             */ ?>
+        //]]>
+        </script>
+    
+        <?php endif; ?>
+    
+    
+    
+<?php endif ?>

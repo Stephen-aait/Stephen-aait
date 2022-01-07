@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Module configuration file
+ * @category    Clarion
+ * @package     Clarion_Storelocator
+ * @author      Clarion Magento Team
+ */
+-->
+<config>
+    <modules>
+        <Clarion_Storelocator>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Clarion_Storelocator>
+    </modules>
+</config>

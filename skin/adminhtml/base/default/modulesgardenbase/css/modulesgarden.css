@@ -1,0 +1,339 @@
+/* TABS */
+
+.modulesgarden_tabs li a:link, .modulesgarden_tabs li a:visited {
+    color: #1c4b8c;
+    background: #f6f9fd;
+    line-height: 32px;
+}
+
+.modulesgarden_tabs a.active:link, .modulesgarden_tabs a.active:visited {
+    background: #1c4b8c !important;
+    color: #fff;
+}
+
+.modulesgarden_tabs a.active span {
+    background: inherit !important;
+}
+
+.modulesgarden_tabs li a:hover {
+    background: #2562b7;
+    color: #fff;
+}
+
+.modulesgarden_tabs h3 {
+    color: #2056a1;
+    font-weight: lighter;
+    font-size: 18px;
+}
+
+.modulesgarden_tabs ul.tabs a span.changed, .modulesgarden_tabs ul.tabs a:hover span.changed, .modulesgarden_tabs ul.tabs a span.error, .modulesgarden_tabs ul.tabs a:hover span.error {
+    margin-top: 7px;
+}
+
+.modulesgarden_tabs .error, .modulesgarden_tabs a.error span, .modulesgarden_tabs .required, .modulesgarden_tabs .validation-advice {
+    color: #1c4b8c;
+    /*font-size: 16px;*/;
+}
+
+.modulesgarden_tabs a.active.error span {
+    color: white !important;
+}
+
+
+/* LOGO */
+
+div.modulesgarden_logo {
+    margin-top: 50px;
+}
+
+div.modulesgarden_logo img {
+    width: 100%;
+}
+
+/* GRIDS */
+
+.modulesgarden_grid_container .grid tr.headings {
+    background: #2562b7 !important;
+    background-image:none !important;
+    color: white;
+}
+
+.modulesgarden_grid_container tr.headings a span {
+    padding: 0;
+    line-height: 22px;
+}
+
+.modulesgarden_grid_container tr.headings a, .modulesgarden_grid_container tr.headings span {
+    color: white;
+}
+
+.modulesgarden_grid_container tr.headings span.nobr {
+    padding: 5px;
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+}
+
+.modulesgarden_grid_container tr.headings .sort-arrow-desc, .modulesgarden_grid_container tr.headings .sort-arrow-asc {
+    background: #457DCC !important;
+    border: 0 !important;
+}
+
+.modulesgarden_grid_container tr.headings .sort-arrow-desc span, .modulesgarden_grid_container tr.headings .sort-arrow-asc span {
+    padding: 0 12px 2px 8px !important;
+    line-height: 17px !important;
+}
+
+.modulesgarden_grid_container tr.headings th .sort-arrow-desc span.sort-title {
+    background-image: url('../img/arrows_down.png') !important;
+}
+
+.modulesgarden_grid_container tr.headings th .sort-arrow-asc span.sort-title {
+    background-image: url('../img/arrows_up.png') !important;
+}
+
+.modulesgarden_grid_container tr.headings th a {
+    padding: 5px 4px 1px 0;
+}
+
+.modulesgarden_grid_container h3, h3.modulesgardenbase_config_header {
+    color: #2056a1;
+    font-weight: lighter;
+    font-size: 18px;
+}
+
+.modulesgarden_grid_container table.actions {
+    background: #ddd;
+    padding: 10px;
+    margin: 0;
+    color: #2f2f2f;
+}
+
+.modulesgarden_grid_container table.actions td {
+    vertical-align: middle;
+}
+
+.modulesgarden_grid_container .grid tr.filter {
+    background: white;
+}
+
+.modulesgarden_grid_container div.grid td {
+    padding: 4px;
+}
+
+.modulesgarden_grid_container div.grid tr.even td {
+    background: #eee;
+}
+
+.modulesgarden_grid_container a:link, .modulesgarden_grid_container a:visited {
+    color: #1c4b8c;
+}
+
+
+/* EDIT FORM */
+
+.modulesgarden_form_container h3 {
+    color: #2056a1;
+    font-weight: lighter;
+    font-size: 18px;
+}
+
+.modulesgarden_form_container div.entry-edit-head {
+    background: #2562b7;
+    padding: 6px;
+}
+
+/* BUTTONS */
+
+.modulesgarden_grid_container button, 
+.modulesgarden_form_container button,
+.modulesgarden_grid_container .form-button, 
+.modulesgarden_form_container .form-button,
+.modulesgarden_grid_container button.save,
+.modulesgarden_form_container button.save,
+#mgbase_store_twitter button {
+    border-color: rgba(21,76,153,1) !important;
+    -webkit-border-radius:0 !important;
+    -moz-border-radius:0 !important;
+    border-radius:0 !important;
+    background: #428BCA !important;
+    color: #fff !important;
+    background-image: none !important;
+    border: 1px solid transparent !important;
+    border-color: #357ebd !important;
+    vertical-align: middle !important;
+}
+
+.modulesgarden_grid_container button:hover,
+.modulesgarden_form_container button:hover {
+    background: #2562B7 !important;
+}
+
+.modulesgarden_grid_container button:active,
+.modulesgarden_form_container button:active {
+    background: #2562B7 !important;
+}
+
+.modulesgarden_grid_container button span,
+.modulesgarden_form_container button.span {
+    line-height: 1.35em !important;
+    background-repeat: no-repeat !important;
+    background-position: 0 50% !important;
+}
+
+.modulesgarden_grid_container button.back,
+.modulesgarden_form_container button.back { 
+    background: rgb(255, 255, 255) !important;
+    background: -moz-linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(216, 216, 216) 100%) !important;
+    background: -webkit-linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(216, 216, 216) 100%) !important;
+    background: -o-linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(216, 216, 216) 100%) !important;
+    background: -ms-linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(216, 216, 216) 100%) !important;
+    background: linear-gradient(180deg, rgb(255, 255, 255) 0%, rgb(216, 216, 216) 100%) !important;
+    border-left:1px solid rgb(204, 204, 204) !important;
+    border-top:1px solid rgb(204, 204, 204) !important;
+    border-right:1px solid rgb(170, 170, 170) !important;
+    border-bottom:1px solid rgb(170, 170, 170) !important;
+    color:rgb(85, 85, 85) !important;
+}
+
+.modulesgarden_grid_container button.back:hover,
+.modulesgarden_form_container button.back:hover {
+    background-image:none !important;
+    background-color:white !important;
+}
+
+.modulesgarden_grid_container button.cancel,
+.modulesgarden_grid_container button.delete,
+.modulesgarden_form_container button.cancel,
+.modulesgarden_form_container button.delete {
+    background: rgb(66, 139, 202) !important;
+    background: -moz-linear-gradient(90deg, rgb(66, 139, 202) 0%, rgb(37, 98, 183) 100%) !important;
+    background: -webkit-linear-gradient(90deg, rgb(66, 139, 202) 0%, rgb(37, 98, 183) 100%) !important;
+    background: -o-linear-gradient(90deg, rgb(66, 139, 202) 0%, rgb(37, 98, 183) 100%) !important;
+    background: -ms-linear-gradient(90deg, rgb(66, 139, 202) 0%, rgb(37, 98, 183) 100%) !important;
+    background: linear-gradient(180deg, rgb(66, 139, 202) 0%, rgb(37, 98, 183) 100%) !important;
+    border-color:#357ebd !important;
+}
+
+.modulesgarden_grid_container button.cancel:hover,
+.modulesgarden_grid_container button.delete:hover,
+.modulesgarden_form_container button.cancel:hover,
+.modulesgarden_form_container button.delete:hover {
+    background: rgb(66, 139, 202) !important;
+    background: -moz-linear-gradient(270deg, rgb(66, 139, 202) 0%, rgb(37, 98, 183) 100%) !important;
+    background: -webkit-linear-gradient(270deg, rgb(66, 139, 202) 0%, rgb(37, 98, 183) 100%) !important;
+    background: -o-linear-gradient(270deg, rgb(66, 139, 202) 0%, rgb(37, 98, 183) 100%) !important;
+    background: -ms-linear-gradient(270deg, rgb(66, 139, 202) 0%, rgb(37, 98, 183) 100%) !important;
+    background: linear-gradient(0deg, rgb(66, 139, 202) 0%, rgb(37, 98, 183) 100%) !important;
+    border:1px solid #357ebd !important;
+}
+
+.modulesgarden_grid_container button.add span, 
+.modulesgarden_form_container button.add span {
+    background-image: url(../img/icons/add_btn_icon.gif);
+}
+
+.modulesgarden_grid_container button.save span, 
+.modulesgarden_form_container button.save span {
+    background-image: url(../img/icons/save_btn_icon.gif);
+}
+
+.modulesgarden_grid_container button.cancel span, 
+.modulesgarden_grid_container button.delete span,
+.modulesgarden_form_container button.cancel span, 
+.modulesgarden_form_container button.delete span {
+    background-image: url(../img/icons/cancel_btn_icon.gif);
+}
+
+.modulesgarden_grid_container button.show-hide span, 
+.modulesgarden_form_container button.show-hide span {
+    background-image: url(../img/icons/btn_show-hide_icon.gif);
+    padding-left: 26px;
+}
+
+.modulesgarden_grid_container button.go span, 
+.modulesgarden_form_container button.go span {
+    background-image: url(../img/icons/btn_go.gif);
+    padding-left: 16px;
+}
+
+.modulesgarden_grid_container button.add-widget span,
+.modulesgarden_form_container button.add-widget span {
+    background-image: url(../img/icons/btn_add-widget_icon.gif);
+}
+
+.modulesgarden_grid_container button.add-image span, 
+.modulesgarden_form_container button.add-image span {
+    background-image: url(../img/icons/btn_add-image_icon.gif);
+}
+
+/* STORE */
+
+.mg_store_container table.extension {
+    width:100%;
+    margin-bottom:20px;
+}
+.mg_store_container table.extension td {
+    background-color: #f8f8f8;
+    border-bottom:2px solid #e7e7e7;
+    vertical-align: middle;
+}
+.mg_store_container table.extension h3 {
+    display: inline-block;
+    margin-right: 10px;	
+}
+.mg_store_container table.extension h3 a {
+    text-decoration:none;
+}
+.mg_store_container table.extension td.img img {
+    display:block;
+    width: 80px;
+}
+.mg_store_container table.extension td.img {
+    text-align: center;
+    padding:5px;
+    width: 85px;
+}
+.mg_store_container table.extension .storelabel {
+    display: inline-block;
+    margin:-2px 0 10px;
+    padding:3px 10px;
+    color:white;
+    font-weight:bold;
+    text-decoration:none;
+}
+.mg_store_container table.extension span.installed {
+    background-color:#009933;
+}
+.mg_store_container table.extension .new {
+    background-color:#cc3333;
+}
+.mg_store_container table.extension .new:hover {
+    background-color:#a41515;
+}
+.mg_store_container table.extension span.promotion {
+    background-color:#990033;
+}
+.mg_store_container table.extension td.price {
+    text-align: center;
+    padding:0 10px;
+    line-height: 25px;
+}
+.mg_store_container table.extension td.price strong {
+    display:block;
+    font-size:18px;
+    color:#1c4b8c;
+}
+.mg_store_container table.extension td.price a, #mgbase_store_twitter button {
+    text-decoration: none;
+    padding:7px 16px;
+}
+.mg_store_container table.extension td.price a:hover, #mgbase_store_twitter button:hover {
+    background-color: #1c4b8c !important;
+}
+
+
+#mgbase_store_twitter iframe {
+    width: 100% !important;
+}
+

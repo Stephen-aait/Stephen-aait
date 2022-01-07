@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+		<reference name="root">
+			<reference name="top.links">
+				<action method="addLink" translate="label title">
+					<label>My Designs</label>
+					<url>/designersoftware/customer/design</url>
+					<title>Custom Home Link</title>
+					<prepare/>
+					<urlParams/>
+					<position>10</position>
+				</action>
+			</reference>
+        </reference>
+    </default>
+    
+    <!-- if designersoftware module is hit directly then this XML will be called-->
+    <designersoftware_index_index>
+		<remove name="header"/>
+        <remove name="footer"/>
+        <remove name="breadcrumbs"/>
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+			<action method="removeItem"><type>skin_js</type><name>js/slideshow.js</name></action>           
+			<!--<action method="removeItem"><type>js</type><name>prototype/prototype.js</name></action>-->			
+		</reference>
+        <reference name="content">
+			<block type="designersoftware/designersoftware" name="designersoftware" template="inky/designersoftware/designersoftware.phtml">
+				<block type="designersoftware/designersoftware" name="designersoftware_header" as="header" template="inky/designersoftware/header.phtml"></block>
+				<block type="designersoftware/designersoftware" name="designersoftware_footer" as="footer" template="inky/designersoftware/footer.phtml"></block>
+            </block>            
+        </reference>        
+    </designersoftware_index_index>
+    
+    <!-- if designersoftware module is hit VIA category through static block then this XML will be called-->
+    <CATEGORY_4>
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+			<action method="removeItem"><type>skin_js</type><name>js/slideshow.js</name></action>           
+			<!--<action method="removeItem"><type>js</type><name>prototype/prototype.js</name></action>-->			
+		</reference>
+		<reference name="category.products" >
+			<remove name="header"/>
+			<remove name="footer"/>
+			<remove name="breadcrumbs"/>
+			<action method="setTemplate">
+				<template>inky/designersoftware/category/view.phtml</template>
+			</action>
+        </reference>
+	</CATEGORY_4> 
+	<CATEGORY_11>
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>        
+		<reference name="category.products" >			
+			<action method="setTemplate">
+				<template>inky/designersoftware/style.phtml</template>
+			</action>
+        </reference>
+	</CATEGORY_11> 
+	
+	 <!--Customer account pages, rendered for all tabs in dashboard-->
+   <customer_account>       
+       <reference name="customer_account_navigation">
+           <action method="addLink" translate="label" module="designersoftware">
+				<name>design</name>
+				<path>designersoftware/customer/design</path>
+				<label>My Designs</label>				
+			</action>
+       </reference>
+   </customer_account> 
+   
+	<designersoftware_customer_design translate="label">
+		<update handle="customer_account"/>		
+		<reference name="my.account.wrapper">			
+			<block type="designersoftware/customer_design" name="customer.design" template="inky/customer/design/view.phtml">			
+			    <action method="setTitle" translate="title">
+                    <title>My Designs</title>
+                </action> 
+				<block type="designersoftware/customer_design_items" name="customer.design.items" as="items" template="inky/customer/design/item/list.phtml"/>
+			</block>
+		</reference>			
+   </designersoftware_customer_design>
+</layout> 

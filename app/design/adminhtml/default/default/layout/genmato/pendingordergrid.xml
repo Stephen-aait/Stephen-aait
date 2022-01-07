@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<layout>
+    <adminhtml_sales_order_pending_index>
+        <reference name="head">
+            <action method="addCss">
+                <name>genmato/pendingordergrid.css</name>
+            </action>
+        </reference>
+    </adminhtml_sales_order_pending_index>
+    <adminhtml_sales_order_additional_index>
+        <reference name="head">
+            <action method="addCss">
+                <name>genmato/pendingordergrid.css</name>
+            </action>
+        </reference>
+    </adminhtml_sales_order_additional_index>
+</layout>

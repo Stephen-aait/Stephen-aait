@@ -1,0 +1,54 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_Orderattach
+ */
+?>
+<?php 
+$formUrl = $this->getUrl('attaches/order/upload');
+if (isset($_SERVER['HTTPS']) && 'off' != $_SERVER['HTTPS'])
+{
+    $formUrl   = str_replace('http:', 'https:', $formUrl);
+}
+?>
+
+<div id="viewblock_<?php echo $this->getItemCode(); ?>">
+    <strong><a
+            href="<?php echo $this->getUrl('attaches/order/download', array('file' => $this->getItemValue(), 'customer_id' => Mage::getSingleton('customer/session')->getCustomerId())); ?>"><?php echo $this->getItemValue(); ?></a></strong>
+</div>
+
+<div id="editblock_<?php echo $this->getItemCode(); ?>">
+
+    <?php if ($this->getItemValue()): ?>
+        <?php echo $this->getItemValue(); ?>
+        <div style="margin-top: 2px; margin-bottom: 10px;">
+            <button class="button" type="button"
+                    onclick="javascript: attachDeleteFile('<?php echo $this->getItemCode(); ?>', '<?php echo $this->getItemValue(); ?>', 'file');">
+                <span><span><?php echo $this->__('Delete'); ?></span></span>
+            </button>
+        </div>
+    <?php endif; ?>
+
+    <form method="post" id="upload_form_<?php echo $this->getItemCode(); ?>" enctype="multipart/form-data" action="<?php echo $formUrl; ?>">
+        <input type="hidden" name="form_key" value="<?php echo $this->getFormKey() ?>" />
+        <input type="hidden" name="field" value="<?php echo $this->getItemCode(); ?>"/>
+        <input type="hidden" name="order_id" value="<?php echo Mage::registry('current_order')->getId(); ?>" />
+        <input type="hidden" name="type" value="file" />
+        <input type="file" name="to_upload" />
+
+        <iframe id="upload_target_<?php echo $this->getItemCode(); ?>"
+                name="upload_target_<?php echo $this->getItemCode(); ?>" src="" style="display: none; width: 700px; height: 500px;"></iframe>
+    
+        <div style="margin-top: 2px;">
+            <button class="button" type="button" onclick="javascript: attachUpload('<?php echo $this->getItemCode(); ?>');">
+                <span><span><?php echo $this->__('Upload'); ?></span></span>
+            </button>
+            <!--
+            <button class="button" type="button" onclick="javascript: attachCancel('<?php echo $this->getItemCode(); ?>');">
+                <span><span><?php echo $this->__('Cancel'); ?></span></span>
+            </button>
+            -->
+        </div>
+    </form>
+</div>

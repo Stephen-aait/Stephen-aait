@@ -1,0 +1,207 @@
+<?php $id = $this->getRequest()->getParam('order_id');
+$order = Mage::getModel('sales/order')->load($id); 
+$orderAttachments = $this->getOrderAttachments(); 
+?>
+<div id="order_attachments" >
+    <form id="file_upload_form" method="post" enctype="multipart/form-data" action="<?php echo Mage::helper("adminhtml")->getUrl('adminhtml/attachments/saveAttachments',array('order_id' => $id));?>">
+    
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Manage Order Attachments'); ?></h4>
+		<input type="hidden" name="customer_id" value="<?php echo $order->getCustomerId(); ?>" />
+        <div class="grid">        
+            <input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>" />
+            <table cellspacing="0" class="data-table" id="order_attachments_grid">
+                <thead>
+                    <tr class="headings">
+                        <th class="cell-updated"><?php echo $this->__('Created/Updated On') ?></th>
+                        <th class="cell-file"><?php echo $this->__('File') ?></th>
+                        <th class="cell-comment"><?php echo $this->__('Comment') ?></th>
+                        <th class="cell-show"><?php echo $this->__('Show on customer account') ?></th>
+                        <th class="cell-remove last"><?php echo $this->__('Remove') ?></th>
+                    </tr>
+                </thead>
+                <tbody id="order_attachments_list">
+                    <tr id="row-attachment-template-edit" class="template no-display">
+						<td class="cell-updated">#updated_on#</td>
+						<td class="cell-file">
+						   <div id="filelist_#id#">Your browser doesn't have Flash, Silverlight or HTML5 support.</div>
+							<div id="plupload_progress_container_#id#" class="plupload_progress_container">
+								<div class="plupload_progress_bar"></div>
+							</div>
+							<div id="container_#id#">
+								<a id="pickfiles_#id#" href="javascript:;">[Select files]</a> 
+								<pre id="console_#id#"></pre>
+							</div>
+							<a target="_blank" href="#url#">#file_name#</a>
+							<input type="hidden" id="file_#id#" name="order_attachment_#id#[file]" value="" /> 
+						</td>
+						<td class="cell-comment"><textarea class="input-text" rows="5" cols="62" name="order_attachment_#id#[comment]">#comment#</textarea></td>
+						<td class="cell-show ">
+							<div class="onoffswitch ">
+								<input type="checkbox" name="order_attachment_#id#[show]" class="onoffswitch-checkbox" id="order-attachment_#id#_show" value="1" />
+								<label class="onoffswitch-label" for="order-attachment_#id#_show">
+									<span class="onoffswitch-inner"></span>
+									<span class="onoffswitch-switch"></span>
+								</label>
+							</div>
+						</td>
+						<td class="cell-remove last">
+							<div class="onoffswitch">
+								<input type="checkbox" name="order_attachment_#id#[is_delete]" class="onoffswitch-checkbox" id="order-attachment_#id#_is_delete" value="1" />
+								<label class="onoffswitch-label" for="order-attachment_#id#_is_delete">
+									<span class="onoffswitch-inner"></span>
+									<span class="onoffswitch-switch"></span>
+								</label>
+							</div>
+						</td>
+						<script type="text/javascript">
+						// Custom example logic
+						var uploader_;
+						var uploaderId = uploader_+'#id#';
+						uploaderId = new plupload.Uploader({
+
+							//runtimes : 'html5,flash,silverlight,html4',
+							browse_button : 'pickfiles_#id#', // you can pass in id...
+							container: document.getElementById('container_#id#'), // ... or DOM Element itself
+							url : '<?php echo Mage::helper("adminhtml")->getUrl('adminhtml/attachments/show'); ?>',
+							
+							multipart_params: {
+								form_key:'<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>'
+							},
+							filters : {
+								max_file_size : '<?php echo Mage::helper('orderattachments')->getFileSize(); ?>' + 'mb',
+								chunk_size: '1mb',
+								mime_types: [
+									{title : "Files", extensions : "<?php echo Mage::helper('orderattachments')->getAllowedExtension();?>"},
+								]
+							},
+					
+							init: {
+								PostInit: function() {
+									document.getElementById('filelist_#id#').innerHTML = '';
+								},
+								FilesAdded: function(up, files) {
+									plupload.each(files, function(file) {
+										document.getElementById('filelist_#id#').innerHTML = '<div id="' + file.id + '">' + file.name + ' <b></b></div><br/>';
+										up.start();
+									});
+								},
+								UploadProgress: function(up, file) {
+									document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+									$('plupload_progress_container_#id#').removeClassName("plupload_progress_container");
+									$('save-attachments-btn').disable();
+									$('save-attachments-btn').addClassName("disabled");
+								},
+								FileUploaded: function(up, file ,info) {
+									document.getElementById('file_#id#').value = info.response;
+								},
+							
+								UploadComplete: function(up, files) {
+									$('plupload_progress_container_#id#').addClassName("plupload_progress_container");
+									$('save-attachments-btn').enable();
+									$('save-attachments-btn').removeClassName("disabled");
+								},
+								
+								Error: function(up, err) {
+									document.getElementById('console_#id#').appendChild(document.createTextNode("Error #" + err.code + ": " + err.message +"\n"));
+								}
+							}
+						});
+						uploaderId.init();
+						</script>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="add-button last">
+                            <button id="add-attachment" type="button"><span><span><?php echo $this->__('Add Attachment'); ?></span></span></button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>        
+        </div><br/>
+		<div class="f-right">
+			<button type="submit" id="save-attachments-btn" class="button"><?php echo $this->__('Save Attachment'); ?></button>
+		</div>
+    </form>
+</div>
+<script type="text/javascript">
+var templateContentEdit = $('row-attachment-template-edit').innerHTML;
+var templateContentReadonly = $('row-attachment-template-edit').innerHTML;
+var orderAttachment = {
+    div : $('row-attachment-template-edit'),
+    addAttachmentBtn: $('add-attachment'),
+    templateSyntax : /(^|.|\r|\n)(#(\w+)#)/,
+    templateTextEdit : templateContentEdit,
+    templateTextReadonly : templateContentReadonly,
+    numAttachments: 0,
+    add : function(data) {
+        this.template = new Template(this.templateTextEdit, this.templateSyntax);
+
+        var currentDateTime = new Date();
+        var month = 1 + currentDateTime.getMonth();
+        month = (month < 10) ? '0' + month : month;
+        var date = currentDateTime.getDate() < 10 ? '0' + currentDateTime.getDate(): currentDateTime.getDate();
+        var dateFormated = currentDateTime.getFullYear() + '-' + month + '-' + date;
+        dateFormated += ' ' + currentDateTime.getHours() + ':' + currentDateTime.getMinutes() + ':' + currentDateTime.getSeconds();
+        if(!data.id){
+            data = {};
+            data.id  = 'id_'+new Date().valueOf();
+            data.comment = '';
+            data.file_name = '';
+            data.url = '';
+            data.updated_on = dateFormated;
+            data.show = '';
+            this.template = new Template(this.templateTextEdit, this.templateSyntax);
+        }
+
+        Element.insert(this.div, {'before':this.template.evaluate(data)});
+
+        this.numAttachments++;
+
+
+        this.updateHtmlElements(data);
+        this.bindRemoveButtons();
+    },
+    remove : function(event){
+        var element = $(Event.findElement(event, 'div'));
+        if(element){
+            $(element.readAttribute('id')+'_'+'is_delete').value = '1';
+            element.addClassName('no-display');
+            element.addClassName('ignore-validate');
+            element.hide();
+            this.numAttachments--;
+        }
+    },
+    bindRemoveButtons : function(){
+        var buttons = $$('div.attachment-box .delete-attachment');
+        for(var i=0;i<buttons.length;i++){
+            if(!$(buttons[i]).binded){
+                $(buttons[i]).binded = true;
+                Event.observe(buttons[i], 'click', this.remove.bind(this));
+            }
+        }
+    },
+    updateHtmlElements: function(data) {
+        //set selected product
+        if (data.product && data.product > 0) {
+            $A($('order-attachment_'+data.id+'_type').options).each(function(option){
+                if (option.value==data.type) option.selected = true;
+            });
+        }
+
+        //set show
+        if (data.show == 1) {
+            $('order-attachment_'+data.id+'_show').checked = true;
+        } else {
+            $('order-attachment_'+data.id+'_show').checked = false;
+        }
+    }
+}
+
+orderAttachment.bindRemoveButtons();
+Event.observe('add-attachment', 'click', orderAttachment.add.bind(orderAttachment));
+
+<?php foreach ($orderAttachments as $orderAttachment): ?>
+    orderAttachment.add(<?php echo Mage::helper('core')->jsonEncode($orderAttachment) ?>);
+<?php endforeach; ?>
+</script>

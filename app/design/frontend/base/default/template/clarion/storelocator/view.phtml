@@ -1,0 +1,166 @@
+<?php
+/**
+ * Storelocator template for store view
+ *
+ * @author Magento
+ */
+
+/**
+ * @var $this Clarion_Storelocator_Block_View
+ * @see Clarion_Storelocator_Block_View
+ */
+?>
+<?php $_storeView = $this->helper('clarion_storelocator')->getStoreViewInstance(); ?>
+<!-- Add Google Map Listener -->
+
+<div class="page-title">
+    <h1><?php echo $this->escapeHtml($_storeView->getName()) ?> - Store Detail</h1>
+</div>
+<table border="0" id="store-view-detail">
+    <tr>
+        <td>
+           <button onclick="setLocation('<?php echo $this->getBackUrl() ?>');" class="button" title="<?php echo Mage::helper('clarion_storelocator')->__('Back') ?>" type="button">
+                <span>
+                    <span>
+                        <?php echo Mage::helper('clarion_storelocator')->__('Back') ?>
+                    </span>
+                </span>
+            </button>
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+   <tr>
+    <td id="store-detail">
+        <table id="store-view-detail-table" class="store-view-detail-data-table">
+        <tbody>
+            <?php if ($imageUrl = $this->getImageUrl($_storeView, 400)): ?>
+            <tr>
+                <td colspan="2">
+                     <p><img src="<?php echo $imageUrl ?>" alt="<?php echo $this->escapeHtml($_storeView->getName()) ?>" title="<?php echo $this->escapeHtml($_storeView->getName()) ?>" /></p>
+                </td></tr>
+            <?php endif; ?>
+                <tr>
+                <th class="label">Store</th>
+                <td><?php echo $this->escapeHtml(ucfirst($_storeView->getName())) ?></td>
+            </tr>
+                <tr>
+                <th class="label">Country</th>
+                <td ><?php echo ucfirst($this->getCountryName($_storeView->getCountry())); ?></td>
+            </tr>
+            <tr>
+                <th class="label">State</th>
+                <td><?php echo $this->escapeHtml(ucfirst($_storeView->getState())) ?></td>
+            </tr>
+            <tr>
+                <th class="label">City</th>
+                <td><?php echo $this->escapeHtml(ucfirst($_storeView->getCity())) ?></td>
+            </tr>
+            <!-- Store Address -->
+            <?php if($_storeView->getStreetAddress()): ?>
+            <tr>
+                <th class="label">Street Address</th>
+                <td><?php echo $this->escapeHtml($_storeView->getStreetAddress()) ?></td>
+            </tr>
+            <?php endif; ?>
+            <!-- Zip Code -->
+            <?php if($_storeView->getZipcode()): ?>
+            <tr>
+                <th class="label">Zip Code</th>
+                <td><?php echo $this->escapeHtml($_storeView->getZipcode()) ?></td>
+            </tr>
+            <?php endif; ?>
+            <!-- Phone -->
+            <?php if($_storeView->getPhone()): ?>
+            <tr>
+                <th class="label">Phone</th>
+                <td><?php echo $this->escapeHtml($_storeView->getPhone()) ?></td>
+            </tr>
+            <?php endif; ?>
+            <!-- Phone -->
+            <?php if($_storeView->getPhone()): ?>
+            <tr>
+                <th class="label">Phone</th>
+                <td><?php echo $this->escapeHtml($_storeView->getPhone()) ?></td>
+            </tr>
+            <?php endif; ?>
+            <!-- Fax -->
+            <?php if($_storeView->getFax()): ?>
+            <tr>
+                <th class="label">Fax</th>
+                <td><?php echo $this->escapeHtml($_storeView->getFax()) ?></td>
+            </tr>
+            <?php endif; ?>
+            <!-- Store Url -->
+            <?php if($_storeView->getUrl()): ?>
+            <tr>
+                <th class="label">Store Url</th>
+                <td><?php echo $this->escapeHtml($_storeView->getUrl()) ?></td>
+            </tr>
+            <?php endif; ?>
+            <!-- Email -->
+            <?php if($_storeView->getEmail()): ?>
+            <tr>
+                <th class="label">Email</th>
+                <td><?php echo $this->escapeHtml($_storeView->getEmail()) ?></td>
+            </tr>
+            <?php endif; ?>
+            <!-- Trading Hours -->
+            <?php if($_storeView->getTradingHours()): ?>
+            <tr>
+                <th class="label">Trading Hours</th>
+                <td><?php echo $this->escapeHtml($_storeView->getTradingHours()) ?></td>
+            </tr>
+            <?php endif; ?>
+            <!-- Radius -->
+            <?php if($_storeView->getRadius()): ?>
+            <tr>
+                <th class="label">Radius</th>
+                <td><?php echo $this->escapeHtml($_storeView->getRadius()) ?>&nbsp;Miles</td>
+            </tr>
+            <?php endif; ?>
+            <!-- Description -->
+            <?php if($_storeView->getDescription()): ?>
+            <tr>
+                <th class="label">Description</th>
+                <td><?php echo $_storeView->getDescription(); ?></td>
+            </tr>
+            <?php endif; ?>
+       </tbody>
+        </table>
+    </td>
+    <td id="store-gmap" style="valign:top"><div id="googleMap"></div></td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>
+            <button onclick="setLocation('<?php echo $this->getBackUrl() ?>');" class="button" title="<?php echo Mage::helper('clarion_storelocator')->__('Back') ?>" type="button">
+                <span>
+                    <span>
+                        <?php echo Mage::helper('clarion_storelocator')->__('Back') ?>
+                    </span>
+                </span>
+            </button>
+        </td>
+    </tr>
+</table>
+<?php 
+//Get store google map related information
+$storeName = $_storeView->getName();
+$storeLat = $_storeView->getLatitude();
+$storeLong = $_storeView->getLongitude();
+$storeRadius = $this->getRadius($_storeView);
+$storeZoomLevel = $this->getZoomLevel($_storeView);
+?>
+<?php if($storeLat && $storeLong): ?>
+<script>
+    //<![CDATA[
+    var storeLat = <?php echo $storeLat ;?>;
+    var storeLong = <?php echo $storeLong ;?>;
+    var storeRadius = <?php echo $storeRadius ;?>;
+    var storeZoomLevel = <?php echo $storeZoomLevel ;?>;
+    var storeInfoText = '<?php echo $storeName ;?>';
+    var googleMapDivId = 'googleMap';
+    google.maps.event.addDomListener(window, 'load', initialize(storeLat, storeLong, storeRadius, storeZoomLevel, storeInfoText, googleMapDivId));
+      //]]>
+</script>
+<?php endif ?>

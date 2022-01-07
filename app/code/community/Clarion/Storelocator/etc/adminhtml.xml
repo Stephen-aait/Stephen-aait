@@ -1,0 +1,98 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Configuration file for admin menu and access permission
+ *
+ * @category   Mage
+ * @package    Clarion_Storelocator
+ * @author     Clarion Magento Team
+ */
+-->
+<config>
+    <!-- Added menu "Storelocator" in admin -->
+     <menu>
+        <clarion_storelocator translate="title" module="clarion_storelocator">
+        <title>Store Locator</title>
+        <sort_order>91</sort_order>
+            <children>
+                <clarion_manage_storelocator translate="title" module="clarion_storelocator">
+                    <title>Manage Stores</title>
+                    <sort_order>1</sort_order>
+                     <action>adminhtml/managestorelocator</action>
+                </clarion_manage_storelocator> 
+                <clarion_storelocator_general_settings translate="title" module="clarion_storelocator">
+                    <title>General Settings</title>
+                    <sort_order>2</sort_order>
+                     <action>adminhtml/system_config/edit/section/clarion_storelocator_general_setting</action>
+                </clarion_storelocator_general_settings> 
+                <import_export translate="title" module="clarion_storelocator">
+                    <title>Import/Export</title>
+                    <sort_order>3</sort_order>
+                    <children>
+                        <export translate="title" module="clarion_storelocator">
+                            <title>Export</title>
+                            <sort_order>1</sort_order>
+                            <action>adminhtml/managestorelocator</action>
+                        </export> 
+                        <import translate="title" module="clarion_storelocator">
+                            <title>Import</title>
+                            <sort_order>2</sort_order>
+                            <action>adminhtml/importstorelocator</action>
+                        </import> 
+                    </children>
+                </import_export> 
+            </children>
+        </clarion_storelocator>
+    </menu>
+    
+    <!-- Access permissions -->
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <clarion_storelocator translate="title" module="clarion_storelocator">
+                        <title>Storelocator</title>
+                        <sort_order>91</sort_order>
+                        <children>
+                            <clarion_manage_storelocator translate="title" module="clarion_storelocator">
+                                <title>Manage Storelocator</title>
+                                <sort_order>1</sort_order>
+                                <children>
+                                    <save translate="title" module="clarion_storelocator">
+                                        <title>Save Store</title>
+                                        <sort_order>0</sort_order> 
+                                    </save>
+                                    <delete translate="title" module="clarion_storelocator">
+                                        <title>Delete Store</title>
+                                        <sort_order>1</sort_order> 
+                                    </delete>
+                                </children>
+                            </clarion_manage_storelocator> 
+                            <clarion_storelocator_general_settings translate="title" module="clarion_storelocator">
+                                <title>General Settings</title>
+                                <sort_order>2</sort_order>
+                            </clarion_storelocator_general_settings>
+                            <import_export translate="title" module="clarion_storelocator">
+                                <title>Import/Export</title>
+                                <sort_order>3</sort_order>
+                                <children>
+                                    <export translate="title" module="clarion_storelocator">
+                                        <title>Export</title>
+                                        <sort_order>1</sort_order>
+                                    </export> 
+                                    <import translate="title" module="clarion_storelocator">
+                                        <title>Import</title>
+                                        <sort_order>2</sort_order>
+                                    </import> 
+                                </children>
+                            </import_export>
+                        </children>
+                    </clarion_storelocator>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

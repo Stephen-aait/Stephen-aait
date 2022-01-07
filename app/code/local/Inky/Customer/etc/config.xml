@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Inky_Customer>
+            <version>0.1.0</version>
+        </Inky_Customer>
+    </modules>
+    <frontend>
+        <routers>
+            <customer>
+                <args>
+                    <modules>
+                        <inky_customer before="Mage_Customer">Inky_Customer</inky_customer><!--Change Inky To Your Module NameSpace and Customer to Your Module name-->
+                    </modules>
+                </args>
+            </customer>
+        </routers>         
+    </frontend>    
+</config>

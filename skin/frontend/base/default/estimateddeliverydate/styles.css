@@ -1,0 +1,6 @@
+.leattimes.loading{
+    background:url(ajax-loader.gif) no-repeat 50% 50% transparent;
+}
+.leattimes {
+    min-height:60px;
+}

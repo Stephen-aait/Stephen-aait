@@ -1,0 +1,6 @@
+<p>
+    <?php echo $this->getMethod()->getTitle() ?><br />
+    <?php if ($this->getMethod()->getConfigData('infotext_overview')): ?>
+        <?php echo $this->getMethod()->getConfigData('infotext_overview') ?><br />
+    <?php endif; ?>
+</p>

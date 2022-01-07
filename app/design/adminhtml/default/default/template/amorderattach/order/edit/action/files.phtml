@@ -1,0 +1,32 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_Orderattach
+ */
+?>
+<div class="grid edit" id="amattach-block">
+    <input type="hidden" id="ajax_upload_url" value="<?php echo $this->getUrl('adminhtml/amorderattach_orderAttach/upload'); ?>" />
+
+    <table id="amorderattach_files">
+        <?php foreach ($this->getAttachments() as $attachment): ?>
+            <tr>
+                <td><?php echo $attachment->getLabel()?></td>
+                <td class="attach-file-container">
+                    <input type="hidden" name="field" value="<?php echo $attachment->getCode(); ?>"/>
+                    <input type="hidden" name="type" value="<?php echo $attachment->getType();?>" />
+                    <input type="hidden" name="order_ids" value="<?php echo $this->getOrderIds(); ?>" />
+                    <input type="file" name="to_upload" />
+                    <div class="drop" style="display: none"><span>Click or drop files here</span></div>
+                </td>
+            </tr>
+        <?php endforeach;?>
+
+    </table>
+</div>
+<script type="text/javascript">
+    decorateTable("amorderattach_files");
+    $$('.attach-file-container').each(function(item) {
+        new FileDragAndDrop($('ajax_upload_url').value, item);
+    });
+</script>

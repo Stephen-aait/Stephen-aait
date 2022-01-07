@@ -1,0 +1,22 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_Orderattach
+ */
+?>
+<div id="viewblock_<?php echo $this->getItemCode(); ?>">
+    <a href="<?php echo $this->getLink()?>" <?php if ($this->getAttachmentField()->getOptions() == '1') echo 'target="_blank"'?>><?php echo $this->getName()?></a>
+</div>
+
+<div id="editblock_<?php echo $this->getItemCode(); ?>" style="display: none;">
+    <input id="value_<?php echo $this->getItemCode(); ?>" class="input-text" value="<?php echo htmlentities($this->getItemValue()); ?>"/>
+    <div style="margin-top: 2px;">
+        <button class="button" type="button" onclick="javascript: attachSave('<?php echo $this->getItemCode(); ?>');">
+            <span><span><?php echo $this->__('Save'); ?></span></span>
+        </button>
+        <button class="button" type="button" onclick="javascript: attachCancel('<?php echo $this->getItemCode(); ?>');">
+            <span><span><?php echo $this->__('Cancel'); ?></span></span>
+        </button>
+    </div>
+</div>

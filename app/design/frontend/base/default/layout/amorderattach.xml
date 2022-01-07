@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2017 Amasty (https://www.amasty.com)
+ * @package Amasty_Orderattach
+ */
+-->
+<layout>
+    <sales_order_view>
+        <reference name="head">
+            <action method="addItem"><type>js</type><name>amasty/amorderattach/handle.js</name><params/></action>
+            <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar.js</name></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
+            <block type="core/html_calendar" name="head.calendar" as="calendar" template="page/js/calendar.phtml"/>
+        </reference>
+        <reference name="my.account.wrapper">
+            <block type="amorderattach/sales_order_view_attachment" name="amorderattach.attachment" before="sales.order.view" />
+        </reference>
+    </sales_order_view>
+</layout>

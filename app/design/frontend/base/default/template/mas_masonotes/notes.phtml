@@ -1,0 +1,130 @@
+<?php
+
+if (!Mage::getStoreConfig('masonotes/customer/enabled')) {
+    return;
+}
+
+?>
+<style>
+.notes li .notes-body .post-header {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #f1f5fc;
+}
+
+.notes li .notes-body .post-footer {
+    padding-top: 5px;
+    border-top: 1px solid #f1f5fc;
+}
+
+.notes { 
+	list-style: none;
+    margin: 0;
+}
+
+
+.notes li {
+	margin-bottom: 15px;
+}
+
+.notes-body {
+	position: relative;
+    font-size: 11px;
+    padding: 10px;
+    border: 1px solid #f1f5fc;
+    box-shadow: 0 1px 1px rgba(0,0,0,.5);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.5);
+        background: #fff;
+}
+.notes-holder {	
+	padding: 10px 0px;
+}
+.notes-holder textarea {
+	width: 99%;
+}
+.masoitems-text {
+		padding: 10px;
+		background: #fff;
+		border-left: 2px solid #ff9933;
+		margin-bottom: 10px;
+}
+
+.note-by-customer {
+    background: #dedede;
+}
+.note-by-customer .post-header, .note-by-customer p {
+    text-align: right;
+}
+</style>
+<h2><?php echo $this->__('Order Notes')?></h2>
+<?php $t = Mage::getStoreConfig('masonotes/customer/text_above');?>
+<?php if ($t != ''):?>
+	<div class="masoitems-text"><?php echo $t?></div>
+<?php endif;?>
+<?php $notes = $this->getCollection();?>
+<div class="notes-holder">
+<div class="notes-message">
+<?php if (count($notes) > 0):?>
+
+
+
+						<ul class="notes" id="masorder-notes">
+<?php include "list.phtml" ?>
+</ul>
+<?php else:?>
+<ul class="notes" id="masorder-notes"></ul>
+<h3><?php echo $this->__('There are no order notes currently');?></h3>    
+<?php endif;?>
+<?php if (Mage::getStoreConfig('masonotes/customer/let_reply')):?>
+    <?php $action = $this->getUrl('masonotes/index/accept');?>
+    <?php
+    if (Mage::app()->getStore()->isCurrentlySecure()) {
+            $action = str_replace('http://', 'https://', $action);
+	}
+	?>
+    <form action="<?php echo $action?>" id="masnote_replyform" onsubmit="noteSendReply();return false;">
+        <input type="hidden" name="order_id" value="<?php echo $this->getOrderId();?>" />
+        <input type="hidden" name="store_id" value="<?php echo $this->getStoreId();?>" />
+        <textarea name="note" id="mas_onote" class="required-entry"></textarea>        
+        <p style="text-align: right;padding-top: 5px">
+            <span id="masnote_replyform_feedback"></span>&nbsp;<button type="submit" class="button"><span><span><?php echo $this->__('Submit Comment');?></span></span></button>        
+        </p>
+    </form>
+    
+    <script type="text/javascript">
+		//<![CDATA[
+		function noteSendReply() {
+            var formId = 'masnote_replyform';
+			var form = new VarienForm(formId, true);
+			
+	        if (!form.validator.validate()) {
+                return;
+	        }  
+        var oOptions = {  
+            method: "POST",  
+            parameters: Form.serialize(formId),  
+            asynchronous: true,  
+            onFailure: function (oXHR) {  
+                $('masnote_replyform_feedback').update(oXHR.statusText);  
+            },  
+            onLoading: function (oXHR) {  
+                $('masnote_replyform_feedback').update('<img src="<?php echo $this->getSkinUrl('images/mas_onotes/loading.gif')?>" />');  
+            },                            
+	        onSuccess: function(oXHR) {  
+                $('masorder-notes').innerHTML = oXHR.responseText;  
+                $('masnote_replyform_feedback').update('');  
+                document.getElementById('mas_onote').value = '';
+	        }                 
+        };  
+	    var oRequest = new Ajax.Updater({success: oOptions.onSuccess.bindAsEventListener(oOptions)}, "<?php echo $action?>", oOptions);             
+		} 
+        	
+	//]]>
+	</script>
+
+
+<?php endif;?>
+</div>
+</div>
+
+

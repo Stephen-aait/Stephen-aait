@@ -1,0 +1,23 @@
+<?php
+/**
+ * @company   CueBlocks - http://www.cueblocks.com/
+ * @author    Ravinder <ravinder.singh@cueblocks.com>
+ */
+?>
+<style>
+    div#manual_discount {
+        padding-left: 3%;
+    }
+</style>
+<script type="text/javascript">
+    //<![CDATA[
+    function applyCustomDiscount() {
+        var custom_discount = $('customdiscount_add_input').value;
+        var type = $$('input:checked[type=radio][name=customdiscount_type]')[0].value;
+        var data = {};
+        data['customdiscount'] = custom_discount;
+        data['customdiscount_type'] = type;
+        order.loadArea(['totals', 'billing_method', 'items'], true, data);
+    }
+    //]]>
+</script>

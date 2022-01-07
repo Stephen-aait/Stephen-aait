@@ -1,0 +1,338 @@
+.middle {
+    padding: 0px 27px 0 0px;
+}
+/*.grid tr.multiselect, .grid tr.multiselect tr { background:#CCF0F0 !important; } */
+#productGrid_table tr.multiselect, #productGrid_table tr.multiselect tr { background:#CCF0F0 !important; }
+
+.dragtable_marker_position { border-right: 3px dotted #eb5e00 !important; }
+
+
+#productGrid_table td input[type="text"],
+#productGrid_table td select
+{
+    width: 100%; 
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing: border-box;
+}
+
+
+
+button {
+    margin: 0em;
+    font: -webkit-small-control;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+}
+
+
+button {
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+    padding: 2px 6px 3px;
+    border: 2px outset buttonface;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    background-color: buttonface;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 1px 6px;
+}
+
+
+
+
+
+.tau-btn {
+    font-family: OpenSans,'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    margin: 0 2px;
+    border-radius: 3px;
+    padding: 3px 9px 5px 9px;
+    height: 24px;
+    line-height: 16px;
+    white-space: nowrap;
+    text-shadow: 0 1px #fff;
+    color: #606c7b;
+    border: solid 1px #acb3ba;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zd…B5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2czOTIpIiAvPgo8L3N2Zz4=);
+    background-image: -webkit-linear-gradient(bottom,#e8e8e8,#fff);
+    background-image: -moz-linear-gradient(bottom,#e8e8e8,#fff);
+    background-image: linear-gradient(to top,#e8e8e8,#fff);
+}
+
+
+
+.tau-btn.tau-clone:before,
+.tau-btn.tau-save-template:before,
+.tau-btn.tau-close:before,
+.tau-btn.tau-options:before,
+.tau-btn.tau-date-range-options:before,
+.tau-help:before,
+.tau-btn.tau-add:before,
+.tau-btn.tau-search:before,
+.tau-btn.tau-sort-dec:before,
+.tau-btn.tau-sort-inc:before,
+.tau-btn.tau-share:before,
+.tau-btn.tau-close.tau-btn-active-highlight:before,
+.tau-boardsettings__filter__action-clear:before {
+    background: url("/media/iksanika/productupdater/icons-general.png") no-repeat;
+    /*?v=3.0.3.30268*/
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.tau-btn.tau-options:before {
+    width: 16px;
+    height: 16px;
+    background-position: -359px -107px;
+}
+
+.tau-btn.tau-options.tau-checked:before {
+    width: 16px;
+    height: 16px;
+    background-position: -809px -107px;
+}
+
+
+.tau-btn.tau-close, .tau-btn.tau-options, .tau-btn.tau-date-range-options, .tau-btn.tau-search, .tau-btn.tau-sort-dec, .tau-btn.tau-sort-inc, .tau-btn.tau-share {
+    padding: 0;
+    text-align: center;
+    width: 28px;
+}                    
+.tau-btn:hover:not(:disabled) {
+    background: #f2f2f2;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zd…B5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2c4MDQpIiAvPgo8L3N2Zz4=);
+    background-image: -webkit-linear-gradient(bottom,#d6d6d6,#fff);
+    background-image: -moz-linear-gradient(bottom,#d6d6d6,#fff);
+    background-image: linear-gradient(to top,#d6d6d6,#fff);
+}
+
+.tau-btn.tau-checked, .tau-btn.tau-checked:hover {
+color: #fff;
+text-shadow: 0 -1px #1f2024;
+background: #1e1f23;
+background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9z…5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2czNTUpIiAvPgo8L3N2Zz4=");
+background: -moz-linear-gradient(top,#1e1f23 0,#727982 100%);
+background: -webkit-linear-gradient(top,#1e1f23 0,#727982 100%);
+background: -ms-linear-gradient(top,#1e1f23 0,#727982 100%);
+background: linear-gradient(to bottom,#1e1f23 0,#727982 100%);
+}
+
+.tau-btn.tau-checked:not(:focus) {
+border-color: #4d5258;
+}
+
+.tau-board>.tau-board-header>.tau-btn {
+    margin-top: 1.2727em;
+}
+.tau-board>.tau-board-header>.tau-board-settings-toggle {
+    float: right;
+}
+
+
+
+.tau-bubble__inner {
+    min-width: 150px;
+    margin: 13px 13px 12px;
+    background: #fff;
+    overflow: auto;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 10px rgba(0,0,0,0.3),0 0 1px 0 rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 1px 10px rgba(0,0,0,0.15),0 0 1px 0 rgba(0,0,0,0.15);
+    -ms-box-shadow: 0 1px 10px rgba(0,0,0,0.3),0 0 1px 0 rgba(0,0,0,0.3);
+    -o-box-shadow: 0 1px 10px rgba(0,0,0,0.3),0 0 1px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 1px 10px rgba(0,0,0,0.3),0 0 1px 0 rgba(0,0,0,0.3);
+}
+
+
+.tau-board-actions-bubble>.tau-bubble__inner {
+    padding: 15px 15px 0 15px;
+/*    max-width: 400px;*/
+    max-width: 184px;
+}
+
+
+
+
+.tau-board-actions-bubble .tau-board-actions-item {
+    display: inline-block;
+    vertical-align: top;
+    width: 180px;
+    padding: 0 0 15px 0;
+    margin-right: 20px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.tau-board-actions-item
+{
+    font-family: OpenSans,'Helvetica Neue',Helvetica,Arial,sans-serif;
+    color: #16343B;
+}
+
+.tau-board-actions-bubble .tau-txt {
+    font-size: 11px;
+    line-height: 15px;
+    padding-top: 5px;
+}
+
+.tau-bubble {
+    position: absolute;
+    z-index: 999;
+/*    display: none;
+    visibility: hidden;*/
+}
+
+.tau-bubble__arrow {
+    position: absolute;
+    width: 46px;
+}
+
+.tau-bubble__arrow[data-orientation=top] {
+    background: url("/media/iksanika/productupdater/arrow-top.png?v=3.5.2.12649") 0 -5px no-repeat;
+    height: 14px;
+}
+
+
+
+.iksProductUpdaterSettings
+{
+    /*https://account.skrill.com/assets*/
+    background-color: #f5f5f5;
+    background-color: #e7e7e7 \9;
+    background-image: url('/media/iksanika/productupdater/body_bg_noise.png');
+    background-image: url('/media/iksanika/productupdater/body_bg_noise.png'),-webkit-gradient(linear, left top, left bottom, from(#e7e7e7), to(#f5f5f5));
+    background-image: url('/media/iksanika/productupdater/body_bg_noise.png'),-webkit-linear-gradient(top, #e7e7e7, #f5f5f5);
+    background-image: url('/media/iksanika/productupdater/body_bg_noise.png'),-moz-linear-gradient(top, #e7e7e7, #f5f5f5);
+    background-image: url('/media/iksanika/productupdater/body_bg_noise.png'),-ms-linear-gradient(top, #e7e7e7, #f5f5f5);
+    background-image: url('/media/iksanika/productupdater/body_bg_noise.png'),-o-linear-gradient(top, #e7e7e7, #f5f5f5);
+    background-image: url('/media/iksanika/productupdater/body_bg_noise.png'),linear-gradient(top, #e7e7e7,#f5f5f5);
+    background: #e7e7e7 url('/media/iksanika/productupdater/body_bg_noise.png') repeat 0 0 \9;
+    background-repeat: repeat, repeat-x;
+    
+    
+    border: 1px solid #c4c9d0;
+    margin-bottom: 5px;
+    border-radius: 2px;    
+    
+}
+
+.iksProductUpdaterSettings .headerLine
+{
+    background: #fff;
+    height: 2px;
+    padding: 0;
+    -webkit-box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
+    -moz-box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
+    box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
+    filter: progid:DXImageTransform.Microsoft.Shadow(color=#cdcdcd,direction=0,strength=3),"U+00A0 " progid:DXImageTransform.Microsoft.Shadow(color=#cdcdcd,direction=90,strength=3),"U+00A0 " progid:DXImageTransform.Microsoft.Shadow(color=#cdcdcd,direction=180,strength=3),"U+00A0 " progid:DXImageTransform.Microsoft.Shadow(color=#cdcdcd,direction=270,strength=3) \9;
+    margin: -3px 0 0 -3px \9;
+}
+
+.current-indicator 
+{
+    background: url("/media/iksanika/productupdater/nav_arrow.png") no-repeat center bottom;
+    width: 33px;
+/*    position: absolute;*/
+    position: relative;
+/*    left: 0;
+    top: 36px;*/
+/*    height: 13px;*/
+    left: 11px;
+    height: 6px;
+    top: 1px;
+    background: url("/media/iksanika/productupdater/arrow_up-white.png?v=3.0.3.30268") no-repeat 0 0;
+    /* http://tempp.tpondemand.com/JavaScript/tau/css.board/images/arrow_up-white.png?v=3.0.3.30268 */
+}
+
+
+.iksProductUpdaterSettings 
+{
+    display: inline-block;
+    width: 100%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+
+.settingsBlock
+{
+    float: left;
+    padding-left: 25px;
+}
+
+
+
+
+
+#productGrid_table tr td.associatedProduct
+{
+    background-image: url("/media/iksanika/productupdater/arrow_up.png");
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-clip: border-box;
+    background-origin: border-box;
+}
+
+div.associatedProduct
+{
+    background: url("/media/iksanika/productupdater/arrow_up.png") no-repeat 0 0;
+    height: 8px;
+    position: absolute;
+    bottom: -1px;
+    left: 23px;
+    display: inline-block;
+    width: 14px;
+}
+
+#productGrid_table tr.associatedProduct,
+#productGrid_table tr.lastAssociatedProduct
+{
+    background-color: #fff;
+}
+
+.grid tr
+{
+    background: #fdfdfd;
+}
+
+.grid tr.even
+{
+    background: #f6f6f6;
+}
+
+#productGrid_table tr.associatedProduct td
+{
+    border-top-color: #F2F2F2;
+    border-right-color: #FFF;
+    border-bottom-color: #FAFAFA;
+}
+
+#productGrid_table tr.lastAssociatedProduct td
+{
+    border-top-color: #F2F2F2;
+    border-right-color: #FFF;
+    border-bottom-color: #DADFE0;
+}

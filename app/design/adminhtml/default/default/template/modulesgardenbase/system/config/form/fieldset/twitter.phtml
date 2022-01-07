@@ -1,0 +1,55 @@
+<?php
+
+/**********************************************************************
+ * Customization Services by ModulesGarden.com
+ * Copyright (c) ModulesGarden, INBS Group Brand, All Rights Reserved 
+ * (2014-11-12, 14:02:17)
+ * 
+ *
+ *  CREATED BY MODULESGARDEN       ->        http://modulesgarden.com
+ *  CONTACT                        ->       contact@modulesgarden.com
+ *
+ *
+ *
+ *
+ * This software is furnished under a license and may be used and copied
+ * only  in  accordance  with  the  terms  of such  license and with the
+ * inclusion of the above copyright notice.  This software  or any other
+ * copies thereof may not be provided or otherwise made available to any
+ * other person.  No title to and  ownership of the  software is  hereby
+ * transferred.
+ *
+ *
+ **********************************************************************/
+
+/**
+ * @author Grzegorz Draganik <grzegorz@modulesgarden.com>
+ */
+
+?>
+
+<div class="section-config active modulesgarden_form_container">
+	<div class="entry-edit-head collapseable">
+		<a id="mgbase_store_twitter-head" href="#" onclick="Fieldset.toggleCollapse('mgbase_store_twitter'); return false;" class="open"><?php echo $this->__('Latest News About Our Magento Extensions & Themes'); ?></a>
+	</div>
+        <input id="mgbase_store_twitter-state" name="config_state[mgbase_store_twitter]" type="hidden" value="1">
+	<fieldset id="mgbase_store_twitter" class="config collapseable">
+		<button onclick="return mgShowTwitterBox();"><?php echo $this->__('Tweets by @ModulesGarden'); ?></button>
+	</fieldset>
+        <script type="text/javascript">//<![CDATA[
+            Fieldset.applyCollapse('mgbase_store_twitter');
+        //]]></script>
+</div>
+
+<script type="text/javascript">
+function mgShowTwitterBox(){
+	var twitterBoxWidth = $('mgbase_store_twitter').getWidth() - 30;
+	var twitterBoxCode = '<a class="twitter-timeline"  href="https://twitter.com/search?q=%23Magento%20AND%20from%3A%40ModulesGarden" data-tweet-limit="5" data-widget-id="532534423783079936"></a>';
+	document.getElementById('mgbase_store_twitter').innerHTML = twitterBoxCode;
+	
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+	return false;
+}
+
+mgShowTwitterBox();
+</script>

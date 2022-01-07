@@ -1,0 +1,866 @@
+<?php echo $this -> getChildHtml('header'); ?>
+<?php
+// Path inside /js
+$url 					= Mage::getBaseUrl();
+$baseWebUrl 			= $this -> getWebPath();
+$jsPath 				= $baseWebUrl . 'js' . DS . 'inky' . DS;
+$designerSoftwarePath 	= $jsPath . 'designersoftware' . DS;
+
+$customerId 			= Mage::helper('designersoftware/customer')->getCurrentCustomerId();
+$customerName 			= Mage::helper('designersoftware/customer')->getCurrentCustomerName();
+
+$logo 					= $this->getSkinUrl('images/logo.png');
+$copyRightText 			= Mage::getStoreConfig('designerfront/footer/copyright');
+?>
+<div  class="ng-cloak wrapper tool-wrapper" ng-app="InkyApp">
+	<!-- <div class="container-fluid text-center">
+	<a href="javascript:void(0)" class="logo"><img src="<?php echo $designerSoftwarePath;?>assets/images/img-logo.png" /></a>
+	</div> -->
+	<div class="container-fluid root-controller" ng-controller="RootController">
+		<div class="row order-wrapper">
+			<div class="col-lg-8 start_canvas">
+				
+				<div class="box-logo text-center">
+				<a href="javascript:void(0)"><img src="<?php echo $logo; ?>" alt="" /></a>
+					
+				</div>
+				<div class="robo-box">
+					
+					<a href="javascript:void(0)" ng-show="clickBoxFlag" class="click-case" ng-click="hideClickBox()"><?php echo $this -> __('Click case to start'); ?></a>
+					<div id="wheelEventContainer"  class="canvas-case">
+						<div class="canvas-case-inner">
+						</div>
+						<!-- <div class="design-case-inner">
+							<canvas id="designCan" width="235" height="440" style="border:1px none red;"></canvas>
+						</div> -->	
+					</div>
+					<a href="javascript:void(0)" ng-click="rotateLeftWise()"  class="rotate-right"> <i class="fa fa-rotate-right"></i> <span><?php echo $this -> __('Rotate Left'); ?></span> </a>
+					<a href="javascript:void(0)" ng-click="rotateRightWise()" class="rotate-left undo-box" > <i class="fa fa-rotate-left"></i> <span><?php echo $this -> __('Rotate Right'); ?></span> </a>
+					<!-- <a href="javascript:void(0)" class="undo-box" ng-click="undoObjects()"><i class="fa fa-undo"></i><span><?php echo $this -> __('undo'); ?></span></a> -->
+
+				</div>
+				<span class="jb-right text-center"><?php echo $copyRightText; ?></span>
+				<div class="product-box">
+					<div class="inky-items">
+						<ul class="product-snap-holder clearfix">
+							<li ng-repeat="product in productsData">
+								<a href="javascript:void(0)"><img ng-attr-src="{{sitePath+product.thumb}}" alt="" /></a>
+							</li>
+							
+						</ul>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-lg-4 buy_tool">
+				<div class="order-tab">
+					<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button> -->
+					<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<img src="<?php echo $designerSoftwarePath; ?>assets/images/img-popup.png" alt="" />
+							</div>
+						</div>
+					</div>
+					<div class="order-box clearfix">
+						<!-- data-toggle="tooltip" data-placement="left" title="Help Video" -->
+						<span >Order Total : <strong> $ {{totalPrice}}</strong><i id="orderInfo"  class="order-info-popUp fa fa-question-circle" ></i></span>
+						<div class="buy_box_pops">
+						<button type="button" class="btn btn-primary pops_save" ng-click="checkOptions('save')" >
+							Save
+						</button>
+						<button type="button" class="btn btn-primary buy-now-action" ng-click="checkOptions('addToCart')">
+							Buy Now
+						</button>
+						</div>
+						
+
+					</div>
+					
+					<span class="log-register welcome-register">
+						<?php echo $this -> __('Hello '); ?>
+						<a class="customerNameShow" href="javascript:void(0);"?>
+							<?php echo $customerName; ?>
+						</a> 
+						<?php echo $this -> __(', let\'s design a case!'); ?>
+					</span>
+				
+					<span class="log-register login-register-a">
+						<a class="userlogin" href="javascript:void(0)"  href="<?php echo Mage::getUrl('customer/account/login/'); ?>" data-toggle="tooltip" data-placement="top" title="Log In" ng-click="loginRegister('login')">
+							<?php echo $this -> __('Log In'); ?>
+						</a> 
+						<?php echo $this -> __('or'); ?>
+						<a class="userregister" href="javascript:void(0)" href="<?php echo Mage::getUrl('customer/account/create/'); ?>" data-toggle="tooltip" data-placement="top" title="Register" ng-click="loginRegister('register')">
+							<?php echo $this -> __('Register'); ?>
+						</a>
+						<?php echo $this -> __('to Save Your Designs!'); ?>
+					</span>
+					
+					<div role="tabpanel" class="category-section">
+
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active">
+								<a href="javascript:void(0)" class="active" aria-controls="stylesview" role="tab" data-toggle="tab" ><?php echo $this -> __('Parts'); ?></a>
+							</li>
+							<li role="presentation" >
+								<a href="javascript:void(0)" aria-controls="partsview" role="tab" data-toggle="tab"><?php echo $this -> __('Colors'); ?></a>
+							</li>
+							
+							<li role="presentation">
+								<a href="javascript:void(0)" aria-controls="clipartsview" role="tab" data-toggle="tab" ><?php echo $this -> __('ART/OPTIONS'); ?></a>
+							</li>
+							<li role="presentation">
+								<a href="javascript:void(0)" aria-controls="textsview" role="tab" data-toggle="tab" ><?php echo $this -> __('TEXT'); ?></a>
+							</li>
+						</ul>
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<i class="bg-cross visible-xs visible-sm visible-md"></i>
+							<div role="tabpanel" class="tab-pane active" id="stylesview">
+								<div class="style-section">
+										
+									<div class="row pocket-select">
+										<div class="col-xs-12">
+											<span class="pocket-part"><?php echo $this -> __('Select a Pocket (or click the part of the Case)'); ?></span>
+											<ul>
+												<li ng-repeat="pocket in pocketStyleData" partStId="{{pocket.partsStyleId}}" partStName="{{pocket.partsStyleName}}" partIden="{{pocket.partIdenti}}" partPrice="{{pocket.price}}" ng-click="loadPartLayersInfoByCode(pocket.partsStyleId,pocket.partsStyleName,pocket.partIdenti,pocket.price)" ondragstart="drag(event,'parts')" ondragend="drop(event)" draggable="true" >
+													<strong >{{pocket.partsStyleName}}</strong><i></i>
+												</li>
+												<!-- <li>
+												<strong>12"</strong><span>Pockets Style</span><i></i>
+												</li>
+												<li>
+												<strong>6"</strong><span>Pockets Style</span><i></i>
+												</li>
+												<li>
+												<strong>16"</strong><span>Pockets Style</span><i></i>
+												</li>
+												<li>
+												<strong>8"</strong><span>Pockets Style</span><i></i>
+												</li>
+												<li>
+												<strong>32"</strong><span>Pockets Style</span><i></i>
+												</li> -->
+											</ul>
+										</div>
+									</div>
+									<div class="row handle-part">
+										<div class="col-xs-12">
+											<span><?php echo $this -> __('Select a Handle (or click the part of the Case)'); ?></span>
+											<ul class="clearfix">
+												<li ng-repeat="handle in handleStyleData" partStId="{{handle.partsStyleId}}" partStName="{{handle.partsStyleName}}" partIden="{{handle.partIdenti}}" partPrice="{{handle.price}}" ng-click="loadPartLayersInfoByCode(handle.partsStyleId,handle.partsStyleName,handle.partIdenti,handle.price)" ondragstart="drag(event,'parts')" ondragend="drop(event)" draggable="true">
+													<span >{{handle.partsStyleName}}</span>
+												</li>
+												<li class="double-strap" ng-repeat="strap in strapStyleData">
+													<div strap="{{strap.strap}}" partT="{{strap.partsStyleName}}" onclick="loadStrapsFromJquery(event)" class="strap-box">
+														<label  class="{{strap.strapCheck}} label_check" >
+															<INPUT strap-check type="radio"  name="group1" >
+															{{strap.partsStyleName}}</label>
+													</div>
+												</li>
+											
+												<span class="clip-select">Select a Option (or click the part of the Case)</span>
+												<div class="option_box">
+												<ul class="row">
+													<li clip-drag class="col-xs-3" ng-repeat="clipart in optionsData"  thumb="{{clipart.thumb}}" colorable="{{clipart.colorable}}"  price="{{clipart.price}}" cliplabel="{{clipart.label}}" colorId="{{clipart.defaultColorId}}" optionId="{{clipart.id}}" colorprice="{{clipart.defaultColorPrice}}" clipcolor="{{clipart.defaultColorCode}}" colorTitle="{{clipart.defaultColorTitle}}" data-placement="top" data-toggle="tooltip" data-original-title="{{clipart.label}}" ng-click="addOptions(clipart.id,clipart.thumb,clipart.colorable,clipart.price,clipart.defaultColorCode,clipart.label,clipart.defaultColorPrice,clipart.defaultColorTitle,clipart.defaultColorId)" ondragstart="drag(event,'option',this)" ondragend="drop(event)" draggable="true">
+														<a href="javascript:void(0)"><img ng-attr-src="{{sizesPath+clipart.thumb}}" alt="" /></a>
+														
+													</li>
+											
+										</ul>
+									</div>
+												
+													
+												<!-- <li  class="double-strap" >
+													<div onclick="loadStrapsFromJquery(event,'double')"  class="strap-box">
+														<label  class="double-check label_check" >
+														<INPUT type="radio"  name="group1" >
+														Double Strap</label>
+													</div>
+												</li> -->
+													
+													<!-- <input id="strapCheck" ng-click="showDoubleStraps()" type="checkbox"></input>  Select Double Straps -->
+												<!-- <li>
+												Side Handle
+												</li> -->
+											</ul>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+							<div role="tabpanel" class="tab-pane" id="partsview">
+								<div ng-show="removeSelectedFlag" class="remove-selected-obj box-cross pull-right">
+										<a  class="perfect-cross" href="javascript:void(0)" ng-click="removeSelectedGroup()"><i class="fa fa-times"></i></a>
+										<span class="removeSelected">Remove Part</span>
+									</div>
+								<div class="row bag-part">
+									<div class="col-lg-12">
+										<span class="select-part">Select a Part (or click the part of the Case)</span>
+										<!-- <div class="handle-position">
+										<i class="handle-color"></i><span>Side Handle</span><i class="handle-arrow pull-right"></i>
+										</div> -->
+										<div class="btn-group">
+											<a href="javascript:void(0)" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <span  class="caret pull-right"></span><small class="selected-part-title">Action</small> </a>
+											<ul class="dropdown-menu" role="menu">
+												<li ng-repeat="part in partDropDownArr track by $index" ng-click="selectPartByName(part.partName,part.layers,$index,part.groupTitle)">
+													<a class="selectBox" href="javascript:void(0)">{{part.partName}}</a>
+													<!-- <div  class="perfect-cross" href="javascript:void(0)"><i class="fa fa-times"></i></div> -->
+												</li>
+												<li ng-repeat="option in optionsSizesArr" ng-click="selectOptionsByName(option.id,option.layers,option.label,option.colorCode)">
+													<a class="selectBox sizeOptions" href="javascript:void(0)">{{option.label}}</a>
+													<!-- <div  class="perfect-cross" href="javascript:void(0)"><i class="fa fa-times"></i></div> -->
+												</li>
+												<!-- <li>
+												<a href="javascript:void(0)">Side Handle</a>
+												</li>
+												<li>
+												<a href="javascript:void(0)">Lid</a>
+												</li>
+												<li>
+												<a href="javascript:void(0)">Body</a>
+												</li>
+												<li>
+												<a href="javascript:void(0)">Bottom Trim</a>
+												</li>
+												<li>
+												<a href="javascript:void(0)">Pockets</a>
+												</li> -->
+
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="row bag-color">
+									<div class="col-xs-3 part-layer-holder" ng-repeat="layer in selectedPartInfoObj" ng-click="setLayerByIndx($index,layer.layerId)" data-placement="top" data-toggle="tooltip" data-original-title="{{layer.layerTitle}}">
+										<h4>{{layer.layerTitle}}</h4>
+										<div class="color-bag" set-active-class layerName="{{layer.layerName}}" parentName="{{layer.parentName}}"  ng-style="{'background': '#'+layer.hexColorCode+''}"></div>
+									</div>
+
+								</div>
+								<div class="textute-box row">
+									<div class="col-xs-12">
+										<a href="javascript:void(0)" class="btn btn-primary active">View by Texture</a>
+										<a href="javascript:void(0)" class="btn btn-primary">View by Colors</a>
+									</div>
+
+								</div>
+								<div class="row texture-bg partlayercolorholder">
+									<div class="col-xs-12">
+										<ul class="clearfix">
+											<li ng-repeat="color in layerColors" colortitle="{{color.title}}" colorcode="{{color.colorCode}}" texture="{{color.texture}}" texturetitle="{{color.texturetitle}}" ng-click="changePartColorByIndex(color.colorCode,color.price,color.title,color.id)">
+												<a href="javascript:void(0)" ng-style="{'background': '#{{color.colorCode}}'}"></a>
+											</li>
+											<li ng-repeat="color in optionLayerColors" colortitle="{{color.title}}" colorcode="{{color.colorCode}}" texture="{{color.texture}}" texturetitle="{{color.texturetitle}}" ng-click="changeOptionColor(color.colorCode,color.price,color.title,color.id)">
+												<a href="javascript:void(0)" ng-style="{'background': '#{{color.colorCode}}'}"></a>
+											</li>
+											<!-- <li>
+											<a href="javascript:void(0)" style="background: yellow"></a>
+											</li>
+											<li>
+											<a href="javascript:void(0)" style="background: pink"></a>
+											</li>
+											<li>
+											<a href="javascript:void(0)" style="background: grey"></a>
+											</li>
+											<li>
+											<a href="javascript:void(0)" style="background: blue"></a>
+											</li>
+											<li>
+											<a href="javascript:void(0)" style="background: green"></a>
+											</li>
+											<li>
+											<a href="javascript:void(0)" style="background: black"></a>
+											</li>
+											<li>
+											<a href="javascript:void(0)" style="background: yellow"></a>
+											</li>
+											<li>
+											<a href="javascript:void(0)" style="background: pink"></a>
+											</li>
+											<li>
+											<a href="javascript:void(0)" style="background: grey"></a>
+											</li>
+											<li>
+											<a href="javascript:void(0)" style="background: blue"></a>
+											</li>
+											<li>
+											<a href="javascript:void(0)" style="background: green"></a>
+											</li> -->
+										</ul>
+									</div>
+									
+								</div>
+								<!-- <div ng-show="removeSelectedFlag" class="remove-selected-obj">
+										<a  class="perfect-cross" href="javascript:void(0)" ng-click="removeSelectedGroup()"><i class="fa fa-times"></i></a>
+										<span class="removeSelected">Remove Selected</span>
+									</div> -->
+							</div>
+							
+							<div role="tabpanel" class="tab-pane" id="clipartsview" ng-controller="ClipartsController">
+								<div class="art-view-section">
+									<div class="row">
+										<div class="col-xs-12">
+											<span class="clip-select">Select a Clipart (or click the part of the Case)</span>
+											<div class="art_select">
+												<select name="country_id" class="country_id" tabindex="1">
+													
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="art-image">
+										<ul class="row">
+											<li clip-drag class="col-xs-3" ng-repeat="clipart in cliparts" thumb="{{clipart.thumb}}" colorable="{{clipart.colorable}}" clipId="{{clipart.id}}"  price="{{clipart.price}}" cliplabel="{{clipart.label}}" clipcolor="{{clipart.color}}" data-placement="top" data-toggle="tooltip" data-original-title="{{clipart.label}}" ng-click="addCliparts(clipart.thumb,clipart.colorable,clipart.price,clipart.color,clipart.label,clipart.id,clipart.print)" ondragstart="drag(event,'clip',this)" ondragend="drop(event)" draggable="true">
+												<a href="javascript:void(0)"><img set-title ng-attr-src="{{clipArtPath+clipart.thumb}}" alt="" /></a>
+												
+											</li>
+											
+										</ul>
+									</div>
+									<div class="art-color" ng-show="clipartcolorableFlag">
+										<h4>Clipart’s Colors</h4>
+										<ul class="row clearfix">
+											<li ng-repeat="color in clipartColors" ng-click="changeClipartColor(color.colorCode,$index,color.price,color.title,color.id)">
+												<a href="javascript:void(0)" ng-style="{'background': '#{{color.colorCode}}'}"></a>
+											</li>
+											<!-- <li><a href="javascript:void(0)" style="background: yellow"></a></li>
+											<li><a href="javascript:void(0)" style="background: black"></a></li>
+											<li><a href="javascript:void(0)" style="background: pink"></a></li>
+											<li><a href="javascript:void(0)" style="background: green"></a></li>
+											<li><a href="javascript:void(0)" style="background: violet"></a></li>
+											<li><a href="javascript:void(0)" style="background: blue"></a></li>
+											<li><a href="javascript:void(0)" style="background: grey"></a></li>
+											<li><a href="javascript:void(0)" style="background: skyblue"></a></li>
+											<li><a href="javascript:void(0)" style="background: red"></a></li>
+											<li><a href="javascript:void(0)" style="background: yellow"></a></li>
+											<li><a href="javascript:void(0)" style="background: black"></a></li> -->
+										</ul>
+									</div>
+									<div class="art-upload">
+										<div class="row">
+											<div class="col-xs-12">
+												<a href="javascript:void(0)" ng-click="uploadPage1Open()" class="btn btn-primary pull-right">Upload art</a>
+												<a href="javascript:void(0)" ng-click="uploadPage2Open()" class="btn btn-primary pull-left">My art</a>
+												<!-- <label class="label_check">
+													<INPUT type="checkbox" checked="" >
+													Replace Selected</label> -->
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<div class="art_upload_section">
+									<div class="row">
+										<div class="col-xs-12">
+											<div class="upload-section">
+												<p>
+													By uploading any art you agree that you have the full right to reproduce that art.  If you are not sure then please confirm and obtain the right to use the design.  By saving any artwork to our servers you are confirming the following:
+												</p>
+												<ul>
+													<li>
+														 I hold the right to reproduce this design.
+													</li>
+													<li>
+														If the legal rights holder contacts JB Cases LLC I understand that they will be referred to me.
+													</li>
+													<li>
+														 I understand that illegal usage of art can result in heavy penalties. I accept full responsibility for the use of the art work I upload to JB Cases LLC’s servers.
+													</li>
+												</ul>
+												<a href="javascript:void(0)" class="btn btn-primary" ng-click="uploadPage2Open()">Continue</a>
+												<a href="javascript:void(0)" class="btn btn-primary" ng-click="uploadCancel()">Cancel</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="upload_photo_box">
+									<div class="row">
+										<div class="col-xs-12">
+											<div class="photo_upload">
+												<ul class="row">
+													<li class="col-xs-3" ng-repeat="image in uploadImageArr" thumb="{{image.thumb}}" data-placement="top" data-toggle="tooltip" data-original-title="{{image.title}}" cliplabel="{{image.title}}" ng-click="addUploadedImage(image.thumb,image.title)" ondragstart="drag(event,'upload',this)" ondragend="drop(event)" draggable="true">
+														<a href="javascript:void(0)"><img set-title ng-attr-src="{{uploadThumb+image.thumb}}" alt="" /></a>
+													</li>
+													<!-- <li class="col-lg-3"><a href="javascript:void(0)"><img src="<?php echo $designerSoftwarePath;?>assets/images/img-family.png" alt="" /></a></li>
+													<li class="col-lg-3"><a href="javascript:void(0)"><img src="<?php echo $designerSoftwarePath;?>assets/images/img-home.png" alt="" /></a></li>
+													<li class="col-lg-3"><a href="javascript:void(0)"><img src="<?php echo $designerSoftwarePath;?>assets/images/img-cat.png" alt="" /></a></li>
+													<li class="col-lg-3"><a href="javascript:void(0)"><img src="<?php echo $designerSoftwarePath;?>assets/images/img-doll.png" alt="" /></a></li>
+													<li class="col-lg-3"><a href="javascript:void(0)"><img src="<?php echo $designerSoftwarePath;?>assets/images/img-hand.png" alt="" /></a></li>
+													<li class="col-lg-3"><a href="javascript:void(0)"><img src="<?php echo $designerSoftwarePath;?>assets/images/img-boy.png" alt="" /></a></li> -->
+												</ul>
+											</div>
+											<div class="image_type_box">
+												<div class="row">
+													<div class="col-xs-12">
+														<ul>
+															<li class="check-w-h">
+																.png, .jpg,  or .gif
+															</li>
+															<li class="check-w">
+																min. 50x50 pixels, max. 4000x4000 pixels
+															</li>
+															<li >
+																maximum 10 MB
+															</li>
+														</ul>
+														<!-- <form id="UploadForm" name="uploadform" action="<?php echo $designerSoftwarePath; ?>php/processupload.php" method="post" enctype="multipart/form-data"> -->
+														<form id="UploadForm" name="uploadform" action="<?php echo $url . 'designersoftware/upload'; ?>" method="post" enctype="multipart/form-data">
+
+															<div class="customfile-container">
+																<input type="file" id="file" name="ImageFile"  />
+															</div>
+
+															<div class="upload-cancel-upload">
+
+																<input type="submit" value="Upload" id="addSubmit" >
+
+															</div>
+
+														</form>
+														<!-- <a id="uploadClick" href="javascript:void(0)" class="btn btn-primary">Upload Photo</a> -->
+														<a href="javascript:void(0)" class="btn btn-primary" ng-click="uploadCancel()">Cancel</a>
+
+													</div>
+
+												</div>
+											</div>
+
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+							<div role="tabpanel" class="tab-pane" id="textsview" ng-controller="AddTextController">
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="adding-text">
+											<label>Enter your text and edit its properties.</label>
+											<textarea id="textArea" class="form-control" rows="3" placeholder="Add your text....."></textarea>
+											<a href="javascript:void(0)" type="button" class="btn btn-primary pull-right" ng-click="addText()">ADD TEXT</a>
+										</div>
+									</div>
+								</div>
+								<div class="row" style="display: none">
+									<div class="col-xs-12 printing-select">
+										<span class="clip-select">Select Text Printing Type</span>
+										<div class="font-family">
+											<select name="country_id" class="country_id3" tabindex="1">
+												
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row font-property-box">
+									<div class="col-lg-12">
+										<!-- <div class="font-size-box">
+										<select name="country_id" class="country_id1" tabindex="1">
+										<option> 14 px</option>
+										<option> 14 px</option>
+										<option> 14 px</option>
+										<option> 14 px</option>
+										</select>
+										</div> -->
+										<div class="font-family clearfix">
+											<select name="country_id" class="country_id2" tabindex="1">
+												<option>Raleway (OT1)</option>
+												<option>Raleway (OT1)</option>
+												<option>Raleway (OT1)</option>
+												<option>Raleway (OT1)</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row style-align">
+									<div class="col-lg-12">
+										<ul class="pull-right">
+											<li ng-click="setTextAlign('center')">
+												<a href="javascript:void(0)"><i class="fa fa-align-center"></i></a>
+											</li>
+											<li ng-click="setTextAlign('justify')">
+												<a href="javascript:void(0)"><i class="fa fa-align-justify"></i></a>
+											</li>
+											<li ng-click="setTextAlign('left')">
+												<a href="javascript:void(0)"><i class="fa fa-align-left"></i></a>
+											</li>
+											<li ng-click="setTextAlign('right')">
+												<a href="javascript:void(0)"><i class="fa fa-align-right"></i></a>
+											</li>
+										</ul>
+										<ul>
+											<li ng-click="changeTextWeight('bold')">
+												<a href="javascript:void(0)"><i class="fa fa-bold"></i></a>
+											</li>
+											<li ng-click="changeTextWeight('italic')">
+												<a href="javascript:void(0)"><i class="fa fa-italic"></i></a>
+											</li>
+											<li ng-click="changeTextWeight('underline')">
+												<a href="javascript:void(0)"><i class="fa fa-underline"></i></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="row color_text">
+									<div class="col-lg-12">
+										<h4>Select color for  text</h4>
+										<ul class="clearfix">
+											<li ng-repeat="color in textColors" ng-click="changeTextColor(color.colorCode,$index,color.price,color.title,color.id)">
+												<a ng-style="{'background': '#{{color.colorCode}}'}" href="javascript:void(0)"><i></i></a>
+											</li>
+											<!-- <li><a style="background: yellow" href="javascript:void(0)"><i></i></a></li>
+											<li><a style="background: black" href="javascript:void(0)"><i></i></a></li>
+											<li><a style="background: pink" href="javascript:void(0)"><i></i></a></li>
+											<li><a style="background: green" href="javascript:void(0)"><i></i></a></li>
+											<li><a style="background: violet" href="javascript:void(0)"><i></i></a></li>
+											<li><a style="background: blue" href="javascript:void(0)"><i></i></a></li>
+											<li><a style="background: grey" href="javascript:void(0)"><i></i></a></li>
+											<li><a style="background: skyblue" href="javascript:void(0)"><i></i></a></li>
+											<li><a style="background: red" href="javascript:void(0)"><i></i></a></li>
+											<li><a style="background: yellow" href="javascript:void(0)"><i></i></a></li>
+											<li><a style="background: black" href="javascript:void(0)"><i></i></a></li> -->
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<a  href="javascript:void(0)" class="btn btn-primary duplicate duplicate-design" ng-click="duplicateDesign('duplicate')">Duplicate</a>
+		
+		</div>
+
+		<div  class="info-order  text-center">
+			<div id="moveContainer">
+				<h4><i class="glyphicon glyphicon-move"></i>order info</h4>
+				<span class="order">Order Total</span>
+				<strong>$ {{totalPrice}}</strong>
+				
+			</div>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Price</th>
+							<!-- <th>Status</th> -->
+
+						</tr>
+					</thead>
+					<tbody style="overflow: scroll;">
+						<tr ng-repeat="partinfo in priceInfoArr">
+							<th scope="row">{{partinfo.partName}}</th>
+							<td>$ {{partinfo.partPrice}}</td>
+							<!-- <td><label>
+							<input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+							</label></td> -->
+
+						</tr>
+						<!-- <tr>
+							<th scope="row">Top Handle</th>
+							<td>100.00$</td>
+							<td><label>
+							<input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+							</label></td>
+
+						</tr> -->
+						<!-- <tr>
+							<th scope="row">3" Pockets</th>
+							<td>100.00$</td>
+							<td><label>
+							<input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+							</label></td>
+
+						</tr> -->
+						<!-- <tr>
+							<th scope="row">6" Pockets</th>
+							<td>100.00$</td>
+							<td><label>
+							<input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+							</label></td>
+
+						</tr> -->
+						<!-- <tr>
+							<th scope="row">10" Pockets</th>
+							<td>100.00$</td>
+							<td><label>
+							<input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+							</label></td>
+
+						</tr> -->						<!-- <tr>
+							<th scope="row">single Strip</th>
+							<td>100.00$</td>
+							<td><label>
+							<input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+							</label></td>
+
+						</tr> -->
+					</tbody>
+				</table>
+			</div>
+			<a data-placement="left" data-toggle="tooltip" data-original-title="Preview"   ng-click="previewPopUpOpen()" class="previewImg camera-box" href="javascript:void(0)"><i class="fa fa-camera"></i></a>
+			<!-- <img data-placement="left" data-toggle="tooltip" data-original-title="Preview" class="previewImg" src="<?php echo $designerSoftwarePath; ?>assets/images/preview.png" ng-click="previewPopUpOpen()"></img> -->
+			<a href="javascript:void(0)" class="btn btn-primary " ng-click="buyNow('addToCart')">Buy Now</a>
+
+		</div>
+		<div class="video-wrapper">
+			<div class="video-loader"></div>
+			<div class="iframe-wrapper">
+				<a href="javascript:void(0)" ng-click="hidePopUp('video')" class="perfect-cross close-video"><i class="fa fa-times"></i></a>
+				<iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/Rvr45wPAbUg" id="videoT"></iframe>
+			</div>
+		</div>
+		
+		<div class="save-wrapper">
+			<div class="video-loader"></div>
+			<div class="iframe-wrapper">
+				<a href="javascript:void(0)" ng-click="hidePopUp('savepopup')" class="perfect-cross close-video"><i class="fa fa-times"></i></a>
+			</div>
+		</div>
+		<div class="preloader">
+			<span class="loading-heading">Loading Design...</span>
+			<img src="<?php echo $designerSoftwarePath; ?>assets/images/482.GIF" ></img>
+		</div>
+		<div class="lightbox"></div>
+		<div class="lightbox2"></div>
+		<!-- mainpopup -->
+		
+		<div id="save_pop_up">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="row">
+							<div class="col-xs-12">
+								<i class="save-cross" ng-click="hidePopUp('login')"></i>
+							<h3>Login or Register</h3>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">
+							<label id="login" class="label_check login-check" ng-click="manageLoginRegister('login')">
+							<INPUT id="loginCheck" type="radio"  name="group1" checked="checked">
+							Login</label>
+							</div>
+							<div class="col-xs-6">
+							<label id="register" class="label_check register-check" ng-click="manageLoginRegister('register')">
+							<INPUT id="registerCheck" type="radio"  name="group1">
+							Register</label>
+							</div>
+						</div>
+						<div class="row login-container">
+							<div class="col-xs-12">
+								<div class="login_box">
+									<form action="">
+										<div class="form-group">
+										    <!-- <label for="exampleInputEmail1">Email address</label> -->
+										    <input type="text" class="form-control firstName" style="display:none" placeholder="Enter Name">
+										  </div>
+										  <div class="form-group">
+										    <!-- <label for="exampleInputEmail1">Email address</label> -->
+										    <input type="email" class="form-control email" placeholder="Enter Your  Email">
+										  </div>
+										  <div class="form-group">
+										    <!-- <label for="exampleInputPassword1">Password</label> -->
+										    <input type="password" class="form-control firstPass" placeholder="Enter Password">
+										  </div>
+					 			 	</form>
+								</div>
+						</div>
+					</div>
+			<div class="row register-container">
+				<div class="col-xs-12">
+					<div class="register">
+					<form>
+						<div class="form-group">
+					    <!-- <label for="exampleInputEmail1">Email address</label> -->
+					    <input type="text" class="form-control nfirstName" placeholder="First name">
+					  </div>
+					  <div class="form-group">
+					    <!-- <label for="exampleInputEmail1">Email address</label> -->
+					    <input type="text" class="form-control nlastName" placeholder="Last name">
+					  </div>
+					   <div class="form-group">
+						    <!-- <label for="exampleInputEmail1">Email address</label> -->
+						    <input type="email" class="form-control nemail" placeholder="Email">
+					</div>
+					  <div class="form-group">
+					    <!-- <label for="exampleInputPassword1">Password</label> -->
+					    <input type="password" class="form-control nPass" placeholder="Create Password">
+					  </div>
+					  <div class="form-group">
+					    <!-- <label for="exampleInputPassword1">Password</label> -->
+					    <input type="password" class="form-control ncPass" placeholder="Confirm password">
+					  </div>
+				  </form>
+					</div>
+				</div>
+			</div>
+			<a href="javascript:void(0)" class="btn btn-default" ng-click="formValidation()">Save</a>
+		</div>
+		</div>			
+	</div>
+	</div>
+	
+	<!-- mainpopup -->
+	<div id="save_pop_up_duplicate" class="duplicate_design text-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="row">
+							<div class="col-xs-12">
+								<i class="save-cross" ng-click="hidePopUp('duplicate')"></i>
+							<h3>Please select action Which you want to with design</h3>
+							</div>
+						</div>
+					<a href="javascript:void(0)" ng-click="hidePopUp('duplicate')" class="btn btn-default">Duplicate Design</a>
+					
+		</div>
+		</div>			
+	</div>
+	</div>
+	<div id="printing-check-php">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="row">
+							<div class="col-xs-12">
+								<i class="save-check-cross" ng-click="hidePopUp('printing-check')"></i>
+							<!-- <h3 class="save-check-message">Text Printing Type</h3> -->
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<h3 class="printing-label">Embroidery Text Printing Look Like this</h3>
+								<img class="printing-text-image"></img>
+							</div>
+						</div>
+						
+						
+			
+			<a href="javascript:void(0)" class="btn btn-default" ng-click="selectPrinting()">OK</a>
+		</div>
+		</div>			
+	</div>
+	</div>
+	<div id="duplicate-check-php">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="row">
+							<div class="col-xs-12">
+								<i class="save-check-cross" ng-click="hidePopUp('duplicate')"></i>
+							<h3 class="save-check-message">Duplicate Design</h3>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<h3 class="printing-label">Now You Are  Working With New Designs</h3>
+								
+							</div>
+						</div>
+						
+						
+			
+			<a href="javascript:void(0)" class="btn btn-default" ng-click="hidePopUp('duplicate')">OK</a>
+		</div>
+		</div>			
+	</div>
+	</div>
+	<div id="size-check-php">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="row">
+							<div class="col-xs-12">
+								<i class="save-check-cross" ng-click="hidePopUp('sizecheck')"></i>
+							<h3 class="save-check-message"></h3>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<h3 class="printing-label">Oops!  You forgot to choose a size and color.  Please do that before you save or buy this fantastic dream case you are designing.</h3>
+								
+							</div>
+						</div>
+						
+						
+			
+			<a href="javascript:void(0)" class="btn btn-default" ng-click="hidePopUp('sizecheck')">OK</a>
+		</div>
+		</div>			
+	</div>
+	</div>
+	<div id="save-check-php">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="row">
+							<div class="col-xs-12">
+								<i class="save-check-cross" ng-click="hidePopUp('save-check')"></i>
+							<h3 class="save-check-message"></h3>
+							</div>
+						</div>
+						
+						
+			
+			<a href="javascript:void(0)" class="btn btn-default" ng-click="hidePopUp('save-check')">OK</a>
+		</div>
+		</div>			
+	</div>
+	</div>
+	<div class="perfect-case-box container">
+			<!-- <div class="perfect-case-box-inner"> -->
+			<a href="javascript:void(0)" class="perfect-cross" ng-click="hidePopUp()"><i class="fa fa-times"></i></a>
+
+			<div class="media row">
+				<div class="media-left col-xs-5 col-sm-3">
+					<a href="javascript:void(0)"> <img src="<?php echo $designerSoftwarePath; ?>assets/images/img-robo.png" alt="" /> </a>
+				</div>
+				<div class="media-body col-xs-7 col-sm-9">
+					<h4 class="media-heading">perfect-case-box </h4>
+					<span>$150 + 30 days return or remake</span>
+					<a href="javascript:void(0)" class="btn btn-primary active">View product page</a><a href="javascript:void(0)" class="btn btn-primary">Buy Now</a>
+					<div class="pattern-box">
+						<!-- <ul class="row">
+						<li class="col-lg-3"><a href="javascript:void(0)"><img src="<?php echo $designerSoftwarePath;?>assets/images/small-img-6.png" alt="" /></a></li>
+						<li class="col-lg-3"><a href="javascript:void(0)"><img src="<?php echo $designerSoftwarePath;?>assets/images/small-img-6.png" alt="" /></a></li>
+						<li class="col-lg-3"><a href="javascript:void(0)"><img src="<?php echo $designerSoftwarePath;?>assets/images/small-img-6.png" alt="" /></a></li>
+						<li class="col-lg-3"><a href="javascript:void(0)"><img src="<?php echo $designerSoftwarePath;?>assets/images/small-img-6.png" alt="" /></a></li>
+						</ul> -->
+					</div>
+					<a href="javascript:void(0)" class="btn btn-primary design-edit">Edit design</a>
+
+				</div>
+			</div>
+			<!-- </div> -->
+		</div>
+		<div class="preview-case-box">
+			
+			<a href="javascript:void(0)" class="perfect-cross-preview" ng-click="hidePopUp('preview')"><i class="fa fa-times"></i></a>
+			<div class="previewBoxHolder">
+				<h4 class="text-center">Preview Panel</h4>
+				<div class="previewCanvas">
+					<canvas id="previewCanvas"  style="border: 1px none gray;"></canvas>
+					<img ng-show="doubleStrapSelectionFlag" class="strap-image" src="<?php echo $designerSoftwarePath; ?>assets/images/doublestrap.png"></img>
+				</div>
+						
+			</div>		
+			
+			<div class="textFont-check">
+				<canvas id="outputCan" width="300" height="400"  style="border: 1px none gray;"></canvas>
+			</div>
+		</div>
+		<div class="color-texture-holder">
+			<div>
+				<img color-texture-image></img>
+			</div>
+			<span>Soft Leather-Lovebird</span>	
+			
+		</div>
+	</div>
+
+</div>
+<?php echo $this -> getChildHtml('footer'); ?>
+

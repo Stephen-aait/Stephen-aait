@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <A2bizz_Customerdesign>
+            <version>0.1.0</version>
+        </A2bizz_Customerdesign>
+    </modules>
+    <admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<A2bizz_Customerdesign before="Mage_Adminhtml">A2bizz_Customerdesign_Adminhtml</A2bizz_Customerdesign>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+    <adminhtml>
+		<layout>
+			<updates>
+				<customerdesign>
+					<file>a2bizz/a2bizz_customerdesign.xml</file>
+				</customerdesign>
+			</updates>
+		</layout>
+    </adminhtml>
+    <global>		
+        <blocks>
+            <customerdesign>
+                <class>A2bizz_Customerdesign_Block</class>                
+            </customerdesign> 
+            <adminhtml>
+				<rewrite>
+					<customer_edit_tab_cart>A2bizz_Customerdesign_Block_Adminhtml_Customer_Edit_Tab_Cart</customer_edit_tab_cart>
+					<customer_edit_tab_view_cart>A2bizz_Customerdesign_Block_Adminhtml_Customer_Edit_Tab_View_Cart</customer_edit_tab_view_cart>
+					<customer_edit_tab_view_grid_rendered_item>A2bizz_Customerdesign_Block_Adminhtml_Customer_Renderer_Drawarea</customer_edit_tab_view_grid_rendered_item>
+				</rewrite>
+            </adminhtml>                       
+        </blocks>
+        <helpers>
+            <customerdesign>
+                <class>A2bizz_Customerdesign_Helper</class>                
+            </customerdesign>            
+        </helpers>        
+    </global>    
+    
+</config>

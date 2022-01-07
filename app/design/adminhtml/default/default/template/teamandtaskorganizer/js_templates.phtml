@@ -1,0 +1,72 @@
+<script id="tto-task-entity" type="text/x-handlebars-template">
+    <tr id="tto_task_{{id}}" class="tto_task_entity" data-task-id={{id}}>
+        <td class="tto_td_id"><a class="ajax-link" href="{{url}}">{{id}}</a></td>
+        <td class="tto_td_title"">{{{title}}}</td>
+        <td class="tto_td_status">{{statusText}}</td>
+        <td class="tto_td_priority">{{priorityText}}</td>
+        <td class="tto_td_buttons">
+            
+        </td>
+        <td class="tto_td_comments ">
+            <button class="scalable show-comments" data-id="{{id}}">
+                <span>
+                    <span>
+                        <span>Comments (<span class="tto_comments_total">{{comments_total}}</span>)</span>
+                    </span>
+                </span>
+            </button>
+        </td>
+    </tr>
+</script>
+
+<script id="tto-tasks-list" type="text/x-handlebars-template">
+    <table cellspacing="0">
+        <thead>
+            <tr class="headings">
+                <th class="tto_th_id">{{tto.lang.id}}</th>
+                <th class="tto_th_title">{{tto.lang.title}}</th>
+                <th class="tto_th_status">{{tto.lang.status}}</th>
+                <th class="tto_th_priority">{{tto.lang.priority}}</th>
+                <th class="tto_th_buttons">{{tto.lang.action}}</th>
+                <th class="tto_th_comments">{{tto.lang.comments}}</th>
+            </tr>
+        </thead>
+        <tbody id="tasks-list-body">
+            {{#each tasks}}
+                {{> taskEntity }}
+            {{/each}}
+        </tbody>
+    </table>
+</script>
+
+<script id="tto-popup" type="text/x-handlebars-template">
+    <div class="tto">
+        <div id="message-popup-window-mask"></div>
+        <div id="tto-ajax-popup" class="message-popup">
+            <div class="message-popup-head">
+                <a title="close" href="#" class="close btn message-popup-close" title="<?php echo $this->__('Close'); ?>"><span><?php echo $this->__('Close'); ?></span></a>
+                <h2 class="message-popup-title">{{{title}}}</h2>
+            </div>
+            <div class="message-popup-content">{{{content}}}</div>
+        </div>
+    </div>
+</script>
+
+<script id="tto-task-status-change-button" type="text/x-handlebars-template">
+    <button class="scalable status-change" data-status="{{status}}">
+        <span>
+            <span>
+                <span>{{label}}</span>
+            </span>
+        </span>
+    </button>
+</script>
+
+<script id="tto-task-comment" type="text/x-handlebars-template">
+    <li class="comment-entity">
+        <b class="comment-entity-user">{{user}}</b>
+        <span class="comment-entity-date">{{crdate}}</span>
+        <br>
+        <div class="comment-entity-content">{{{content}}}</div>
+    </li>
+</script>

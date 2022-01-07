@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * SAGIPL
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * 
+ * @category   	SAGIPL
+ * @package	Sag_Shippingmessage
+ * @copyright  	Copyright (c) 2014 SAGIPL. (http://www.sagipl.com/)
+ * @license	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+/**
+ * Free Shipping Message
+ *
+ * @category	SAGIPL
+ * @package	Sag_Shippingmessage
+ * @author	Navneet <navneet.kshk@gmail.com>
+ */
+-->
+
+<config>
+    <tabs>
+        <shippingmessage translate="label" module="shipping">
+            <label>SAG Free Shipping Message</label>
+            <sort_order>100</sort_order>
+        </shippingmessage>
+    </tabs>
+    <sections>
+        <sagshippingmessage translate="label" module="shippingmessage">
+            <label>Extension Options</label>
+            <tab>shippingmessage</tab>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+				<readme translate="label">
+                    <label>Information about SAG infotech</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>-1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <information>
+                            <label>About Company</label>
+                            <comment>
+                                <![CDATA[The Best Website Design, Web Application Development , web solutions Company backed by a team of creative and experienced web designers, web developers. Website: <a href="http://www.sagipl.com" target="_blank">sagipl.com</a> ]]>
+                            </comment>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </information>
+                    </fields>
+                </readme>
+                <general translate="label" module="shippingmessage">
+                    <label>General Extension Options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<shippingmessage_enabled_select_box translate="label">
+                            <label>Enabled: </label>
+                            <comment>Make extension enabled Yes/No</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </shippingmessage_enabled_select_box>
+						<shippingmessage_showinheader_select_box translate="label">
+                            <label>Show in Header: </label>
+                            <comment>Show in header enabled Yes/No</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </shippingmessage_showinheader_select_box>
+						<shippingmessage_showinleft_select_box translate="label">
+                            <label>Show in Left: </label>
+                            <comment>Show in left enabled Yes/No</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </shippingmessage_showinleft_select_box>
+						<shippingmessage_showinright_select_box translate="label">
+                            <label>Show in Right: </label>
+                            <comment>Show in right enabled Yes/No</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </shippingmessage_showinright_select_box>
+						<shippingmessage_value translate="label">
+                            <label>Free Shipping Price: </label>
+                            <comment>Enter price for free shipping.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </shippingmessage_value>
+						<shippingmessage_msg translate="label">
+                            <label>Free Shipping Message: </label>
+                            <comment>Enter message for free shipping.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </shippingmessage_msg>
+						<shippingmessage_congratulation translate="label">
+                            <label>Free Shipping Congratulation Message: </label>
+                            <comment>Enter message for Congratulation.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </shippingmessage_congratulation>
+                    </fields>
+                </general>
+            </groups>
+        </sagshippingmessage>
+    </sections>
+</config>
