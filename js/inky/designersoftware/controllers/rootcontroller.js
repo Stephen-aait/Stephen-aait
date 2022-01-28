@@ -4974,8 +4974,15 @@ function loadDataByPromise(section) {
             return sequence.then(function () {
                 return imagePromise;
             }).then(function (data) {
-                data = angular.fromJson(data);
+
                 promiseDataArrCounter++;
+
+                if(data.length == 0){
+                    return;
+                }
+
+                data = angular.fromJson(data);
+                
                 if (section == "cliparts") {
                     if (promiseDataArrCounter == 1) {
                         var sc = angular.element("#clipartsview").scope();
