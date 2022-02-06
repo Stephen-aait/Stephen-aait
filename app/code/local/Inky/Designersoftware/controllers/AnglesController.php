@@ -27,10 +27,10 @@ class Inky_Designersoftware_AnglesController extends Mage_Core_Controller_Front_
     public function indexAction()
     {   
 		//if($this->_initDesignerSoftware() && $this->checkLicense()):		 
-		if($this->_initDesignerSoftware()):		 
+		//if($this->_initDesignerSoftware()):		 
 			$JSON = Mage::helper('designersoftware/angles_json')->load($this->getRequest()->getParams());		
 			$this->getResponse()->setBody(Mage::helper('core')->jsonEncode($JSON));
-		endif;
+		//endif;
     }  
     
     public function testAction()
